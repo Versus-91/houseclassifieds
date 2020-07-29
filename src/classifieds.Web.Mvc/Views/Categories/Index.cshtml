@@ -1,0 +1,12 @@
+﻿@model  classifieds.Web.Models.Categories.CategoryListViewModel
+@{
+    Layout = "layout/_front";
+}
+    <div class="container">
+        <div class="section">
+            @foreach (var item in Model.Categories)
+            {
+            <p>@item.Name</p>
+            }
+        </div>
+    </div>
