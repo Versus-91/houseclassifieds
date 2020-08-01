@@ -42,6 +42,7 @@
     <PackageReference Include="Abp.HangFire" Version="5.10.1" />
     <PackageReference Include="Abp.RedisCache" Version="5.10.1" />
     <PackageReference Include="Abp.Castle.Log4Net" Version="5.10.1" />
+    <PackageReference Include="ReflectionIT.Mvc.Paging" Version="4.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\libs\" />

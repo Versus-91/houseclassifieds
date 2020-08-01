@@ -7,7 +7,7 @@ using System.Text;
 
 namespace classifieds.Cities
 {
-    public class CitiesAppService:AsyncCrudAppService<City, CityDto>
+    public class CitiesAppService:AsyncCrudAppService<City, CityDto>, ICitiesAppService
     {
         public CitiesAppService(IRepository<City> repository):base(repository)
         {

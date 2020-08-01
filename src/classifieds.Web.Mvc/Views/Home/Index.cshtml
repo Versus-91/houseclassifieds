@@ -23,17 +23,18 @@
                     <div class="columns is-centered is-vcentered has-text-centered">
                         <div class="column">
                             <div class="select is-fullwidth v-ce">
-                                <select class="select2">
+                                <select class="select2" id="selectcities">
                                     <option>انتخاب شهر</option>
-                                    <option>With options</option>
-                                    <option value="1">تهران </option>
-                                    <option value="2">مشهد</option>
+                                    @foreach (var item in ViewData["cities"] as IEnumerable<classifieds.Cities.Dto.CityDto>)
+                                    {
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
                                 </select>
                             </div>
                         </div>
                         <div class="column">
                             <div class="select is-fullwidth">
-                                <select class="select2">
+                                <select class="select2" disabled id="selectDistrict">
                                     <option>انتخاب محله </option>
                                     <option>With options</option>
                                 </select>
@@ -41,7 +42,7 @@
                         </div>
                         <div class="column">
                             <div class="select is-fullwidth">
-                                <select class="select2">
+                                <select class="select2" disabled>
                                     <option>نوع ملک </option>
                                     <option>With options</option>
                                 </select>
@@ -124,3 +125,11 @@
     </div>
 
 </div>
+@section Scripts{
+    <script>
+        $('#selectcities').on('select2:select', function (e) {
+            console.log(e.target.value);
+            $("#selectDistrict").prop("disabled", false);
+        });
+    </script>
+}

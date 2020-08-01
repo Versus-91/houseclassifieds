@@ -15,6 +15,22 @@ namespace classifieds.Web.Startup
             context.Manager.MainMenu
                 .AddItem(
                     new MenuItemDefinition(
+                        PageNames.Categories,
+                        L("Categories"),
+                        url: "Categories",
+                        icon: "fas fa-home",
+                        requiresAuthentication: true
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Cities,
+                        L("Cities"),
+                        url: "Cities",
+                        icon: "fas fa-home",
+                        requiresAuthentication: true
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
                         PageNames.Home,
                         L("HomePage"),
                         url: "",

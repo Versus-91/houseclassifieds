@@ -2,9 +2,11 @@
 using Abp.Application.Services.Dto;
 using Abp.AspNetCore.Mvc.Controllers;
 using classifieds.Categories;
+using classifieds.Categories.Dto;
 using classifieds.Web.Models.Categories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using ReflectionIT.Mvc.Paging;
 
 namespace classifieds.Web.Controllers
 {
@@ -16,20 +18,16 @@ namespace classifieds.Web.Controllers
             _categoryService = categoryService;
         }
         // GET: CategoriesController
-        public async Task<ActionResult> Index(PagedAndSortedResultRequestDto input)
+        public ActionResult Index()
         {
-            var categories = (await _categoryService.GetAllAsync(input)).Items;
-            var model = new CategoryListViewModel
-            {
-                Categories = categories
-            };
-            return View(model);
+            return View();
         }
 
         // GET: CategoriesController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            return View();
+            var category =await _categoryService.GetAsync(new EntityDto<int> { Id = id});
+            return View(category);
         }
 
         // GET: CategoriesController/Create
@@ -41,16 +39,10 @@ namespace classifieds.Web.Controllers
         // POST: CategoriesController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> Create(CategoryDto inputs)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+          await  _categoryService.CreateAsync(inputs);
+          return RedirectToAction(nameof(Index));
         }
 
         // GET: CategoriesController/Edit/5
