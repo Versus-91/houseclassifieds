@@ -6,10 +6,9 @@ using System.Text;
 
 namespace classifieds.Cities.Dto
 {
-    [AutoMapFrom(typeof(City))]
-    public class CityDto:EntityDto
+    [AutoMap(typeof(City))]
+    public class CityDto:AuditedEntityDto
     {
         public string Name { get; set; }
-        public DateTime CreationTime { get; set; }
     }
 }

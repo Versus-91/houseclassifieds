@@ -12,8 +12,8 @@ namespace classifieds.Web.Controllers
 {
     public class CategoriesController : AbpController
     {
-        private readonly ICategoriesAppService _categoryService;
-        public CategoriesController(ICategoriesAppService categoryService)
+        private readonly ICategoryAppService _categoryService;
+        public CategoriesController(ICategoryAppService categoryService)
         {
             _categoryService = categoryService;
         }
@@ -23,68 +23,10 @@ namespace classifieds.Web.Controllers
             return View();
         }
 
-        // GET: CategoriesController/Details/5
-        public async Task<ActionResult> Details(int id)
+        public async Task<ActionResult> Edit(int id)
         {
-            var category =await _categoryService.GetAsync(new EntityDto<int> { Id = id});
-            return View(category);
-        }
-
-        // GET: CategoriesController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: CategoriesController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CategoryDto inputs)
-        {
-          await  _categoryService.CreateAsync(inputs);
-          return RedirectToAction(nameof(Index));
-        }
-
-        // GET: CategoriesController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CategoriesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CategoriesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CategoriesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var model = await _categoryService.GetAsync(new EntityDto(id));
+            return PartialView("_EditModal", model);
         }
     }
 }

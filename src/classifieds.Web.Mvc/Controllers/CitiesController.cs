@@ -11,81 +11,21 @@ namespace classifieds.Web.Controllers
 {
     public class CitiesController : AbpController
     {
-        private readonly ICitiesAppService _cityService;
-        public CitiesController(ICitiesAppService cityService)
+        private readonly ICityAppService _cityService;
+        public CitiesController(ICityAppService cityService)
         {
             _cityService = cityService;
         }
         // GET: CategoriesController
-        public async Task<ActionResult> Index(int pageindex = 1, string sort = "Name")
-        {
-            var categories = (await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = 100 })).Items;
-            var model = PagingList.Create(categories, 10, pageindex, sort, "Name");
-            return View(model);
-        }
-
-        // GET: CategoriesController/Details/5
-        public async Task<ActionResult> Details(int id)
-        {
-            var category = await _cityService.GetAsync(new EntityDto<int> { Id = id });
-            return View(category);
-        }
-
-        // GET: CategoriesController/Create
-        public ActionResult Create()
+        public  ActionResult Index()
         {
             return View();
         }
 
-        // POST: CategoriesController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create(CityDto inputs)
+        public async Task<ActionResult> Edit(int id)
         {
-            await _cityService.CreateAsync(inputs);
-            return RedirectToAction(nameof(Index));
-        }
-
-        // GET: CategoriesController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: CategoriesController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: CategoriesController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: CategoriesController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var model = await _cityService.GetAsync(new EntityDto(id));
+            return PartialView("_EditModal", model);
         }
     }
 }

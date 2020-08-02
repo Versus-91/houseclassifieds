@@ -1,5 +1,5 @@
 ﻿(function ($) {
-    var _roleService = abp.services.app.categories,
+    var _roleService = abp.services.app.category,
         l = abp.localization.getSource('classifieds'),
         _$modal = $('#CategoryCreateModal'),
         _$form = _$modal.find('form'),
@@ -55,10 +55,10 @@
                 defaultContent: '',
                 render: (data, type, row, meta) => {
                     return [
-                        `   <button type="button" class="btn btn-sm bg-secondary edit-role" data-role-id="${row.id}" data-toggle="modal" data-target="#RoleEditModal">`,
+                        `   <button type="button" class="btn btn-sm bg-secondary edit-role" data-id="${row.id}" data-toggle="modal" data-target="#CategoryEditModal">`,
                         `       <i class="fas fa-pencil-alt"></i> ${l('Edit')}`,
                         '   </button>',
-                        `   <button type="button" class="btn btn-sm bg-danger delete-role" data-role-id="${row.id}" data-role-name="${row.name}">`,
+                        `   <button type="button" class="btn btn-sm bg-danger delete-role" data-id="${row.id}">`,
                         `       <i class="fas fa-trash"></i> ${l('Delete')}`,
                         '   </button>',
                     ].join('');
@@ -99,22 +99,21 @@
     });
 
     $(document).on('click', '.delete-role', function () {
-        var roleId = $(this).attr("data-role-id");
+        var roleId = $(this).attr("data-id");
         var roleName = $(this).attr('data-role-name');
-
         deleteRole(roleId, roleName);
     });
 
     $(document).on('click', '.edit-role', function (e) {
-        var roleId = $(this).attr("data-role-id");
+        var Id = $(this).attr("data-id");
 
         e.preventDefault();
         abp.ajax({
-            url: abp.appPath + 'Roles/EditModal?roleId=' + roleId,
+            url: abp.appPath + 'categories/Edit/' + Id,
             type: 'POST',
             dataType: 'html',
             success: function (content) {
-                $('#RoleEditModal div.modal-content').html(content);
+                $('#CategoryEditModal div.modal-content').html(content);
             },
             error: function (e) { }
         })

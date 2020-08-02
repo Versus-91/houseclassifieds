@@ -1564,6 +1564,9 @@ namespace classifieds.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
@@ -1580,6 +1583,8 @@ namespace classifieds.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
 
                     b.ToTable("Districts");
                 });
@@ -1610,7 +1615,7 @@ namespace classifieds.Migrations
 
                     b.HasIndex("PostId");
 
-                    b.ToTable("Image");
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("classifieds.MultiTenancy.Tenant", b =>
@@ -1692,6 +1697,9 @@ namespace classifieds.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("DistrictId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsFeatured")
                         .HasColumnType("bit");
 
@@ -1702,25 +1710,9 @@ namespace classifieds.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("DistrictId");
+
                     b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("classifieds.Provinces.Province", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<DateTime>("CreationTime")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Provinces");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
@@ -1919,6 +1911,15 @@ namespace classifieds.Migrations
                         .HasForeignKey("LastModifierUserId");
                 });
 
+            modelBuilder.Entity("classifieds.Districts.District", b =>
+                {
+                    b.HasOne("classifieds.Cities.City", "City")
+                        .WithMany("Districts")
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("classifieds.Images.Image", b =>
                 {
                     b.HasOne("classifieds.Posts.Post", "Post")
@@ -1952,6 +1953,12 @@ namespace classifieds.Migrations
                     b.HasOne("classifieds.Categories.Category", "Category")
                         .WithMany("Posts")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("classifieds.Districts.District", "District")
+                        .WithMany("Posts")
+                        .HasForeignKey("DistrictId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

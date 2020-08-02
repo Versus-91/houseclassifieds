@@ -9,8 +9,8 @@ namespace classifieds.Web.Controllers
 {
     public class HomeController : classifiedsControllerBase
     {
-        private readonly ICitiesAppService _cityService;
-        public HomeController(ICitiesAppService cityService)
+        private readonly ICityAppService _cityService;
+        public HomeController(ICityAppService cityService)
         {
             _cityService = cityService;
         }

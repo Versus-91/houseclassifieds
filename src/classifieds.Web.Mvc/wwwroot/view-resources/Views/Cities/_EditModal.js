@@ -1,7 +1,7 @@
 ﻿(function ($) {
-    var _roleService = abp.services.app.city,
+    var _cityService = abp.services.app.city,
         l = abp.localization.getSource('classifieds'),
-        _$modal = $('#RoleEditModal'),
+        _$modal = $('#CityEditModal'),
         _$form = _$modal.find('form');
 
     function save() {
@@ -9,21 +9,12 @@
             return;
         }
 
-        var role = _$form.serializeFormToObject();
-        role.grantedPermissions = [];
-        var _$permissionCheckboxes = _$form[0].querySelectorAll("input[name='permission']:checked");
-        if (_$permissionCheckboxes) {
-            for (var permissionIndex = 0; permissionIndex < _$permissionCheckboxes.length; permissionIndex++) {
-                var _$permissionCheckbox = $(_$permissionCheckboxes[permissionIndex]);
-                role.grantedPermissions.push(_$permissionCheckbox.val());
-            }
-        }
-
+        var city = _$form.serializeFormToObject();
         abp.ui.setBusy(_$form);
-        _roleService.update(role).done(function () {
+        _cityService.update(city).done(function () {
             _$modal.modal('hide');
             abp.notify.info(l('SavedSuccessfully'));
-            abp.event.trigger('role.edited', role);
+            abp.event.trigger('city.edited', city);
         }).always(function () {
             abp.ui.clearBusy(_$form);
         });

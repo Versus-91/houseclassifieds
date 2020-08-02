@@ -1,5 +1,5 @@
 ﻿(function ($) {
-    var _roleService = abp.services.app.cities,
+    var _cityService = abp.services.app.city,
         l = abp.localization.getSource('classifieds'),
         _$modal = $('#CityCreateModal'),
         _$form = _$modal.find('form'),
@@ -14,7 +14,7 @@
             filter.skipCount = data.start;
 
             abp.ui.setBusy(_$table);
-            _roleService.getAll(filter).done(function (result) {
+            _cityService.getAll(filter).done(function (result) {
                 callback({
                     recordsTotal: result.totalCount,
                     recordsFiltered: result.totalCount,
@@ -55,10 +55,10 @@
                 defaultContent: '',
                 render: (data, type, row, meta) => {
                     return [
-                        `   <button type="button" class="btn btn-sm bg-secondary edit-role" data-role-id="${row.id}" data-toggle="modal" data-target="#RoleEditModal">`,
+                        `   <button type="button" class="btn btn-sm bg-secondary edit-role" data-id="${row.id}" data-toggle="modal" data-target="#CityEditModal">`,
                         `       <i class="fas fa-pencil-alt"></i> ${l('Edit')}`,
                         '   </button>',
-                        `   <button type="button" class="btn btn-sm bg-danger delete-role" data-role-id="${row.id}" data-role-name="${row.name}">`,
+                        `   <button type="button" class="btn btn-sm bg-danger delete-city" data-city-id="${row.id}" data-city-name="${row.name}">`,
                         `       <i class="fas fa-trash"></i> ${l('Delete')}`,
                         '   </button>',
                     ].join('');
@@ -74,19 +74,11 @@
             return;
         }
 
-        var role = _$form.serializeFormToObject();
-        role.grantedPermissions = [];
-        var _$permissionCheckboxes = _$form[0].querySelectorAll("input[name='permission']:checked");
-        if (_$permissionCheckboxes) {
-            for (var permissionIndex = 0; permissionIndex < _$permissionCheckboxes.length; permissionIndex++) {
-                var _$permissionCheckbox = $(_$permissionCheckboxes[permissionIndex]);
-                role.grantedPermissions.push(_$permissionCheckbox.val());
-            }
-        }
+        var city = _$form.serializeFormToObject();
 
         abp.ui.setBusy(_$modal);
-        _roleService
-            .create(role)
+        _cityService
+            .create(city)
             .done(function () {
                 _$modal.modal('hide');
                 _$form[0].reset();
@@ -98,42 +90,42 @@
             });
     });
 
-    $(document).on('click', '.delete-role', function () {
-        var roleId = $(this).attr("data-role-id");
-        var roleName = $(this).attr('data-role-name');
+    $(document).on('click', '.delete-city', function () {
+        var cityId = $(this).attr("data-city-id");
+        var cityName = $(this).attr('data-city-name');
 
-        deleteRole(roleId, roleName);
+        deleteRole(cityId, cityName);
     });
 
     $(document).on('click', '.edit-role', function (e) {
-        var roleId = $(this).attr("data-role-id");
+        var Id = $(this).attr("data-id");
 
         e.preventDefault();
         abp.ajax({
-            url: abp.appPath + 'Roles/EditModal?roleId=' + roleId,
+            url: abp.appPath + 'Cities/Edit/' + Id,
             type: 'POST',
             dataType: 'html',
             success: function (content) {
-                $('#RoleEditModal div.modal-content').html(content);
+                $('#CityEditModal div.modal-content').html(content);
             },
             error: function (e) { }
         })
     });
 
-    abp.event.on('role.edited', (data) => {
+    abp.event.on('city.edited', (data) => {
         _$rolesTable.ajax.reload();
     });
 
-    function deleteRole(roleId, roleName) {
+    function deleteRole(cityId, cityName) {
         abp.message.confirm(
             abp.utils.formatString(
                 l('AreYouSureWantToDelete'),
-                roleName),
+                cityName),
             null,
             (isConfirmed) => {
                 if (isConfirmed) {
-                    _roleService.delete({
-                        id: roleId
+                    _cityService.delete({
+                        id: cityId
                     }).done(() => {
                         abp.notify.info(l('SuccessfullyDeleted'));
                         _$rolesTable.ajax.reload();

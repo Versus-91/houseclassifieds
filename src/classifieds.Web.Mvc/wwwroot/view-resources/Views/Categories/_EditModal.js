@@ -1,29 +1,19 @@
 ﻿(function ($) {
-    var _roleService = abp.services.app.city,
+    var _categoryService = abp.services.app.category,
         l = abp.localization.getSource('classifieds'),
-        _$modal = $('#RoleEditModal'),
+        _$modal = $('#CategoryEditModal'),
         _$form = _$modal.find('form');
 
     function save() {
         if (!_$form.valid()) {
             return;
         }
-
-        var role = _$form.serializeFormToObject();
-        role.grantedPermissions = [];
-        var _$permissionCheckboxes = _$form[0].querySelectorAll("input[name='permission']:checked");
-        if (_$permissionCheckboxes) {
-            for (var permissionIndex = 0; permissionIndex < _$permissionCheckboxes.length; permissionIndex++) {
-                var _$permissionCheckbox = $(_$permissionCheckboxes[permissionIndex]);
-                role.grantedPermissions.push(_$permissionCheckbox.val());
-            }
-        }
-
+        var category = _$form.serializeFormToObject();
         abp.ui.setBusy(_$form);
-        _roleService.update(role).done(function () {
+        _categoryService.update(category).done(function () {
             _$modal.modal('hide');
             abp.notify.info(l('SavedSuccessfully'));
-            abp.event.trigger('role.edited', role);
+            abp.event.trigger('role.edited', category);
         }).always(function () {
             abp.ui.clearBusy(_$form);
         });

@@ -112,6 +112,18 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/view-resources/Views/Cities/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Cities/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Categories/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Categories/Index.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/view-resources/Views/Account/Login.min.js",
     "inputFiles": [
       "wwwroot/view-resources/Views/Account/Login.js"

@@ -1,6 +1,7 @@
 ﻿using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
 using classifieds.Categories;
+using classifieds.Districts;
 using classifieds.Images;
 using System;
 using System.Collections.Generic;
@@ -21,5 +22,7 @@ namespace classifieds.Posts
         public Category Category { get; set; }
         public List<Image> Images { get; set; }
         public DateTime CreationTime { get ; set ; }
+        public int DistrictId { get; set; }
+        public District District { get; set; }
     }
 }

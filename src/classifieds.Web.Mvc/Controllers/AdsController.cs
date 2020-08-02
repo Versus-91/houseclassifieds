@@ -10,8 +10,8 @@ namespace classifieds.Web.Controllers
 {
     public class AdsController : classifiedsControllerBase
     {
-        private readonly IPostsAppService _postService;
-        public AdsController(IPostsAppService postService)
+        private readonly IPostAppService _postService;
+        public AdsController(IPostAppService postService)
         {
             _postService = postService;
         }
