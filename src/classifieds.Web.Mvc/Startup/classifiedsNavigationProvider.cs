@@ -14,6 +14,14 @@ namespace classifieds.Web.Startup
         {
             context.Manager.MainMenu
                 .AddItem(
+                new MenuItemDefinition(
+                        PageNames.Districts,
+                        L("Districts"),
+                        url: "Districts",
+                        icon: "fas fa-home",
+                        requiresAuthentication: true)
+                )
+                .AddItem(
                     new MenuItemDefinition(
                         PageNames.Categories,
                         L("Categories"),

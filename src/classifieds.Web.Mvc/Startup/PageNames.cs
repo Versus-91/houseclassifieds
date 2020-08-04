@@ -9,5 +9,6 @@
         public const string Roles = "Roles"; 
         public const string Categories = "Categories"; 
         public const string Cities = "Cities"; 
+        public const string Districts = "Districts"; 
     }
 }

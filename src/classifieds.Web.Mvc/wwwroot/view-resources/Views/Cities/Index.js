@@ -55,7 +55,7 @@
                 defaultContent: '',
                 render: (data, type, row, meta) => {
                     return [
-                        `   <button type="button" class="btn btn-sm bg-secondary edit-role" data-id="${row.id}" data-toggle="modal" data-target="#CityEditModal">`,
+                        `   <button type="button" class="btn btn-sm bg-secondary edit-city" data-id="${row.id}" data-toggle="modal" data-target="#CityEditModal">`,
                         `       <i class="fas fa-pencil-alt"></i> ${l('Edit')}`,
                         '   </button>',
                         `   <button type="button" class="btn btn-sm bg-danger delete-city" data-city-id="${row.id}" data-city-name="${row.name}">`,
@@ -97,12 +97,12 @@
         deleteRole(cityId, cityName);
     });
 
-    $(document).on('click', '.edit-role', function (e) {
+    $(document).on('click', '.edit-city', function (e) {
         var Id = $(this).attr("data-id");
 
         e.preventDefault();
         abp.ajax({
-            url: abp.appPath + 'Cities/Edit/' + Id,
+            url: abp.appPath + 'cities/Edit/' + Id,
             type: 'POST',
             dataType: 'html',
             success: function (content) {

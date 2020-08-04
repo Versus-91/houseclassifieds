@@ -1,8 +1,7 @@
 ﻿@using classifieds.Web.Startup
 @{ ViewBag.Title = L("HomePage");
     ViewBag.CurrentPageName = PageNames.Home;
-    Layout = "layout/_front"; 
-    }
+    Layout = "layout/_front"; }
     <div class="container">
         <div class="section">
             <div class="columns">
@@ -43,73 +42,105 @@
                     </aside>
                 </div>
                 <div class="column is-9">
-                    <div class="columns is-multiline">
-                        <div class=" column is-4">
-                            <div class="card">
-                                <div class="card-image">
-                                    <figure class="image is-4by3">
-                                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                                    </figure>
-                                </div>
-                                <div class="card-content">
-                                    <div class="content">
-                                        ویلای نوساز
-                                        <br>
-                                    </div>
-                                </div>
-                                <div class="card-footer has-text-centered">
-                                    <span class="card-footer-item">
-                                        09659957878
-                                    </span>
+                    <div class="tabs is-centered">
+                        <ul>
+                            <li class="is-active"><a>جدیدترین</a></li>
+                            <li><a>ارزانترین</a></li>
+                            <li><a>گرانترین</a></li>
+                        </ul>
+                    </div>
+                    <div class="columns is-multiline ">
+                        @for (int i = 0; i < 30; i++)
+                        {
+            <div class=" column is-4 infinite-pagination">
+                <div class="card card-hover-shadow">
+                    <div class="card-image">
+                        <figure class="image is-4by3">
+                            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&w=1000&q=80" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="card-content">
+                        <div class="content">
+                            ویلای نوساز
+                            <br>
+                        </div>
+                        <nav class="level is-mobile">
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading"><i class="fas fa-2x fa-square has-text-success"></i></p>
+                                    <p class="subtitle">200 متر</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class=" column is-4">
-                            <div class="card">
-                                <div class="card-image">
-                                    <figure class="image is-4by3">
-                                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                                    </figure>
-                                </div>
-                                <div class="card-content is-overlay">
-                                    <span class="tag is-primary">Image label on overlay</span>
-                                </div>
-                                <div class="card-content">
-
-                                    <div class="content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Phasellus nec iaculis mauris. <a>@@bulmaio</a>.
-                                        <a href="#">#css</a> <a href="#">#responsive</a>
-                                        <br>
-                                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                                    </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading"><i class="fas fa-2x fa-clock has-text-warning"></i></p>
+                                    <p class="subtitle">نوساز</p>
                                 </div>
                             </div>
-                        </div>
-                        <div class=" column is-4">
-                            <div class="card">
-                                <div class="card-image">
-                                    <figure class="image is-4by3">
-                                        <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                                    </figure>
-                                </div>
-                                <div class="card-content">
-
-
-                                    <div class="content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Phasellus nec iaculis mauris. <a>@@bulmaio</a>.
-                                        <a href="#">#css</a> <a href="#">#responsive</a>
-                                        <br>
-                                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                                    </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
+                                    <p class="subtitle">3 عدد</p>
                                 </div>
                             </div>
-                        </div>
+                        </nav>
+                    </div>
+                    <div class="card-footer has-text-centered">
+                        <span class="card-footer-item">
+                            09659957878
+                        </span>
+                    </div>
+                </div>
+            </div>}
                     </div>
                 </div>
 
             </div>
-            
+            @*<div class="columns">
+                <div class="column is-3"></div>
+                <div class="column is-9 pagination-div">
+                    <nav class="pagination" role="navigation" aria-label="pagination">
+                        <a class="pagination-previous">Previous</a>
+                        <a class="pagination-next">Next page</a>
+                        <ul class="pagination-list">
+                            <li>
+                                <a class="pagination-link" aria-label="Goto page 1">1</a>
+                            </li>
+                            <li>
+                                <span class="pagination-ellipsis">&hellip;</span>
+                            </li>
+                            <li>
+                                <a class="pagination-link" aria-label="Goto page 45">45</a>
+                            </li>
+                            <li>
+                                <a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a>
+                            </li>
+                            <li>
+                                <a class="pagination-link" aria-label="Goto page 47">47</a>
+                            </li>
+                            <li>
+                                <span class="pagination-ellipsis">&hellip;</span>
+                            </li>
+                            <li>
+                                <a class="pagination-link" aria-label="Goto page 86">86</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+            </div>*@
         </div>
+        <a style="display:none" class="pagination__next" href="/page/2">Next</a>
+
     </div>
+@section scripts{
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+    <script>
+        $('.infinite-pagination').infiniteScroll({
+            // options
+            path: '.pagination__next',
+            append: '.card',
+            history: false,
+        });
+    </script>
+}

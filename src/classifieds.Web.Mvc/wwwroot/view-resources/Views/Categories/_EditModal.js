@@ -13,7 +13,7 @@
         _categoryService.update(category).done(function () {
             _$modal.modal('hide');
             abp.notify.info(l('SavedSuccessfully'));
-            abp.event.trigger('role.edited', category);
+            abp.event.trigger('category.edited', category);
         }).always(function () {
             abp.ui.clearBusy(_$form);
         });

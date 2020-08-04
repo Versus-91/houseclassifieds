@@ -1,0 +1,17 @@
+﻿        * :not(i) {
+            font-family: "Vazir" !important;
+        }
+
+        .select:after {
+            display: none !important;
+        }
+.card-hover-shadow {
+    -webkit-transition: .3s ease;
+    transition: .3s ease;
+}
+
+.card-hover-shadow:hover {
+    -webkit-transform: translateY(-5px);
+    transform: translateY(-5px);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+}

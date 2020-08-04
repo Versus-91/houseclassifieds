@@ -27,27 +27,18 @@
           type="image/png"
           href="/favicon.png" />
     <link rel="stylesheet" href="~/lib/bulma/css/bulma-rtl.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/libs/font-awesome/css/regular.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/libs/font-awesome/css/all.min.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v26.0.0/dist/font-face.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-
-    <style>
-        * :not(i) {
-            font-family: "Vazir" !important;
-        }
-
-        .select:after {
-            display: none !important;
-        }
-    </style>
+    <link href="~/css/web.css" rel="stylesheet" asp-append-version="true" />
 
 </head>
 <body>
     <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
         <div class="container">
             <div class="navbar-brand">
-                <a class="navbar-item" href="https://bulma.io">
-                    <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
+                <a class="navbar-item" href="/">
+                    <img src="/favicon.png" width="30" height="60">
                 </a>
 
                 <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -102,7 +93,17 @@
         </div>
     </nav>
     @RenderSection("hero", required: false)
+<div id="app">
     @RenderBody()
+
+</div>
+    <footer class="footer  has-background-light mt-6">
+        <div class="content has-text-centered">
+            <p>
+                ثبت اعلان ملک
+            </p>
+        </div>
+    </footer>
     <script src="~/libs/jquery/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script>

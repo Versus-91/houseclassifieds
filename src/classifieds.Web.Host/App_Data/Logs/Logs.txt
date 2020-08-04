@@ -2904,3 +2904,83 @@ DEBUG 2020-08-01 21:44:59,448 [1    ] Abp.AutoMapper.AbpAutoMapperModule       -
 DEBUG 2020-08-01 21:44:59,448 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.TenantDto
 DEBUG 2020-08-01 21:44:59,448 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Cities.Dto.CityDto
 DEBUG 2020-08-01 21:44:59,448 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Categories.Dto.CategoryDto
+DEBUG 2020-08-02 11:30:15,737 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-08-02 11:30:15,921 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-08-02 11:30:15,934 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.Web.Host.Startup.classifiedsWebHostModule, classifieds.Web.Host, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,936 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsWebCoreModule, classifieds.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,936 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsApplicationModule, classifieds.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,937 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsCoreModule, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,937 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,937 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,937 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,938 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,938 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.EntityFrameworkCore.classifiedsEntityFrameworkModule, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,939 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,939 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,939 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,939 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,939 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,940 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:15,942 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-08-02 11:30:16,140 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-02 11:30:16,140 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-02 11:30:16,140 [1    ] o.Configuration.LanguageManagementConfig - Converted classifieds (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-02 11:30:16,140 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-02 11:30:16,549 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: classifieds.EntityFrameworkCore.classifiedsDbContext, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-02 11:30:17,512 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-08-02 11:30:17,541 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-08-02 11:30:17,561 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-08-02 11:30:17,567 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: classifieds
+DEBUG 2020-08-02 11:30:17,573 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-08-02 11:30:17,756 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-08-02 11:30:17,865 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[classifieds.MultiTenancy.Tenant, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[classifieds.Authorization.Users.User, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-08-02 11:30:17,924 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 12 classes define auto mapping attributes
+DEBUG 2020-08-02 11:30:17,924 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-08-02 11:30:17,929 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.CreateUserDto
+DEBUG 2020-08-02 11:30:17,929 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.UserDto
+DEBUG 2020-08-02 11:30:17,930 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-08-02 11:30:17,930 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-08-02 11:30:17,930 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Roles.Dto.PermissionDto
+DEBUG 2020-08-02 11:30:17,930 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.PostDto
+DEBUG 2020-08-02 11:30:17,930 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-08-02 11:30:17,930 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.TenantDto
+DEBUG 2020-08-02 11:30:17,930 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Districts.Dto.DistrictDto
+DEBUG 2020-08-02 11:30:17,931 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Cities.Dto.CityDto
+DEBUG 2020-08-02 11:30:17,931 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Categories.Dto.CategoryDto
+INFO  2020-08-02 11:30:20,401 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2020-08-02 11:30:20,839 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\qq\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-08-02 11:30:20,903 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/  
+INFO  2020-08-02 11:30:21,040 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Host.Controllers.HomeController.Index (classifieds.Web.Host)'
+INFO  2020-08-02 11:30:24,250 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index() on controller classifieds.Web.Host.Controllers.HomeController (classifieds.Web.Host).
+INFO  2020-08-02 11:30:25,375 [5    ] vc.Infrastructure.RedirectResultExecutor - Executing RedirectResult, redirecting to /swagger.
+INFO  2020-08-02 11:30:25,382 [5    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Host.Controllers.HomeController.Index (classifieds.Web.Host) in 1126.5082ms
+INFO  2020-08-02 11:30:25,385 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Host.Controllers.HomeController.Index (classifieds.Web.Host)'
+INFO  2020-08-02 11:30:25,401 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 4498.0063ms 302 
+INFO  2020-08-02 11:30:25,413 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger  
+INFO  2020-08-02 11:30:25,443 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 30.1543ms 301 
+INFO  2020-08-02 11:30:25,455 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/index.html  
+INFO  2020-08-02 11:30:25,498 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 47.5678ms 200 text/html;charset=utf-8
+INFO  2020-08-02 11:30:25,530 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-bundle.js  
+INFO  2020-08-02 11:30:25,532 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui.css  
+INFO  2020-08-02 11:30:25,540 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/swagger-ui-standalone-preset.js  
+INFO  2020-08-02 11:30:25,542 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.js  
+INFO  2020-08-02 11:30:25,544 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/ui/abp.swagger.js  
+INFO  2020-08-02 11:30:25,564 [9    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Host\wwwroot\swagger\ui\abp.js'
+INFO  2020-08-02 11:30:25,564 [12   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger/ui/abp.swagger.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Host\wwwroot\swagger\ui\abp.swagger.js'
+INFO  2020-08-02 11:30:25,566 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 31.2333ms 200 application/javascript
+INFO  2020-08-02 11:30:25,568 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 34.2386ms 200 application/javascript
+INFO  2020-08-02 11:30:25,592 [16   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+INFO  2020-08-02 11:30:25,596 [5    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+INFO  2020-08-02 11:30:25,598 [16   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 66.4794ms 200 text/css
+INFO  2020-08-02 11:30:25,600 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 65.7919ms 200 application/javascript
+INFO  2020-08-02 11:30:25,615 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+INFO  2020-08-02 11:30:25,617 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 87.6852ms 200 application/javascript
+INFO  2020-08-02 11:30:26,823 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/AntiForgery/SetCookie  
+INFO  2020-08-02 11:30:26,828 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Host.Controllers.AntiForgeryController.SetCookie (classifieds.Web.Host)'
+INFO  2020-08-02 11:30:26,838 [11   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "SetCookie", controller = "AntiForgery", area = ""}. Executing controller action with signature Void SetCookie() on controller classifieds.Web.Host.Controllers.AntiForgeryController (classifieds.Web.Host).
+INFO  2020-08-02 11:30:26,861 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:21021/swagger/v1/swagger.json  
+INFO  2020-08-02 11:30:26,868 [18   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-08-02 11:30:27,002 [18   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Host.Controllers.AntiForgeryController.SetCookie (classifieds.Web.Host) in 161.4892ms
+INFO  2020-08-02 11:30:27,004 [18   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Host.Controllers.AntiForgeryController.SetCookie (classifieds.Web.Host)'
+INFO  2020-08-02 11:30:27,007 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 184.4361ms 200 application/json; charset=utf-8
+INFO  2020-08-02 11:30:27,021 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 159.858ms 200 application/json;charset=utf-8

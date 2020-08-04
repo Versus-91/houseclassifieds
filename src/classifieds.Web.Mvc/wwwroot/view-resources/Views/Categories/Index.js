@@ -55,10 +55,10 @@
                 defaultContent: '',
                 render: (data, type, row, meta) => {
                     return [
-                        `   <button type="button" class="btn btn-sm bg-secondary edit-role" data-id="${row.id}" data-toggle="modal" data-target="#CategoryEditModal">`,
+                        `   <button type="button" class="btn btn-sm bg-secondary edit-category" data-id="${row.id}" data-toggle="modal" data-target="#CategoryEditModal">`,
                         `       <i class="fas fa-pencil-alt"></i> ${l('Edit')}`,
                         '   </button>',
-                        `   <button type="button" class="btn btn-sm bg-danger delete-role" data-id="${row.id}">`,
+                        `   <button type="button" class="btn btn-sm bg-danger delete-category" data-id="${row.id}" data-name="${row.name}">`,
                         `       <i class="fas fa-trash"></i> ${l('Delete')}`,
                         '   </button>',
                     ].join('');
@@ -75,15 +75,6 @@
         }
 
         var role = _$form.serializeFormToObject();
-        role.grantedPermissions = [];
-        var _$permissionCheckboxes = _$form[0].querySelectorAll("input[name='permission']:checked");
-        if (_$permissionCheckboxes) {
-            for (var permissionIndex = 0; permissionIndex < _$permissionCheckboxes.length; permissionIndex++) {
-                var _$permissionCheckbox = $(_$permissionCheckboxes[permissionIndex]);
-                role.grantedPermissions.push(_$permissionCheckbox.val());
-            }
-        }
-
         abp.ui.setBusy(_$modal);
         _roleService
             .create(role)
@@ -98,13 +89,13 @@
             });
     });
 
-    $(document).on('click', '.delete-role', function () {
+    $(document).on('click', '.delete-category', function () {
         var roleId = $(this).attr("data-id");
-        var roleName = $(this).attr('data-role-name');
+        var roleName = $(this).attr('data-name');
         deleteRole(roleId, roleName);
     });
 
-    $(document).on('click', '.edit-role', function (e) {
+    $(document).on('click', '.edit-category', function (e) {
         var Id = $(this).attr("data-id");
 
         e.preventDefault();
@@ -119,7 +110,7 @@
         })
     });
 
-    abp.event.on('role.edited', (data) => {
+    abp.event.on('category.edited', (data) => {
         _$rolesTable.ajax.reload();
     });
 

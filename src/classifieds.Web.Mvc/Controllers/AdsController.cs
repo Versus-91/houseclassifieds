@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Abp.Runtime.Validation;
 using classifieds.Controllers;
 using classifieds.Posts;
+using classifieds.Web.Models.Ads;
 using Microsoft.AspNetCore.Mvc;
 
 namespace classifieds.Web.Controllers
@@ -29,6 +31,21 @@ namespace classifieds.Web.Controllers
         public IActionResult Create()
         {
             return View();
+        }  
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [DisableValidation]
+        public async Task<IActionResult> Create(AdsViewModel inputs)
+        {
+            if (ModelState.IsValid)
+            {
+                await _postService.CreateAsync(inputs.ToPost());
+                return RedirectToAction("/");
+            }
+            else
+            {
+                return View();
+            }
         }
     }
 }
