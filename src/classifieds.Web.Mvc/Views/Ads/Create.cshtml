@@ -1,76 +1,57 @@
-﻿@model classifieds.Web.Models.Ads.AdsViewModel
+﻿@model classifieds.Web.Models.Ads.CreateAdViewModel
 @{
     Layout = "layout/_front";
 
 }
+@section styles{
+    <link href="~/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet" asp-append-version="true" />
+}
+
 <div class="container">
     <div class="section">
         <div class="box">
             <h1>ارسال آگهی جدید</h1>
             <br />
-            <form asp-action="create">
+            <form asp-action="create" enctype="multipart/form-data" id="CreateAd">
                 <div class="help is-danger" asp-validation-summary="All">
-                    <span>Please correct the following errors</span>
-                </div>                
+                </div>
                 <div class="field">
-                    <label asp-for="@Model.Title" class="label">عنوان</label>
+                    <label asp-for="Ad.Title" class="label">عنوان</label>
                     <div class="control">
-                        <input asp-for="@Model.Title" v-model="title" :class="{'is-success' : title && (title.length <= 25 && title.length >=5),'is-danger': !!title && title.length>25}" class="input" type="text">
+                        <input asp-for="Ad.Title" v-model="title"  class="input" type="text">
+                        <span class="help is-danger" asp-validation-for="Ad.Title"></span>
                     </div>
                 </div>
                 <div class="field is-horizontal">
                     <div class="field-body">
+
                         <div class="field">
-                            <label asp-for="@Model.DistrictId" class="label">محله</label>
+                            <label asp-for="Ad.DistrictId" class="label">محله</label>
                             <div class="control">
                                 <div class="select is-fullwidth">
-                                    <select asp-for="@Model.DistrictId">
-                                        <option>Select dropdown</option>
-                                        <option>With options</option>
+                                    <select asp-for="Ad.DistrictId" asp-items="Model.Districts">
                                     </select>
                                 </div>
                             </div>
                         </div>
-                        <div class="field">
-                            <label asp-for="@Model.DistrictId" class="label">محله</label>
-                            <div class="control">
-                                <div class="select is-fullwidth">
-                                    <select asp-for="@Model.DistrictId">
-                                        <option>Select dropdown</option>
-                                        <option>With options</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label asp-for="@Model.DistrictId" class="label">محله</label>
-                            <div class="control">
-                                <div class="select is-fullwidth">
-                                    <select asp-for="@Model.DistrictId">
-                                        <option>Select dropdown</option>
-                                        <option>With options</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
 
                 </div>
                 <div class="field">
-                    <label asp-for="@Model.CategoryId" class="label">دسته بندی</label>
+                    <label asp-for="Ad.CategoryId" class="label">دسته بندی</label>
                     <div class="control">
                         <div class="select ">
-                            <select asp-for="@Model.CategoryId">
-                                <option>Select dropdown</option>
-                                <option>With options</option>
+                            <select asp-for="Ad.CategoryId" asp-items="Model.Categories">
                             </select>
                         </div>
                     </div>
                 </div>
                 <div class="field">
-                    <label asp-for="@Model.Description" class="label">توضیحات</label>
+                    <label asp-for="Ad.Description" class="label">توضیحات</label>
                     <div class="control">
-                        <textarea asp-for="@Model.Description" class="textarea" ></textarea>
+                        <textarea asp-for="Ad.Description" class="textarea"></textarea>
+                        <span class="help is-danger" asp-validation-for="Ad.Description"></span>
                     </div>
                 </div>
 
@@ -82,27 +63,85 @@
                         </label>
                     </div>
                 </div>
+                <div class="field">
+                    <div class=" dz-clickable dropzone" id="dropzone">
+                        <div class="dz-message ">
+                            <i class="fas fa-2x fa-upload has-text-success"></i>
+                        </div>
+                    </div>
+                </div>
                 <div class="field is-grouped">
                     <div class="control">
-                        <button class="button is-link">ارسال</button>
+                        <button class="button is-link" id="submit">ارسال</button>
                     </div>
                     <div class="control">
                         <a href="/" class="button is-link is-light">انصراف</a>
                     </div>
                 </div>
+
             </form>
         </div>
     </div>
 </div>
 @section scripts{
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.3/vue.min.js"></script>
+    <script src="~/lib/dropzone/dist/min/dropzone.min.js" asp-append-version="true"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.js" asp-append-version="true"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
     <script>
-        new Vue({
-            //this targets the div id app
-            el: '#app',
-            data: {
-                title: '' //this stores data values for ‘name’
+        var form = $("#CreateAd");
+        Dropzone.autoDiscover = false;
+        $(document).ready(function () {
+            Dropzone.autoDiscover = false;
+            var dropZone = new Dropzone('#dropzone',{
+                autoProcessQueue: false,
+                maxFiles: 2000,
+                paramName:'Ad.Files',
+                url: "/ads/create",
+                success: function (file, response) {
+                    console.log(response);
+                }
+            });
+            $("#submit").click((e) => {
+                e.preventDefault();
+                save();
+            });
+            dropZone.on("sending", function (file, xhr, formData) {
+
+                // Will sendthe filesize along with the file as POST data.
+
+                var items= form.serializeArray();
+                for (var i = 0; i < items.length; i++) {
+                    formData.append(items[i].name,items[i].value);
+                }
+
+            });
+            function save() {
+
+                if (!form.valid()) {
+                    console.log('failed to save');
+                    return;
+                }
+                dropZone.processQueue();
+                //$.ajax({
+                //    type: 'POST',
+                //    url: '/ads/create',
+                //    data: form.serialize(),
+                //    dataType: 'application/json; charset=utf-8', // changing data type to json
+                //    success: function (data) { // here I'm adding data as a parameter which stores the response
+                //        console.log('saved');
+                //        console.log(data); // instead of alert I'm changing this to console.log which logs all the response in console.
+                //    }
+                //})
             }
-        })
+
+
+
+
+
+
+
+
+        });
+
     </script>
 }

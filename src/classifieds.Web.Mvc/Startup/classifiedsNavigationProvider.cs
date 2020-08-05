@@ -20,6 +20,13 @@ namespace classifieds.Web.Startup
                         url: "Districts",
                         icon: "fas fa-home",
                         requiresAuthentication: true)
+                ).AddItem(
+                new MenuItemDefinition(
+                        PageNames.Posts,
+                        L("Posts"),
+                        url: "Posts",
+                        icon: "fas fa-home",
+                        requiresAuthentication: true)
                 )
                 .AddItem(
                     new MenuItemDefinition(

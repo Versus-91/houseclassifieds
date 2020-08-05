@@ -1,6 +1,4 @@
 ﻿using Abp.Application.Services.Dto;
-using Abp.AutoMapper;
-using Abp.Domain.Entities.Auditing;
 using classifieds.Categories;
 using classifieds.Cities;
 using System;
@@ -10,8 +8,7 @@ using System.Text;
 
 namespace classifieds.Posts.Dto
 {
-    [AutoMap(typeof(Post))]
-    public class PostDto:EntityDto,IHasCreationTime
+    public class DetailedPostsDto:EntityDto
     {
         [Required]
         public string Title { get; set; }
@@ -19,9 +16,9 @@ namespace classifieds.Posts.Dto
         public string Description { get; set; }
         public bool IsFeatured { get; set; } = false;
         public int CategoryId { get; set; }
-        public Category Category { get; set; }
-        public City City { get; set; }
+        public string CategoryName { get; set; }
+        public string CityName { get; set; }
         public int DistrictId { get; set; }
-        public DateTime CreationTime { get ; set; }
+        public DateTime CreationTime { get; set; }
     }
 }

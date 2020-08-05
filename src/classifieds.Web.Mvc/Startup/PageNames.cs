@@ -10,5 +10,6 @@
         public const string Categories = "Categories"; 
         public const string Cities = "Cities"; 
         public const string Districts = "Districts"; 
+        public const string Posts = "Posts"; 
     }
 }

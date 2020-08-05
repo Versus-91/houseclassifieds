@@ -13,9 +13,12 @@ namespace classifieds.Web.Models.Ads
         public string Title { get; set; }
         [Required]
         public string Description { get; set; }
+        [Required]
         public int CategoryId { get; set; }
+        [Required]
         public int DistrictId { get; set; }
         public DateTime CreationTime { get; set; }
+        public IList<Microsoft.AspNetCore.Http.IFormFile> Files { get; set; }
         public PostDto ToPost() {
             return new PostDto
             {
