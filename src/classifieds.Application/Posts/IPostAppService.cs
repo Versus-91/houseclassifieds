@@ -6,7 +6,7 @@ using System.Text;
 
 namespace classifieds.Posts
 {
-    public interface IPostAppService:IAsyncCrudAppService<PostDto>
+    public interface IPostAppService:IAsyncCrudAppService<PostDto,int,GetAllPostsInput>
     {
     }
 }

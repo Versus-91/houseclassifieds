@@ -1,99 +1,147 @@
 ﻿@using classifieds.Web.Startup
+@model  classifieds.Posts.Dto.PostDto
 @{ ViewBag.Title = L("HomePage");
-                ViewBag.CurrentPageName = PageNames.Home;
-                Layout = "layout/_front"; }
-    <div class="container">
-        <div class="section">
-            <article class="message">
-                <div class="message-header">
-                    <nav class="breadcrumb" aria-label="breadcrumbs">
-                        <ul>
-                            <li><a href="#">تهران</a></li>
-                            <li><a href="#">تهران</a></li>
-                            <li><a href="#">منطقه 1 </a></li>
-                            <li class="is-active"><a href="#" aria-current="page">الهیه</a></li>
-                        </ul>
-                    </nav>
-                </div>
-                <div class="message-body">
-                    <div class="container">
-                        <div class="columns">
-                            <div class="column is-4">
-                                <section class="section">
-                                    <div class="container has-text-centered py-4">
-                                        <h2 class="title mb-6">Great Companies that already use PiperNet</h2>
-                                        <div class="mb-5"><a href="#"><img src="placeholder/pictures/bg_4-3.svg?primary=00d1b2" alt=""></a></div>
-                                        <div class="columns is-mobile mb-5">
-                                            <div class="column is-3"><a href="#"><img src="placeholder/pictures/bg_4-3.svg?primary=00d1b2" alt=""></a></div>
-                                            <div class="column is-3"><a href="#"><img src="placeholder/pictures/bg_4-3.svg?primary=00d1b2" alt=""></a></div>
-                                            <div class="column is-3"><a href="#"><img src="placeholder/pictures/bg_4-3.svg?primary=00d1b2" alt=""></a></div>
-                                            <div class="column is-3"><a href="#"><img src="placeholder/pictures/bg_4-3.svg?primary=00d1b2" alt=""></a></div>
-                                        </div>
-                                        <h4 class="title is-spaced is-4">Client: K-Hole</h4>
-                                        <p class="subtitle">We are constantly looking for new partners to migrate onto the Piper Net. The future of the internet is here - venture towards it with Pied Piper!</p>
-                                    </div>
-                                </section>
-                            </div>
-                            <div class="column is-8">
-                                <section class="section">
-                                    <div class="container has-text-centered py-4">
-                                        <h2 class="title">Our plans</h2>
-                                        <hr class="my-6">
-                                        <div class="columns">
-                                            <div class="column">
-                                                <h3 class="title is-4">Small Piper</h3>
-                                                <h4 class="title is-spaced is-5">$10 <small>Per user / monthly</small></h4>
-                                                <p class="subtitle">Join our network, but build and manage everything yourself.</p>
-                                                <hr>
-                                                <ul>
-                                                    <li>100GB storage</li>
-                                                    <li>5 Applications</li>
-                                                    <li>20 users max</li>
-                                                    <li>Unlimited Data Transfer</li>
-                                                </ul>
-                                                <hr>
-                                                <div class="buttons is-centered">
-                                                    <button class="button is-primary" type="button">خرید</button>
-                                                </div>
-                                            </div>
-                                            <div class="column">
-                                                <h3 class="title is-4">Medium Piper</h3>
-                                                <h4 class="title is-spaced is-5">$50 <small>Per user / monthly</small></h4>
-                                                <p class="subtitle">We build what you need, but you still need to manage your data.</p>
-                                                <hr>
-                                                <ul>
-                                                    <li>1000GB storage</li>
-                                                    <li>20 Applications</li>
-                                                    <li>200 users max</li>
-                                                    <li>Unlimited Data Transfer</li>
-                                                </ul>
-                                                <hr>
-                                                <button class="button is-primary is-outlined" type="button">خرید</button>
-                                            </div>
-                                            <div class="column">
-                                                <h3 class="title is-4">Enterprise Piper</h3>
-                                                <h4 class="title is-spaced is-5">$100 <small>Per user / monthly</small></h4>
-                                                <p class="subtitle">We do everything for you, including managing your data.</p>
-                                                <hr>
-                                                <ul>
-                                                    <li>Unlimited storage</li>
-                                                    <li>Unlimited Applications</li>
-                                                    <li>Unlimited users max</li>
-                                                    <li>Unlimited Data Transfer</li>
-                                                </ul>
-                                                <hr>
-                                                <button class="button is-primary is-outlined" type="button">خرید</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </div>
-
+    ViewBag.CurrentPageName = PageNames.Home;
+    Layout = "layout/_front"; }
+@section styles{
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+}
+<div class="container">
+    <div class="section">
+        <article class="message">
+            <div class="message-header">
+                <nav class="breadcrumb" aria-label="breadcrumbs">
+                    <ul>
+                        <li><a href="#">تهران</a></li>
+                        <li><a href="#">تهران</a></li>
+                        <li><a href="#">منطقه 1 </a></li>
+                        <li class="is-active"><a href="#" aria-current="page">الهیه</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="message-body">
+                <div class="swiper-container">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <!-- Required swiper-lazy class and image source specified in data-src attribute -->
+                            <img data-src="https://swiperjs.com/demos/images/nature-1.jpg" class="swiper-lazy">
+                            <!-- Preloader image -->
+                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
                         </div>
+                        <div class="swiper-slide">
+                            <img data-src="https://swiperjs.com/demos/images/nature-2.jpg" class="swiper-lazy">
+                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img data-src="https://swiperjs.com/demos/images/nature-3.jpg" class="swiper-lazy">
+                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img data-src="https://swiperjs.com/demos/images/nature-4.jpg" class="swiper-lazy">
+                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img data-src="https://swiperjs.com/demos/images/nature-5.jpg" class="swiper-lazy">
+                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                        </div>
+                        <div class="swiper-slide">
+                            <img data-src="https://swiperjs.com/demos/images/nature-6.jpg" class="swiper-lazy">
+                            <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                        </div>
+                        ...
+                    </div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+
+                </div>
+                <div class="container">
+                    <div class="columns">
+                        <div class="column is-12">
+                            <section class="section">
+                                <div class="container has-text-centered py-4">
+                                    <h2 class="title">@Model.Title</h2>
+                                    <hr class="my-6">
+                                    <div class="columns">
+                                        <div class="column">
+                                            <h3 class="title is-4">Small Piper</h3>
+                                            <h4 class="title is-spaced is-5">$10 <small>Per user / monthly</small></h4>
+                                            <p class="subtitle">Join our network, but build and manage everything yourself.</p>
+                                            <hr>
+                                            <ul>
+                                                <li>100GB storage</li>
+                                                <li>5 Applications</li>
+                                                <li>20 users max</li>
+                                                <li>Unlimited Data Transfer</li>
+                                            </ul>
+                                            <hr>
+                                            <div class="buttons is-centered">
+                                                <button class="button is-primary" type="button">خرید</button>
+                                            </div>
+                                        </div>
+                                        <div class="column">
+                                            <h3 class="title is-4">Medium Piper</h3>
+                                            <h4 class="title is-spaced is-5">$50 <small>Per user / monthly</small></h4>
+                                            <p class="subtitle">We build what you need, but you still need to manage your data.</p>
+                                            <hr>
+                                            <ul>
+                                                <li>1000GB storage</li>
+                                                <li>20 Applications</li>
+                                                <li>200 users max</li>
+                                                <li>Unlimited Data Transfer</li>
+                                            </ul>
+                                            <hr>
+                                            <button class="button is-primary is-outlined" type="button">خرید</button>
+                                        </div>
+                                        <div class="column">
+                                            <h3 class="title is-4">Enterprise Piper</h3>
+                                            <h4 class="title is-spaced is-5">$100 <small>Per user / monthly</small></h4>
+                                            <p class="subtitle">We do everything for you, including managing your data.</p>
+                                            <hr>
+                                            <ul>
+                                                <li>Unlimited storage</li>
+                                                <li>Unlimited Applications</li>
+                                                <li>Unlimited users max</li>
+                                                <li>Unlimited Data Transfer</li>
+                                            </ul>
+                                            <hr>
+                                            <button class="button is-primary is-outlined" type="button">خرید</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+
                     </div>
                 </div>
-            </article>
-
-        </div>
+            </div>
+        </article>
 
     </div>
+
+</div>
+@section scripts{
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+    <script>
+        $(function () {
+            var mySwiper = new Swiper('.swiper-container', {
+                lazy: true,
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            })
+        })
+
+    </script>
+}

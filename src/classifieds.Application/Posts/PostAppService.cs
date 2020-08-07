@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace classifieds.Posts
 {
-    public class PostAppService:AsyncCrudAppService<Post,PostDto>,IPostAppService
+    public class PostAppService:AsyncCrudAppService<Post,PostDto,int, GetAllPostsInput>,IPostAppService
     {
         private readonly IRepository<Post> _postRepository;
         public PostAppService(IRepository<Post> repository):base(repository)
@@ -22,11 +22,13 @@ namespace classifieds.Posts
             _postRepository = repository;
         }
 
-
+        protected override IQueryable<Post> CreateFilteredQuery(GetAllPostsInput input)
+        {
+            return base.CreateFilteredQuery(input)
+                .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value);
+        }
         public async Task<PagedResultDto<DetailedPostsDto>> GetDetails(PagedAndSortedResultRequestDto input)
         {
-            try
-            {
                 var items = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category)
                     .Skip(input.SkipCount).Take(input.MaxResultCount)
 
@@ -37,13 +39,6 @@ namespace classifieds.Posts
                         CategoryName = m.Category.Name
                     }).ToListAsync();
                 return new PagedResultDto<DetailedPostsDto> { Items = items,TotalCount=items.Count()};
-            }
-            catch (System.Exception e)
-            {
-
-                throw e;
-            }
-
         }
     }
 }

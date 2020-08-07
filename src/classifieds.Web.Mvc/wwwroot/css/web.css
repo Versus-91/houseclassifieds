@@ -1,17 +1,113 @@
-﻿        * :not(i) {
-            font-family: "Vazir" !important;
-        }
+﻿* :not(i) {
+    font-family: "Vazir" !important;
+}
 
-        .select:after {
-            display: none !important;
-        }
+.select:after {
+    display: none !important;
+}
+
 .card-hover-shadow {
     -webkit-transition: .3s ease;
     transition: .3s ease;
 }
 
-.card-hover-shadow:hover {
-    -webkit-transform: translateY(-5px);
-    transform: translateY(-5px);
-    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    .card-hover-shadow:hover {
+        -webkit-transform: translateY(-5px);
+        transform: translateY(-5px);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+    }
+
+.swiper-container {
+    width: 100%;
+    height: 400px;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #000;
+}
+
+    .swiper-slide img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
+        -ms-transform: translate(-50%, -50%);
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+        position: absolute;
+        left: 50%;
+        top: 50%;
+    }
+
+.page-load-status {
+    display: none; /* hidden by default */
+    padding-top: 20px;
+    border-top: 1px solid #DDD;
+    text-align: center;
+    color: #777;
+}
+.loader-ellips {
+    font-size: 20px; /* change size here */
+    position: relative;
+    width: 4em;
+    height: 1em;
+    margin: 10px auto;
+}
+
+.loader-ellips__dot {
+    display: block;
+    width: 1em;
+    height: 1em;
+    border-radius: 0.5em;
+    background: #555; /* change color here */
+    position: absolute;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+    .loader-ellips__dot:nth-child(1),
+    .loader-ellips__dot:nth-child(2) {
+        left: 0;
+    }
+
+    .loader-ellips__dot:nth-child(3) {
+        left: 1.5em;
+    }
+
+    .loader-ellips__dot:nth-child(4) {
+        left: 3em;
+    }
+
+@keyframes reveal {
+    from {
+        transform: scale(0.001);
+    }
+
+    to {
+        transform: scale(1);
+    }
+}
+
+@keyframes slide {
+    to {
+        transform: translateX(1.5em)
+    }
+}
+
+.loader-ellips__dot:nth-child(1) {
+    animation-name: reveal;
+}
+
+.loader-ellips__dot:nth-child(2),
+.loader-ellips__dot:nth-child(3) {
+    animation-name: slide;
+}
+
+.loader-ellips__dot:nth-child(4) {
+    animation-name: reveal;
+    animation-direction: reverse;
 }

@@ -11,6 +11,7 @@ using classifieds.Controllers;
 using classifieds.Districts;
 using classifieds.Images;
 using classifieds.Posts;
+using classifieds.Posts.Dto;
 using classifieds.Web.Models.Ads;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -25,7 +26,7 @@ namespace classifieds.Web.Controllers
         private readonly ICategoryAppService _categoryService;
         private readonly IHostEnvironment _environment;
         private readonly IRepository<Image> _imageService;
-        public AdsController(IPostAppService postService, ICategoryAppService categoryService, 
+        public AdsController(IPostAppService postService, ICategoryAppService categoryService,
             IDistrictAppService districtService, IHostEnvironment environment
             , IRepository<Image> imageService)
         {
@@ -35,16 +36,15 @@ namespace classifieds.Web.Controllers
             _environment = environment;
             _imageService = imageService;
         }
-        public IActionResult Index(int id)
+        public IActionResult Index()
         {
-            int num = id;
             return View();
         }
         [Route("[controller]/{id:int:required}")]
-        public IActionResult Show(int id)
+        public async Task<IActionResult> Show(int id)
         {
-            int num = id;
-            return View();
+            var post = await _postService.GetAsync(new EntityDto { Id = id});
+            return View(post);
         }
         public async Task<IActionResult> Create()
         {
@@ -62,21 +62,24 @@ namespace classifieds.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                await _postService.CreateAsync(inputs.ToPost());
+                var post = await _postService.CreateAsync(inputs.ToPost());
                 var path = Path.Combine(_environment.ContentRootPath, "Images");
                 foreach (var file in inputs.Files)
                 {
-                    using (var stream = new FileStream(Path.Combine(path,file.FileName),FileMode.Create))
+                    var randomName = Path.Combine(path,$"{Guid.NewGuid().ToString("N")}{Path.GetExtension(file.FileName).ToLower()}");
+                    using (var stream = new FileStream(randomName, FileMode.Create))
                     {
                         await file.CopyToAsync(stream);
                     }
-                    await _imageService.InsertAsync(new Image{
-                        Name=file.Name,
-                        Path= Path.Combine(path, file.FileName),
-                        Size = file.Length
+                    await _imageService.InsertAsync(new Image
+                    {
+                        Name = file.Name,
+                        Path = randomName,
+                        Size = file.Length,
+                        PostId = post.Id
                     });
                 }
-                return RedirectToAction("index");
+                return Ok("saved successfully");
             }
             else
             {

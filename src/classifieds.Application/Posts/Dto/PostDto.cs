@@ -20,6 +20,8 @@ namespace classifieds.Posts.Dto
         public bool IsFeatured { get; set; } = false;
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public ushort Area { get; set; }
+        public byte Bedroom { get; set; }
         public City City { get; set; }
         public int DistrictId { get; set; }
         public DateTime CreationTime { get ; set; }

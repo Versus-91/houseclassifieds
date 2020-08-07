@@ -2,57 +2,77 @@
 @{ ViewBag.Title = L("HomePage");
     ViewBag.CurrentPageName = PageNames.Home;
     Layout = "layout/_front"; }
-    <div class="container">
-        <div class="section">
-            <div class="columns">
-                <div class="column is-3">
-                    <aside class="menu">
-                        <p class="menu-label">
-                            General
-                        </p>
-                        <ul class="menu-list">
-                            <li><a>Dashboard</a></li>
-                            <li><a>Customers</a></li>
-                        </ul>
-                        <p class="menu-label">
-                            Administration
-                        </p>
-                        <ul class="menu-list">
-                            <li><a>Team Settings</a></li>
-                            <li>
-                                <a class="is-active">Manage Your Team</a>
-                                <ul>
-                                    <li><a>Members</a></li>
-                                    <li><a>Plugins</a></li>
-                                    <li><a>Add a member</a></li>
-                                </ul>
-                            </li>
-                            <li><a>Invitations</a></li>
-                            <li><a>Cloud Storage Environment Settings</a></li>
-                            <li><a>Authentication</a></li>
-                        </ul>
-                        <p class="menu-label">
-                            Transactions
-                        </p>
-                        <ul class="menu-list">
-                            <li><a>Payments</a></li>
-                            <li><a>Transfers</a></li>
-                            <li><a>Balance</a></li>
-                        </ul>
-                    </aside>
+<div class="container">
+    <div class="section">
+        <div class="columns">
+            <div class="column is-3 ">
+                <aside class="menu mt-2">
+                    <p class="menu-label">
+                        قیمت
+                    </p>
+                    <ul class="menu-list">
+                        <li>
+                            <div class="field">
+                                <div class="control">
+                                    <label class="checkbox">
+                                        <input type="checkbox" id="featured">
+                                        ویژه
+                                    </label>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                    <p class="menu-label">
+                        متراژ
+                    </p>
+                    <ul class="menu-list">
+                        <li><a>Team Settings</a></li>
+                        <li><a>Invitations</a></li>
+                        <li><a>Cloud Storage Environment Settings</a></li>
+                        <li><a>Authentication</a></li>
+                    </ul>
+                    <p class="menu-label">
+                        تعداد خواب
+                    </p>
+                    <ul class="menu-list">
+                        <li><a>Payments</a></li>
+                        <li><a>Transfers</a></li>
+                        <li><a>Balance</a></li>
+                    </ul>
+                </aside>
+            </div>
+            <div class="column is-9">
+                <div class="tabs is-centered">
+                    <ul>
+                        <li class="is-active"><a>جدیدترین</a></li>
+                        <li><a>ارزانترین</a></li>
+                        <li><a>گرانترین</a></li>
+                    </ul>
                 </div>
-                <div class="column is-9">
-                    <div class="tabs is-centered">
-                        <ul>
-                            <li class="is-active"><a>جدیدترین</a></li>
-                            <li><a>ارزانترین</a></li>
-                            <li><a>گرانترین</a></li>
-                        </ul>
+                <div class="columns is-multiline" id="infScroll">
+
+                </div>
+                <div class="page-load-status">
+                    <div class="loader-ellips infinite-scroll-request">
+                        <span class="loader-ellips__dot"></span>
+                        <span class="loader-ellips__dot"></span>
+                        <span class="loader-ellips__dot"></span>
+                        <span class="loader-ellips__dot"></span>
                     </div>
-                    <div class="columns is-multiline ">
-                        @for (int i = 0; i < 30; i++)
-                        {
-            <div class=" column is-4 infinite-pagination">
+                    <p class="infinite-scroll-last">پایان </p>
+                    <p class="infinite-scroll-error">No more pages to load</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+@section scripts{
+    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+    <script type="text/html" id="photo-item-template">
+        <div class=" column is-4">
+            <a class="fill-div" href="ads/{{id}}">
                 <div class="card card-hover-shadow">
                     <div class="card-image">
                         <figure class="image is-4by3">
@@ -61,14 +81,14 @@
                     </div>
                     <div class="card-content">
                         <div class="content">
-                            ویلای نوساز
+                            {{title}}
                             <br>
                         </div>
                         <nav class="level is-mobile">
                             <div class="level-item has-text-centered">
                                 <div>
                                     <p class="heading"><i class="fas fa-2x fa-square has-text-success"></i></p>
-                                    <p class="subtitle">200 متر</p>
+                                    <p class="subtitle">{{area}}</p>
                                 </div>
                             </div>
                             <div class="level-item has-text-centered">
@@ -80,7 +100,7 @@
                             <div class="level-item has-text-centered">
                                 <div>
                                     <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
-                                    <p class="subtitle">3 عدد</p>
+                                    <p class="subtitle">{{bedroom}}</p>
                                 </div>
                             </div>
                         </nav>
@@ -91,56 +111,60 @@
                         </span>
                     </div>
                 </div>
-            </div>}
-                    </div>
-                </div>
-
-            </div>
-            @*<div class="columns">
-                <div class="column is-3"></div>
-                <div class="column is-9 pagination-div">
-                    <nav class="pagination" role="navigation" aria-label="pagination">
-                        <a class="pagination-previous">Previous</a>
-                        <a class="pagination-next">Next page</a>
-                        <ul class="pagination-list">
-                            <li>
-                                <a class="pagination-link" aria-label="Goto page 1">1</a>
-                            </li>
-                            <li>
-                                <span class="pagination-ellipsis">&hellip;</span>
-                            </li>
-                            <li>
-                                <a class="pagination-link" aria-label="Goto page 45">45</a>
-                            </li>
-                            <li>
-                                <a class="pagination-link is-current" aria-label="Page 46" aria-current="page">46</a>
-                            </li>
-                            <li>
-                                <a class="pagination-link" aria-label="Goto page 47">47</a>
-                            </li>
-                            <li>
-                                <span class="pagination-ellipsis">&hellip;</span>
-                            </li>
-                            <li>
-                                <a class="pagination-link" aria-label="Goto page 86">86</a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-
-            </div>*@
+            </a>
         </div>
-        <a style="display:none" class="pagination__next" href="/page/2">Next</a>
-
-    </div>
-@section scripts{
-    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
+    </script>
     <script>
-        $('.infinite-pagination').infiniteScroll({
-            // options
-            path: '.pagination__next',
-            append: '.card',
-            history: false,
-        });
+        $(function () {
+            var totalPages = 100;
+            var $container = $('#infScroll').infiniteScroll({
+                path: function () {
+                    if (this.pageIndex <= totalPages) {
+                        return '/api/services/app/post/getall?SkipCount=' + (this.pageIndex - 1) * 10 + '&MaxResultCount=' + 10
+                    }
+                },
+                responseType: 'text',
+                status: '.page-load-status',
+                history: false,
+            });
+
+            $container.on('load.infiniteScroll', function (event, response) {
+                // parse response into JSON data
+                var data = JSON.parse(response);
+                totalPages = Math.ceil(data.result.totalCount / 10);
+                // compile data into HTML
+                var itemsHTML = data.result.items.map(getItemHTML).join('');
+                // convert HTML string into elements
+                var $items = $(itemsHTML);
+                // append item elements
+                $container.infiniteScroll('appendItems', $items);
+            });
+
+            // load initial page
+            $container.infiniteScroll('loadNextPage');
+
+            //------------------//
+
+            var itemTemplateSrc = $('#photo-item-template').html();
+
+            function getItemHTML(photo) {
+                return microTemplate(itemTemplateSrc, photo);
+            }
+
+            // micro templating, sort-of
+            function microTemplate(src, data) {
+                // replace {{tags}} in source
+                return src.replace(/\{\{([\w\-_\.]+)\}\}/gi, function (match, key) {
+                    // walk through objects to get value
+                    var value = data;
+                    key.split('.').forEach(function (part) {
+                        value = value[part];
+                    });
+                    return value;
+                });
+            }
+        })
+
+
     </script>
 }

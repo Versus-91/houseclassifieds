@@ -95,7 +95,6 @@
     @RenderSection("hero", required: false)
 <div id="app">
     @RenderBody()
-
 </div>
     <footer class="footer  has-background-light mt-6">
         <div class="content has-text-centered">
@@ -108,7 +107,6 @@
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function () {
-            document.addEventListener('DOMContentLoaded', () => {
 
                 // Get all "navbar-burger" elements
                 const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
@@ -131,7 +129,6 @@
                         });
                     });
                 }
-            });
             $('.select2').select2()
 
         });

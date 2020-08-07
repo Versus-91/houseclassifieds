@@ -17,6 +17,8 @@ namespace classifieds.Web.Models.Ads
         public int CategoryId { get; set; }
         [Required]
         public int DistrictId { get; set; }
+        public ushort Area { get; set; }
+        public byte Bedroom { get; set; }
         public DateTime CreationTime { get; set; }
         public IList<Microsoft.AspNetCore.Http.IFormFile> Files { get; set; }
         public PostDto ToPost() {
@@ -27,6 +29,8 @@ namespace classifieds.Web.Models.Ads
                 Description = this.Title,
                 DistrictId = this.DistrictId,
                 CreationTime = this.CreationTime,
+                Area = this.Area,
+                Bedroom = this.Bedroom,
 
             };
         }
