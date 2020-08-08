@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using classifieds.EntityFrameworkCore;
 
 namespace classifieds.Migrations
 {
     [DbContext(typeof(classifiedsDbContext))]
-    partial class classifiedsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200808101422_propert types")]
+    partial class properttypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1712,19 +1714,11 @@ namespace classifieds.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.Property<long>("View")
-                        .HasColumnType("bigint");
-
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
 
                     b.HasIndex("DistrictId");
-
-                    b.HasIndex("TypeId");
 
                     b.ToTable("Posts");
                 });
@@ -2000,12 +1994,6 @@ namespace classifieds.Migrations
                     b.HasOne("classifieds.Districts.District", "District")
                         .WithMany("Posts")
                         .HasForeignKey("DistrictId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("classifieds.PropertyTypes.PropertyType", "Type")
-                        .WithMany()
-                        .HasForeignKey("TypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

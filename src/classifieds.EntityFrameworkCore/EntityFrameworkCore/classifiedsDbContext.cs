@@ -8,6 +8,7 @@ using classifieds.Cities;
 using classifieds.Districts;
 using classifieds.Categories;
 using classifieds.Images;
+using classifieds.PropertyTypes;
 
 namespace classifieds.EntityFrameworkCore
 {
@@ -19,6 +20,7 @@ namespace classifieds.EntityFrameworkCore
         public DbSet<City> Citites { get; set; }
         public DbSet<District> Districts { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<PropertyType> PropertyTypes { get; set; }
         public classifiedsDbContext(DbContextOptions<classifiedsDbContext> options)
             : base(options)
         {

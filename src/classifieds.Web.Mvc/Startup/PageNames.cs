@@ -10,6 +10,7 @@
         public const string Categories = "Categories"; 
         public const string Cities = "Cities"; 
         public const string Districts = "Districts"; 
-        public const string Posts = "Posts"; 
+        public const string Posts = "Posts";
+        public const  string PropertyTypes = "Property Types";
     }
 }

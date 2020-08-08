@@ -3,6 +3,7 @@ using Abp.Domain.Entities.Auditing;
 using classifieds.Categories;
 using classifieds.Districts;
 using classifieds.Images;
+using classifieds.PropertyTypes;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -20,8 +21,11 @@ namespace classifieds.Posts
         public DateTime CreationTime { get ; set ; }
         public int DistrictId { get; set; }
         public District District { get; set; }
+        public int TypeId { get; set; }
+        public PropertyType Type { get; set; }
         public ushort Area { get; set; }
         public byte Bedroom { get; set; }
+        public uint View { get; set; }
         public Post()
         {
             CreationTime = DateTime.Now;

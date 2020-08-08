@@ -1,4 +1,6 @@
 ﻿@using classifieds.Web.Startup
+@model classifieds.Web.Models.Ads.AdsIndexViewModel
+
 @{ ViewBag.Title = L("HomePage");
     ViewBag.CurrentPageName = PageNames.Home;
     Layout = "layout/_front";
@@ -11,7 +13,9 @@
 
                     <div class="column has-text-centered">
                         <a>
-                            <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+                            <span class="icon is-small">
+                                <i class="fas fa-exchange-alt"></i>
+                            </span>
                             <span>خرید و فروش</span>
                         </a>
 
@@ -24,8 +28,7 @@
                         <div class="column">
                             <div class="select is-fullwidth py-1">
                                 <select class="select2" id="selectcities">
-                                    <option>انتخاب شهر</option>
-                                    @foreach (var item in ViewData["cities"] as IEnumerable<classifieds.Cities.Dto.CityDto>)
+                                    @foreach (var item in Model.Cities)
                                     {
                                         <option value="@item.Id">@item.Name</option>
                                     }
@@ -42,9 +45,8 @@
                         </div>
                         <div class="column">
                             <div class="select is-fullwidth py-1">
-                                <select class="select2" disabled>
-                                    <option>نوع ملک </option>
-                                    <option>With options</option>
+                                <select class="select2" asp-items="@(new SelectList(Model.Types,"Id","Name"))">
+
                                 </select>
                             </div>
                         </div>

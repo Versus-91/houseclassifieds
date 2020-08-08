@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Runtime.Validation;
+using Castle.MicroKernel.Registration;
 using classifieds.Categories;
+using classifieds.Cities;
 using classifieds.Controllers;
 using classifieds.Districts;
 using classifieds.Images;
 using classifieds.Posts;
 using classifieds.Posts.Dto;
+using classifieds.PropertyTypes;
 using classifieds.Web.Models.Ads;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -26,9 +29,14 @@ namespace classifieds.Web.Controllers
         private readonly ICategoryAppService _categoryService;
         private readonly IHostEnvironment _environment;
         private readonly IRepository<Image> _imageService;
-        public AdsController(IPostAppService postService, ICategoryAppService categoryService,
-            IDistrictAppService districtService, IHostEnvironment environment
-            , IRepository<Image> imageService)
+        public AdsController(
+            IPostAppService postService,
+            ICategoryAppService categoryService,
+            IDistrictAppService districtService,
+            IHostEnvironment environment, 
+            IRepository<Image> imageService, 
+            ICityAppService cityService
+            , ITypeAppService typeService)
         {
             _postService = postService;
             _categoryService = categoryService;
@@ -36,7 +44,7 @@ namespace classifieds.Web.Controllers
             _environment = environment;
             _imageService = imageService;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             return View();
         }

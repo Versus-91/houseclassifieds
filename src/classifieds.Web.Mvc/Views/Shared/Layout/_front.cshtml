@@ -67,10 +67,12 @@
                         <div class="buttons">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                <a class="button is-primary">
-                                    <strong>پنل</strong>
-                                </a>
+                            <a class="button is-primary">
+                                <i class="fas fa-tasks px-1"></i>
+                                <strong>پنل</strong>
+                            </a>
                                 <a class="button is-danger" href="/account/logout">
+                                    <i class="fas fa-sign-out-alt px-1"></i>
                                     <strong>خروج</strong>
                                 </a>
                             }
@@ -78,12 +80,14 @@
                             {
 
 
-                                <a class="button is-primary" href="/account/register">
-                                    <strong>ثبت نام</strong>
-                                </a>
-                                <a class="button is-light" href="/account/login?returnUrl=@returnUrl">
-                                    ورود
-                                </a>
+                        <a class="button is-primary" href="/account/register">
+                            <i class="fas fa-user px-1"></i>
+                            <strong>ثبت نام</strong>
+                        </a>
+                        <a class="button is-light" href="/account/login?returnUrl=@returnUrl">
+                            <i class="fas fa-sign-in-alt px-1 has-text-success"></i>
+                            ورود
+                        </a>
                             }
 
                         </div>
