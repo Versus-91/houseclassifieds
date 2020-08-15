@@ -44,8 +44,9 @@ namespace classifieds.Web.Controllers
             _environment = environment;
             _imageService = imageService;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index(AdSerchViewModel inputs)
         {
+            var serachInputs = inputs;
             return View();
         }
         [Route("[controller]/{id:int:required}")]

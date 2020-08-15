@@ -8,7 +8,7 @@ namespace classifieds.Web.Models.Ads
     public class AdsIndexViewModel
     {
         public IList<CityDto> Cities { get; set; }
-        public IList<CategoryDto> Categories { get; set; }
+        public IReadOnlyList<CategoryDto> Categories { get; set; }
         public IList<PropertyTypeDto> Types { get; set; }
     }
 }

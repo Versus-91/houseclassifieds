@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace classifieds.Web.Models.Ads
 {
-    public class AdsViewModel
+    public class AdsViewModel :IValidatableObject
     {
         [Required]
         public string Title { get; set; }
@@ -21,6 +21,9 @@ namespace classifieds.Web.Models.Ads
         public byte Bedroom { get; set; }
         public DateTime CreationTime { get; set; }
         public IList<Microsoft.AspNetCore.Http.IFormFile> Files { get; set; }
+        public uint Price { get; set; }
+        public uint Deposit { get; set; }
+
         public PostDto ToPost() {
             return new PostDto
             {
@@ -33,6 +36,11 @@ namespace classifieds.Web.Models.Ads
                 Bedroom = this.Bedroom,
 
             };
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+                yield return new ValidationResult("");
         }
     }
 }

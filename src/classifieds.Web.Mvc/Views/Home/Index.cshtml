@@ -9,25 +9,19 @@
     <section class="hero is-medium is-primary is-bold">
         <div class="hero-body">
             <div class="container">
+                <nav class="columns is-centered is-mobile has-text-centered">
+                        @foreach (var item in Model.Categories)
+                        {
+                            <div class="column is-6-mobile is-2-desktop cat-tab " data-id="@item.Id">
+                                    <span class="title is-5 ">@item.Name</span>
+                            </div>
+                        }
+                </nav>
                 <div class="box has-text-link">
-
-                    <div class="column has-text-centered">
-                        <a>
-                            <span class="icon is-small">
-                                <i class="fas fa-exchange-alt"></i>
-                            </span>
-                            <span>خرید و فروش</span>
-                        </a>
-
-                        <a>
-                            <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
-                            <span>رهن و اجاره</span>
-                        </a>
-                    </div>
                     <div class="columns is-centered is-vcentered has-text-centered py-2">
                         <div class="column">
                             <div class="select is-fullwidth py-1">
-                                <select class="select2" id="selectcities">
+                                <select class="select2" id="selectCity">
                                     @foreach (var item in Model.Cities)
                                     {
                                         <option value="@item.Id">@item.Name</option>
@@ -38,20 +32,20 @@
                         <div class="column">
                             <div class="select is-fullwidth py-1">
                                 <select class="select2" disabled id="selectDistrict">
-                                    <option>انتخاب محله </option>
-                                    <option>With options</option>
+                                    <option value="0">انتخاب محله </option>
                                 </select>
                             </div>
                         </div>
                         <div class="column">
                             <div class="select is-fullwidth py-1">
-                                <select class="select2" asp-items="@(new SelectList(Model.Types,"Id","Name"))">
-
+                                <select class="select2" asp-items="@(new SelectList(Model.Types,"Id","Name"))" id="type">
                                 </select>
                             </div>
                         </div>
                         <div class="column">
-                            <button class="button is-primary is-rounded">جستجو</button>
+                            <button class="button is-primary is-rounded is-fullwidth-mobile" id="send">
+                                <i class="fas fa-search"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -83,14 +77,75 @@
                 </h2>
                 <br />
                 <ul>
-                    <li>تهران</li>
-                    <li>تهران</li>
-                    <li>تهران</li>
-                    <li>تهران</li>
-                    <li>تهران</li>
-                    <li>تهران</li>
-                    <li>تهران</li>
+                    <li>
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+
                 </ul>
+
             </div>
             <div class="column is-4">
                 <h2 class="has-text-centered">
@@ -100,14 +155,75 @@
                 </h2>
                 <br />
                 <ul>
-                    <li>تهران</li>
-                    <li>تهران</li>
-                    <li>تهران</li>
-                    <li>تهران</li>
-                    <li>تهران</li>
-                    <li>تهران</li>
-                    <li>تهران</li>
+                    <li>
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+
                 </ul>
+
             </div>
             <div class="column is-4">
                 <h2 class="has-text-centered">
@@ -118,67 +234,67 @@
                 <br />
                 <ul>
                     <li>
-                        <div class="level">
+                        <div class="level is-mobile my-1">
                             <div class="level-right">
                                 <div class="level-item">تهران</div>
                             </div>
                             <div class="level-left">
-                                <div class="level-item">44545</div>
+                                <div class="level-item has-text-info">44545</div>
                             </div>
 
                         </div>
                     </li>
                     <li>
-                        <div class="level">
+                        <div class="level is-mobile my-1">
                             <div class="level-right">
                                 <div class="level-item">تهران</div>
                             </div>
                             <div class="level-left">
-                                <div class="level-item">44545</div>
+                                <div class="level-item has-text-info">44545</div>
+                            </div>
+
+                        </div>
+                    </li>
+                    <li> 
+                        <div class="level is-mobile my-1">
+                            <div class="level-right">
+                                <div class="level-item">تهران</div>
+                            </div>
+                            <div class="level-left">
+                                <div class="level-item has-text-info">44545</div>
                             </div>
 
                         </div>
                     </li>
                     <li>
-                        <div class="level">
+                        <div class="level is-mobile my-1">
                             <div class="level-right">
                                 <div class="level-item">تهران</div>
                             </div>
                             <div class="level-left">
-                                <div class="level-item">44545</div>
+                                <div class="level-item has-text-info">44545</div>
                             </div>
 
                         </div>
                     </li>
                     <li>
-                        <div class="level">
+                        <div class="level is-mobile my-1">
                             <div class="level-right">
                                 <div class="level-item">تهران</div>
                             </div>
                             <div class="level-left">
-                                <div class="level-item">44545</div>
+                                <div class="level-item has-text-info">44545</div>
                             </div>
 
                         </div>
                     </li>
                     <li>
-                        <div class="level">
+                        <div class="level is-mobile my-1">
                             <div class="level-right">
                                 <div class="level-item">تهران</div>
                             </div>
                             <div class="level-left">
-                                <div class="level-item">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item">44545</div>
+                                <div class="level-item has-text-info">44545</div>
                             </div>
 
                         </div>
@@ -193,9 +309,61 @@
 </div>
 @section Scripts{
     <script>
-        $('#selectcities').on('select2:select', function (e) {
-            console.log(e.target.value);
-            $("#selectDistrict").prop("disabled", false);
-        });
+        "use strict";
+        $(function () {
+            var categoryId = 0;
+            $(".cat-tab").first().find("span").addClass("has-text-success");
+            categoryId = $(".cat-tab").first("span").attr("data-id");
+            $('#selectCity').on('select2:select', function (e) {
+                if (e.target.value != 0) {
+                    $("#selectDistrict").prop("disabled", false);
+                    var sampleArray = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }
+                        , { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }
+                        , { id: 4, text: 'wontfix' }];
+                    $.get('/districts/GetByCityId?id=' + e.target.value, function (res) {
+                        var items = res.result.map(m =>
+                        {
+                            return {
+                                id: m.id ,
+                                text: m.name
+                            }
+                        }
+                        );
+                        items.splice(0, 0, {id : 0 ,text:"انتخاب محله"})
+                        $("#selectDistrict").empty();
+                        $("#selectDistrict").select2({ data: items });
+                    })
+                } else {
+
+                    $("#selectDistrict").prop("disabled", true);
+
+
+                }
+            });
+            $(".cat-tab").click(function () {
+                $(".cat-tab").find("span").removeClass("has-text-success");
+                $(this).find("span").addClass("has-text-success");
+                categoryId = $(this).attr("data-id")
+            });
+            $("#send").click(function () {
+                var query = {};
+                var city = $('#selectCity').select2("data");
+                var district = $('#selectDistrict').select2("data");
+                var type = $('#type').select2("data");
+                if (categoryId && categoryId != 0) {
+                    query.category = categoryId;
+                }
+                if (city[0] && city[0].id != 0) {
+                    query.city = city[0].id;
+                }
+                if (district[0] && district[0].id != 0) {
+                    query.district = district[0].id;
+                }
+                if (type[0] && type[0].id != 0) {
+                    query.type = type[0].id;
+                }
+                location.href = "/ads?" + $.param(query);
+            });
+        })
     </script>
 }

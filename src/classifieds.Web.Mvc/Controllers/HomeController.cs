@@ -29,10 +29,9 @@ namespace classifieds.Web.Controllers
         public async Task<ActionResult> Index()
         {
             var cities = (await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = int.MaxValue })).Items.ToList();
-            var categories = (await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = int.MaxValue })).Items.ToList();
+            var categories = (await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = int.MaxValue })).Items;
             var types = (await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = int.MaxValue })).Items.ToList();
             cities.Insert(0, new CityDto { Id = 0, Name = "شهر را انتخاب کنید" });
-            categories.Insert(0, new CategoryDto { Id = 0, Name = "دسته بندی را انتخاب کنید" });
             types.Insert(0, new PropertyTypeDto { Id = 0, Name = "نوع ملک را انتخاب کنید" });
             var model = new AdsIndexViewModel
             {

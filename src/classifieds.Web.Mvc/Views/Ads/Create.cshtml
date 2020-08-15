@@ -6,7 +6,6 @@
 @section styles{
     <link href="~/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet" asp-append-version="true" />
 }
-
 <div class="container">
     <div class="section">
         <div class="box">
@@ -18,7 +17,7 @@
                 <div class="field">
                     <label asp-for="Ad.Title" class="label">عنوان</label>
                     <div class="control">
-                        <input asp-for="Ad.Title" v-model="title"  class="input" type="text">
+                        <input asp-for="Ad.Title" v-model="title" class="input" type="text">
                         <span class="help is-danger" asp-validation-for="Ad.Title"></span>
                     </div>
                 </div>
@@ -27,16 +26,19 @@
 
                         <div class="field">
                             <label asp-for="Ad.DistrictId" class="label">محله</label>
-                            <div class="control">
+                            <div class="control has-icons-right">
                                 <div class="select is-fullwidth">
                                     <select asp-for="Ad.DistrictId" asp-items="Model.Districts">
                                     </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-city"></i>
+                                    </span>
                                 </div>
                             </div>
-                        </div>                       
+                        </div>
                         <div class="field">
                             <label asp-for="Ad.Bedroom" class="label">تعداد خواب</label>
-                            <div class="control">
+                            <div class="control  has-icons-left has-icons-right">
                                 <div class="select is-fullwidth">
                                     <select asp-for="Ad.Bedroom">
                                         <option value="1">1</option>
@@ -46,23 +48,32 @@
                                         <option value="5">5</option>
                                         <option value="6">6</option>
                                     </select>
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-bed"></i>
+                                    </span>
                                 </div>
                             </div>
-                        </div>                       
+                        </div>
                         <div class="field">
                             <label asp-for="Ad.Area" class="label">مساحت</label>
-                                <input class="input" asp-for="Ad.Area"/>
+                            <div class="control has-icons-left has-icons-right">
+                                <input class="input" asp-for="Ad.Area" />
+                                <span class="icon is-small is-left">
+                                    <i class="fas fa-globe"></i>
+                                </span>
+                            </div>
                         </div>
-
                     </div>
-
                 </div>
                 <div class="field">
                     <label asp-for="Ad.CategoryId" class="label">دسته بندی</label>
-                    <div class="control">
+                    <div class="control has-icons-right">
                         <div class="select ">
                             <select asp-for="Ad.CategoryId" asp-items="Model.Categories">
                             </select>
+                            <span class="icon is-small is-right">
+                                <i class="fas fa-list"></i>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -72,15 +83,7 @@
                         <textarea asp-for="Ad.Description" class="textarea"></textarea>
                         <span class="help is-danger" asp-validation-for="Ad.Description"></span>
                     </div>
-                </div>
 
-                <div class="field">
-                    <div class="control">
-                        <label class="checkbox">
-                            <input type="checkbox">
-                            <a href="#">با قوانین موافقم</a>
-                        </label>
-                    </div>
                 </div>
                 <div class="field">
                     <div class=" dz-clickable dropzone" id="dropzone">
@@ -91,13 +94,18 @@
                 </div>
                 <div class="field is-grouped">
                     <div class="control">
-                        <button class="button is-link" id="submit">ارسال</button>
+                        <button class="button is-link is-success" id="submit">
+                            <i class="fas fa-paper-plane pl-1"> </i>
+                            ارسال
+                        </button>
                     </div>
                     <div class="control">
-                        <a href="/" class="button is-link is-light">انصراف</a>
+                        <a href="/" class="button is-link is-light">
+                            <i class="fas fa-trash pl-1 has-text-danger"> </i>
+                            انصراف
+                        </a>
                     </div>
                 </div>
-
             </form>
         </div>
     </div>
@@ -111,10 +119,10 @@
         Dropzone.autoDiscover = false;
         $(document).ready(function () {
             Dropzone.autoDiscover = false;
-            var dropZone = new Dropzone('#dropzone',{
+            var dropZone = new Dropzone('#dropzone', {
                 autoProcessQueue: false,
                 maxFiles: 2000,
-                paramName:'Ad.Files',
+                paramName: 'Ad.Files',
                 url: "/ads/create",
                 success: function (file, response) {
                     window.location.href = "../";
@@ -125,9 +133,9 @@
                 save();
             });
             dropZone.on("sending", function (file, xhr, formData) {
-                var items= form.serializeArray();
+                var items = form.serializeArray();
                 for (var i = 0; i < items.length; i++) {
-                    formData.append(items[i].name,items[i].value);
+                    formData.append(items[i].name, items[i].value);
                 }
 
             });

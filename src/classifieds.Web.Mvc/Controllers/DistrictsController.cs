@@ -2,9 +2,11 @@
 using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
 using Abp.AspNetCore.Mvc.Controllers;
+using Abp.Web.Models;
 using classifieds.Cities;
 using classifieds.Cities.Dto;
 using classifieds.Districts;
+using classifieds.Districts.Dto;
 using classifieds.Web.Models.Districts;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -41,6 +43,11 @@ namespace classifieds.Web.Controllers
                 Cities = cities.Items
             };
             return PartialView("_EditModal", model);
+        }        
+        public async Task<AjaxResponse> GetByCityId(int id)
+        {
+            var districts = await _districtService.GetByCityId(id);
+            return new AjaxResponse(districts);
         }
     }
 }

@@ -21,8 +21,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@pageTitle</title>
-    @RenderSection("styles", required: false)
-    <!-- Bulma Version 0.8.2-->
     <link rel="icon"
           type="image/png"
           href="/favicon.png" />
@@ -31,6 +29,7 @@
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v26.0.0/dist/font-face.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <link href="~/css/web.css" rel="stylesheet" asp-append-version="true" />
+    @RenderSection("styles", required: false)
 
 </head>
 <body>
@@ -67,10 +66,13 @@
                         <div class="buttons">
                             @if (User.Identity.IsAuthenticated)
                             {
-                            <a class="button is-primary">
-                                <i class="fas fa-tasks px-1"></i>
-                                <strong>پنل</strong>
-                            </a>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <a class="button is-primary" href="/users">
+                                        <i class="fas fa-tasks px-1"></i>
+                                        <strong>پنل</strong>
+                                    </a>
+                                }
                                 <a class="button is-danger" href="/account/logout">
                                     <i class="fas fa-sign-out-alt px-1"></i>
                                     <strong>خروج</strong>
@@ -80,14 +82,14 @@
                             {
 
 
-                        <a class="button is-primary" href="/account/register">
-                            <i class="fas fa-user px-1"></i>
-                            <strong>ثبت نام</strong>
-                        </a>
-                        <a class="button is-light" href="/account/login?returnUrl=@returnUrl">
-                            <i class="fas fa-sign-in-alt px-1 has-text-success"></i>
-                            ورود
-                        </a>
+                                <a class="button is-primary" href="/account/register">
+                                    <i class="fas fa-user px-1"></i>
+                                    <strong>ثبت نام</strong>
+                                </a>
+                                <a class="button is-light" href="/account/login?returnUrl=@returnUrl">
+                                    <i class="fas fa-sign-in-alt px-1 has-text-success"></i>
+                                    ورود
+                                </a>
                             }
 
                         </div>
