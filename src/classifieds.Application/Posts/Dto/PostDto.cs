@@ -6,6 +6,7 @@ using classifieds.Cities;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Drawing;
 using System.Text;
 
 namespace classifieds.Posts.Dto
@@ -24,6 +25,9 @@ namespace classifieds.Posts.Dto
         public byte Bedroom { get; set; }
         public City City { get; set; }
         public int DistrictId { get; set; }
+        public int TypeId { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         public DateTime CreationTime { get ; set; }
     }
 }

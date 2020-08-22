@@ -1311,6 +1311,27 @@ namespace classifieds.Migrations
                     b.ToTable("AbpWebhookSubscriptions");
                 });
 
+            modelBuilder.Entity("classifieds.Amenities.Amenity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Icon")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Amenities");
+                });
+
             modelBuilder.Entity("classifieds.Authorization.Roles.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -1688,6 +1709,9 @@ namespace classifieds.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("Age")
+                        .HasColumnType("int");
+
                     b.Property<int>("Area")
                         .HasColumnType("int");
 
@@ -1709,6 +1733,12 @@ namespace classifieds.Migrations
                     b.Property<bool>("IsFeatured")
                         .HasColumnType("bit");
 
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -1727,6 +1757,28 @@ namespace classifieds.Migrations
                     b.HasIndex("TypeId");
 
                     b.ToTable("Posts");
+                });
+
+            modelBuilder.Entity("classifieds.PostsAmenities.PostAmenity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AmenityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AmenityId");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("PostsAmenities");
                 });
 
             modelBuilder.Entity("classifieds.PropertyTypes.PropertyType", b =>
@@ -2006,6 +2058,21 @@ namespace classifieds.Migrations
                     b.HasOne("classifieds.PropertyTypes.PropertyType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("classifieds.PostsAmenities.PostAmenity", b =>
+                {
+                    b.HasOne("classifieds.Amenities.Amenity", "Amenity")
+                        .WithMany("PostAmenities")
+                        .HasForeignKey("AmenityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("classifieds.Posts.Post", "Post")
+                        .WithMany("PostAmenities")
+                        .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

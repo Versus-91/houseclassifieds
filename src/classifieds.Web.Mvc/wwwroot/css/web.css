@@ -18,6 +18,20 @@
     }
 
 .swiper-container {
+    min-width: 0;
+    width: 100%;
+    height: 400px;
+}
+
+.secondary-swiper-container {
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    overflow: hidden;
+    list-style: none;
+    padding: 0;
+    z-index: 1;
+    min-width: 0;
     width: 100%;
     height: 400px;
 }
@@ -25,7 +39,6 @@
 .swiper-slide {
     text-align: center;
     font-size: 18px;
-    background: #000;
 }
 
     .swiper-slide img {
@@ -165,4 +178,44 @@
 
 .select2 {
     width: 100% !important;
+}
+/* prevent the drop down icon going onto a new line for the top bar language link */
+.top-bar-language-nav-link {
+    min-width: 65px;
+}
+
+/* bootstrap model showing two scroll bars */
+html {
+    overflow: visible;
+}
+
+/* main sidebar not under model */
+.modal {
+    z-index: 1110;
+}
+
+.form-group.required .col-form-label:after {
+    color: #d00;
+    content: "*";
+    position: absolute;
+    margin-left: 3px;
+}
+
+.has-bg-img {
+    background: url('/img/bg.jpg')center center !important;
+    background-size: cover !important;
+}
+
+body {
+    display: flex !important;
+    min-height: 100vh !important;
+    flex-direction: column !important;
+}
+
+.Site-content {
+    flex: 1;
+}
+.cover {
+    width: 100% !important;
+    object-fit: cover !important;
 }

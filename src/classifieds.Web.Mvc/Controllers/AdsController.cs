@@ -26,6 +26,7 @@ namespace classifieds.Web.Controllers
     {
         private readonly IPostAppService _postService;
         private readonly IDistrictAppService _districtService;
+        private readonly ITypeAppService _typeService;
         private readonly ICategoryAppService _categoryService;
         private readonly IHostEnvironment _environment;
         private readonly IRepository<Image> _imageService;
@@ -35,14 +36,15 @@ namespace classifieds.Web.Controllers
             IDistrictAppService districtService,
             IHostEnvironment environment, 
             IRepository<Image> imageService, 
-            ICityAppService cityService
-            , ITypeAppService typeService)
+            ICityAppService cityService, 
+            ITypeAppService typeService)
         {
             _postService = postService;
             _categoryService = categoryService;
             _districtService = districtService;
             _environment = environment;
             _imageService = imageService;
+            _typeService = typeService;
         }
         public IActionResult Index(AdSerchViewModel inputs)
         {
@@ -60,7 +62,8 @@ namespace classifieds.Web.Controllers
             var model = new CreateAdViewModel
             {
                 Categories = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name"),
-                Districts = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name")
+                Districts = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name"),
+                PropertyTypes = new SelectList((await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name")
             };
             return View(model);
         }
@@ -95,7 +98,8 @@ namespace classifieds.Web.Controllers
                 var model = new CreateAdViewModel
                 {
                     Categories = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name"),
-                    Districts = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name")
+                    Districts = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name"),
+                    PropertyTypes = new SelectList((await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name")
                 };
                 return View(model);
             }

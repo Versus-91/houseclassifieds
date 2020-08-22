@@ -3,9 +3,12 @@ using Abp.Domain.Entities.Auditing;
 using classifieds.Categories;
 using classifieds.Districts;
 using classifieds.Images;
+using classifieds.PostsAmenities;
 using classifieds.PropertyTypes;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Drawing;
 using System.Text;
 
 namespace classifieds.Posts
@@ -24,8 +27,12 @@ namespace classifieds.Posts
         public int TypeId { get; set; }
         public PropertyType Type { get; set; }
         public ushort Area { get; set; }
+        public ushort Age { get; set; }
         public byte Bedroom { get; set; }
+        public IList<PostAmenity> PostAmenities { get; set; }
         public uint View { get; set; }
+        public double Latitude { get; set; }
+        public double Longitude { get; set; }
         public Post()
         {
             CreationTime = DateTime.Now;

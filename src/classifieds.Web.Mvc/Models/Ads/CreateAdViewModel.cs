@@ -11,5 +11,6 @@ namespace classifieds.Web.Models.Ads
         public AdsViewModel Ad { get; set; }
         public SelectList Categories { get; set; }
         public SelectList Districts { get; set; }
+        public SelectList PropertyTypes { get; set; }
     }
 }
