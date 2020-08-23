@@ -19,6 +19,7 @@ using Abp.Json;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json.Serialization;
 using ReflectionIT.Mvc.Paging;
+using classifieds.Services;
 
 namespace classifieds.Web.Startup
 {
@@ -54,7 +55,8 @@ namespace classifieds.Web.Startup
             AuthConfigurer.Configure(services, _appConfiguration);
 
             services.AddScoped<IWebResourceManager, WebResourceManager>();
-
+            services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.Configure<SMSoptions>(_appConfiguration);
             services.AddSignalR();
             services.AddPaging(options => {
                 options.ViewName = "Bootstrap4";

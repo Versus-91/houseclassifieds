@@ -1,0 +1,26 @@
+﻿@model classifieds.Models.ManageViewModels.AddPhoneNumberViewModel
+@{ ViewData["Title"] = "Add Phone Number";
+    Layout = "layout/_front"; }
+<div class="container">
+    <section class="section">
+        <form asp-controller="Manage" asp-action="AddPhoneNumber" method="post" class="form-horizontal">
+            <h4>افزودن شماره تلفن</h4>
+            <hr />
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="field">
+                <label asp-for="PhoneNumber" class="label"></label>
+                <div class="col-md-10">
+                    <input asp-for="PhoneNumber" class="input" />
+                    <span asp-validation-for="PhoneNumber" class="help is-danger"></span>
+                </div>
+            </div>
+            <div class="field">
+                    <button type="submit" class="button is-primary">ارسال کد تایید</button>
+                    <a href="/manage" class="button is-link" >بازگشت</a>
+            </div>
+        </form>
+    </section>
+</div>
+@section Scripts {
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
