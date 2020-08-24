@@ -6,17 +6,22 @@
         <form asp-controller="Manage" asp-action="AddPhoneNumber" method="post" class="form-horizontal">
             <h4>افزودن شماره تلفن</h4>
             <hr />
-            <div asp-validation-summary="All" class="text-danger"></div>
+            <div asp-validation-summary="All" class="help is-danger"></div>
+
             <div class="field">
-                <label asp-for="PhoneNumber" class="label"></label>
-                <div class="col-md-10">
-                    <input asp-for="PhoneNumber" class="input" />
-                    <span asp-validation-for="PhoneNumber" class="help is-danger"></span>
+                <div class="columns">
+                    <div class="column is-6">
+                        <input dir="ltr" asp-for="PhoneNumber" class="input" type="text" placeholder="شماره موبایل">
+                        <span asp-validation-for="PhoneNumber" class="help is-danger"></span>
+                    </div>
                 </div>
+
             </div>
             <div class="field">
+                <p class="control">
                     <button type="submit" class="button is-primary">ارسال کد تایید</button>
-                    <a href="/manage" class="button is-link" >بازگشت</a>
+                    <a href="/manage" class="button is-link">بازگشت</a>
+                </p>
             </div>
         </form>
     </section>

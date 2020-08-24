@@ -1,5 +1,4 @@
-﻿using Abp.Net.Mail;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using System.Threading.Tasks;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
@@ -10,7 +9,7 @@ namespace classifieds.Services
     // This class is used by the application to send Email and SMS
     // when you turn on two-factor authentication in ASP.NET Identity.
     // For more details see this link https://go.microsoft.com/fwlink/?LinkID=532713
-    public class AuthMessageSender :  ISmsSender
+    public class AuthMessageSender : ISmsSender
     {
         public AuthMessageSender(IOptions<SMSoptions> optionsAccessor)
         {

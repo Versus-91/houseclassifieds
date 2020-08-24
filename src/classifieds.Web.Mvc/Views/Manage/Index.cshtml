@@ -1,71 +1,55 @@
 ﻿@model classifieds.Models.ManageViewModels.IndexViewModel
 @{ ViewData["Title"] = "Manage your account";
-    Layout = "layout/_front"; }
+    Layout = "layout/_front";
+    string query = (ViewData["query"] ?? string.Empty) as string; }
 <div class="container">
     <div class="section">
-        <p class="text-success">@ViewData["StatusMessage"]</p>
+        <div class="card">
+            <header class="card-header">
+                <p class="card-header-title">
+                    مدیریت حساب
 
-        <div>
-            <h4>مدیریت حساب</h4>
-            <hr />
-            <div class="columns is-multiline">
-                <div class="column is-6 ">رمزعبور</div>
-                <div class="column is-6 ">
-                    @if (Model.HasPassword)
-                    {
-                <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">تغییر</a> }
-            else
-            {
-                <a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">ایجاد</a>}
+                </p>
+            </header>
+            <div class="card-content">
+                @if (!string.IsNullOrEmpty(query))
+                {
+    <div class="notification is-primary">
+        @ViewData["StatusMessage"]
+    </div>}
+
+
+                <div class="columns is-multiline is-mobile">
+                    <div class="column is-6 ">رمزعبور</div>
+                    <div class="column is-6 ">
+                        @if (Model.HasPassword)
+                        {
+            <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">تغییر</a> }
+        else
+        {
+<a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">ایجاد</a>}
+                    </div>
+                    <div class="column is-6 ">شماره موبایل</div>
+                    <div class="column is-6 ">
+                        @(Model.PhoneNumber ?? "ناموجود")
+                        <div class="buttons">
+                            @if (Model.PhoneNumber != null)
+                            {
+                <a asp-controller="Manage" asp-action="AddPhoneNumber" class="button is-info is-small">تغییر</a>
+                                <form asp-controller="Manage" asp-action="RemovePhoneNumber" method="post">
+                                    <button type="submit" class="button is-danger is-small">حذف</button>
+                                </form> }
+                            else
+                            {
+                <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">افزودن</a>}
+                        </div>
+                    </div>
+
                 </div>
+
             </div>
-            <dl class="dl-horizontal">
-                <dd>
-
-                    @Model.Logins.Count <a asp-controller="Manage" asp-action="ManageLogins" class="btn-bracketed">Manage</a>
-                </dd>
-                <dt>شماره موبایل :</dt>
-                <dd>
-                    <p>
-                        Phone Numbers can be used as a second factor of verification in two-factor authentication.
-                        See
-                        <a href="https://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
-                        for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-                    </p>
-                    @(Model.PhoneNumber ?? "None")
-                    @if (Model.PhoneNumber != null)
-                    {
-        <br />
-                        <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">Change</a>
-                                        <form asp-controller="Manage" asp-action="RemovePhoneNumber" method="post">
-                                            [<button type="submit" class="btn-link">Remove</button>]
-                                        </form> }
-                                    else
-                                    {
-                        <a asp-controller="Manage" asp-action="AddPhoneNumber" class="btn-bracketed">Add</a>}
-                </dd>
-
-                <dt>Two-Factor Authentication:</dt>
-                <dd>
-                    <p>
-                        There are no two-factor authentication providers configured. See
-                        <a href="https://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
-                        for setting up this application to support two-factor authentication.
-                    </p>
-                    @if (Model.TwoFactor)
-                    {
-                <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" method="post" class="form-horizontal">
-                    Enabled <button type="submit" class="btn-link btn-bracketed">Disable</button>
-                </form> }
-            else
-            {
-                <form asp-controller="Manage" asp-action="EnableTwoFactorAuthentication" method="post" class="form-horizontal">
-                    <button type="submit" class="button is-primary">فعال کردن</button> <button class="button is-link ">غیر فعال</button>
-                </form>}
-                </dd>
-            </dl>
         </div>
+
     </div>
 
 </div>
-
