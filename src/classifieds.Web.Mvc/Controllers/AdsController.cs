@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using Abp.Application.Services.Dto;
+﻿using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.Runtime.Validation;
-using Castle.MicroKernel.Registration;
 using classifieds.Categories;
 using classifieds.Cities;
 using classifieds.Controllers;
@@ -19,6 +13,9 @@ using classifieds.Web.Models.Ads;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Hosting;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace classifieds.Web.Controllers
 {
@@ -34,9 +31,9 @@ namespace classifieds.Web.Controllers
             IPostAppService postService,
             ICategoryAppService categoryService,
             IDistrictAppService districtService,
-            IHostEnvironment environment, 
-            IRepository<Image> imageService, 
-            ICityAppService cityService, 
+            IHostEnvironment environment,
+            IRepository<Image> imageService,
+            ICityAppService cityService,
             ITypeAppService typeService)
         {
             _postService = postService;
@@ -46,15 +43,14 @@ namespace classifieds.Web.Controllers
             _imageService = imageService;
             _typeService = typeService;
         }
-        public IActionResult Index(AdSerchViewModel inputs)
+        public IActionResult Index(GetAllPostsInput inputs)
         {
-            var serachInputs = inputs;
-            return View();
+            return View(inputs);
         }
         [Route("[controller]/{id:int:required}")]
         public async Task<IActionResult> Show(int id)
         {
-            var post = await _postService.GetAsync(new EntityDto { Id = id});
+            var post = await _postService.GetAsync(new EntityDto { Id = id });
             return View(post);
         }
         public async Task<IActionResult> Create()
@@ -78,7 +74,7 @@ namespace classifieds.Web.Controllers
                 var path = Path.Combine(_environment.ContentRootPath, "Images");
                 foreach (var file in inputs.Files)
                 {
-                    var randomName = Path.Combine(path,$"{Guid.NewGuid().ToString("N")}{Path.GetExtension(file.FileName).ToLower()}");
+                    var randomName = Path.Combine(path, $"{Guid.NewGuid().ToString("N")}{Path.GetExtension(file.FileName).ToLower()}");
                     using (var stream = new FileStream(randomName, FileMode.Create))
                     {
                         await file.CopyToAsync(stream);

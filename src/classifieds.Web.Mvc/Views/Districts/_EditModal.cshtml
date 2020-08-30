@@ -14,10 +14,7 @@
         <div class="form-group row required">
             <label class="col-md-3 col-form-label" for="CityId">@L("Name")</label>
             <div class="col-md-9">
-                <select class="form-control" name="CityId">
-                    @foreach (var city in Model.Cities)
-                    {
-        <option value="@city.Id">@city.Name</option>}
+                <select class="form-control" name="CityId" asp-items="Model.Cities">
                 </select>
             </div>
         </div>

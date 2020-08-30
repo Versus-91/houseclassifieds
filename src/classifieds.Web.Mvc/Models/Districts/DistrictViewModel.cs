@@ -1,18 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
-using classifieds.Cities.Dto;
-using classifieds.Districts.Dto;
-using Microsoft.AspNetCore.Mvc;
+﻿using classifieds.Districts.Dto;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace classifieds.Web.Models.Districts
 {
-    public class DistrictViewModel 
+    public class DistrictViewModel
     {
         public DistrictDto District { get; set; }
-        public IReadOnlyList<CityDto> Cities{ get; set; }
+        public SelectList Cities { get; set; }
 
     }
 }

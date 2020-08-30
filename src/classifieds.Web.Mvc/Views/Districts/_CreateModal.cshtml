@@ -1,8 +1,6 @@
 ﻿@using classifieds.Web.Models.Common.Modals
 @model classifieds.Web.Models.Districts.DistrictViewModel
-@{
-    Layout = null;
-}
+@{ Layout = null; }
 <div class="modal fade" id="DistrictCreateModal" tabindex="-1" role="dialog" aria-labelledby="DistrictCreateModalLabel" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
@@ -18,11 +16,7 @@
                     <div class="form-group row required">
                         <label class="col-md-3 col-form-label" for="CityId">@L("Name")</label>
                         <div class="col-md-9">
-                            <select name="CityId" class="form-control">
-                                @foreach (var city in Model.Cities)
-                                {
-                                    <option value="@city.Id">@city.Name</option>
-                                }
+                            <select name="CityId" class="form-control" asp-items="Model.Cities">
                             </select>
                         </div>
                     </div>

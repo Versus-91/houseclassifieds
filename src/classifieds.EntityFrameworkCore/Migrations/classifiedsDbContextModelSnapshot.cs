@@ -1724,6 +1724,9 @@ namespace classifieds.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<double>("Deopsit")
+                        .HasColumnType("float");
+
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
@@ -1737,6 +1740,9 @@ namespace classifieds.Migrations
                         .HasColumnType("float");
 
                     b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Rent")
                         .HasColumnType("float");
 
                     b.Property<string>("Title")

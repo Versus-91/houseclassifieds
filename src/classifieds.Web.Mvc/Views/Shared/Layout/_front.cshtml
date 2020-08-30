@@ -12,8 +12,7 @@
     var pageTitle = !string.IsNullOrWhiteSpace(ViewBag.Title) ? ViewBag.Title + " / " : "";
     var returnUrl = Context.Request.Path;
 
-    pageTitle += "classifieds";
-}
+    pageTitle += "classifieds"; }
 <!DOCTYPE html>
 <html dir="rtl">
 <head>
@@ -66,31 +65,34 @@
                         <div class="buttons">
                             @if (User.Identity.IsAuthenticated)
                             {
-                                @if (User.IsInRole("Admin"))
-                                {
-                                    <a class="button is-primary" href="/users">
-                                        <i class="fas fa-tasks px-1"></i>
-                                        <strong>پنل</strong>
-                                    </a>
-                                }
+                @if (User.IsInRole("Admin"))
+                {
+<a class="button is-primary" href="/users">
+    <i class="fas fa-tasks px-1"></i>
+    <strong>پنل</strong>
+</a> }
+                else
+                {
+<a class="button is-primary" href="/manage">
+    <i class="fas fa-tasks px-1"></i>
+    <strong>پنل</strong>
+</a>}
                                 <a class="button is-danger" href="/account/logout">
                                     <i class="fas fa-sign-out-alt px-1"></i>
                                     <strong>خروج</strong>
-                                </a>
-                            }
-                            else
-                            {
+                                </a> }
+                                            else
+                                            {
 
 
                                 <a class="button is-primary" href="/account/register">
                                     <i class="fas fa-user px-1"></i>
                                     <strong>ثبت نام</strong>
                                 </a>
-                                <a class="button is-light" href="/account/login?returnUrl=@returnUrl">
-                                    <i class="fas fa-sign-in-alt px-1 has-text-success"></i>
-                                    ورود
-                                </a>
-                            }
+                                                <a class="button is-light" href="/account/login?returnUrl=@returnUrl">
+                                                    <i class="fas fa-sign-in-alt px-1 has-text-success"></i>
+                                                    ورود
+                                                </a>}
 
                         </div>
                     </div>

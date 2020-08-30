@@ -1,16 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using Abp.Application.Services.Dto;
+﻿using Abp.Application.Services.Dto;
 using Abp.AspNetCore.Mvc.Controllers;
 using Abp.Web.Models;
 using classifieds.Cities;
-using classifieds.Cities.Dto;
 using classifieds.Districts;
-using classifieds.Districts.Dto;
 using classifieds.Web.Models.Districts;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ReflectionIT.Mvc.Paging;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Threading.Tasks;
 
 namespace classifieds.Web.Controllers
 {
@@ -25,10 +22,10 @@ namespace classifieds.Web.Controllers
         }
         public async Task<ActionResult> Index()
         {
-            var cities= await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto() {MaxResultCount =Int32.MaxValue });
+            var cities = await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto() { MaxResultCount = Int32.MaxValue });
             var model = new DistrictViewModel
             {
-                Cities = cities.Items
+                Cities = new SelectList(cities.Items, "Id", "Name")
             };
             return View(model);
         }
@@ -40,10 +37,10 @@ namespace classifieds.Web.Controllers
             var model = new DistrictViewModel
             {
                 District = district,
-                Cities = cities.Items
+                Cities = new SelectList(cities.Items, "Id", "Name", district.CityId)
             };
             return PartialView("_EditModal", model);
-        }        
+        }
         public async Task<AjaxResponse> GetByCityId(int id)
         {
             var districts = await _districtService.GetByCityId(id);

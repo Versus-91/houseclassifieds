@@ -7,13 +7,10 @@ using classifieds.PostsAmenities;
 using classifieds.PropertyTypes;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Drawing;
-using System.Text;
 
 namespace classifieds.Posts
 {
-    public class Post:Entity,IHasCreationTime
+    public class Post : Entity, IHasCreationTime
     {
         public string Title { get; set; }
         public string Description { get; set; }
@@ -21,7 +18,7 @@ namespace classifieds.Posts
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public List<Image> Images { get; set; }
-        public DateTime CreationTime { get ; set ; }
+        public DateTime CreationTime { get; set; }
         public int DistrictId { get; set; }
         public District District { get; set; }
         public int TypeId { get; set; }
@@ -31,6 +28,8 @@ namespace classifieds.Posts
         public byte Bedroom { get; set; }
         public IList<PostAmenity> PostAmenities { get; set; }
         public uint View { get; set; }
+        public double Deopsit { get; set; }
+        public double Rent { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public Post()
