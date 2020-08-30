@@ -3,6 +3,7 @@ using Abp.AspNetCore.Mvc.Controllers;
 using Abp.Web.Models;
 using classifieds.Cities;
 using classifieds.Districts;
+using classifieds.Districts.Dto;
 using classifieds.Web.Models.Districts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -37,7 +38,7 @@ namespace classifieds.Web.Controllers
             var model = new DistrictViewModel
             {
                 District = district,
-                Cities = new SelectList(cities.Items, "Id", "Name", district.CityId)
+                Cities = new SelectList(cities.Items, nameof(DistrictDto.Id), nameof(DistrictDto.Name), district.CityId)
             };
             return PartialView("_EditModal", model);
         }

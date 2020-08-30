@@ -3043,3 +3043,805 @@ INFO  2020-08-30 13:12:13,869 [9    ] Core.Mvc.ViewFeatures.ViewResultExecutor -
 INFO  2020-08-30 13:12:13,873 [9    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.UsersController.Index (classifieds.Web.Mvc) in 1891.0997ms
 INFO  2020-08-30 13:12:13,875 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.UsersController.Index (classifieds.Web.Mvc)'
 INFO  2020-08-30 13:12:13,878 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 1922.831ms 200 text/html; charset=utf-8
+DEBUG 2020-08-30 22:18:49,196 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-08-30 22:18:49,419 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-08-30 22:18:49,435 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.Web.Startup.classifiedsWebMvcModule, classifieds.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,437 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsWebCoreModule, classifieds.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,437 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsApplicationModule, classifieds.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,437 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsCoreModule, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,438 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,438 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,438 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,438 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,439 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.EntityFrameworkCore.classifiedsEntityFrameworkModule, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,439 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,439 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,439 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,439 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,440 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,440 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:49,442 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-08-30 22:18:49,519 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-30 22:18:49,519 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-30 22:18:49,519 [1    ] o.Configuration.LanguageManagementConfig - Converted classifieds (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-30 22:18:49,520 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-30 22:18:49,926 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: classifieds.EntityFrameworkCore.classifiedsDbContext, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:18:50,937 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-08-30 22:18:50,966 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-08-30 22:18:50,977 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-08-30 22:18:50,984 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: classifieds
+DEBUG 2020-08-30 22:18:50,990 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-08-30 22:18:51,212 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-08-30 22:18:51,353 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[classifieds.MultiTenancy.Tenant, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[classifieds.Authorization.Users.User, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-08-30 22:18:51,406 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 15 classes define auto mapping attributes
+DEBUG 2020-08-30 22:18:51,406 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-08-30 22:18:51,411 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.CreateUserDto
+DEBUG 2020-08-30 22:18:51,412 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.UserDto
+DEBUG 2020-08-30 22:18:51,412 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-08-30 22:18:51,412 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-08-30 22:18:51,413 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Roles.Dto.PermissionDto
+DEBUG 2020-08-30 22:18:51,413 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.PropertyTypes.Dto.PropertyTypeDto
+DEBUG 2020-08-30 22:18:51,413 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.PostDto
+DEBUG 2020-08-30 22:18:51,413 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-08-30 22:18:51,413 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.TenantDto
+DEBUG 2020-08-30 22:18:51,413 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Districts.Dto.DistrictDto
+DEBUG 2020-08-30 22:18:51,414 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Cities.Dto.CityDto
+DEBUG 2020-08-30 22:18:51,414 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Categories.Dto.CategoryDto
+DEBUG 2020-08-30 22:18:51,414 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Web.Views.Shared.Components.TenantChange.TenantChangeViewModel
+DEBUG 2020-08-30 22:18:51,414 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Web.Models.Roles.EditRoleModalViewModel
+INFO  2020-08-30 22:18:54,721 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2020-08-30 22:18:55,597 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\qq\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-08-30 22:18:55,672 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/  
+INFO  2020-08-30 22:18:59,301 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:18:59,543 [9    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.HomeController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:19:01,165 [15   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:19:01,692 [15   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 575.2595ms.
+INFO  2020-08-30 22:19:01,696 [15   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc) in 2150.6027ms
+INFO  2020-08-30 22:19:01,699 [15   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:19:01,708 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 6037.68ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:19:52,340 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=1  
+INFO  2020-08-30 22:19:52,359 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:19:52,378 [10   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:19:53,358 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:19:53,379 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 43.2405ms.
+INFO  2020-08-30 22:19:53,381 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 1000.8267ms
+INFO  2020-08-30 22:19:53,383 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:19:53,385 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 1045.2793ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:19:54,380 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/post/getall?SkipCount=0&MaxResultCount=10  
+INFO  2020-08-30 22:19:54,393 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:19:54,401 [10   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Posts.Dto.PostDto]] GetAllAsync(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Posts.PostAppService (classifieds.Application).
+INFO  2020-08-30 22:19:54,487 [11   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-08-30 22:19:54,526 [11   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application) in 122.0618ms
+INFO  2020-08-30 22:19:54,528 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:19:54,531 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 151.5156ms 200 application/json; charset=utf-8
+INFO  2020-08-30 22:19:55,451 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/undefined  
+INFO  2020-08-30 22:19:55,461 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 10.1439ms 404 
+INFO  2020-08-30 22:20:20,983 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/12  
+INFO  2020-08-30 22:20:20,991 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Show (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:20:21,000 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Show", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Show(Int32) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:20:21,063 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Show.
+INFO  2020-08-30 22:20:21,078 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Show executed in 25.3044ms.
+INFO  2020-08-30 22:20:21,080 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Show (classifieds.Web.Mvc) in 78.1298ms
+INFO  2020-08-30 22:20:21,082 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Show (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:20:21,084 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 102.7438ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:20:25,651 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=1  
+INFO  2020-08-30 22:20:25,660 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:20:25,664 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:20:25,681 [9    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:20:25,687 [9    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 5.3658ms.
+INFO  2020-08-30 22:20:25,689 [9    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 23.2578ms
+INFO  2020-08-30 22:20:25,691 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:20:25,694 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 43.076ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:20:25,795 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/undefined  
+INFO  2020-08-30 22:20:25,803 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.3943ms 404 
+INFO  2020-08-30 22:20:27,208 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=1  
+INFO  2020-08-30 22:20:27,216 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:20:27,220 [9    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:20:27,249 [10   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:20:27,255 [10   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 6.6727ms.
+INFO  2020-08-30 22:20:27,257 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 35.1766ms
+INFO  2020-08-30 22:20:27,260 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:20:27,262 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 54.4024ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:20:27,461 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/post/getall?SkipCount=0&MaxResultCount=10  
+INFO  2020-08-30 22:20:27,464 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-08-30 22:20:27,476 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:20:27,480 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Posts.Dto.PostDto]] GetAllAsync(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Posts.PostAppService (classifieds.Application).
+INFO  2020-08-30 22:20:27,505 [13   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-08-30 22:20:27,508 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 44.5442ms 200 image/png
+INFO  2020-08-30 22:20:27,523 [31   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-08-30 22:20:27,526 [31   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application) in 43.5089ms
+INFO  2020-08-30 22:20:27,529 [31   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:20:27,532 [31   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 71.5578ms 200 application/json; charset=utf-8
+INFO  2020-08-30 22:20:30,305 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/users  
+INFO  2020-08-30 22:20:30,322 [10   ] uthorization.DefaultAuthorizationService - Authorization was successful.
+INFO  2020-08-30 22:20:30,324 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.UsersController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:20:30,331 [10   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Users", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.UsersController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:20:31,027 [8    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:20:32,029 [9    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 1011.8983ms.
+INFO  2020-08-30 22:20:32,033 [9    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.UsersController.Index (classifieds.Web.Mvc) in 1700.0016ms
+INFO  2020-08-30 22:20:32,035 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.UsersController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:20:32,038 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 1732.8261ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:20:32,216 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637344227313542950  
+INFO  2020-08-30 22:20:32,221 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637344227313542950  
+INFO  2020-08-30 22:20:32,227 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:20:32,233 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:20:32,238 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2020-08-30 22:20:32,245 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2020-08-30 22:20:32,304 [8    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2020-08-30 22:20:32,308 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 66.5516ms
+INFO  2020-08-30 22:20:32,310 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:20:32,313 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 97.3983ms 200 application/x-javascript
+INFO  2020-08-30 22:20:32,360 [9    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:20:32,363 [9    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 116.3561ms
+INFO  2020-08-30 22:20:32,366 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:20:32,368 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 147.4295ms 200 application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:20:32,403 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 POST http://localhost:62114/signalr/negotiate text/plain;charset=UTF-8 0
+INFO  2020-08-30 22:20:32,410 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint '/signalr/negotiate'
+INFO  2020-08-30 22:20:32,421 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint '/signalr/negotiate'
+INFO  2020-08-30 22:20:32,424 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 21.6061ms 200 application/json
+INFO  2020-08-30 22:20:32,439 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/signalr?id=Y9wT0s09HkqpQhwPOgKdJw  
+INFO  2020-08-30 22:20:32,446 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint '/signalr'
+INFO  2020-08-30 22:20:32,490 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/User/GetAll?keyword=&skipCount=0&maxResultCount=10 application/json 
+INFO  2020-08-30 22:20:32,498 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Users.UserAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:20:32,515 [9    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Users.Dto.UserDto]] GetAllAsync(classifieds.Users.Dto.PagedUserResultRequestDto) on controller classifieds.Users.UserAppService (classifieds.Application).
+DEBUG 2020-08-30 22:20:32,551 [8    ] Abp.AspNetCore.SignalR.Hubs.AbpCommonHub - A client is connected: {"ConnectionId":"Y9wT0s09HkqpQhwPOgKdJw","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2020-08-30T22:20:32.5421089+04:30","Properties":{}}
+DEBUG 2020-08-30 22:20:32,559 [8    ] Abp.AspNetCore.SignalR.Hubs.AbpCommonHub - A client is registered: Y9wT0s09HkqpQhwPOgKdJw
+INFO  2020-08-30 22:20:32,669 [31   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-08-30 22:20:32,679 [31   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Users.UserAppService.GetAllAsync (classifieds.Application) in 161.1233ms
+INFO  2020-08-30 22:20:32,682 [31   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Users.UserAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:20:32,684 [31   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 194.0196ms 200 application/json; charset=utf-8
+INFO  2020-08-30 22:20:35,174 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=1  
+INFO  2020-08-30 22:20:35,181 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:20:35,184 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:20:35,202 [10   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:20:35,209 [10   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 5.976ms.
+INFO  2020-08-30 22:20:35,212 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 24.9317ms
+INFO  2020-08-30 22:20:35,215 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:20:35,218 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 43.6246ms 200 text/html; charset=utf-8
+DEBUG 2020-08-30 22:20:35,253 [10   ] Abp.AspNetCore.SignalR.Hubs.AbpCommonHub - A client is disconnected: Y9wT0s09HkqpQhwPOgKdJw
+INFO  2020-08-30 22:20:35,262 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint '/signalr'
+INFO  2020-08-30 22:20:35,265 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 2825.887ms 101 
+INFO  2020-08-30 22:23:23,389 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=1  
+INFO  2020-08-30 22:23:23,400 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:23:23,404 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:23:23,421 [45   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:23:29,565 [45   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 6144.6792ms.
+INFO  2020-08-30 22:23:29,568 [45   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 6161.6884ms
+INFO  2020-08-30 22:23:29,571 [45   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:23:29,573 [45   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 6184.9462ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:23:29,815 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/post/getall?SkipCount=0&MaxResultCount=10  
+INFO  2020-08-30 22:23:29,821 [46   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-08-30 22:23:29,826 [46   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-08-30 22:23:29,828 [46   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.464ms 200 image/png
+INFO  2020-08-30 22:23:29,833 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:23:29,837 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Posts.Dto.PostDto]] GetAllAsync(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Posts.PostAppService (classifieds.Application).
+INFO  2020-08-30 22:23:29,861 [45   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-08-30 22:23:29,865 [45   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application) in 25.3721ms
+INFO  2020-08-30 22:23:29,867 [45   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:23:29,870 [45   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 56.3289ms 200 application/json; charset=utf-8
+INFO  2020-08-30 22:24:16,591 [54   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=1  
+INFO  2020-08-30 22:24:16,599 [54   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:24:16,603 [54   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:24:16,631 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:24:17,090 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 459.3337ms.
+INFO  2020-08-30 22:24:17,093 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 486.933ms
+INFO  2020-08-30 22:24:17,095 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:24:17,098 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 506.7213ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:24:17,311 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/post/getall?SkipCount=0&MaxResultCount=10  
+INFO  2020-08-30 22:24:17,314 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-08-30 22:24:17,319 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-08-30 22:24:17,323 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.7864ms 200 image/png
+INFO  2020-08-30 22:24:17,328 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:24:17,332 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Posts.Dto.PostDto]] GetAllAsync(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Posts.PostAppService (classifieds.Application).
+INFO  2020-08-30 22:24:17,372 [4    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-08-30 22:24:17,377 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application) in 41.8432ms
+INFO  2020-08-30 22:24:17,379 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:24:17,382 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 72.3315ms 200 application/json; charset=utf-8
+INFO  2020-08-30 22:24:34,569 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=1  
+INFO  2020-08-30 22:24:34,576 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:24:34,579 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:24:34,596 [63   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:24:34,828 [63   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 231.7405ms.
+INFO  2020-08-30 22:24:34,831 [63   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 248.7731ms
+INFO  2020-08-30 22:24:34,833 [63   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:24:34,836 [63   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 268.266ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:24:35,054 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/post/getall?SkipCount=0&MaxResultCount=10  
+INFO  2020-08-30 22:24:35,057 [54   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-08-30 22:24:35,062 [54   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-08-30 22:24:35,065 [54   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.6594ms 200 image/png
+INFO  2020-08-30 22:24:35,072 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:24:35,075 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Posts.Dto.PostDto]] GetAllAsync(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Posts.PostAppService (classifieds.Application).
+INFO  2020-08-30 22:24:35,105 [4    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-08-30 22:24:35,109 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application) in 30.9929ms
+INFO  2020-08-30 22:24:35,112 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:24:35,115 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 61.2011ms 200 application/json; charset=utf-8
+INFO  2020-08-30 22:25:17,253 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=1  
+INFO  2020-08-30 22:25:17,259 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:25:17,262 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:25:17,279 [61   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:25:17,580 [61   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 301.0915ms.
+INFO  2020-08-30 22:25:17,582 [61   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 317.2476ms
+INFO  2020-08-30 22:25:17,584 [61   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:25:17,586 [61   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 333.7786ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:25:17,801 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/post/getall?SkipCount=0&MaxResultCount=10  
+INFO  2020-08-30 22:25:17,805 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-08-30 22:25:17,809 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-08-30 22:25:17,812 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 6.3655ms 200 image/png
+INFO  2020-08-30 22:25:17,815 [60   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:25:17,818 [60   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Posts.Dto.PostDto]] GetAllAsync(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Posts.PostAppService (classifieds.Application).
+INFO  2020-08-30 22:25:17,854 [4    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-08-30 22:25:17,857 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application) in 36.2313ms
+INFO  2020-08-30 22:25:17,859 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:25:17,862 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 61.5199ms 200 application/json; charset=utf-8
+INFO  2020-08-30 22:25:18,755 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/manage  
+INFO  2020-08-30 22:25:18,762 [4    ] uthorization.DefaultAuthorizationService - Authorization was successful.
+INFO  2020-08-30 22:25:18,765 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:25:18,773 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Manage", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[classifieds.Web.Controllers.ManageController+ManageMessageId]) on controller classifieds.Web.Controllers.ManageController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:25:18,854 [60   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:25:18,877 [60   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 25.3397ms.
+INFO  2020-08-30 22:25:18,880 [60   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc) in 103.675ms
+INFO  2020-08-30 22:25:18,882 [60   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:25:18,885 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 129.8027ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:25:21,517 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/users  
+INFO  2020-08-30 22:25:21,524 [60   ] uthorization.DefaultAuthorizationService - Authorization was successful.
+INFO  2020-08-30 22:25:21,526 [60   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.UsersController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:25:21,529 [60   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Users", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.UsersController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:25:21,563 [46   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:25:21,623 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 59.9312ms.
+INFO  2020-08-30 22:25:21,626 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.UsersController.Index (classifieds.Web.Mvc) in 94.8889ms
+INFO  2020-08-30 22:25:21,628 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.UsersController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:25:21,631 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 114.7124ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:25:21,705 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637344227313542950  
+INFO  2020-08-30 22:25:21,708 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637344227313542950  
+INFO  2020-08-30 22:25:21,731 [60   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:25:21,734 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:25:21,737 [60   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2020-08-30 22:25:21,740 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2020-08-30 22:25:21,746 [8    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2020-08-30 22:25:21,749 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 6.1277ms
+INFO  2020-08-30 22:25:21,753 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:25:21,756 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 49.5853ms 200 application/x-javascript
+INFO  2020-08-30 22:25:21,774 [60   ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:25:21,778 [60   ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 37.6358ms
+INFO  2020-08-30 22:25:21,781 [60   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:25:21,783 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 78.926ms 200 application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:25:21,806 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 POST http://localhost:62114/signalr/negotiate text/plain;charset=UTF-8 0
+INFO  2020-08-30 22:25:21,813 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint '/signalr/negotiate'
+INFO  2020-08-30 22:25:21,817 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint '/signalr/negotiate'
+INFO  2020-08-30 22:25:21,820 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 13.6238ms 200 application/json
+INFO  2020-08-30 22:25:21,875 [48   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/User/GetAll?keyword=&skipCount=0&maxResultCount=10 application/json 
+INFO  2020-08-30 22:25:21,883 [48   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Users.UserAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:25:21,886 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/signalr?id=a2ihXGkRC8fnBNu2BMOtcQ  
+INFO  2020-08-30 22:25:21,890 [48   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Users.Dto.UserDto]] GetAllAsync(classifieds.Users.Dto.PagedUserResultRequestDto) on controller classifieds.Users.UserAppService (classifieds.Application).
+INFO  2020-08-30 22:25:21,896 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint '/signalr'
+DEBUG 2020-08-30 22:25:21,922 [61   ] Abp.AspNetCore.SignalR.Hubs.AbpCommonHub - A client is connected: {"ConnectionId":"a2ihXGkRC8fnBNu2BMOtcQ","IpAddress":"::1","TenantId":null,"UserId":1,"ConnectTime":"2020-08-30T22:25:21.9219917+04:30","Properties":{}}
+DEBUG 2020-08-30 22:25:21,930 [61   ] Abp.AspNetCore.SignalR.Hubs.AbpCommonHub - A client is registered: a2ihXGkRC8fnBNu2BMOtcQ
+INFO  2020-08-30 22:25:21,941 [61   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-08-30 22:25:21,945 [61   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Users.UserAppService.GetAllAsync (classifieds.Application) in 52.165ms
+INFO  2020-08-30 22:25:21,948 [61   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Users.UserAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-08-30 22:25:21,950 [61   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 75.9403ms 200 application/json; charset=utf-8
+INFO  2020-08-30 22:26:57,384 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/manage  
+INFO  2020-08-30 22:26:57,391 [4    ] uthorization.DefaultAuthorizationService - Authorization was successful.
+INFO  2020-08-30 22:26:57,394 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:26:57,397 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Manage", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[classifieds.Web.Controllers.ManageController+ManageMessageId]) on controller classifieds.Web.Controllers.ManageController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:26:57,430 [60   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:26:57,626 [60   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 196.5409ms.
+INFO  2020-08-30 22:26:57,629 [60   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc) in 229.2402ms
+INFO  2020-08-30 22:26:57,631 [60   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:26:57,634 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 249.6127ms 200 text/html; charset=utf-8
+DEBUG 2020-08-30 22:26:57,652 [60   ] Abp.AspNetCore.SignalR.Hubs.AbpCommonHub - A client is disconnected: a2ihXGkRC8fnBNu2BMOtcQ
+INFO  2020-08-30 22:26:57,663 [60   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint '/signalr'
+INFO  2020-08-30 22:26:57,666 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 95780.0324ms 101 
+INFO  2020-08-30 22:26:58,334 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/manage  
+INFO  2020-08-30 22:26:58,340 [60   ] uthorization.DefaultAuthorizationService - Authorization was successful.
+INFO  2020-08-30 22:26:58,343 [60   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:26:58,346 [60   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Manage", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[classifieds.Web.Controllers.ManageController+ManageMessageId]) on controller classifieds.Web.Controllers.ManageController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:26:58,389 [60   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:26:58,394 [60   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 5.1246ms.
+INFO  2020-08-30 22:26:58,397 [60   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc) in 47.8975ms
+INFO  2020-08-30 22:26:58,399 [60   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:26:58,402 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 68.4927ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:26:58,485 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-08-30 22:26:58,491 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-08-30 22:26:58,494 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.7312ms 200 image/png
+INFO  2020-08-30 22:27:16,534 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/manage  
+INFO  2020-08-30 22:27:16,541 [4    ] uthorization.DefaultAuthorizationService - Authorization was successful.
+INFO  2020-08-30 22:27:16,544 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:27:16,547 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Manage", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[classifieds.Web.Controllers.ManageController+ManageMessageId]) on controller classifieds.Web.Controllers.ManageController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:27:16,576 [6    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:27:16,782 [6    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 205.07ms.
+INFO  2020-08-30 22:27:16,784 [6    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc) in 234.7646ms
+INFO  2020-08-30 22:27:16,786 [6    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:27:16,790 [6    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 255.512ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:27:16,880 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-08-30 22:27:16,886 [60   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-08-30 22:27:16,889 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.8727ms 200 image/png
+INFO  2020-08-30 22:27:28,193 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/manage  
+INFO  2020-08-30 22:27:28,200 [4    ] uthorization.DefaultAuthorizationService - Authorization was successful.
+INFO  2020-08-30 22:27:28,202 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:27:28,206 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Manage", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[classifieds.Web.Controllers.ManageController+ManageMessageId]) on controller classifieds.Web.Controllers.ManageController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:27:28,236 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:27:28,430 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 193.5734ms.
+INFO  2020-08-30 22:27:28,432 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc) in 223.6136ms
+INFO  2020-08-30 22:27:28,435 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:27:28,438 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 244.2162ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:27:28,515 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-08-30 22:27:28,521 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-08-30 22:27:28,524 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.3881ms 200 image/png
+INFO  2020-08-30 22:27:47,985 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/manage  
+INFO  2020-08-30 22:27:47,992 [5    ] uthorization.DefaultAuthorizationService - Authorization was successful.
+INFO  2020-08-30 22:27:47,994 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:27:47,997 [5    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Manage", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[classifieds.Web.Controllers.ManageController+ManageMessageId]) on controller classifieds.Web.Controllers.ManageController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:27:48,029 [72   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:27:48,224 [72   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 195.0942ms.
+INFO  2020-08-30 22:27:48,226 [72   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc) in 226.3104ms
+INFO  2020-08-30 22:27:48,228 [72   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:27:48,231 [72   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 246.5174ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:27:48,307 [72   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-08-30 22:27:48,312 [72   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-08-30 22:27:48,316 [72   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.9899ms 200 image/png
+INFO  2020-08-30 22:28:05,112 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/  
+INFO  2020-08-30 22:28:05,119 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:28:05,123 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.HomeController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:28:05,178 [71   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:28:05,183 [71   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 5.529ms.
+INFO  2020-08-30 22:28:05,185 [71   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc) in 60.5228ms
+INFO  2020-08-30 22:28:05,188 [71   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:28:05,190 [71   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 78.9436ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:32:27,169 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-08-30 22:32:27,176 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:32:27,182 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:32:27,293 [75   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-08-30 22:32:27,414 [75   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 131.874ms.
+INFO  2020-08-30 22:32:27,416 [75   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 231.7727ms
+INFO  2020-08-30 22:32:27,418 [75   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:32:27,421 [75   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 251.4408ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:32:27,449 [75   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/dropzone/dist/min/dropzone.min.css?v=AgL8yEmNfLtCpH-gYp9xqJwiDITGqcwAbI8tCfnY2lw  
+INFO  2020-08-30 22:32:27,456 [75   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/lib/dropzone/dist/min/dropzone.min.css'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\lib\dropzone\dist\min\dropzone.min.css'
+INFO  2020-08-30 22:32:27,459 [75   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 10.0918ms 200 text/css
+INFO  2020-08-30 22:32:27,467 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/dropzone/dist/min/dropzone.min.js?v=0dnqNFIUaKaUaTYGnJgQvClwTsCqk0K0FZAMPSS8LHs  
+INFO  2020-08-30 22:32:27,479 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/lib/dropzone/dist/min/dropzone.min.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\lib\dropzone\dist\min\dropzone.min.js'
+INFO  2020-08-30 22:32:27,481 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 14.3261ms 200 application/javascript
+INFO  2020-08-30 22:32:45,976 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-08-30 22:32:45,982 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:32:45,985 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:32:46,039 [75   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-08-30 22:32:46,045 [75   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 6.9689ms.
+INFO  2020-08-30 22:32:46,047 [75   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 60.4796ms
+INFO  2020-08-30 22:32:46,050 [75   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:32:46,052 [75   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 76.7227ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:32:46,195 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-08-30 22:32:46,199 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-08-30 22:32:46,201 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 6.9878ms 200 image/png
+INFO  2020-08-30 22:33:07,977 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/account/logout  
+INFO  2020-08-30 22:33:07,983 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Logout (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:07,989 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Logout", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Logout() on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:33:10,133 [4    ] tion.Cookies.CookieAuthenticationHandler - AuthenticationScheme: Identity.Application signed out.
+INFO  2020-08-30 22:33:10,136 [4    ] tion.Cookies.CookieAuthenticationHandler - AuthenticationScheme: Identity.External signed out.
+INFO  2020-08-30 22:33:10,139 [4    ] tion.Cookies.CookieAuthenticationHandler - AuthenticationScheme: Identity.TwoFactorUserId signed out.
+INFO  2020-08-30 22:33:10,153 [83   ] ft.AspNetCore.Mvc.RedirectToActionResult - Executing RedirectResult, redirecting to /Account/Login.
+INFO  2020-08-30 22:33:10,155 [83   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Logout (classifieds.Web.Mvc) in 2164.5477ms
+INFO  2020-08-30 22:33:10,157 [83   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Logout (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:10,161 [83   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 2184.3551ms 302 
+INFO  2020-08-30 22:33:10,166 [83   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/Account/Login  
+INFO  2020-08-30 22:33:10,223 [83   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:10,230 [83   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Login(System.String, System.String, System.String) on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:33:10,267 [80   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Login.
+INFO  2020-08-30 22:33:10,377 [80   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Login executed in 130.8219ms.
+INFO  2020-08-30 22:33:10,379 [80   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc) in 147.4365ms
+INFO  2020-08-30 22:33:10,381 [80   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:10,384 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 218.4092ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:33:10,429 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Account/_Layout.css?v=pk1udUQR7bqKUWFxSnrnIl0MM8MH2Wu05p-zpysBQWI  
+INFO  2020-08-30 22:33:10,432 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Account/Login.js?v=KxhHl3HYb-UQucT7TN2ewhzzgV_WwxRaGwGaSiT8xzM  
+INFO  2020-08-30 22:33:10,436 [80   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Account/_Layout.css'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Account\_Layout.css'
+INFO  2020-08-30 22:33:10,445 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 10.8431ms 200 text/css
+INFO  2020-08-30 22:33:10,448 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Account/Login.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Account\Login.js'
+INFO  2020-08-30 22:33:10,451 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637344227313542950  
+INFO  2020-08-30 22:33:10,472 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 19.3595ms 200 application/javascript
+INFO  2020-08-30 22:33:10,474 [77   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637344227313542950  
+INFO  2020-08-30 22:33:10,477 [83   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Shared/Components/TenantChange/Default.js?v=637344235903748909  
+INFO  2020-08-30 22:33:10,486 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:33:10,488 [77   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:33:10,497 [83   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Shared/Components/TenantChange/Default.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Shared\Components\TenantChange\Default.js'
+INFO  2020-08-30 22:33:10,500 [83   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 50.8632ms 200 application/javascript
+INFO  2020-08-30 22:33:10,505 [77   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2020-08-30 22:33:10,508 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2020-08-30 22:33:10,511 [77   ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2020-08-30 22:33:10,514 [77   ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 6.5895ms
+INFO  2020-08-30 22:33:10,517 [77   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:33:10,520 [77   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 70.5423ms 200 application/x-javascript
+INFO  2020-08-30 22:33:10,540 [4    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:33:10,543 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 30.8713ms
+INFO  2020-08-30 22:33:10,546 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:33:10,549 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 99.9235ms 200 application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:33:29,329 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 POST http://localhost:62114/Account/Login application/x-www-form-urlencoded 256
+INFO  2020-08-30 22:33:29,332 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:29,342 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.JsonResult] Login(classifieds.Web.Models.Account.LoginViewModel, System.String, System.String) on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:33:29,607 [80   ] tion.Cookies.CookieAuthenticationHandler - AuthenticationScheme: Identity.Application signed in.
+INFO  2020-08-30 22:33:29,622 [4    ] tonsoftJson.NewtonsoftJsonResultExecutor - Executing JsonResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-08-30 22:33:29,627 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc) in 282.4428ms
+INFO  2020-08-30 22:33:29,629 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:29,632 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 303.3944ms 200 application/json; charset=utf-8
+INFO  2020-08-30 22:33:29,650 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/  
+INFO  2020-08-30 22:33:29,657 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:29,684 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.HomeController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:33:29,735 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:33:29,740 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 5.3505ms.
+INFO  2020-08-30 22:33:29,742 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc) in 56.2862ms
+INFO  2020-08-30 22:33:29,744 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:29,747 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 97.3293ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:33:31,724 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/account/logout  
+INFO  2020-08-30 22:33:31,731 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Logout (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:31,735 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Logout", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Logout() on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:33:31,741 [8    ] tion.Cookies.CookieAuthenticationHandler - AuthenticationScheme: Identity.Application signed out.
+INFO  2020-08-30 22:33:31,743 [8    ] tion.Cookies.CookieAuthenticationHandler - AuthenticationScheme: Identity.External signed out.
+INFO  2020-08-30 22:33:31,746 [8    ] tion.Cookies.CookieAuthenticationHandler - AuthenticationScheme: Identity.TwoFactorUserId signed out.
+INFO  2020-08-30 22:33:31,757 [4    ] ft.AspNetCore.Mvc.RedirectToActionResult - Executing RedirectResult, redirecting to /Account/Login.
+INFO  2020-08-30 22:33:31,760 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Logout (classifieds.Web.Mvc) in 22.7644ms
+INFO  2020-08-30 22:33:31,762 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Logout (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:31,765 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 41.4351ms 302 
+INFO  2020-08-30 22:33:31,770 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/Account/Login  
+INFO  2020-08-30 22:33:31,772 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:31,777 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Login(System.String, System.String, System.String) on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:33:31,791 [91   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Login.
+INFO  2020-08-30 22:33:31,800 [91   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Login executed in 9.4861ms.
+INFO  2020-08-30 22:33:31,803 [91   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc) in 22.6167ms
+INFO  2020-08-30 22:33:31,805 [91   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:31,808 [91   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 38.0677ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:33:31,839 [84   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Shared/Components/TenantChange/Default.js?v=637344236117977025  
+INFO  2020-08-30 22:33:31,841 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637344227313542950  
+INFO  2020-08-30 22:33:31,843 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637344227313542950  
+INFO  2020-08-30 22:33:31,846 [84   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Shared/Components/TenantChange/Default.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Shared\Components\TenantChange\Default.js'
+INFO  2020-08-30 22:33:31,848 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:33:31,851 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:33:31,854 [84   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 11.0662ms 200 application/javascript
+INFO  2020-08-30 22:33:31,859 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2020-08-30 22:33:31,861 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2020-08-30 22:33:31,866 [4    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2020-08-30 22:33:31,869 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 6.2368ms
+INFO  2020-08-30 22:33:31,872 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:33:31,875 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 33.7425ms 200 application/x-javascript
+INFO  2020-08-30 22:33:31,893 [8    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:33:31,896 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 32.0652ms
+INFO  2020-08-30 22:33:31,899 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:33:31,902 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 60.8024ms 200 application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:33:34,905 [91   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/Account/register  
+INFO  2020-08-30 22:33:34,909 [91   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:34,916 [91   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Register() on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:33:34,940 [87   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Register.
+INFO  2020-08-30 22:33:34,966 [87   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Register executed in 31.6342ms.
+INFO  2020-08-30 22:33:34,969 [87   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc) in 50.7308ms
+INFO  2020-08-30 22:33:34,972 [87   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:33:34,974 [87   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 69.9729ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:33:35,007 [87   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Shared/Components/TenantChange/Default.js?v=637344236149641901  
+INFO  2020-08-30 22:33:35,009 [77   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Account/Register.js?v=PEYNUQXa8KVeB4kYravtRYG0gIcoQJtWB0pe2oOjfeE  
+INFO  2020-08-30 22:33:35,012 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637344227313542950  
+INFO  2020-08-30 22:33:35,015 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637344227313542950  
+INFO  2020-08-30 22:33:35,017 [87   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Shared/Components/TenantChange/Default.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Shared\Components\TenantChange\Default.js'
+INFO  2020-08-30 22:33:35,020 [77   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Account/Register.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Account\Register.js'
+INFO  2020-08-30 22:33:35,022 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:33:35,024 [77   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 16.4006ms 200 application/javascript
+INFO  2020-08-30 22:33:35,026 [80   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:33:35,029 [87   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 14.1238ms 200 application/javascript
+INFO  2020-08-30 22:33:35,034 [80   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2020-08-30 22:33:35,037 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2020-08-30 22:33:35,040 [80   ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2020-08-30 22:33:35,043 [80   ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 5.8763ms
+INFO  2020-08-30 22:33:35,046 [80   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:33:35,049 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 41.1364ms 200 application/x-javascript
+INFO  2020-08-30 22:33:35,066 [4    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:33:35,068 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 29.2366ms
+INFO  2020-08-30 22:33:35,071 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:33:35,074 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 65.9513ms 200 application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:34:13,209 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/Account/Login  
+INFO  2020-08-30 22:34:13,212 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:34:13,218 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Login(System.String, System.String, System.String) on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:34:13,236 [80   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Login.
+INFO  2020-08-30 22:34:13,244 [80   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Login executed in 7.7125ms.
+INFO  2020-08-30 22:34:13,246 [80   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc) in 26.2529ms
+INFO  2020-08-30 22:34:13,248 [80   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:34:13,251 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 42.2514ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:34:13,286 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Shared/Components/TenantChange/Default.js?v=637344236532413869  
+INFO  2020-08-30 22:34:13,294 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637344227313542950  
+INFO  2020-08-30 22:34:13,296 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637344227313542950  
+INFO  2020-08-30 22:34:13,300 [80   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:34:13,304 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Shared/Components/TenantChange/Default.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Shared\Components\TenantChange\Default.js'
+INFO  2020-08-30 22:34:13,310 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:34:13,312 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 20.8786ms 200 application/javascript
+INFO  2020-08-30 22:34:13,317 [80   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2020-08-30 22:34:13,320 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2020-08-30 22:34:13,324 [4    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2020-08-30 22:34:13,327 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 4.1678ms
+INFO  2020-08-30 22:34:13,330 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:34:13,332 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 43.4651ms 200 application/x-javascript
+INFO  2020-08-30 22:34:13,347 [80   ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:34:13,349 [80   ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 30.4802ms
+INFO  2020-08-30 22:34:13,352 [80   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:34:13,354 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 68.1153ms 200 application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:34:19,143 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/Account/regi  
+INFO  2020-08-30 22:34:19,146 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 3.1066ms 404 
+INFO  2020-08-30 22:34:22,237 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/Account/register  
+INFO  2020-08-30 22:34:22,240 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:34:22,245 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Register() on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:34:22,258 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Register.
+INFO  2020-08-30 22:34:22,267 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Register executed in 9.1015ms.
+INFO  2020-08-30 22:34:22,269 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc) in 22.0578ms
+INFO  2020-08-30 22:34:22,271 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:34:22,274 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 37.3069ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:34:22,303 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637344227313542950  
+INFO  2020-08-30 22:34:22,305 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637344227313542950  
+INFO  2020-08-30 22:34:22,308 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Shared/Components/TenantChange/Default.js?v=637344236622646941  
+INFO  2020-08-30 22:34:22,310 [80   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:34:22,312 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:34:22,316 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Shared/Components/TenantChange/Default.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Shared\Components\TenantChange\Default.js'
+INFO  2020-08-30 22:34:22,319 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 15.8274ms 200 application/javascript
+INFO  2020-08-30 22:34:22,323 [80   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2020-08-30 22:34:22,327 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2020-08-30 22:34:22,330 [4    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2020-08-30 22:34:22,334 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 4.2753ms
+INFO  2020-08-30 22:34:22,336 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:34:22,339 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 36.5636ms 200 application/x-javascript
+INFO  2020-08-30 22:34:22,352 [80   ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:34:22,354 [80   ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 29.1434ms
+INFO  2020-08-30 22:34:22,357 [80   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:34:22,359 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 57.2103ms 200 application/x-javascript; charset=utf-8
+DEBUG 2020-08-30 22:36:54,693 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-08-30 22:36:54,772 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-08-30 22:36:54,788 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.Web.Startup.classifiedsWebMvcModule, classifieds.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,789 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsWebCoreModule, classifieds.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,790 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsApplicationModule, classifieds.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,790 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsCoreModule, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,790 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,790 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,791 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,791 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,791 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.EntityFrameworkCore.classifiedsEntityFrameworkModule, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,792 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,792 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,792 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,792 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,792 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,793 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:54,795 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-08-30 22:36:54,868 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-30 22:36:54,868 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-30 22:36:54,868 [1    ] o.Configuration.LanguageManagementConfig - Converted classifieds (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-30 22:36:54,868 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-30 22:36:55,230 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: classifieds.EntityFrameworkCore.classifiedsDbContext, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:36:56,152 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-08-30 22:36:56,180 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-08-30 22:36:56,192 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-08-30 22:36:56,199 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: classifieds
+DEBUG 2020-08-30 22:36:56,204 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-08-30 22:36:56,394 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-08-30 22:36:56,527 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[classifieds.MultiTenancy.Tenant, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[classifieds.Authorization.Users.User, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-08-30 22:36:56,579 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 15 classes define auto mapping attributes
+DEBUG 2020-08-30 22:36:56,579 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-08-30 22:36:56,584 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.CreateUserDto
+DEBUG 2020-08-30 22:36:56,584 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.UserDto
+DEBUG 2020-08-30 22:36:56,585 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-08-30 22:36:56,585 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-08-30 22:36:56,585 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Roles.Dto.PermissionDto
+DEBUG 2020-08-30 22:36:56,585 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.PropertyTypes.Dto.PropertyTypeDto
+DEBUG 2020-08-30 22:36:56,585 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.PostDto
+DEBUG 2020-08-30 22:36:56,586 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-08-30 22:36:56,586 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.TenantDto
+DEBUG 2020-08-30 22:36:56,586 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Districts.Dto.DistrictDto
+DEBUG 2020-08-30 22:36:56,586 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Cities.Dto.CityDto
+DEBUG 2020-08-30 22:36:56,586 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Categories.Dto.CategoryDto
+DEBUG 2020-08-30 22:36:56,586 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Web.Views.Shared.Components.TenantChange.TenantChangeViewModel
+DEBUG 2020-08-30 22:36:56,586 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Web.Models.Roles.EditRoleModalViewModel
+INFO  2020-08-30 22:36:58,897 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2020-08-30 22:36:59,360 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\qq\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-08-30 22:36:59,427 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/  
+INFO  2020-08-30 22:36:59,539 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:37:03,063 [9    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.HomeController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:37:04,652 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:37:05,112 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 493.6482ms.
+INFO  2020-08-30 22:37:05,116 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc) in 2049.7742ms
+INFO  2020-08-30 22:37:05,118 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:37:05,128 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 5701.6453ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:37:12,490 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/Account/register  
+INFO  2020-08-30 22:37:12,497 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:37:12,506 [11   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Register() on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:37:19,026 [9    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Register.
+WARN  2020-08-30 22:37:19,075 [9    ] naries.DictionaryBasedLocalizationSource - Can not find 'PhoneNumber' in localization source 'classifieds'!
+INFO  2020-08-30 22:37:19,348 [9    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Register executed in 3894.4495ms.
+INFO  2020-08-30 22:37:19,351 [9    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc) in 6842.906ms
+INFO  2020-08-30 22:37:19,353 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:37:19,357 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 6867.7676ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:37:19,411 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637344238165286310  
+INFO  2020-08-30 22:37:19,416 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637344238165286310  
+INFO  2020-08-30 22:37:19,419 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Shared/Components/TenantChange/Default.js?v=637344238393457963  
+INFO  2020-08-30 22:37:19,427 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:37:19,430 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:37:19,442 [9    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Shared/Components/TenantChange/Default.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Shared\Components\TenantChange\Default.js'
+INFO  2020-08-30 22:37:19,445 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 29.3831ms 200 application/javascript
+INFO  2020-08-30 22:37:19,462 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2020-08-30 22:37:19,466 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2020-08-30 22:37:19,566 [4    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2020-08-30 22:37:19,570 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 100.3297ms
+INFO  2020-08-30 22:37:19,574 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:37:19,577 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 166.4685ms 200 application/x-javascript
+INFO  2020-08-30 22:37:19,611 [8    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:37:19,614 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 150.1843ms
+INFO  2020-08-30 22:37:19,617 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:37:19,619 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 204.3462ms 200 application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:37:33,316 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/  
+INFO  2020-08-30 22:37:33,320 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:37:33,327 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.HomeController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:37:33,381 [10   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:37:33,387 [10   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 6.1195ms.
+INFO  2020-08-30 22:37:33,390 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc) in 59.6942ms
+INFO  2020-08-30 22:37:33,392 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:37:33,395 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 78.8738ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:37:47,215 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/account/register  
+INFO  2020-08-30 22:37:47,221 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:37:47,228 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Register() on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:37:47,705 [15   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Register.
+WARN  2020-08-30 22:37:47,721 [15   ] naries.DictionaryBasedLocalizationSource - Can not find 'PhoneNumber' in localization source 'classifieds'!
+INFO  2020-08-30 22:37:47,733 [15   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Register executed in 479.4483ms.
+INFO  2020-08-30 22:37:47,735 [15   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc) in 504.5011ms
+INFO  2020-08-30 22:37:47,738 [15   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:37:47,741 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 526.012ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:37:47,772 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637344238165286310  
+INFO  2020-08-30 22:37:47,775 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637344238165286310  
+INFO  2020-08-30 22:37:47,777 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Shared/Components/TenantChange/Default.js?v=637344238677304608  
+INFO  2020-08-30 22:37:47,780 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:37:47,783 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:37:47,786 [15   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Shared/Components/TenantChange/Default.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Shared\Components\TenantChange\Default.js'
+INFO  2020-08-30 22:37:47,789 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 17.1737ms 200 application/javascript
+INFO  2020-08-30 22:37:47,795 [10   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2020-08-30 22:37:47,797 [9    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2020-08-30 22:37:47,802 [9    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2020-08-30 22:37:47,806 [9    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 5.3765ms
+INFO  2020-08-30 22:37:47,808 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:37:47,811 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 39.7261ms 200 application/x-javascript
+INFO  2020-08-30 22:37:47,828 [10   ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:37:47,831 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 32.1318ms
+INFO  2020-08-30 22:37:47,833 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:37:47,836 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 64.5678ms 200 application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:37:47,874 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/font-awesome/webfonts/fa-brands-400.woff2  
+INFO  2020-08-30 22:37:47,897 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/font-awesome/webfonts/fa-brands-400.woff2'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\libs\font-awesome\webfonts\fa-brands-400.woff2'
+INFO  2020-08-30 22:37:47,899 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 25.3855ms 200 font/woff2
+INFO  2020-08-30 22:38:22,191 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/account/register  
+INFO  2020-08-30 22:38:22,195 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:38:22,201 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Register() on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:38:22,499 [10   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Register.
+WARN  2020-08-30 22:38:22,513 [10   ] naries.DictionaryBasedLocalizationSource - Can not find 'PhoneNumber' in localization source 'classifieds'!
+INFO  2020-08-30 22:38:22,525 [10   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Register executed in 298.8192ms.
+INFO  2020-08-30 22:38:22,527 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc) in 324.2808ms
+INFO  2020-08-30 22:38:22,529 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:38:22,532 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 342.2474ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:38:22,574 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637344238165286310  
+INFO  2020-08-30 22:38:22,576 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Shared/Components/TenantChange/Default.js?v=637344239025226533  
+INFO  2020-08-30 22:38:22,578 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637344238165286310  
+INFO  2020-08-30 22:38:22,582 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Shared/Components/TenantChange/Default.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Shared\Components\TenantChange\Default.js'
+INFO  2020-08-30 22:38:22,585 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:38:22,587 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 12.1217ms 200 application/javascript
+INFO  2020-08-30 22:38:22,589 [13   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:38:22,596 [10   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2020-08-30 22:38:22,598 [13   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2020-08-30 22:38:22,602 [10   ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2020-08-30 22:38:22,605 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 6.791ms
+INFO  2020-08-30 22:38:22,608 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:38:22,610 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 36.7264ms 200 application/x-javascript
+INFO  2020-08-30 22:38:22,628 [13   ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:38:22,631 [13   ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 29.9627ms
+INFO  2020-08-30 22:38:22,633 [13   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:38:22,636 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 62.5601ms 200 application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:38:22,700 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/img/favicon.ico  
+INFO  2020-08-30 22:38:22,714 [12   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/img/favicon.ico'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\img\favicon.ico'
+INFO  2020-08-30 22:38:22,717 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 16.7443ms 200 image/x-icon
+INFO  2020-08-30 22:38:28,380 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/  
+INFO  2020-08-30 22:38:28,384 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:38:28,390 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.HomeController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:38:28,452 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:38:28,459 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 7.7474ms.
+INFO  2020-08-30 22:38:28,462 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc) in 69.7257ms
+INFO  2020-08-30 22:38:28,464 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:38:28,467 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 87.0809ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:38:47,143 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/account/login?returnUrl=/  
+INFO  2020-08-30 22:38:47,146 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:38:47,154 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Login(System.String, System.String, System.String) on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:38:47,197 [10   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Login.
+INFO  2020-08-30 22:38:47,234 [10   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Login executed in 53.4079ms.
+INFO  2020-08-30 22:38:47,236 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc) in 79.6341ms
+INFO  2020-08-30 22:38:47,239 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:38:47,241 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 99.2522ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:38:47,287 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Shared/Components/TenantChange/Default.js?v=637344239272308286  
+INFO  2020-08-30 22:38:47,289 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637344238165286310  
+INFO  2020-08-30 22:38:47,292 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637344238165286310  
+INFO  2020-08-30 22:38:47,295 [15   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:38:47,298 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:38:47,300 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Shared/Components/TenantChange/Default.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Shared\Components\TenantChange\Default.js'
+INFO  2020-08-30 22:38:47,303 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 16.0553ms 200 application/javascript
+INFO  2020-08-30 22:38:47,308 [15   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2020-08-30 22:38:47,310 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2020-08-30 22:38:47,313 [8    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2020-08-30 22:38:47,316 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 4.1969ms
+INFO  2020-08-30 22:38:47,319 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:38:47,321 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 32.175ms 200 application/x-javascript
+INFO  2020-08-30 22:38:47,346 [15   ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:38:47,349 [15   ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 37.6183ms
+INFO  2020-08-30 22:38:47,352 [15   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:38:47,355 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 65.2072ms 200 application/x-javascript; charset=utf-8
+DEBUG 2020-08-30 22:45:34,221 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-08-30 22:45:34,311 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-08-30 22:45:34,327 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.Web.Startup.classifiedsWebMvcModule, classifieds.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,329 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsWebCoreModule, classifieds.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,329 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsApplicationModule, classifieds.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,330 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsCoreModule, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,330 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,330 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,330 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,331 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,331 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.EntityFrameworkCore.classifiedsEntityFrameworkModule, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,331 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,331 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,332 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,332 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,332 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,332 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:34,334 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-08-30 22:45:34,410 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-30 22:45:34,410 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-30 22:45:34,410 [1    ] o.Configuration.LanguageManagementConfig - Converted classifieds (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-30 22:45:34,410 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-08-30 22:45:34,777 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: classifieds.EntityFrameworkCore.classifiedsDbContext, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-08-30 22:45:35,782 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-08-30 22:45:35,811 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-08-30 22:45:35,823 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-08-30 22:45:35,830 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: classifieds
+DEBUG 2020-08-30 22:45:35,835 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-08-30 22:45:36,039 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-08-30 22:45:36,173 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[classifieds.MultiTenancy.Tenant, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[classifieds.Authorization.Users.User, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-08-30 22:45:36,227 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 15 classes define auto mapping attributes
+DEBUG 2020-08-30 22:45:36,227 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-08-30 22:45:36,232 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.CreateUserDto
+DEBUG 2020-08-30 22:45:36,233 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.UserDto
+DEBUG 2020-08-30 22:45:36,233 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-08-30 22:45:36,233 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-08-30 22:45:36,234 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Roles.Dto.PermissionDto
+DEBUG 2020-08-30 22:45:36,234 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.PropertyTypes.Dto.PropertyTypeDto
+DEBUG 2020-08-30 22:45:36,234 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.PostDto
+DEBUG 2020-08-30 22:45:36,234 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-08-30 22:45:36,234 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.TenantDto
+DEBUG 2020-08-30 22:45:36,235 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Districts.Dto.DistrictDto
+DEBUG 2020-08-30 22:45:36,235 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Cities.Dto.CityDto
+DEBUG 2020-08-30 22:45:36,235 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Categories.Dto.CategoryDto
+DEBUG 2020-08-30 22:45:36,235 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Web.Views.Shared.Components.TenantChange.TenantChangeViewModel
+DEBUG 2020-08-30 22:45:36,235 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Web.Models.Roles.EditRoleModalViewModel
+INFO  2020-08-30 22:45:38,552 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2020-08-30 22:45:39,046 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\qq\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-08-30 22:45:39,121 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/  
+INFO  2020-08-30 22:45:39,228 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:45:42,603 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.HomeController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:45:44,212 [9    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-08-30 22:45:44,698 [9    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 538.7102ms.
+INFO  2020-08-30 22:45:44,702 [9    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc) in 2096.63ms
+INFO  2020-08-30 22:45:44,705 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:45:44,715 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 5595.3869ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:45:48,019 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/account/register  
+INFO  2020-08-30 22:45:48,027 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:45:48,038 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Register", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Register() on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2020-08-30 22:45:50,961 [11   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Register.
+WARN  2020-08-30 22:45:51,008 [11   ] naries.DictionaryBasedLocalizationSource - Can not find 'PhoneNumber' in localization source 'classifieds'!
+INFO  2020-08-30 22:45:51,244 [11   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Register executed in 289.2267ms.
+INFO  2020-08-30 22:45:51,246 [11   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc) in 3205.8755ms
+INFO  2020-08-30 22:45:51,249 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Register (classifieds.Web.Mvc)'
+INFO  2020-08-30 22:45:51,253 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 3233.6262ms 200 text/html; charset=utf-8
+INFO  2020-08-30 22:45:51,306 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637344243361743067  
+INFO  2020-08-30 22:45:51,312 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637344243361743067  
+INFO  2020-08-30 22:45:51,319 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:45:51,321 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:45:51,343 [9    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2020-08-30 22:45:51,349 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2020-08-30 22:45:51,436 [4    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2020-08-30 22:45:51,440 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 88.0339ms
+INFO  2020-08-30 22:45:51,442 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2020-08-30 22:45:51,446 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 140.3901ms 200 application/x-javascript
+INFO  2020-08-30 22:45:51,486 [9    ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2020-08-30 22:45:51,490 [9    ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 143.7757ms
+INFO  2020-08-30 22:45:51,493 [9    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2020-08-30 22:45:51,497 [9    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 184.3369ms 200 application/x-javascript; charset=utf-8

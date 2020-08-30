@@ -6,13 +6,14 @@ using classifieds.Authorization;
 namespace classifieds
 {
     [DependsOn(
-        typeof(classifiedsCoreModule), 
+        typeof(classifiedsCoreModule),
         typeof(AbpAutoMapperModule))]
     public class classifiedsApplicationModule : AbpModule
     {
         public override void PreInitialize()
         {
             Configuration.Authorization.Providers.Add<classifiedsAuthorizationProvider>();
+            Configuration.MultiTenancy.IsEnabled = false;
         }
 
         public override void Initialize()

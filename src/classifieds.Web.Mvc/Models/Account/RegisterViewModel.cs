@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Abp.Auditing;
+﻿using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.Extensions;
 using classifieds.Validation;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace classifieds.Web.Models.Account
 {
@@ -16,6 +16,10 @@ namespace classifieds.Web.Models.Account
         [Required]
         [StringLength(AbpUserBase.MaxSurnameLength)]
         public string Surname { get; set; }
+        [Required]
+        [StringLength(AbpUserBase.MaxSurnameLength)]
+        [Phone]
+        public string PhoneNumber { get; set; }
 
         [StringLength(AbpUserBase.MaxUserNameLength)]
         public string UserName { get; set; }

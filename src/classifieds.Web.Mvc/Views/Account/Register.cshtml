@@ -1,8 +1,6 @@
 ﻿@using Abp.Authorization.Users
 @model classifieds.Web.Models.Account.RegisterViewModel
-@{
-    ViewBag.Title = L("Register");
-}
+@{ ViewBag.Title = L("Register"); }
 @section scripts
 {
     <environment names="Development">
@@ -17,10 +15,9 @@
 <form id="RegisterForm" asp-action="Register" method="post">
     @if (ViewBag.ErrorMessage != null)
     {
-        <div class="alert alert-danger">
-            <i class="fas fa-warning"></i> @ViewBag.ErrorMessage
-        </div>
-    }
+<div class="alert alert-danger">
+    <i class="fas fa-warning"></i> @ViewBag.ErrorMessage
+</div>}
     <input type="hidden" name="IsExternalLogin" value="@Model.IsExternalLogin.ToString()" />
     <input type="hidden" name="ExternalLoginAuthSchema" value="@Model.ExternalLoginAuthSchema" />
     <div class="input-group mb-3">
@@ -33,6 +30,14 @@
     </div>
     <div class="input-group mb-3">
         <input type="text" name="Surname" class="form-control" placeholder="@L("Surname")" value="@Model.Surname" required maxlength="@AbpUserBase.MaxSurnameLength">
+        <div class="input-group-append">
+            <div class="input-group-text">
+                <span class="fas fa-arrow-left"></span>
+            </div>
+        </div>
+    </div>
+    <div class="input-group mb-3">
+        <input type="text" name="PhoneNumber" class="form-control" placeholder="@L("PhoneNumber")" value="@Model.PhoneNumber" required>
         <div class="input-group-append">
             <div class="input-group-text">
                 <span class="fas fa-arrow-left"></span>
