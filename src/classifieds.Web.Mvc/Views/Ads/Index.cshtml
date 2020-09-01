@@ -76,19 +76,14 @@
                         <li><a>گرانترین</a></li>
                     </ul>
                 </div>
-                <div class="columns is-multiline" id="infScroll">
+                <div class="columns is-multiline" id="pager">
 
                 </div>
-                <div class="page-load-status">
-                    <div class="loader-ellips infinite-scroll-request">
-                        <span class="loader-ellips__dot"></span>
-                        <span class="loader-ellips__dot"></span>
-                        <span class="loader-ellips__dot"></span>
-                        <span class="loader-ellips__dot"></span>
-                    </div>
-                    <p class="infinite-scroll-last">پایان </p>
-                    <p class="infinite-scroll-error">No more pages to load</p>
-                </div>
+                <nav class="pagination" role="navigation" aria-label="pagination">
+                    <a class="pagination-previous">قبلی</a>
+                    <a class="pagination-next">بعدی </a>
+                </nav>
+
             </div>
 
         </div>
@@ -96,9 +91,36 @@
 
 </div>
 @section scripts{
-    <script src="https://unpkg.com/infinite-scroll@3/dist/infinite-scroll.pkgd.min.js"></script>
-    <script type="text/html" id="photo-item-template">
-        <div class=" column is-4">
+
+    <script>
+        $(function () {
+            var pageIndex = 1;
+            var rowPerPage = 30;
+            var totalPages = 0;
+            var path = '/api/services/app/post/getall?SkipCount=' + (pageIndex - 1) * rowPerPage + '&MaxResultCount=' + 10;
+            function loadAds(path){
+                $.getJSON(path, function () {
+                    console.log("success");
+                })
+                    .done(function (res) {
+                        $("#pager").empty();
+                        if (res.result.totalCount === 0) {
+                            $("#pager").append(`<p class="subtitle has-text-centered">نتیجه ای یافت نشد .</p>`)
+                        }
+                        totalPages = Math.ceil(res.result.totalCount / rowPerPage);
+                        console.log("num of pages", totalPages);
+                        if (pageIndex === 1) {
+                            $(".pagination-previous").attr("disabled", "disabled");
+                        } else {
+                            $(".pagination-previous").attr("disabled", "");
+                        }
+                        if (pageIndex === totalPages) {
+                            $(".pagination-next").attr("disabled", "disabled");
+                        } else {
+                            $(".pagination-next").attr("disabled", "");
+                        }
+                        res.result.items.forEach((item) => {
+                            $("#pager").append(`<div class=" column is-4">
             <a class="fill-div" href="/ads/{{id}}">
                 <div class="card card-hover-shadow">
                     <div class="card-image">
@@ -108,14 +130,14 @@
                     </div>
                     <div class="card-content">
                         <div class="content">
-                            {{title}}
+                            ${item.title}
                             <br>
                         </div>
                         <nav class="level is-mobile">
                             <div class="level-item has-text-centered">
                                 <div>
                                     <p><i class="fas  fa-square has-text-success"></i></p>
-                                    <p>{{area}}</p>
+                                    <p>${item.area}</p>
                                 </div>
                             </div>
                             <div class="level-item has-text-centered">
@@ -127,7 +149,7 @@
                             <div class="level-item has-text-centered">
                                 <div>
                                     <p><i class="fas fa-bed has-text-grey"></i></p>
-                                    <p>{{bedroom}}</p>
+                                    <p>${item.bedroom}</p>
                                 </div>
                             </div>
                         </nav>
@@ -135,58 +157,18 @@
 
                 </div>
             </a>
-        </div>
-    </script>
-    <script>
-        $(function () {
-            var path = '';
-            var totalPages = 100;
-            var $container = $('#infScroll').infiniteScroll({
-                path: function () {
-                    if (this.pageIndex <= totalPages) {
-                        return '/api/services/app/post/getall?SkipCount=' + (this.pageIndex - 1) * 10 + '&MaxResultCount=' + 10 + path
-                    }
-                },
-                responseType: 'text',
-                status: '.page-load-status',
-                history: false,
-            });
-
-            $container.on('load.infiniteScroll', function (event, response) {
-                // parse response into JSON data
-                var data = JSON.parse(response);
-                totalPages = Math.ceil(data.result.totalCount / 10);
-                // compile data into HTML
-                var itemsHTML = data.result.items.map(getItemHTML).join('');
-                // convert HTML string into elements
-                var $items = $(itemsHTML);
-                // append item elements
-                $container.infiniteScroll('appendItems', $items);
-            });
-
-            // load initial page
-            $container.infiniteScroll('loadNextPage');
-
-            //------------------//
-
-            var itemTemplateSrc = $('#photo-item-template').html();
-
-            function getItemHTML(photo) {
-                return microTemplate(itemTemplateSrc, photo);
-            }
-
-            // micro templating, sort-of
-            function microTemplate(src, data) {
-                // replace {{tags}} in source
-                return src.replace(/\{\{([\w\-_\.]+)\}\}/gi, function (match, key) {
-                    // walk through objects to get value
-                    var value = data;
-                    key.split('.').forEach(function (part) {
-                        value = value[part];
+        </div>`)
+                        })
+                    })
+                    .fail(function () {
+                        console.log("error");
+                    })
+                    .always(function () {
+                        console.log("complete");
                     });
-                    return value;
-                });
             }
+
+
             function FilterAds() {
                 var query = {};
                 var minArea = $("#minArea").val();
@@ -197,14 +179,16 @@
                 }
                 if ($("#featured").is(":checked")) {
                     query.featured = true;
+                } else {
+                   delete query.featured ;
                 }
-                path = $.param(query);
+                loadAds(path + '&' + $.param(query));
             }
             $("#apply").click(() => {
                 FilterAds();
-            })
+            });
+            loadAds(path)
         })
-
 
     </script>
 }

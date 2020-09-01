@@ -6,15 +6,13 @@
 @inject IWebResourceManager WebResourceManager
 @inject ILanguageManager LanguageManager
 @inject IMultiTenancyConfig MultiTenancyConfig
-@{
-    Layout = null;
+@{ Layout = null;
     AbpAntiForgeryManager.SetCookie(Context);
 
     var pageTitle = !string.IsNullOrWhiteSpace(ViewBag.Title) ? ViewBag.Title + " / " : "";
-    pageTitle += "classifieds";
-}
+    pageTitle += "classifieds"; }
 <!DOCTYPE html>
-<html lang="@LanguageManager.CurrentLanguage.Name">
+<html lang="@LanguageManager.CurrentLanguage.Name" dir="rtl">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -22,34 +20,47 @@
 
     <title>@pageTitle</title>
 
-    @await Html.PartialAsync("_Styles.cshtml")
+    <link rel="icon"
+          type="image/png"
+          href="/favicon.png" />
+    <link rel="stylesheet" href="~/lib/bulma/css/bulma-rtl.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/libs/font-awesome/css/all.min.css" asp-append-version="true" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v26.0.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+    <link href="~/css/web.css" rel="stylesheet" asp-append-version="true" />
     @RenderSection("styles", required: false)
 </head>
 <body class="hold-transition login-page">
-    <div class="login-box">
-        <div class="login-logo">
-            <a href="/"><b>classifieds</b></a>
-        </div>
-        <div class="card">
-            @if (MultiTenancyConfig.IsEnabled)
-            {
-                <div class="card-header">
-                    <vc:tenant-change></vc:tenant-change>
+    <div class="section">
+        <div class="columns is-mobile is-centered">
+            <div class="column is-half-desktop">
+                <div class="login-box">
+                    <div class="login-logo has-text-centered">
+                        <a href="/"><b>classifieds</b></a>
+                    </div>
+                    <div class="card">
+                        @if (MultiTenancyConfig.IsEnabled)
+                        {
+            <div class="card-header">
+                <vc:tenant-change></vc:tenant-change>
+            </div>}
+                        <div class="card-content login-card-body">
+                            @RenderBody()
+                        </div>
+                        <div class="card-footer">
+                            <vc:account-languages></vc:account-languages>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12 text-center">
+                            <small>&copy; @DateTime.Now.Year classifieds. <b>Version </b> @AppVersionHelper.Version [@AppVersionHelper.ReleaseDate.ToString("yyyyMMdd")]</small>
+                        </div>
+                    </div>
                 </div>
-            }
-            <div class="card-body login-card-body">
-                @RenderBody()
-            </div>
-            <div class="card-footer">
-                <vc:account-languages></vc:account-languages>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <small>&copy; @DateTime.Now.Year classifieds. <b>Version </b> @AppVersionHelper.Version [@AppVersionHelper.ReleaseDate.ToString("yyyyMMdd")]</small>
             </div>
         </div>
     </div>
+
     @await Html.PartialAsync("_Scripts.cshtml")
     @RenderSection("scripts", required: false)
     @WebResourceManager.RenderScripts()

@@ -21,59 +21,65 @@
     <input type="hidden" name="IsExternalLogin" value="@Model.IsExternalLogin.ToString()" />
     <input type="hidden" name="ExternalLoginAuthSchema" value="@Model.ExternalLoginAuthSchema" />
     <div class="input-group mb-3">
-        <input type="text" name="Name" class="form-control" placeholder="@L("Name")" value="@Model.Name" required maxlength="@AbpUserBase.MaxNameLength">
-        <div class="input-group-append">
-            <div class="input-group-text">
-                <span class="fas fa-arrow-left"></span>
-            </div>
+        <div class="control has-icons-right">
+            <input type="text" name="Name" class="input" placeholder="@L("Name")" value="@Model.Name" required maxlength="@AbpUserBase.MaxNameLength">
+            <span class="icon is-small is-right">
+                <i class="fas fa-arrow-left"></i>
+            </span>
         </div>
     </div>
-    <div class="input-group mb-3">
-        <input type="text" name="Surname" class="form-control" placeholder="@L("Surname")" value="@Model.Surname" required maxlength="@AbpUserBase.MaxSurnameLength">
-        <div class="input-group-append">
-            <div class="input-group-text">
-                <span class="fas fa-arrow-left"></span>
-            </div>
+    <div class="field mb-3">
+        <div class="control has-icons-right">
+            <input type="text" name="Surname" class="input" placeholder="@L("Surname")" value="@Model.Surname" required maxlength="@AbpUserBase.MaxSurnameLength">
+            <span class="icon is-small is-right">
+                <i class="fas fa-arrow-left"></i>
+            </span>
         </div>
     </div>
-    <div class="input-group mb-3">
-        <input type="text" name="PhoneNumber" class="form-control" placeholder="@L("PhoneNumber")" value="@Model.PhoneNumber" required>
-        <div class="input-group-append">
-            <div class="input-group-text">
-                <span class="fas fa-arrow-left"></span>
-            </div>
+    <div class="field  mb-3">
+        <div class="control has-icons-right">
+            <input type="text" name="PhoneNumber" class="input" placeholder="@L("PhoneNumber")" value="@Model.PhoneNumber" required>
+
+            <span class="icon is-small is-right"><i class="fas fa-arrow-left"></i></span>
+        </div>
+
+
+    </div>
+    <div class="field mb-3">
+        <div class="control has-icons-right">
+            <input type="email" name="EmailAddress" class="input" placeholder="@L("EmailAddress")" value="@Model.EmailAddress" required maxlength="@AbpUserBase.MaxEmailAddressLength">
+            <span class="icon is-small is-right">
+                <i class="fas fa-envelope"></i>
+            </span>
         </div>
     </div>
-    <div class="input-group mb-3">
-        <input type="email" name="EmailAddress" class="form-control" placeholder="@L("EmailAddress")" value="@Model.EmailAddress" required maxlength="@AbpUserBase.MaxEmailAddressLength">
-        <div class="input-group-append">
-            <div class="input-group-text">
-                <span class="fas fa-envelope"></span>
-            </div>
+    <div class="field mb-3">
+        <div class="control has-icons-right">
+            <input type="text" name="UserName" class="input" placeholder="@L("UserName")" value="@Model.UserName" required maxlength="@AbpUserBase.MaxUserNameLength">
+            <span class="icon is-small is-right">
+                <i class="fas fa-user"></i>
+            </span>
         </div>
     </div>
-    <div class="input-group mb-3">
-        <input type="text" name="UserName" class="form-control" placeholder="@L("UserName")" value="@Model.UserName" required maxlength="@AbpUserBase.MaxUserNameLength">
-        <div class="input-group-append">
-            <div class="input-group-text">
-                <span class="fas fa-user"></span>
-            </div>
+    <div class="field mb-3">
+        <div class="control has-icons-right">
+            <input type="password" name="Password" class="input" placeholder="@L("Password")" required maxlength="@AbpUserBase.MaxPlainPasswordLength">
+            <span class="icon is-small is-right">
+                <i class="fas fa-lock"></i>
+            </span>
         </div>
     </div>
-    <div class="input-group mb-3">
-        <input type="password" name="Password" class="form-control" placeholder="@L("Password")" required maxlength="@AbpUserBase.MaxPlainPasswordLength">
-        <div class="input-group-append">
-            <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-            </div>
+    <div class="field is-grouped">
+        <div class="control">
+            <button type="submit" id="RegisterButton" class="button is-primary btn-flat float-right">@L("Register")</button>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-8">
-            <a asp-action="Login" class="btn btn-default btn-flat"><i class="fa fa-arrow-circle-left"></i> @L("Back")</a>
-        </div>
-        <div class="col-4">
-            <button type="submit" id="RegisterButton" class="btn btn-primary btn-flat float-right">@L("Register")</button>
+        <div class="control">
+            <a asp-action="Login" class="button is-default">
+                <span class="icon is-small ">
+                    <i class="fa fa-arrow-circle-left"></i>
+                </span>
+                <span> @L("Back")</span>
+            </a>
         </div>
     </div>
 </form>
