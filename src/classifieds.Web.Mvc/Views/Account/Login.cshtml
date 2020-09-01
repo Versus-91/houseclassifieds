@@ -11,57 +11,68 @@
         <script src="~/view-resources/Views/Account/Login.min.js" asp-append-version="true"></script>
     </environment>
 }
-<h4 class="text-center my-3">@L("LogIn")</h4>
-<form id="LoginForm" asp-action="Login" method="post">
-    <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
-    <input type="hidden" name="returnUrlHash" />
-    <div class="field mb-3">
-        <div class="control has-icons-right">
-            <input type="text" name="usernameOrEmailAddress" class="input" placeholder="@L("UserNameOrEmail")" required autofocus maxlength="@AbpUserBase.MaxEmailAddressLength">
-            <div class="input-group-append">
-                <span class="icon is-small is-right">
-                    <i class="fas fa-user"></i>
-                </span>
+<section class="hero is-primary is-fullheight">
+    <div class="hero-body">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
+
+                    <form id="LoginForm" asp-action="Login" class="box" method="post">
+                        <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
+                        <input type="hidden" name="returnUrlHash" />
+                        <div class="field my-5">
+                            <div class="control has-icons-right">
+                                <input type="text" name="usernameOrEmailAddress" class="input" placeholder="@L("UserNameOrEmail")" required autofocus maxlength="@AbpUserBase.MaxEmailAddressLength">
+                                <div class="input-group-append">
+                                    <span class="icon is-small is-right">
+                                        <i class="fas fa-user"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field mb-3">
+                            <div class="control has-icons-right">
+                                <input type="password" class="input" name="Password" autocomplete="password" placeholder="@L("Password")" required maxlength="@AbpUserBase.MaxPlainPasswordLength">
+                                <span class="icon is-small is-right">
+                                    <i class="fas fa-lock"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="field ">
+                            <div class="column is-8">
+                                <div class="icheck-primary">
+                                    <input type="checkbox" id="RememberMe" name="RememberMe" value="true">
+                                    <label for="RememberMe">
+                                        @L("RememberMe")
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" id="LoginButton" class="button is-success is-fullwidth">@L("LogIn")</button>
+                            </div>
+                        </div>
+                    </form>
+                    @*<div class="social-auth-links text-center mb-3">
+                            <p>- OR -</p>
+                            <a href="javascript:;" class="btn btn-block btn-primary">
+                                <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                            </a>
+                            <a href="javascript:;" class="btn btn-block btn-danger">
+                                <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                            </a>
+                        </div>*@
+                    <div class="field ">
+
+                        @if (Model.IsSelfRegistrationAllowed)
+                        {
+            <div class="control">
+                <a asp-action="Register" class="button is-fullwidth"><i class="fa fa-plus-circle"></i> @L("Register")</a>
+            </div>}
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="field mb-3">
-        <div class="control has-icons-right">
-            <input type="password" class="input" name="Password" autocomplete="password" placeholder="@L("Password")" required maxlength="@AbpUserBase.MaxPlainPasswordLength">
-            <span class="icon is-small is-right">
-                <i class="fas fa-lock"></i>
-            </span>
-        </div>
-    </div>
-    <div class="field ">
-        <div class="column is-8">
-            <div class="icheck-primary">
-                <input type="checkbox" id="RememberMe" name="RememberMe" value="true">
-                <label for="RememberMe">
-                    @L("RememberMe")
-                </label>
-            </div>
-        </div>
-        <div class="column col-4">
-            <button type="submit" id="LoginButton" class="button is-primary btn-block btn-flat">@L("LogIn")</button>
-        </div>
-    </div>
-</form>
-@*<div class="social-auth-links text-center mb-3">
-        <p>- OR -</p>
-        <a href="javascript:;" class="btn btn-block btn-primary">
-            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-        </a>
-        <a href="javascript:;" class="btn btn-block btn-danger">
-            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-        </a>
-    </div>*@
-<p class="mb-0">
-    @if (Model.IsSelfRegistrationAllowed)
-    {
-<div class="column">
-    <div class="col-12">
-        <a asp-action="Register" class="text-center"><i class="fa fa-plus-circle"></i> @L("Register")</a>
-    </div>
-</div>}
-</p>
+</section>

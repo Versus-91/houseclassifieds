@@ -31,7 +31,7 @@
     @RenderSection("styles", required: false)
 </head>
 <body class="hold-transition login-page">
-    <div class="section">
+    @*<div class="section">
         <div class="columns is-mobile is-centered">
             <div class="column is-half-desktop">
                 <div class="login-box">
@@ -44,22 +44,22 @@
             <div class="card-header">
                 <vc:tenant-change></vc:tenant-change>
             </div>}
-                        <div class="card-content login-card-body">
-                            @RenderBody()
+                        <div class="card-content login-card-body">*@
+    @RenderBody()
+    @*</div>
+                            <div class="card-footer">
+                                <vc:account-languages></vc:account-languages>
+                            </div>
                         </div>
-                        <div class="card-footer">
-                            <vc:account-languages></vc:account-languages>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 text-center">
-                            <small>&copy; @DateTime.Now.Year classifieds. <b>Version </b> @AppVersionHelper.Version [@AppVersionHelper.ReleaseDate.ToString("yyyyMMdd")]</small>
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <small>&copy; @DateTime.Now.Year classifieds. <b>Version </b> @AppVersionHelper.Version [@AppVersionHelper.ReleaseDate.ToString("yyyyMMdd")]</small>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div>*@
 
     @await Html.PartialAsync("_Scripts.cshtml")
     @RenderSection("scripts", required: false)
