@@ -215,7 +215,42 @@ body {
 .Site-content {
     flex: 1;
 }
+
 .cover {
     width: 100% !important;
     object-fit: cover !important;
 }
+
+.custom-border {
+    width: 100%;
+    height: 5vw;
+    /* set height to pixels if you want angle to change with screen width */
+}
+
+.cat-tabs-link {
+    color: #fff;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    padding: 15px 20px;
+    position: relative;
+    cursor: pointer;
+}
+
+    .cat-tabs-link:after {
+        background: none repeat scroll 0 0 transparent;
+        bottom: 0;
+        content: "";
+        display: block;
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        background: #777;
+        transition: width 0.3s ease 0s, left 0.3s ease 0s;
+        width: 0;
+    }
+
+    .cat-tabs-link:hover:after {
+        width: 100%;
+        left: 0;
+    }

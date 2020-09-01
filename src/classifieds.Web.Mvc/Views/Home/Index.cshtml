@@ -3,19 +3,17 @@
 
 @{ ViewBag.Title = L("HomePage");
     ViewBag.CurrentPageName = PageNames.Home;
-    Layout = "layout/_front";
-}
+    Layout = "layout/_front"; }
 @section hero{
     <section class="hero is-medium is-primary is-bold has-bg-img">
         <div class="hero-body">
             <div class="container">
-                <nav class="columns is-centered is-mobile has-text-centered">
-                        @foreach (var item in Model.Categories)
-                        {
-                            <div class="column is-6-mobile is-2-desktop cat-tab " data-id="@item.Id">
-                                    <span class="title is-5 ">@item.Name</span>
-                            </div>
-                        }
+                <nav class="columns is-centered is-mobile has-text-centered mb-2">
+                    @foreach (var item in Model.Categories)
+                    {
+    <div class="column is-6-mobile is-2-desktop cat-tab " data-id="@item.Id">
+        <span class="title is-5 cat-tabs-link">@item.Name</span>
+    </div>}
                 </nav>
                 <div class="box has-text-link">
                     <div class="columns is-centered is-vcentered has-text-centered py-2">
@@ -24,8 +22,7 @@
                                 <select class="select2" id="selectCity">
                                     @foreach (var item in Model.Cities)
                                     {
-                                        <option value="@item.Id">@item.Name</option>
-                                    }
+                    <option value="@item.Id">@item.Name</option>}
                                 </select>
                             </div>
                         </div>
@@ -43,7 +40,7 @@
                             </div>
                         </div>
                         <div class="column">
-                            <button class="button is-primary is-rounded is-fullwidth-mobile" id="send">
+                            <button class="button is-info is-rounded is-fullwidth-mobile" id="send">
                                 <i class="fas fa-search"></i>
                             </button>
                         </div>
@@ -52,6 +49,9 @@
                 </div>
             </div>
         </div>
+        <svg class="custom-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <polygon fill="white" points="0,100 100,0 100,100" />
+        </svg>
     </section>
 
 }
@@ -255,7 +255,7 @@
 
                         </div>
                     </li>
-                    <li> 
+                    <li>
                         <div class="level is-mobile my-1">
                             <div class="level-right">
                                 <div class="level-item">تهران</div>
@@ -312,7 +312,7 @@
         "use strict";
         $(function () {
             var categoryId = 0;
-            $(".cat-tab").first().find("span").addClass("has-text-success");
+            $(".cat-tab").first().find("span").addClass("has-text-grey-dark ");
             categoryId = $(".cat-tab").first("span").attr("data-id");
             $('#selectCity').on('select2:select', function (e) {
                 if (e.target.value != 0) {
@@ -321,15 +321,14 @@
                         , { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }
                         , { id: 4, text: 'wontfix' }];
                     $.get('/districts/GetByCityId?id=' + e.target.value, function (res) {
-                        var items = res.result.map(m =>
-                        {
+                        var items = res.result.map(m => {
                             return {
-                                id: m.id ,
+                                id: m.id,
                                 text: m.name
                             }
                         }
                         );
-                        items.splice(0, 0, {id : 0 ,text:"انتخاب محله"})
+                        items.splice(0, 0, { id: 0, text: "انتخاب محله" })
                         $("#selectDistrict").empty();
                         $("#selectDistrict").select2({ data: items });
                     })
@@ -341,8 +340,8 @@
                 }
             });
             $(".cat-tab").click(function () {
-                $(".cat-tab").find("span").removeClass("has-text-success");
-                $(this).find("span").addClass("has-text-success");
+                $(".cat-tab").find("span").removeClass("has-text-grey-dark  ");
+                $(this).find("span").addClass("has-text-grey-dark   ");
                 categoryId = $(this).attr("data-id")
             });
             $("#send").click(function () {

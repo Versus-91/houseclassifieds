@@ -10,6 +10,9 @@ namespace classifieds.Authorization
         {
             context.CreatePermission(PermissionNames.Pages_Users, L("Users"));
             context.CreatePermission(PermissionNames.Pages_Roles, L("Roles"));
+            context.CreatePermission(PermissionNames.Posts_Create, L("Create Post"));
+            context.CreatePermission(PermissionNames.Pages_Cities, L("Cities"));
+            context.CreatePermission(PermissionNames.Pages_District, L("Districts"));
             context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
         }
 

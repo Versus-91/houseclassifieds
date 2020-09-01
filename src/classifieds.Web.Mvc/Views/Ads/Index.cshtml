@@ -42,30 +42,67 @@
                                     </div>
                                 </div>
                         </li>
-                    </ul>
-                    <p class="menu-label">
-                        تعداد خواب
-                    </p>
-                    <ul class="menu-list">
-                        <li>
-                            <div class="control">
-                                <div class="select">
-                                    <select>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">بیشتر از 4</option>
-                                    </select>
+                        <p class="menu-label">
+                            قیمت
+                        </p>
+                        <ul class="menu-list">
+                            <li>
+                                <div class="field is-horizontal">
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <p class="control is-expanded">
+                                                <input class="input is-danger" id="minPrice" type="number" placeholder="حداقل">
+                                            </p>
+                                        </div>
+                                        <div class="field">
+                                            <p class="control is-expanded ">
+                                                <input class="input is-success" id="maxPrice" type="number" placeholder="حداکثر">
+                                            </p>
+                                        </div>
+                                    </div>
+                            </li>
+                        </ul>
+                        <p class="menu-label">
+                            تعداد خواب
+                        </p>
+                        <ul class="menu-list">
+                            <li>
+                                <div class="control">
+                                    <div class="select">
+                                        <select>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">بیشتر از 4</option>
+                                        </select>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <ul class="menu-list mt-2">
-                        <li>
-                            <button class="button is-info" id="apply">اعمال</button>
-                        </li>
-                    </ul>
+                            </li>
+                        </ul>
+                        <p class="menu-label">
+                            نوع ملک
+                        </p>
+                        <ul class="menu-list">
+                            <li>
+                                <div class="control">
+                                    <div class="select">
+                                        <select>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">بیشتر از 4</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="menu-list mt-2">
+                            <li>
+                                <button class="button is-info" id="apply">اعمال</button>
+                            </li>
+                        </ul>
                 </aside>
             </div>
             <div class="column is-9">
@@ -76,7 +113,7 @@
                         <li><a>گرانترین</a></li>
                     </ul>
                 </div>
-                <div class="columns is-multiline" id="pager">
+                <div class="columns is-multiline" id="pager" style="min-height:15vh;">
 
                 </div>
                 <nav class="pagination" role="navigation" aria-label="pagination">
@@ -105,7 +142,7 @@
                     .done(function (res) {
                         $("#pager").empty();
                         if (res.result.totalCount === 0) {
-                            $("#pager").append(`<p class="subtitle has-text-centered">نتیجه ای یافت نشد .</p>`)
+                            $("#pager").append(`<div class="column is-vcentered has-text-centered"><p class="subtitle has-text-centered">نتیجه ای یافت نشد .</p></div>`)
                         }
                         totalPages = Math.ceil(res.result.totalCount / rowPerPage);
                         console.log("num of pages", totalPages);
@@ -173,9 +210,15 @@
                 var query = {};
                 var minArea = $("#minArea").val();
                 var maxArea = $("#maxArea").val();
+                var minPrice = $("#minPrice").val();
+                var maxPrice = $("#maxPrice").val();
                 if (minArea & maxArea) {
                     query.minArea = minArea;
                     query.maxArea = maxArea;
+                }
+                if (minPrice & maxPrice) {
+                    query.minPrice = minPrice;
+                    query.maxPrice = maxPrice;
                 }
                 if ($("#featured").is(":checked")) {
                     query.featured = true;
