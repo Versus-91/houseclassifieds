@@ -1,9 +1,6 @@
 ﻿using classifieds.Posts.Dto;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace classifieds.Web.Models.Ads
 {
@@ -22,7 +19,6 @@ namespace classifieds.Web.Models.Ads
         public ushort Area { get; set; }
         public byte Bedroom { get; set; }
         public DateTime CreationTime { get; set; }
-        public IList<Microsoft.AspNetCore.Http.IFormFile> Files { get; set; }
         public uint Price { get; set; }
         public uint Deposit { get; set; }
         public double Latitude { get; set; }

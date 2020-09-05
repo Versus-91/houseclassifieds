@@ -1,159 +1,160 @@
-﻿@model classifieds.Web.Models.Ads.CreateAdViewModel
-@{
-    Layout = "layout/_front";
-
-}
+﻿@model classifieds.Web.Models.Ads.AdsViewModel
+@{ Layout = "layout/_front"; }
 @section styles{
     <link href="~/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet" asp-append-version="true" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin="" />
 }
-<div class="container">
-    <div class="section">
-        <div class="box">
-            <h1>ارسال آگهی جدید</h1>
-            <br />
-            <form asp-action="create" enctype="multipart/form-data" id="CreateAd">
-                <div class="help is-danger" asp-validation-summary="All">
-                </div>
-                <div class="field is-horizontal">
-                    <div class="field-body">
-                        <div class="field">
-                            <label asp-for="Ad.DistrictId" class="label">محله</label>
-                            <div class="control has-icons-right">
-                                <div class="select is-fullwidth">
-                                    <select asp-for="Ad.DistrictId" asp-items="Model.Districts">
-                                    </select>
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-city"></i>
-                                    </span>
+<div class="hero is-fullheight is-light is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <div class="section">
+                <div class="box">
+                    <h1>ارسال آگهی جدید</h1>
+                    <br />
+                    <form enctype="multipart/form-data" id="CreateAd">
+                        <div class="help is-danger" asp-validation-summary="All">
+                        </div>
+                        <div class="field is-horizontal">
+                            <div class="field-body">
+                                <div class="field">
+                                    <label asp-for="DistrictId" class="label">محله</label>
+                                    <div class="control has-icons-right">
+                                        <div class="select is-fullwidth">
+                                            <select asp-for="DistrictId" name="DistrictId" asp-items="(IEnumerable<SelectListItem>)@ViewData["Districts"]">
+                                            </select>
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-city"></i>
+                                            </span>
+                                        </div>
+                                    </div>
                                 </div>
+                                <div class="field">
+                                    <label asp-for="TypeId" class="label">نوع ملک</label>
+                                    <div class="control has-icons-right">
+                                        <div class="select is-fullwidth">
+                                            <select asp-for="TypeId" id="type" asp-items="(IEnumerable<SelectListItem>)@ViewData["PropertyTypes"]">
+                                            </select>
+                                            <span class="icon is-small is-right">
+                                                <i class="fas fa-list"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label asp-for="CategoryId" class="label">دسته بندی</label>
+                                    <div class="control has-icons-right">
+                                        <div class="select is-fullwidth">
+                                            <select id="category" asp-for="CategoryId" asp-items="(IEnumerable<SelectListItem>)@ViewData["Categories"]">
+                                            </select>
+                                            <span class="icon is-small is-right">
+                                                <i class="fas fa-list"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                        <div class="field">
-                            <label asp-for="Ad.CategoryId" class="label">دسته بندی</label>
-                            <div class="control has-icons-right">
-                                <div class="select is-fullwidth">
-                                    <select  asp-for="Ad.CategoryId" asp-items="Model.Categories">
-                                    </select>
-                                    <span class="icon is-small is-right">
-                                        <i class="fas fa-list"></i>
-                                    </span>
+                        <div class="field is-horizontal">
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control has-icons-left">
+                                        <input type="number" class="input" placeholder="قیمت" name="Price" value="" />
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-dollar-sign"></i>
+                                        </span>
+                                    </div>
                                 </div>
+                                <div class="field" id="deposit">
+                                    <div class="control has-icons-left">
+                                        <input type="number" class="input" placeholder="پیش پرداخت" id="depostInput" name="Deposit" value="" />
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-dollar-sign"></i>
+                                        </span>
+                                    </div>
+                                </div>
+
                             </div>
                         </div>
-                        <div class="field">
-                            <label asp-for="Ad.TypeId" class="label">نوع ملک</label>
-                            <div class="control has-icons-right">
-                                <div class="select is-fullwidth">
-                                    <select asp-for="Ad.TypeId" asp-items="Model.PropertyTypes">
-                                    </select>
-                                    <span class="icon is-small is-right">
-                                        <i class="fas fa-list"></i>
-                                    </span>
+                        <div class="field is-horizontal">
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input asp-for="Title" class="input" type="text" placeholder="عنوان">
+                                        <span class="help is-danger" asp-validation-for="Title"></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
 
-                    </div>
-                </div>
-                <div class="field is-horizontal">
-                    <div class="field-body">
+                        <div class="field is-horizontal">
+                            <div class="field-body">
+                                <div class="field" id="bedroom">
+                                    <label asp-for="Bedroom" class="label">تعداد خواب</label>
+                                    <div class="control  has-icons-left has-icons-right">
+                                        <div class="select is-fullwidth">
+                                            <select asp-for="Bedroom">
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                            </select>
+                                            <span class="icon is-small is-left">
+                                                <i class="fas fa-bed"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field">
+                                    <label asp-for="Area" class="label">متراژ</label>
+                                    <div class="control has-icons-left ">
+                                        <input class="input" asp-for="Area" placeholder="مساحت" />
+                                        <span class="icon is-small is-left">
+                                            <i class="fas fa-globe"></i>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="field">
+                            <label asp-for="Description" class="label">توضیحات</label>
                             <div class="control">
-                                <input asp-for="Ad.Title" v-model="title" class="input" type="text" placeholder="عنوان">
-                                <span class="help is-danger" asp-validation-for="Ad.Title"></span>
+                                <textarea asp-for="Description" class="textarea"></textarea>
+                                <span class="help is-danger" asp-validation-for="Description"></span>
                             </div>
-                        </div>
 
-                        <div class="field">
-                            <p class="control is-expanded has-icons-left has-icons-right">
-                                <input class="input is-success" type="email" placeholder="Email" value="alex@smith.com">
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-envelope"></i>
-                                </span>
-                                <span class="icon is-small is-right">
-                                    <i class="fas fa-check"></i>
-                                </span>
-                            </p>
                         </div>
-                    </div>
-                </div>
-
-                <div class="field is-horizontal">
-                    <div class="field-body">
                         <div class="field">
-                            <label asp-for="Ad.Bedroom" class="label">تعداد خواب</label>
-                            <div class="control  has-icons-left has-icons-right">
-                                <div class="select is-fullwidth">
-                                    <select asp-for="Ad.Bedroom">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                    </select>
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-bed"></i>
-                                    </span>
+                            <div class=" dz-clickable dropzone" id="dropzone">
+                                <div class="dz-message ">
+                                    <i class="fas fa-2x fa-upload has-text-success"></i>
                                 </div>
                             </div>
                         </div>
-                        <div class="field">
-                            <label asp-for="Ad.Area" class="label">متراژ</label>
-                            <div class="control has-icons-left ">
-                                <input class="input" asp-for="Ad.Area" placeholder="مساحت" />
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-globe"></i>
-                                </span>
+
+                        <div class="field" id="map" style="height:250px">
+                        </div>
+                        <div class="field is-grouped">
+                            <div class="control">
+                                <button class="button is-link is-success" id="submitButton">
+                                    <i class="fas fa-paper-plane pl-1"> </i>
+                                    ارسال
+                                </button>
+                            </div>
+                            <div class="control">
+                                <a href="/" class="button is-link is-light">
+                                    <i class="fas fa-trash pl-1 has-text-danger"> </i>
+                                    انصراف
+                                </a>
                             </div>
                         </div>
-                        <div class="field">
-                            <label asp-for="Ad.Price" class="label">قیمت</label>
-                            <div class="control has-icons-left">
-                                <input class="input fa-digit"  asp-for="Ad.Price" placeholder="قیمت" />
-                                <span class="icon is-small is-left">
-                                    <i class="fas fa-dollar-sign"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
+                    </form>
                 </div>
-                <div class="field">
-                    <label asp-for="Ad.Description" class="label">توضیحات</label>
-                    <div class="control">
-                        <textarea asp-for="Ad.Description" class="textarea"></textarea>
-                        <span class="help is-danger" asp-validation-for="Ad.Description"></span>
-                    </div>
-
-                </div>
-                <div class="field">
-                    <div class=" dz-clickable dropzone" id="dropzone">
-                        <div class="dz-message ">
-                            <i class="fas fa-2x fa-upload has-text-success"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="field" id="map" style="height:250px">
-                </div>
-                <div class="field is-grouped">
-                    <div class="control">
-                        <button class="button is-link is-success" id="submit">
-                            <i class="fas fa-paper-plane pl-1"> </i>
-                            ارسال
-                        </button>
-                    </div>
-                    <div class="control">
-                        <a href="/" class="button is-link is-light">
-                            <i class="fas fa-trash pl-1 has-text-danger"> </i>
-                            انصراف
-                        </a>
-                    </div>
-                </div>
-            </form>
+            </div>
         </div>
     </div>
 </div>
@@ -170,7 +171,37 @@
         $(document).ready(function () {
 
             var form = $("#CreateAd");
+            var submitButton = $("#submitButton");
             var marker = {};
+            var depositFormField = $("#deposit");
+            var BedField = $("#bedroom");
+            var depositInput = $("#depostInput");
+            if ($("#category option:selected").text().includes("رهن")) {
+                depositFormField.show();
+            } else {
+                depositFormField.hide();
+            }
+            if ($("#type option:selected").text().includes("اپارتمان") || $("#type option:selected").text().includes("ویلایی")) {
+                BedField.show();
+            } else {
+                BedField.hide();
+            }
+            $("#type").change(function (e) {
+                if ($("#type option:selected").text().includes("اپارتمان") || $("#type option:selected").text().includes("ویلایی")) {
+                    BedField.show();
+                } else {
+                    BedField.hide();
+                }
+                depositInput.val('');
+            });
+            $("#category").change(function (e) {
+                if ($("#category option:selected").text().includes("رهن")) {
+                    depositFormField.show();
+                } else {
+                    depositFormField.hide();
+                }
+                depositInput.val('');
+            });
             var map = L.map('map').setView([34.543896, 69.160652], 13);
             L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -197,39 +228,77 @@
                 console.log('getCurrentPosition returned error', error);
             }
             navigator.geolocation.getCurrentPosition(showPosition, showError, { timeout: 10000 });
+
             var dropZone = new Dropzone('#dropzone', {
                 autoProcessQueue: false,
                 maxFiles: 2000,
-                paramName: 'Ad.Files',
+                paramName: 'files',
                 url: "/ads/create",
                 success: function (file, response) {
                     window.location.href = "../";
                 }
             });
-            $("#submit").click((e) => {
-                e.preventDefault();
-                save();
-            });
-            dropZone.on("sending", function (file, xhr, formData) {
-                console.log('sending');
-                var items = form.serializeArray();
-                for (var i = 0; i < items.length; i++) {
-                    formData.append(items[i].name, items[i].value);
-                }
-                var coordinates = marker.getLatLng();
-                console.log(coordinates);
-                formData.append('Ad.Latitude', coordinates.lat);
-                formData.append('Ad.Longitude', coordinates.lng);
+            //dropZone.on("sending", function (file, xhr, formData) {
+            //    console.log('sending');
+            //    var items = form.serializeArray();
+            //    for (var i = 0; i < items.length; i++) {
+            //        formData.append(items[i].name, items[i].value);
+            //    }
+            //    var coordinates = marker.getLatLng();
+            //    console.log(coordinates);
 
-            });
+
+            //});
             function save() {
 
                 if (!form.valid()) {
                     console.log('failed to save');
                     return;
                 }
+
                 dropZone.processQueue();
             }
+            submitButton.click((e) => {
+                e.preventDefault();
+                var formData = new FormData();
+                if (!form.valid()) {
+                    return;
+                }
+                submitButton.addClass("is-loading");
+                var items = form.serializeArray();
+                for (var i = 0; i < items.length; i++) {
+                    formData.append(items[i].name, items[i].value);
+                }
+                if (marker) {
+                    var coordinates = marker.getLatLng();
+                    formData.append('Latitude', coordinates.lat);
+                    formData.append('Longitude', coordinates.lng);
+                }
+                var object = {};
+                formData.forEach(function (value, key) {
+                    object[key] = value;
+                });
+                console.log(JSON.stringify(object));
+                $.ajax({
+                    type: "POST",
+                    url: "/ads/create",
+                    contentType: 'application/json',
+                    dataType: "json",
+                    data: JSON.stringify(object), // serializes the form's elements.
+                    success: function (data) {
+                        dropZone.options.url = '/ads/upload'
+                        dropZone.processQueue();
+                        console.log(data); // show response from the php script.
+                    }, error: function (err) {
+                        console.log(err);
+                        submitButton.removeClass("is-loading");
+
+                    }
+                }).done(function () {
+                    submitButton.removeClass("is-loading");
+                });
+
+            })
 
         });
 

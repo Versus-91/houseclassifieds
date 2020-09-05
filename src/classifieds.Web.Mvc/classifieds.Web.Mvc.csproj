@@ -44,7 +44,9 @@
     <PackageReference Include="Abp.RedisCache" Version="5.10.1" />
     <PackageReference Include="Abp.Castle.Log4Net" Version="5.10.1" />
     <PackageReference Include="ReflectionIT.Mvc.Paging" Version="4.0.0" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="1.0.1" />
     <PackageReference Include="Twilio" Version="5.46.0" />
+    <PackageReference Include="UploadStream" Version="3.1.1" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Images\" />
