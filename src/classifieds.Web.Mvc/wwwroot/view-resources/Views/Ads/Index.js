@@ -1,14 +1,16 @@
 ﻿Dropzone.autoDiscover = false;
 
 $(document).ready(function () {
-	new AutoNumeric.multiple('.currency', { currencySymbol: '$' });
+	var priceMask = new AutoNumeric('#price', { currencySymbol: '$' });
+	var depositMask = new AutoNumeric('#deposit', { currencySymbol: '$' });
 	var form = $("#CreateAd");
 	$("body").persianNum();
+	realtime($("#area"));
 	var submitButton = $("#submitButton");
 	var marker = {};
-	var depositFormField = $("#deposit");
+	var depositFormField = $("#depositField");
 	var BedField = $("#bedroom");
-	var depositInput = $("#depostInput");
+	var depositInput = $("#deposit");
 	if ($("#category option:selected").text().includes("رهن")) {
 		depositFormField.show();
 	} else {
@@ -80,20 +82,28 @@ $(document).ready(function () {
 	submitButton.click((e) => {
 		e.preventDefault();
 		var formData = new FormData();
+		var object = {};
 		if (!form.valid()) {
 			return;
 		}
 		submitButton.addClass("is-loading");
 		var items = form.serializeArray();
 		for (var i = 0; i < items.length; i++) {
-			formData.append(items[i].name, items[i].value);
+			if (items[i].name.toLowerCase() != "price" && items[i].name.toLowerCase() != "deposit") {
+				console.log('if:', items[i].name.toLowerCase());
+				formData.append(items[i].name, items[i].value);
+			}
+			else {
+				console.log('else:', items[i].name.toLowerCase());
+				formData.append('Price', priceMask.getNumericString());
+				formData.append('Deposit', depositMask.getNumericString());
+			}
 		}
 		if (!$.isEmptyObject(marker)) {
 			var coordinates = marker.getLatLng();
 			formData.append('Latitude', coordinates.lat);
 			formData.append('Longitude', coordinates.lng);
 		}
-		var object = {};
 		formData.forEach(function (value, key) {
 			object[key] = value;
 		});

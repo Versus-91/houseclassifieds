@@ -1,4 +1,4 @@
-{
+﻿{
   "defaultProvider": "cdnjs",
   "version": "1.0",
   "libraries": [
@@ -12,6 +12,7 @@
         "jquery.min.map"
       ]
     },
+
     //core libs end
 
     //abp libs start

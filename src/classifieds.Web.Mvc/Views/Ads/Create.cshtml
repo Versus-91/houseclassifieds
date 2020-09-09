@@ -60,15 +60,15 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control has-icons-left">
-                                    <input class="input currency" dir="ltr" placeholder="قیمت" name="Price" />
+                                    <input class="input currency" dir="ltr" id="price" placeholder="قیمت" name="Price" />
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
                             </div>
-                            <div class="field" id="deposit">
+                            <div class="field" id="depositField">
                                 <div class="control has-icons-left">
-                                    <input class="input currency" dir="ltr" placeholder="پیش پرداخت" id="depostInput" name="Deposit" />
+                                    <input class="input currency" dir="ltr" placeholder="پیش پرداخت" id="deposit" name="Deposit" />
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
@@ -81,6 +81,7 @@
                     <div class="field is-horizontal">
                         <div class="field-body">
                             <div class="field">
+                                <label asp-for="Title" class="label">عنوان</label>
                                 <div class="control">
                                     <input asp-for="Title" class="input" type="text" placeholder="عنوان">
                                     <span class="help is-danger" asp-validation-for="Title"></span>
@@ -89,7 +90,7 @@
                             <div class="field">
                                 <label asp-for="Area" class="label">متراژ</label>
                                 <div class="control has-icons-left ">
-                                    <input class="input area" id="area" asp-for="Area" placeholder="مساحت" />
+                                    <input class="input realtime" id="area" asp-for="Area" placeholder="مساحت" />
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-globe"></i>
                                     </span>
