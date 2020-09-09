@@ -9794,3 +9794,802 @@ INFO  2020-09-09 13:32:34,150 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics -
 INFO  2020-09-09 13:32:34,325 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
 INFO  2020-09-09 13:32:34,329 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
 INFO  2020-09-09 13:32:34,332 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 6.9239ms 200 image/png
+INFO  2020-09-09 13:34:23,965 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 13:34:23,972 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:34:23,976 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:34:24,262 [74   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 13:34:24,296 [74   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 242.397ms.
+INFO  2020-09-09 13:34:24,298 [74   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 320.0458ms
+INFO  2020-09-09 13:34:24,302 [74   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:34:24,306 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 339.6091ms 200 text/html; charset=utf-8
+INFO  2020-09-09 13:34:24,341 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=56VFFj2mhDSLaUsiZAQG_lUx7kVpNMyX-Pua0MKMfOw  
+INFO  2020-09-09 13:34:24,344 [74   ] NetCore.StaticFiles.StaticFileMiddleware - The file /css/web.css was not modified
+INFO  2020-09-09 13:34:24,348 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.0856ms 304 text/css
+INFO  2020-09-09 13:34:24,464 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 13:34:24,468 [74   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 13:34:24,471 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 6.947ms 200 image/png
+INFO  2020-09-09 13:34:37,162 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 13:34:37,168 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:34:37,172 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:34:37,418 [74   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 13:34:37,452 [74   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 225.88ms.
+INFO  2020-09-09 13:34:37,456 [74   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 279.6297ms
+INFO  2020-09-09 13:34:37,459 [74   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:34:37,461 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 299.8632ms 200 text/html; charset=utf-8
+INFO  2020-09-09 13:34:37,609 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 13:34:37,614 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 13:34:37,617 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.1461ms 200 image/png
+INFO  2020-09-09 13:35:17,855 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 13:35:17,862 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:35:17,865 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:35:18,112 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 13:35:18,146 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 224.9939ms.
+INFO  2020-09-09 13:35:18,149 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 280.9487ms
+INFO  2020-09-09 13:35:18,151 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:35:18,154 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 299.6015ms 200 text/html; charset=utf-8
+INFO  2020-09-09 13:35:18,301 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 13:35:18,305 [74   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 13:35:18,309 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.7565ms 200 image/png
+INFO  2020-09-09 13:35:38,706 [39   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 13:35:38,712 [39   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:35:38,715 [39   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:35:38,963 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 13:35:38,998 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 230.6971ms.
+INFO  2020-09-09 13:35:39,001 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 282.6404ms
+INFO  2020-09-09 13:35:39,003 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:35:39,006 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 300.3594ms 200 text/html; charset=utf-8
+INFO  2020-09-09 13:35:39,044 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=56VFFj2mhDSLaUsiZAQG_lUx7kVpNMyX-Pua0MKMfOw  
+INFO  2020-09-09 13:35:39,047 [4    ] NetCore.StaticFiles.StaticFileMiddleware - The file /css/web.css was not modified
+INFO  2020-09-09 13:35:39,051 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.189ms 304 text/css
+INFO  2020-09-09 13:35:39,167 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 13:35:39,171 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 13:35:39,175 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.9847ms 200 image/png
+INFO  2020-09-09 13:36:23,724 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 13:36:23,731 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:36:23,735 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:36:23,997 [50   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 13:36:24,030 [50   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 221.1794ms.
+INFO  2020-09-09 13:36:24,033 [50   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 294.9955ms
+INFO  2020-09-09 13:36:24,036 [50   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:36:24,039 [50   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 314.8664ms 200 text/html; charset=utf-8
+INFO  2020-09-09 13:36:24,233 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 13:36:24,238 [74   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 13:36:24,241 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.0258ms 200 image/png
+INFO  2020-09-09 13:36:40,995 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 13:36:41,001 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:36:41,005 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:36:41,248 [42   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 13:36:41,282 [42   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 231.1031ms.
+INFO  2020-09-09 13:36:41,285 [42   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 277.2602ms
+INFO  2020-09-09 13:36:41,288 [42   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:36:41,291 [42   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 297.2116ms 200 text/html; charset=utf-8
+INFO  2020-09-09 13:36:41,476 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 13:36:41,481 [74   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 13:36:41,484 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.5246ms 200 image/png
+INFO  2020-09-09 13:36:55,933 [50   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 13:36:55,939 [50   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:36:55,942 [50   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:36:56,201 [50   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 13:36:56,234 [50   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 247.0005ms.
+INFO  2020-09-09 13:36:56,237 [50   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 292.1774ms
+INFO  2020-09-09 13:36:56,239 [50   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:36:56,242 [50   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 309.6053ms 200 text/html; charset=utf-8
+INFO  2020-09-09 13:36:56,279 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=56VFFj2mhDSLaUsiZAQG_lUx7kVpNMyX-Pua0MKMfOw  
+INFO  2020-09-09 13:36:56,283 [4    ] NetCore.StaticFiles.StaticFileMiddleware - The file /css/web.css was not modified
+INFO  2020-09-09 13:36:56,287 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.1783ms 304 text/css
+INFO  2020-09-09 13:36:56,393 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 13:36:56,398 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 13:36:56,401 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.9692ms 200 image/png
+INFO  2020-09-09 13:37:05,323 [50   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 13:37:05,329 [50   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:37:05,333 [50   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:37:05,594 [50   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 13:37:05,629 [50   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 249.4653ms.
+INFO  2020-09-09 13:37:05,632 [50   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 295.7237ms
+INFO  2020-09-09 13:37:05,635 [50   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:37:05,638 [50   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 315.8852ms 200 text/html; charset=utf-8
+INFO  2020-09-09 13:37:05,796 [50   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 13:37:05,802 [50   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 13:37:05,805 [50   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.1099ms 200 image/png
+INFO  2020-09-09 13:37:17,053 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 13:37:17,059 [74   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:37:17,063 [74   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:37:17,330 [74   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 13:37:17,365 [74   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 234.6324ms.
+INFO  2020-09-09 13:37:17,368 [74   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 302.5022ms
+INFO  2020-09-09 13:37:17,370 [74   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:37:17,373 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 320.625ms 200 text/html; charset=utf-8
+INFO  2020-09-09 13:37:17,502 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 13:37:17,506 [74   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 13:37:17,510 [74   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.7578ms 200 image/png
+INFO  2020-09-09 13:37:51,114 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 13:37:51,121 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:37:51,124 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:37:51,413 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 13:37:51,446 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 238.3397ms.
+INFO  2020-09-09 13:37:51,449 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 322.5387ms
+INFO  2020-09-09 13:37:51,452 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:37:51,454 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 341.0842ms 200 text/html; charset=utf-8
+INFO  2020-09-09 13:37:51,610 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 13:37:51,616 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 13:37:51,619 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.5146ms 200 image/png
+INFO  2020-09-09 13:38:16,724 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/  
+INFO  2020-09-09 13:38:16,730 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:38:16,733 [5    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.HomeController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:38:16,796 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-09-09 13:38:16,820 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 25.3246ms.
+INFO  2020-09-09 13:38:16,823 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc) in 86.7736ms
+INFO  2020-09-09 13:38:16,826 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:38:16,829 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 106.0832ms 200 text/html; charset=utf-8
+INFO  2020-09-09 13:38:16,858 [162  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=56VFFj2mhDSLaUsiZAQG_lUx7kVpNMyX-Pua0MKMfOw  
+INFO  2020-09-09 13:38:16,862 [162  ] NetCore.StaticFiles.StaticFileMiddleware - The file /css/web.css was not modified
+INFO  2020-09-09 13:38:16,866 [162  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.9158ms 304 text/css
+INFO  2020-09-09 13:38:18,084 [162  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=2  
+INFO  2020-09-09 13:38:18,089 [162  ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:38:18,093 [162  ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:38:18,111 [163  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-09-09 13:38:18,116 [163  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 5.343ms.
+INFO  2020-09-09 13:38:18,118 [163  ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 22.945ms
+INFO  2020-09-09 13:38:18,121 [163  ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:38:18,123 [163  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 40.2179ms 200 text/html; charset=utf-8
+INFO  2020-09-09 13:38:18,247 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/post/getall?SkipCount=0&MaxResultCount=10  
+INFO  2020-09-09 13:38:18,256 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-09-09 13:38:18,261 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Posts.Dto.PostDto]] GetAllAsync(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Posts.PostAppService (classifieds.Application).
+INFO  2020-09-09 13:38:18,284 [50   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2020-09-09 13:38:18,288 [50   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application) in 24.4663ms
+INFO  2020-09-09 13:38:18,290 [50   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2020-09-09 13:38:18,293 [50   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 47.2025ms 200 application/json; charset=utf-8
+INFO  2020-09-09 13:38:29,321 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/manage  
+INFO  2020-09-09 13:38:29,338 [4    ] uthorization.DefaultAuthorizationService - Authorization was successful.
+INFO  2020-09-09 13:38:29,342 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:38:29,353 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Manage", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(System.Nullable`1[classifieds.Web.Controllers.ManageController+ManageMessageId]) on controller classifieds.Web.Controllers.ManageController (classifieds.Web.Mvc).
+INFO  2020-09-09 13:38:29,432 [162  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-09-09 13:38:29,446 [162  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 30.942ms.
+INFO  2020-09-09 13:38:29,448 [162  ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc) in 93.0504ms
+INFO  2020-09-09 13:38:29,451 [162  ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.ManageController.Index (classifieds.Web.Mvc)'
+INFO  2020-09-09 13:38:29,454 [162  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 133.2529ms 200 text/html; charset=utf-8
+INFO  2020-09-09 14:13:04,800 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/  
+INFO  2020-09-09 14:13:05,267 [82   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:13:05,300 [82   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.HomeController (classifieds.Web.Mvc).
+INFO  2020-09-09 14:13:05,515 [82   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-09-09 14:13:05,560 [82   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 63.1618ms.
+INFO  2020-09-09 14:13:05,563 [78   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 14:13:05,567 [82   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc) in 260.6976ms
+INFO  2020-09-09 14:13:05,571 [82   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:13:05,601 [82   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 780.1619ms 200 text/html; charset=utf-8
+INFO  2020-09-09 14:13:05,647 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:13:05,652 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 14:13:05,708 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 14:13:05,722 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 15.1799ms.
+INFO  2020-09-09 14:13:05,725 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 70.4757ms
+INFO  2020-09-09 14:13:05,730 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:13:05,733 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 173.614ms 200 text/html; charset=utf-8
+INFO  2020-09-09 14:13:05,927 [82   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=56VFFj2mhDSLaUsiZAQG_lUx7kVpNMyX-Pua0MKMfOw  
+INFO  2020-09-09 14:13:05,932 [82   ] NetCore.StaticFiles.StaticFileMiddleware - The file /css/web.css was not modified
+INFO  2020-09-09 14:13:05,936 [82   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.3009ms 304 text/css
+INFO  2020-09-09 14:46:04,932 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 14:46:05,311 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:46:05,319 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 14:46:06,652 [48   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 14:46:06,769 [48   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 1278.2257ms.
+INFO  2020-09-09 14:46:06,772 [48   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 1450.0442ms
+INFO  2020-09-09 14:46:06,775 [48   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:46:06,778 [48   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 1853.6298ms 200 text/html; charset=utf-8
+INFO  2020-09-09 14:46:06,830 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=56VFFj2mhDSLaUsiZAQG_lUx7kVpNMyX-Pua0MKMfOw  
+INFO  2020-09-09 14:46:06,835 [4    ] NetCore.StaticFiles.StaticFileMiddleware - The file /css/web.css was not modified
+INFO  2020-09-09 14:46:06,840 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 10.0774ms 304 text/css
+INFO  2020-09-09 14:46:08,111 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 14:46:08,145 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 14:46:08,149 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 38.4758ms 200 image/png
+INFO  2020-09-09 14:46:41,998 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 14:46:42,008 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:46:42,014 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 14:46:42,423 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 14:46:42,464 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 360.366ms.
+INFO  2020-09-09 14:46:42,468 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 449.6478ms
+INFO  2020-09-09 14:46:42,471 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:46:42,474 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 476.9657ms 200 text/html; charset=utf-8
+INFO  2020-09-09 14:46:42,744 [153  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 14:46:42,748 [153  ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 14:46:42,752 [153  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.6241ms 200 image/png
+INFO  2020-09-09 14:47:05,681 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 14:47:05,689 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:47:05,693 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 14:47:06,058 [64   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 14:47:06,095 [64   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 333.6418ms.
+INFO  2020-09-09 14:47:06,098 [64   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 401.6607ms
+INFO  2020-09-09 14:47:06,101 [64   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:47:06,104 [64   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 423.5702ms 200 text/html; charset=utf-8
+INFO  2020-09-09 14:47:06,311 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 14:47:06,317 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 14:47:06,320 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.8493ms 200 image/png
+INFO  2020-09-09 14:47:53,734 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 14:47:53,741 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:47:53,745 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 14:47:54,130 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 14:47:54,167 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 345.2421ms.
+INFO  2020-09-09 14:47:54,170 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 422.0607ms
+INFO  2020-09-09 14:47:54,173 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:47:54,175 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 442.1836ms 200 text/html; charset=utf-8
+INFO  2020-09-09 14:47:54,401 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 14:47:54,406 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 14:47:54,409 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.8339ms 200 image/png
+INFO  2020-09-09 14:58:22,276 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 14:58:22,283 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:58:22,286 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 14:58:22,589 [70   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 14:58:22,630 [70   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 245.458ms.
+INFO  2020-09-09 14:58:22,634 [70   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 343.5819ms
+INFO  2020-09-09 14:58:22,637 [70   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:58:22,639 [70   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 363.4569ms 200 text/html; charset=utf-8
+INFO  2020-09-09 14:58:22,678 [85   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=56VFFj2mhDSLaUsiZAQG_lUx7kVpNMyX-Pua0MKMfOw  
+INFO  2020-09-09 14:58:22,683 [85   ] NetCore.StaticFiles.StaticFileMiddleware - The file /css/web.css was not modified
+INFO  2020-09-09 14:58:22,686 [85   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.4566ms 304 text/css
+INFO  2020-09-09 14:58:22,698 [85   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/persian-numbers-jquery-plugin-master/persianNum.jquery-2.min.js?v=h8SW3Mit6gHBXt2vuilFOULtmoM_4DydKPWPYmXtn2I  
+INFO  2020-09-09 14:58:22,703 [85   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/persian-numbers-jquery-plugin-master/persianNum.jquery-2.min.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\libs\persian-numbers-jquery-plugin-master\persianNum.jquery-2.min.js'
+INFO  2020-09-09 14:58:22,707 [85   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.636ms 200 application/javascript
+INFO  2020-09-09 14:58:22,872 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 14:58:22,877 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 14:58:22,881 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.7268ms 200 image/png
+INFO  2020-09-09 14:58:49,489 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 14:58:49,495 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:58:49,499 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 14:58:49,585 [153  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 14:58:49,595 [153  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 5.8152ms.
+INFO  2020-09-09 14:58:49,598 [153  ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 96.663ms
+INFO  2020-09-09 14:58:49,601 [153  ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:58:49,604 [153  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 115.1395ms 200 text/html; charset=utf-8
+INFO  2020-09-09 14:58:49,856 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 14:58:49,861 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 14:58:49,865 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.2846ms 200 image/png
+INFO  2020-09-09 14:59:05,719 [85   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 14:59:05,725 [85   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:59:05,728 [85   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 14:59:05,801 [85   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 14:59:05,814 [85   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 11.8385ms.
+INFO  2020-09-09 14:59:05,817 [85   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 85.4886ms
+INFO  2020-09-09 14:59:05,819 [85   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:59:05,822 [85   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 104.4823ms 200 text/html; charset=utf-8
+INFO  2020-09-09 14:59:05,972 [89   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.ico  
+INFO  2020-09-09 14:59:05,982 [89   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 10.7236ms 404 
+INFO  2020-09-09 14:59:56,623 [96   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 14:59:56,629 [96   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:59:56,632 [96   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 14:59:56,921 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 14:59:56,959 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 255.2326ms.
+INFO  2020-09-09 14:59:56,961 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 326.8315ms
+INFO  2020-09-09 14:59:56,964 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 14:59:56,967 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 345.1456ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:13:14,358 [55   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:13:14,365 [55   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:13:14,368 [55   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:13:14,708 [55   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:13:14,747 [55   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 259.02ms.
+INFO  2020-09-09 15:13:14,749 [55   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 378.9221ms
+INFO  2020-09-09 15:13:14,752 [55   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:13:14,754 [55   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 397.4515ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:13:14,788 [75   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=56VFFj2mhDSLaUsiZAQG_lUx7kVpNMyX-Pua0MKMfOw  
+INFO  2020-09-09 15:13:14,791 [75   ] NetCore.StaticFiles.StaticFileMiddleware - The file /css/web.css was not modified
+INFO  2020-09-09 15:13:14,795 [75   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.733ms 304 text/css
+INFO  2020-09-09 15:13:29,088 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:13:29,093 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:13:29,097 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.8167ms 200 image/png
+INFO  2020-09-09 15:13:41,046 [146  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:13:41,052 [146  ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:13:41,056 [146  ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:13:41,440 [146  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:13:41,477 [146  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 308.1371ms.
+INFO  2020-09-09 15:13:41,479 [146  ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 420.9951ms
+INFO  2020-09-09 15:13:41,482 [146  ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:13:41,485 [146  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 439.0041ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:13:41,627 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:13:41,631 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:13:41,634 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.4797ms 200 image/png
+INFO  2020-09-09 15:13:43,914 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:13:43,922 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:13:43,933 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:13:43,983 [75   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:13:43,988 [75   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 5.3552ms.
+INFO  2020-09-09 15:13:43,992 [75   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 54.9611ms
+INFO  2020-09-09 15:13:43,995 [75   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:13:43,998 [75   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 86.4741ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:13:44,033 [75   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/css/bulma-rtl.css?v=8c3iUwMTRp4NGIoybGwbQUO27Luo4DwwC27e-2IXGzM  
+INFO  2020-09-09 15:13:44,038 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/font-awesome/css/all.min.css?v=-N4_V_SbAFiW1MPBCXnfnP9QSN3-Keu-NlB-0ev_YKQ  
+INFO  2020-09-09 15:13:44,042 [55   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/dropzone/dist/min/dropzone.min.css?v=AgL8yEmNfLtCpH-gYp9xqJwiDITGqcwAbI8tCfnY2lw  
+INFO  2020-09-09 15:13:44,046 [139  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=56VFFj2mhDSLaUsiZAQG_lUx7kVpNMyX-Pua0MKMfOw  
+INFO  2020-09-09 15:13:44,049 [146  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/jquery/jquery.js  
+INFO  2020-09-09 15:13:44,052 [144  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/dropzone/dist/min/dropzone.min.js?v=0dnqNFIUaKaUaTYGnJgQvClwTsCqk0K0FZAMPSS8LHs  
+INFO  2020-09-09 15:13:44,131 [55   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/lib/dropzone/dist/min/dropzone.min.css'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\lib\dropzone\dist\min\dropzone.min.css'
+INFO  2020-09-09 15:13:44,136 [146  ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/font-awesome/css/all.min.css'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\libs\font-awesome\css\all.min.css'
+INFO  2020-09-09 15:13:44,149 [55   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 97.0261ms 200 text/css
+INFO  2020-09-09 15:13:44,154 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/jquery/jquery.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\libs\jquery\jquery.js'
+INFO  2020-09-09 15:13:44,159 [139  ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/css/web.css'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\css\web.css'
+INFO  2020-09-09 15:13:44,163 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 111.1276ms 200 application/javascript
+INFO  2020-09-09 15:13:44,166 [55   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/lib/bulma/css/bulma-rtl.css'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\lib\bulma\css\bulma-rtl.css'
+INFO  2020-09-09 15:13:44,170 [139  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 127.2556ms 200 text/css
+INFO  2020-09-09 15:13:44,173 [55   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 138.2793ms 200 text/css
+INFO  2020-09-09 15:13:44,177 [146  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 103.2822ms 200 text/css
+INFO  2020-09-09 15:13:44,181 [142  ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/lib/dropzone/dist/min/dropzone.min.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\lib\dropzone\dist\min\dropzone.min.js'
+INFO  2020-09-09 15:13:44,185 [59   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/jquery-validate/jquery.validate.js?v=xLhce0FUawd11QSwrvXSwST0oHhOolNoH9cUXAcsIAg  
+INFO  2020-09-09 15:13:44,189 [146  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/jquery-validate/jquery.validate.unobtrusive.js?v=XNNC8ESw29iopRLukVRazlP44TxnjGmEQanHJ5kHmtk  
+INFO  2020-09-09 15:13:44,192 [142  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 133.9483ms 200 application/javascript
+INFO  2020-09-09 15:13:44,197 [55   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/persian-numbers-jquery-plugin-master/persianNum.jquery-2.min.js?v=h8SW3Mit6gHBXt2vuilFOULtmoM_4DydKPWPYmXtn2I  
+INFO  2020-09-09 15:13:44,234 [68   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:13:44,237 [75   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/jquery-validate/jquery.validate.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\libs\jquery-validate\jquery.validate.js'
+INFO  2020-09-09 15:13:44,242 [139  ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/jquery-validate/jquery.validate.unobtrusive.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\libs\jquery-validate\jquery.validate.unobtrusive.js'
+INFO  2020-09-09 15:13:44,246 [55   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/persian-numbers-jquery-plugin-master/persianNum.jquery-2.min.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\libs\persian-numbers-jquery-plugin-master\persianNum.jquery-2.min.js'
+INFO  2020-09-09 15:13:44,249 [75   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 75.9539ms 200 application/javascript
+INFO  2020-09-09 15:13:44,252 [55   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 58.5875ms 200 application/javascript
+INFO  2020-09-09 15:13:44,254 [139  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 61.2877ms 200 application/javascript
+INFO  2020-09-09 15:13:44,258 [68   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:13:44,262 [68   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 28.0785ms 200 image/png
+INFO  2020-09-09 15:13:51,663 [139  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/font-awesome/webfonts/fa-solid-900.woff2  
+INFO  2020-09-09 15:13:51,694 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/font-awesome/webfonts/fa-solid-900.woff2'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\libs\font-awesome\webfonts\fa-solid-900.woff2'
+INFO  2020-09-09 15:13:51,697 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 34.4231ms 200 font/woff2
+INFO  2020-09-09 15:13:52,151 [139  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:13:52,156 [139  ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:13:52,164 [139  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.5783ms 200 image/png
+INFO  2020-09-09 15:21:42,542 [40   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:21:42,645 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:21:42,650 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:21:42,918 [150  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:21:42,957 [150  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 250.9908ms.
+INFO  2020-09-09 15:21:42,960 [150  ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 306.8009ms
+INFO  2020-09-09 15:21:42,962 [150  ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:21:42,965 [150  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 423.2434ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:21:43,142 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:21:43,146 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:21:43,150 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.7107ms 200 image/png
+INFO  2020-09-09 15:23:53,075 [40   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:23:53,086 [40   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:23:53,090 [40   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:23:53,403 [40   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:23:53,441 [40   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 275.4872ms.
+INFO  2020-09-09 15:23:53,444 [40   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 350.6591ms
+INFO  2020-09-09 15:23:53,447 [40   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:23:53,450 [40   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 376.618ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:23:53,606 [40   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:23:53,611 [40   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:23:53,614 [40   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.653ms 200 image/png
+INFO  2020-09-09 15:24:07,669 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:24:07,681 [80   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:24:07,684 [80   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:24:07,940 [66   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:24:07,978 [66   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 238.4052ms.
+INFO  2020-09-09 15:24:07,981 [66   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 293.7132ms
+INFO  2020-09-09 15:24:07,983 [66   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:24:07,986 [66   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 317.8103ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:24:08,116 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:24:08,121 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:24:08,125 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.681ms 200 image/png
+INFO  2020-09-09 15:33:35,142 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=56VFFj2mhDSLaUsiZAQG_lUx7kVpNMyX-Pua0MKMfOw  
+INFO  2020-09-09 15:33:35,145 [4    ] NetCore.StaticFiles.StaticFileMiddleware - The file /css/web.css was not modified
+INFO  2020-09-09 15:33:35,149 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.3857ms 304 text/css
+INFO  2020-09-09 15:33:59,775 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.ico  
+INFO  2020-09-09 15:33:59,784 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.0321ms 404 
+INFO  2020-09-09 15:34:49,437 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:34:49,443 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:34:49,447 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:34:49,779 [104  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:34:49,815 [104  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 259.5419ms.
+INFO  2020-09-09 15:34:49,818 [104  ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 368.4565ms
+INFO  2020-09-09 15:34:49,843 [104  ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:34:49,845 [104  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 408.9513ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:34:50,120 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 15:34:50,129 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.9784ms 404 
+INFO  2020-09-09 15:34:52,064 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:34:52,069 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:34:52,072 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.9545ms 200 image/png
+INFO  2020-09-09 15:35:11,928 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:35:11,934 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:35:11,938 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:35:12,216 [104  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:35:12,252 [104  ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 259.6259ms.
+INFO  2020-09-09 15:35:12,255 [104  ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 314.1182ms
+INFO  2020-09-09 15:35:12,257 [104  ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:35:12,260 [104  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 332.3352ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:35:12,394 [104  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 15:35:12,401 [104  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.1583ms 404 
+INFO  2020-09-09 15:35:12,529 [104  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:35:12,534 [104  ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:35:12,538 [104  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.0197ms 200 image/png
+INFO  2020-09-09 15:36:19,939 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:36:19,945 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:36:19,949 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:36:20,222 [90   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:36:20,258 [90   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 248.3596ms.
+INFO  2020-09-09 15:36:20,261 [90   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 309.2446ms
+INFO  2020-09-09 15:36:20,264 [90   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:36:20,267 [90   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 327.2377ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:36:20,492 [90   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:36:20,497 [90   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:36:20,500 [90   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.8449ms 200 image/png
+INFO  2020-09-09 15:36:27,416 [157  ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:36:27,423 [157  ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:36:27,427 [157  ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:36:27,494 [99   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:36:27,499 [99   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 5.0409ms.
+INFO  2020-09-09 15:36:27,502 [99   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 72.6357ms
+INFO  2020-09-09 15:36:27,505 [99   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:36:27,507 [99   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 92.5287ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:36:27,664 [99   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:36:27,669 [99   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:36:27,673 [99   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.0465ms 200 image/png
+INFO  2020-09-09 15:37:18,790 [99   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:37:18,797 [99   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:37:18,800 [99   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:37:19,083 [99   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:37:19,118 [99   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 252.6714ms.
+INFO  2020-09-09 15:37:19,120 [99   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 317.5896ms
+INFO  2020-09-09 15:37:19,123 [99   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:37:19,125 [99   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 335.9189ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:37:19,350 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:37:19,355 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:37:19,358 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.6359ms 200 image/png
+INFO  2020-09-09 15:38:08,980 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:38:08,987 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:38:08,990 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:38:09,280 [99   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:38:09,316 [99   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 262.9774ms.
+INFO  2020-09-09 15:38:09,318 [99   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 325.5896ms
+INFO  2020-09-09 15:38:09,321 [99   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:38:09,324 [99   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 345.2116ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:38:09,592 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:38:09,596 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:38:09,600 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.8604ms 200 image/png
+INFO  2020-09-09 15:40:53,915 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:40:53,923 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:40:53,926 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:40:54,237 [89   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:40:54,281 [89   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 248.7198ms.
+INFO  2020-09-09 15:40:54,284 [89   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 355.1973ms
+INFO  2020-09-09 15:40:54,287 [89   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:40:54,291 [89   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 375.3262ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:40:54,560 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:40:54,564 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:40:54,568 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 6.8519ms 200 image/png
+INFO  2020-09-09 15:41:28,581 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:41:28,588 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:41:28,592 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:41:28,856 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:41:28,891 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 240.6456ms.
+INFO  2020-09-09 15:41:28,893 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 298.5854ms
+INFO  2020-09-09 15:41:28,895 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:41:28,899 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 317.4231ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:41:29,276 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:41:29,280 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:41:29,284 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.3707ms 200 image/png
+INFO  2020-09-09 15:49:52,098 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=56VFFj2mhDSLaUsiZAQG_lUx7kVpNMyX-Pua0MKMfOw  
+INFO  2020-09-09 15:49:52,101 [4    ] NetCore.StaticFiles.StaticFileMiddleware - The file /css/web.css was not modified
+INFO  2020-09-09 15:49:52,104 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 6.7848ms 304 text/css
+DEBUG 2020-09-09 15:54:27,615 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-09-09 15:54:27,902 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-09-09 15:54:27,915 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.Web.Startup.classifiedsWebMvcModule, classifieds.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,917 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsWebCoreModule, classifieds.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,917 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsApplicationModule, classifieds.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,918 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsCoreModule, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,918 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,918 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,918 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,919 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,919 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.EntityFrameworkCore.classifiedsEntityFrameworkModule, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,919 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,919 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,920 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,920 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,920 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,920 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:27,922 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-09-09 15:54:28,041 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-09-09 15:54:28,041 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-09-09 15:54:28,041 [1    ] o.Configuration.LanguageManagementConfig - Converted classifieds (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-09-09 15:54:28,041 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-09-09 15:54:28,476 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: classifieds.EntityFrameworkCore.classifiedsDbContext, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 15:54:29,440 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-09-09 15:54:29,474 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-09-09 15:54:29,486 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-09-09 15:54:29,492 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: classifieds
+DEBUG 2020-09-09 15:54:29,498 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-09-09 15:54:29,698 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-09-09 15:54:29,820 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[classifieds.MultiTenancy.Tenant, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[classifieds.Authorization.Users.User, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-09-09 15:54:29,875 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 15 classes define auto mapping attributes
+DEBUG 2020-09-09 15:54:29,875 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-09-09 15:54:29,880 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.CreateUserDto
+DEBUG 2020-09-09 15:54:29,881 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.UserDto
+DEBUG 2020-09-09 15:54:29,881 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-09-09 15:54:29,881 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-09-09 15:54:29,881 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Roles.Dto.PermissionDto
+DEBUG 2020-09-09 15:54:29,881 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.PropertyTypes.Dto.PropertyTypeDto
+DEBUG 2020-09-09 15:54:29,882 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.PostDto
+DEBUG 2020-09-09 15:54:29,882 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-09-09 15:54:29,882 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.TenantDto
+DEBUG 2020-09-09 15:54:29,882 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Districts.Dto.DistrictDto
+DEBUG 2020-09-09 15:54:29,882 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Cities.Dto.CityDto
+DEBUG 2020-09-09 15:54:29,882 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Categories.Dto.CategoryDto
+DEBUG 2020-09-09 15:54:29,883 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Web.Views.Shared.Components.TenantChange.TenantChangeViewModel
+DEBUG 2020-09-09 15:54:29,883 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Web.Models.Roles.EditRoleModalViewModel
+INFO  2020-09-09 15:54:32,594 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2020-09-09 15:54:33,439 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\qq\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-09-09 15:54:33,517 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/  
+INFO  2020-09-09 15:54:37,475 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:54:37,733 [11   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.HomeController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:54:39,435 [12   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-09-09 15:54:39,941 [12   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 541.022ms.
+INFO  2020-09-09 15:54:39,946 [12   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc) in 2210.5509ms
+INFO  2020-09-09 15:54:39,949 [12   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:54:39,960 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 6443.6192ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:54:41,831 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:54:41,844 [13   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:54:41,851 [13   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:54:43,177 [17   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:54:43,286 [17   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 113.7701ms.
+INFO  2020-09-09 15:54:43,288 [17   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 1435.19ms
+INFO  2020-09-09 15:54:43,290 [17   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:54:43,293 [17   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 1462.2439ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:54:43,338 [17   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/PersianConvertor/persianNum.jquery-2.min.js?v=h8SW3Mit6gHBXt2vuilFOULtmoM_4DydKPWPYmXtn2I  
+INFO  2020-09-09 15:54:43,354 [17   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/PersianConvertor/persianNum.jquery-2.min.js'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\libs\PersianConvertor\persianNum.jquery-2.min.js'
+INFO  2020-09-09 15:54:43,357 [17   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 19.0692ms 200 application/javascript
+INFO  2020-09-09 15:54:55,564 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:54:55,579 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:54:55,583 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:54:55,650 [15   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:54:55,662 [15   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 12.7193ms.
+INFO  2020-09-09 15:54:55,666 [15   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 79.5583ms
+INFO  2020-09-09 15:54:55,668 [15   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:54:55,672 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 107.7757ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:59:08,189 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:59:08,201 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:59:08,205 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:59:13,086 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:59:13,123 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 4799.8705ms.
+INFO  2020-09-09 15:59:13,125 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 4917.8599ms
+INFO  2020-09-09 15:59:13,127 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:59:13,130 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 4941.8304ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:59:13,491 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:59:13,497 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:59:13,500 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 10.2618ms 200 image/png
+INFO  2020-09-09 15:59:14,792 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 15:59:14,805 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 13.3153ms 404 
+INFO  2020-09-09 15:59:24,110 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:59:24,118 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:59:24,121 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:59:24,600 [41   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:59:24,635 [41   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 462.8935ms.
+INFO  2020-09-09 15:59:24,638 [41   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 514.0129ms
+INFO  2020-09-09 15:59:24,641 [41   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:59:24,643 [41   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 533.6346ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:59:24,768 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 15:59:24,776 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.2095ms 404 
+INFO  2020-09-09 15:59:24,977 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:59:24,982 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:59:24,985 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.9418ms 200 image/png
+INFO  2020-09-09 15:59:49,981 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 15:59:49,989 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:59:49,993 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 15:59:50,433 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 15:59:50,470 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 408.7234ms.
+INFO  2020-09-09 15:59:50,473 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 477.3516ms
+INFO  2020-09-09 15:59:50,476 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 15:59:50,479 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 497.4916ms 200 text/html; charset=utf-8
+INFO  2020-09-09 15:59:50,612 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 15:59:50,622 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.5041ms 404 
+INFO  2020-09-09 15:59:50,834 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 15:59:50,838 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 15:59:50,842 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.2219ms 200 image/png
+INFO  2020-09-09 16:00:10,361 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:00:10,367 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:00:10,372 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:00:10,760 [43   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:00:10,802 [43   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 367.485ms.
+INFO  2020-09-09 16:00:10,805 [43   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 429.8191ms
+INFO  2020-09-09 16:00:10,807 [43   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:00:10,810 [43   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 449.6343ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:00:10,940 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 16:00:10,949 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.8285ms 404 
+INFO  2020-09-09 16:00:11,157 [39   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 16:00:11,161 [39   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 16:00:11,165 [39   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.6547ms 200 image/png
+INFO  2020-09-09 16:01:03,585 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:01:03,592 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:01:03,595 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:01:03,885 [18   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:01:03,922 [18   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 264.3414ms.
+INFO  2020-09-09 16:01:03,925 [18   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 327.6666ms
+INFO  2020-09-09 16:01:03,927 [18   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:01:03,929 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 351.4934ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:01:04,058 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 16:01:04,068 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.7568ms 404 
+INFO  2020-09-09 16:01:04,316 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 16:01:04,322 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 16:01:04,325 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.6174ms 200 image/png
+INFO  2020-09-09 16:01:51,507 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:01:51,513 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:01:51,518 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:01:51,878 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:01:51,923 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 291.1283ms.
+INFO  2020-09-09 16:01:51,925 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 405.2137ms
+INFO  2020-09-09 16:01:51,928 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:01:51,931 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 423.6405ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:01:52,209 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 16:01:52,214 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 16:01:52,217 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.7104ms 200 image/png
+INFO  2020-09-09 16:02:01,224 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:02:01,233 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:02:01,238 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:02:01,298 [8    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:02:01,306 [8    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 8.2127ms.
+INFO  2020-09-09 16:02:01,308 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 68.1337ms
+INFO  2020-09-09 16:02:01,311 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:02:01,314 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 90.1919ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:02:01,697 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 16:02:01,703 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 16:02:01,706 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.5369ms 200 image/png
+INFO  2020-09-09 16:02:03,762 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 16:02:03,771 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.1967ms 404 
+INFO  2020-09-09 16:02:23,204 [58   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:02:23,211 [58   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:02:23,215 [58   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:02:23,520 [60   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:02:23,560 [60   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 284.0735ms.
+INFO  2020-09-09 16:02:23,563 [60   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 344.7658ms
+INFO  2020-09-09 16:02:23,566 [60   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:02:23,569 [60   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 366.2925ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:02:23,713 [56   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 16:02:23,722 [56   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.6806ms 404 
+INFO  2020-09-09 16:02:23,929 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 16:02:23,934 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 16:02:23,937 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.2708ms 200 image/png
+INFO  2020-09-09 16:02:55,470 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:02:55,476 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:02:55,480 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:02:55,782 [72   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:02:55,823 [72   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 286.4219ms.
+INFO  2020-09-09 16:02:55,826 [72   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 342.6825ms
+INFO  2020-09-09 16:02:55,829 [72   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:02:55,833 [72   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 362.6346ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:02:55,974 [72   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 16:02:55,983 [72   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.2756ms 404 
+INFO  2020-09-09 16:02:56,190 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 16:02:56,195 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 16:02:56,198 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.7812ms 200 image/png
+INFO  2020-09-09 16:03:11,861 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:03:11,868 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:03:11,871 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:03:12,157 [13   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:03:12,195 [13   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 264.1946ms.
+INFO  2020-09-09 16:03:12,198 [13   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 324.2456ms
+INFO  2020-09-09 16:03:12,201 [13   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:03:12,204 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 343.2973ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:03:12,342 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 16:03:12,351 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 9.1732ms 404 
+INFO  2020-09-09 16:03:12,550 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 16:03:12,555 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 16:03:12,558 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.1518ms 200 image/png
+INFO  2020-09-09 16:04:27,482 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:04:27,489 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:04:27,493 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:04:27,809 [80   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:04:27,845 [80   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 272.1097ms.
+INFO  2020-09-09 16:04:27,847 [80   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 352.4512ms
+INFO  2020-09-09 16:04:27,850 [80   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:04:27,852 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 370.5009ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:04:27,886 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=56VFFj2mhDSLaUsiZAQG_lUx7kVpNMyX-Pua0MKMfOw  
+INFO  2020-09-09 16:04:27,895 [8    ] NetCore.StaticFiles.StaticFileMiddleware - The file /css/web.css was not modified
+INFO  2020-09-09 16:04:27,900 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 14.0571ms 304 text/css
+INFO  2020-09-09 16:04:27,980 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 16:04:27,989 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.2015ms 404 
+INFO  2020-09-09 16:04:28,235 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 16:04:28,239 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 16:04:28,243 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.5851ms 200 image/png
+INFO  2020-09-09 16:04:57,211 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:04:57,217 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:04:57,221 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:04:57,502 [80   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:04:57,545 [80   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 269.7811ms.
+INFO  2020-09-09 16:04:57,548 [80   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 324.4757ms
+INFO  2020-09-09 16:04:57,551 [80   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:04:57,555 [80   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 342.4862ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:04:57,698 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 16:04:57,707 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.7995ms 404 
+INFO  2020-09-09 16:04:57,908 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 16:04:57,912 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 16:04:57,915 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7.7741ms 200 image/png
+INFO  2020-09-09 16:07:03,249 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:07:03,255 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:07:03,259 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:07:03,543 [95   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:07:03,578 [95   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 248.082ms.
+INFO  2020-09-09 16:07:03,581 [95   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 320.0088ms
+INFO  2020-09-09 16:07:03,584 [95   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:07:03,586 [95   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 338.2844ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:07:03,715 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/sass/layout/hero.sass  
+INFO  2020-09-09 16:07:03,724 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 10.0281ms 404 
+INFO  2020-09-09 16:07:03,971 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 16:07:03,974 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 16:07:03,977 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 6.8063ms 200 image/png
+DEBUG 2020-09-09 16:09:16,891 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2020-09-09 16:09:16,971 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2020-09-09 16:09:16,986 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.Web.Startup.classifiedsWebMvcModule, classifieds.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,988 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsWebCoreModule, classifieds.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,988 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsApplicationModule, classifieds.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,988 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsCoreModule, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,989 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,989 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,989 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,989 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,990 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.EntityFrameworkCore.classifiedsEntityFrameworkModule, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,990 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,990 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,990 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,990 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,991 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,991 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:16,993 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2020-09-09 16:09:17,079 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-09-09 16:09:17,079 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-09-09 16:09:17,079 [1    ] o.Configuration.LanguageManagementConfig - Converted classifieds (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-09-09 16:09:17,079 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2020-09-09 16:09:17,455 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: classifieds.EntityFrameworkCore.classifiedsDbContext, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2020-09-09 16:09:18,412 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2020-09-09 16:09:18,441 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2020-09-09 16:09:18,453 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2020-09-09 16:09:18,459 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: classifieds
+DEBUG 2020-09-09 16:09:18,465 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2020-09-09 16:09:18,663 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2020-09-09 16:09:18,782 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[classifieds.MultiTenancy.Tenant, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[classifieds.Authorization.Users.User, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2020-09-09 16:09:18,836 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 15 classes define auto mapping attributes
+DEBUG 2020-09-09 16:09:18,836 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2020-09-09 16:09:18,842 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.CreateUserDto
+DEBUG 2020-09-09 16:09:18,842 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.UserDto
+DEBUG 2020-09-09 16:09:18,843 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2020-09-09 16:09:18,843 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.UserLoginInfoDto
+DEBUG 2020-09-09 16:09:18,843 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Roles.Dto.PermissionDto
+DEBUG 2020-09-09 16:09:18,843 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.PropertyTypes.Dto.PropertyTypeDto
+DEBUG 2020-09-09 16:09:18,843 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.PostDto
+DEBUG 2020-09-09 16:09:18,844 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2020-09-09 16:09:18,844 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.TenantDto
+DEBUG 2020-09-09 16:09:18,844 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Districts.Dto.DistrictDto
+DEBUG 2020-09-09 16:09:18,844 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Cities.Dto.CityDto
+DEBUG 2020-09-09 16:09:18,844 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Categories.Dto.CategoryDto
+DEBUG 2020-09-09 16:09:18,844 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Web.Views.Shared.Components.TenantChange.TenantChangeViewModel
+DEBUG 2020-09-09 16:09:18,844 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Web.Models.Roles.EditRoleModalViewModel
+INFO  2020-09-09 16:09:21,196 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2020-09-09 16:09:21,657 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\qq\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2020-09-09 16:09:21,727 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/  
+INFO  2020-09-09 16:09:25,196 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:09:25,434 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.HomeController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:09:27,121 [11   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2020-09-09 16:09:27,642 [11   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 548.9852ms.
+INFO  2020-09-09 16:09:27,681 [11   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc) in 2209.4171ms
+INFO  2020-09-09 16:09:27,684 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:09:27,695 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 5968.9354ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:10:27,216 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:10:27,227 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:10:27,234 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:10:28,262 [7    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:10:28,378 [7    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 127.0223ms.
+INFO  2020-09-09 16:10:28,380 [7    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 1143.6875ms
+INFO  2020-09-09 16:10:28,382 [7    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:10:28,384 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 1168.0104ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:12:10,193 [29   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:12:10,205 [29   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:12:10,209 [29   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:12:14,187 [29   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:12:14,225 [29   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 3957.4973ms.
+INFO  2020-09-09 16:12:14,227 [29   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 4016.0771ms
+INFO  2020-09-09 16:12:14,229 [29   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:12:14,232 [29   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 4043.6327ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:12:16,436 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 16:12:16,467 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 16:12:16,469 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 33.2691ms 200 image/png
+INFO  2020-09-09 16:12:34,314 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/create  
+INFO  2020-09-09 16:12:34,322 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:12:34,326 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Create", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Create() on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2020-09-09 16:12:34,421 [7    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Create.
+INFO  2020-09-09 16:12:34,429 [7    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Create executed in 12.5131ms.
+INFO  2020-09-09 16:12:34,431 [7    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc) in 103.247ms
+INFO  2020-09-09 16:12:34,434 [7    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Create (classifieds.Web.Mvc)'
+INFO  2020-09-09 16:12:34,436 [7    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 122.9945ms 200 text/html; charset=utf-8
+INFO  2020-09-09 16:12:34,680 [29   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2020-09-09 16:12:34,686 [29   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\5.7.0\aspnet-core\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2020-09-09 16:12:34,689 [29   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.9486ms 200 image/png

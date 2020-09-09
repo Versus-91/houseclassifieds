@@ -8,7 +8,7 @@
 }
 <div class="hero is-fullheight is-light is-bold">
     <div class="hero-body">
-        <div class="container">
+        <div class="container persian">
             <div class="box">
                 <h1>ارسال آگهی جدید</h1>
                 <br />
@@ -60,7 +60,7 @@
                         <div class="field-body">
                             <div class="field">
                                 <div class="control has-icons-left">
-                                    <input type="number" class="input" placeholder="قیمت" name="Price" value="" />
+                                    <input class="input currency" dir="ltr" placeholder="قیمت" name="Price" />
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
@@ -68,7 +68,7 @@
                             </div>
                             <div class="field" id="deposit">
                                 <div class="control has-icons-left">
-                                    <input type="number" class="input" placeholder="پیش پرداخت" id="depostInput" name="Deposit" value="" />
+                                    <input class="input currency" dir="ltr" placeholder="پیش پرداخت" id="depostInput" name="Deposit" />
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
@@ -111,7 +111,7 @@
                             <div class="field">
                                 <label asp-for="Area" class="label">متراژ</label>
                                 <div class="control has-icons-left ">
-                                    <input class="input" asp-for="Area" placeholder="مساحت" />
+                                    <input class="input area" id="area" asp-for="Area" placeholder="مساحت" />
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-globe"></i>
                                     </span>
@@ -131,7 +131,12 @@
                         <div class=" dz-clickable dropzone" id="dropzone">
                             <div class="dz-message ">
                                 <i class="fas fa-2x fa-upload has-text-success"></i><br />
-                                برای اپلود فایل کلیک کنید
+                                <br />
+                                <span class="title is-5">
+                                    برای اپلود فایل کلیک کنید
+                                </span>
+                                <br />
+                                <span class="subtitle is-6">حداکثر حجم هر عکس 4 مگابایت است .</span>
                             </div>
                         </div>
                     </div>
@@ -157,7 +162,7 @@
         </div>
     </div>
 </div>
-<div id="tpl">
+<div id="tpl" style="display:none">
     <div class="dz-preview dz-file-preview">
         <div class="dz-image">
             <img data-dz-thumbnail />
@@ -183,151 +188,16 @@
     <script src="~/lib/dropzone/dist/min/dropzone.min.js" asp-append-version="true"></script>
     <script src="~/libs/jquery-validate/jquery.validate.js" asp-append-version="true"></script>
     <script src="~/libs/jquery-validate/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
+    <script src="~/libs/persian-numbers-jquery-plugin-master/persianNum.jquery-2.min.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
+
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
-    <script>
-        Dropzone.autoDiscover = false;
-
-        $(document).ready(function () {
-            var form = $("#CreateAd");
-            var submitButton = $("#submitButton");
-            var marker = {};
-            var depositFormField = $("#deposit");
-            var BedField = $("#bedroom");
-            var depositInput = $("#depostInput");
-            if ($("#category option:selected").text().includes("رهن")) {
-                depositFormField.show();
-            } else {
-                depositFormField.hide();
-            }
-            if ($("#type option:selected").text().includes("اپارتمان") || $("#type option:selected").text().includes("ویلایی")) {
-                BedField.show();
-            } else {
-                BedField.hide();
-            }
-            $("#type").change(function (e) {
-                if ($("#type option:selected").text().includes("اپارتمان") || $("#type option:selected").text().includes("ویلایی")) {
-                    BedField.show();
-                } else {
-                    BedField.hide();
-                }
-                depositInput.val('');
-            });
-            $("#category").change(function (e) {
-                if ($("#category option:selected").text().includes("رهن")) {
-                    depositFormField.show();
-                } else {
-                    depositFormField.hide();
-                }
-                depositInput.val('');
-            });
-            var map = L.map('map').setView([34.543896, 69.160652], 13);
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
-            map.on('click', onMapClick);
-            function showPosition(position) {
-                console.log('position')
-                console.log("asdasd:", position.coords)
-                map.setView([position.coords.latitude, position.coords.longitude])
-                marker = L.marker({ lat: position.coords.latitude, lng: position.coords.longitude }).addTo(map)
-                    .bindPopup('محل انتخاب شده .')
-                    .openPopup();
-            }
-            function onMapClick(e) {
-                if (marker != undefined) {
-                    map.removeLayer(marker);
-                }
-                marker = L.marker(e.latlng).addTo(map)
-                    .bindPopup('محل انتخاب شده .')
-                    .openPopup();
-            }
-
-            function showError(error) {
-                console.log('getCurrentPosition returned error', error);
-            }
-            navigator.geolocation.getCurrentPosition(showPosition, showError, { timeout: 10000 });
-
-            var dropZone = new Dropzone('#dropzone', {
-                autoProcessQueue: false,
-                maxFiles: 8,
-                maxFilesize: 1,
-                previewTemplate: document.querySelector('#tpl').innerHTML,
-                //addRemoveLinks: true,
-                url: "/ads/create",
-                headers: {
-                    'X-XSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val()
-                },
-                success: function (file, response) {
-                    window.location.href = "../";
-                }
-            });
-            //dropZone.on("sending", function (file, xhr, formData) {
-            //    console.log('sending');
-            //    var items = form.serializeArray();
-            //    for (var i = 0; i < items.length; i++) {
-            //        formData.append(items[i].name, items[i].value);
-            //    }
-            //    var coordinates = marker.getLatLng();
-            //    console.log(coordinates);
-
-
-            //});
-            function save() {
-
-                if (!form.valid()) {
-                    console.log('failed to save');
-                    return;
-                }
-
-                dropZone.processQueue();
-            }
-            submitButton.click((e) => {
-                e.preventDefault();
-                var formData = new FormData();
-                if (!form.valid()) {
-                    return;
-                }
-                submitButton.addClass("is-loading");
-                var items = form.serializeArray();
-                for (var i = 0; i < items.length; i++) {
-                    formData.append(items[i].name, items[i].value);
-                }
-                if (!$.isEmptyObject(marker)) {
-                    var coordinates = marker.getLatLng();
-                    formData.append('Latitude', coordinates.lat);
-                    formData.append('Longitude', coordinates.lng);
-                }
-                var object = {};
-                formData.forEach(function (value, key) {
-                    object[key] = value;
-                });
-                $.ajax({
-                    type: "POST",
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader('X-XSRF-TOKEN', $('input[name="__RequestVerificationToken"]').val());
-                    },
-                    url: "/ads/create",
-                    contentType: 'application/json',
-                    dataType: "json",
-                    data: JSON.stringify(object), // serializes the form's elements.
-                    success: function (data) {
-                        dropZone.options.url = '/stream/upload/' + data.result
-                        dropZone.processQueue();
-                        console.log(data); // show response from the php script.
-                    }, error: function (err) {
-                        console.log(err);
-                        submitButton.removeClass("is-loading");
-
-                    }
-                }).done(function () {
-                    submitButton.removeClass("is-loading");
-                });
-
-            })
-
-        });
-
-    </script>
+    <environment names="Development">
+        <script src="~/view-resources/Views/Ads/Index.js" asp-append-version="true"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <script src="~/view-resources/Views/Ads/Index.min.js" asp-append-version="true"></script>
+    </environment>
 }

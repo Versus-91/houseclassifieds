@@ -27,7 +27,13 @@
     <link rel="stylesheet" href="~/libs/font-awesome/css/all.min.css" asp-append-version="true" />
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v26.0.0/dist/font-face.css" rel="stylesheet" type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="~/css/web.css" rel="stylesheet" asp-append-version="true" />
+    <environment names="Development">
+        <link href="~/css/web.css" rel="stylesheet" asp-append-version="true" />
+
+    </environment>
+    <environment names="Staging,Production">
+        <link href="~/css/web.min.css" rel="stylesheet" asp-append-version="true" />
+    </environment>
     @RenderSection("styles", required: false)
 
 </head>

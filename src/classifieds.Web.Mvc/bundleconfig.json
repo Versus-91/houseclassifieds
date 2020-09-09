@@ -1,4 +1,4 @@
-[
+﻿[
   {
     "outputFileName": "wwwroot/view-resources/Views/_Bundles/account-layout.min.css",
     "inputFiles": [
@@ -9,6 +9,12 @@
       "wwwroot/libs/admin-lte/dist/css/adminlte.css",
       "wwwroot/css/style.css",
       "wwwroot/view-resources/Views/Account/_Layout.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/css/web.min.css",
+    "inputFiles": [
+      "wwwroot/css/web.css"
     ]
   },
   {
@@ -121,6 +127,12 @@
     "outputFileName": "wwwroot/view-resources/Views/Categories/Index.min.js",
     "inputFiles": [
       "wwwroot/view-resources/Views/Categories/Index.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/Ads/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Ads/Index.js"
     ]
   },
   {
