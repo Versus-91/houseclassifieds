@@ -4,269 +4,100 @@
     ViewBag.CurrentPageName = PageNames.Home;
     Layout = "layout/_front"; }
 @section styles{
-    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin="" />
 }
-<div class="container">
-    <input hidden name="Latitude" id="postLatitude" value="@Model.Latitude" />
-    <input hidden name="Longitude" id="postLongitude" value="@Model.Longitude" />
-    <div class="section box mt-5">
-        @*<article class="message">*@
-        @*<div class="message-header">
-                <nav class="breadcrumb" aria-label="breadcrumbs">
-                    <ul>
-                        <li><a href="#">تهران</a></li>
-                        <li><a href="#">تهران</a></li>
-                        <li><a href="#">منطقه 1 </a></li>
-                        <li class="is-active"><a href="#" aria-current="page">الهیه</a></li>
-                    </ul>
-                </nav>
-            </div>*@
-        @*<div class="message-body">*@
-        <div class="columns">
-            <div class="column is-5">
-                <h1 class="title">@Model.Title</h1>
-                <h1 class="subtitle">@Model.Description</h1>
-            </div>
-            <div class="column is-7">
-                <div class="columns is-multiline">
-                    <div class="column is-12">
-                        <div class="swiper-container">
-                            <!-- Additional required wrapper -->
-                            <div class="swiper-wrapper">
-                                <!-- Slides -->
-                                <div class="swiper-slide">
-                                    <!-- Required swiper-lazy class and image source specified in data-src attribute -->
-                                    <img data-src="https://swiperjs.com/demos/images/nature-1.jpg" class="swiper-lazy">
-                                    <!-- Preloader image -->
-                                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <img data-src="https://swiperjs.com/demos/images/nature-2.jpg" class="swiper-lazy">
-                                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <img data-src="https://swiperjs.com/demos/images/nature-3.jpg" class="swiper-lazy">
-                                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <img data-src="https://swiperjs.com/demos/images/nature-4.jpg" class="swiper-lazy">
-                                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <img data-src="https://swiperjs.com/demos/images/nature-5.jpg" class="swiper-lazy">
-                                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <img data-src="https://swiperjs.com/demos/images/nature-6.jpg" class="swiper-lazy">
-                                    <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                                </div>
-                                ...
-                            </div>
-                            <!-- If we need pagination -->
-                            <div class="swiper-pagination"></div>
 
-                            <!-- If we need navigation buttons -->
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-
-                        </div>
-
+<div class="hero is-fullheight is-light is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <input hidden name="Latitude" id="postLatitude" value="@Model.Latitude" />
+            <input hidden name="Longitude" id="postLongitude" value="@Model.Longitude" />
+            <div class="section box mt-5">
+                @*<article class="message">*@
+                @*<div class="message-header">
+                        <nav class="breadcrumb" aria-label="breadcrumbs">
+                            <ul>
+                                <li><a href="#">تهران</a></li>
+                                <li><a href="#">تهران</a></li>
+                                <li><a href="#">منطقه 1 </a></li>
+                                <li class="is-active"><a href="#" aria-current="page">الهیه</a></li>
+                            </ul>
+                        </nav>
+                    </div>*@
+                @*<div class="message-body">*@
+                <div class="columns">
+                    <div class="column is-5">
+                        <h1 class="title">@Model.Title</h1>
+                        <h1 class="subtitle">@Model.Description</h1>
                     </div>
+                    <div class="column is-7">
+                        <div class="columns is-multiline">
+                            <div class="column is-12">
+                                <div class="swiper-container">
+                                    <!-- Additional required wrapper -->
+                                    <div class="swiper-wrapper">
+                                        <!-- Slides -->
+                                        @foreach (var item in Model.Images)
+                                        {
+                            <div class="swiper-slide">
+                                <!-- Required swiper-lazy class and image source specified in data-src attribute -->
+                                <img data-src="/@item.Path" class="swiper-lazy slider-img">
+                                <!-- Preloader image -->
+                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                            </div>}
 
-                </div>
-            </div>
-        </div>
-        <section class="level is-mobile">
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
-                    <p class="title is-5">@Model.Bedroom</p>
-                </div>
-            </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading"><i class="fas fa-2x fa-clock"></i></p>
-                    <p class="title"></p>
-                </div>
-            </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading"><i class="fas fa-2x fa-parking"></i></p>
-                    <p class="title is-6">دارد</p>
-                </div>
-            </div>
-            <div class="level-item has-text-centered">
-                <div>
-                    <p class="heading"><i class="fas fa-2x fa-water has-text-info"></i></p>
-                    <p class="title is-6">دارد</p>
-                </div>
-            </div>
-        </section>
-        <div class="column is-12">
-            <div id="map" style="height:300px"></div>
-        </div>
-        <section>
-        </section>
-        @*</div>
-            </article>*@
+                                    </div>
+                                    <!-- If we need pagination -->
+                                    <div class="swiper-pagination"></div>
 
-    </div>
-    <div class="section mt-3">
-        <div class="columns">
-            <div class="column is-12">
-                <div class="secondary-swiper-container">
-                    <div class="swiper-wrapper">
-                        <!-- Slides -->
-                        <div class="swiper-slide">
-                            
+                                    <!-- If we need navigation buttons -->
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
 
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <header class="card-header">
-                                    <p class="card-header-title">
-                                        Component
-                                    </p>
-                                    <a href="#" class="card-header-icon" aria-label="more options">
-                                        <span class="icon">
-                                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                        </span>
-                                    </a>
-                                </header>
-                                <div class="card-content">
-                                    <div class="content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                                        <a href="#">@@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                                        <br>
-                                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                                    </div>
                                 </div>
-                                <footer class="card-footer">
-                                    <a href="#" class="card-footer-item">Save</a>
-                                    <a href="#" class="card-footer-item">Edit</a>
-                                    <a href="#" class="card-footer-item">Delete</a>
-                                </footer>
+
                             </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <header class="card-header">
-                                    <p class="card-header-title">
-                                        Component
-                                    </p>
-                                    <a href="#" class="card-header-icon" aria-label="more options">
-                                        <span class="icon">
-                                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                        </span>
-                                    </a>
-                                </header>
-                                <div class="card-content">
-                                    <div class="content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                                        <a href="#">@@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                                        <br>
-                                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                                    </div>
-                                </div>
-                                <footer class="card-footer">
-                                    <a href="#" class="card-footer-item">Save</a>
-                                    <a href="#" class="card-footer-item">Edit</a>
-                                    <a href="#" class="card-footer-item">Delete</a>
-                                </footer>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <header class="card-header">
-                                    <p class="card-header-title">
-                                        Component
-                                    </p>
-                                    <a href="#" class="card-header-icon" aria-label="more options">
-                                        <span class="icon">
-                                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                        </span>
-                                    </a>
-                                </header>
-                                <div class="card-content">
-                                    <div class="content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                                        <a href="#">@@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                                        <br>
-                                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                                    </div>
-                                </div>
-                                <footer class="card-footer">
-                                    <a href="#" class="card-footer-item">Save</a>
-                                    <a href="#" class="card-footer-item">Edit</a>
-                                    <a href="#" class="card-footer-item">Delete</a>
-                                </footer>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <header class="card-header">
-                                    <p class="card-header-title">
-                                        Component
-                                    </p>
-                                    <a href="#" class="card-header-icon" aria-label="more options">
-                                        <span class="icon">
-                                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                        </span>
-                                    </a>
-                                </header>
-                                <div class="card-content">
-                                    <div class="content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                                        <a href="#">@@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                                        <br>
-                                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                                    </div>
-                                </div>
-                                <footer class="card-footer">
-                                    <a href="#" class="card-footer-item">Save</a>
-                                    <a href="#" class="card-footer-item">Edit</a>
-                                    <a href="#" class="card-footer-item">Delete</a>
-                                </footer>
-                            </div>
-                        </div>
-                        <div class="swiper-slide">
-                            <div class="card">
-                                <header class="card-header">
-                                    <p class="card-header-title">
-                                        Component
-                                    </p>
-                                    <a href="#" class="card-header-icon" aria-label="more options">
-                                        <span class="icon">
-                                            <i class="fas fa-angle-down" aria-hidden="true"></i>
-                                        </span>
-                                    </a>
-                                </header>
-                                <div class="card-content">
-                                    <div class="content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus nec iaculis mauris.
-                                        <a href="#">@@bulmaio</a>. <a href="#">#css</a> <a href="#">#responsive</a>
-                                        <br>
-                                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                                    </div>
-                                </div>
-                                <footer class="card-footer">
-                                    <a href="#" class="card-footer-item">Save</a>
-                                    <a href="#" class="card-footer-item">Edit</a>
-                                    <a href="#" class="card-footer-item">Delete</a>
-                                </footer>
-                            </div>
+
                         </div>
                     </div>
-                    <!-- If we need pagination -->
-                    <div class="swiper-pagination" id="pagination"></div>
-
-                    <!-- If we need navigation buttons -->
-                    <div class="swiper-button-prev" id="prev"></div>
-                    <div class="swiper-button-next" id="next"></div>
                 </div>
+                <section class="level is-mobile">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
+                            <p class="title is-5">@Model.Bedroom</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading"><i class="fas fa-2x fa-clock"></i></p>
+                            <p class="title"></p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading"><i class="fas fa-2x fa-parking"></i></p>
+                            <p class="title is-6">دارد</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading"><i class="fas fa-2x fa-water has-text-info"></i></p>
+                            <p class="title is-6">دارد</p>
+                        </div>
+                    </div>
+                </section>
+                <div class="column is-12">
+                    <div id="map" style="height:300px"></div>
+                </div>
+                <section>
+                </section>
+                @*</div>
+                    </article>*@
+
             </div>
         </div>
     </div>
@@ -278,15 +109,21 @@
             crossorigin=""></script>
     <script>
         $(function () {
-            var map = L.map('map').setView(L.latLng($('#postLatitude').val(), $('#postLongitude').val()), 13);
+            console.log($('#postLatitude').val());
+            if ($('#postLatitude').val() != 0 && $('#postLongitude').val() != 0) {
+                var map = L.map('map').setView(L.latLng($('#postLatitude').val(), $('#postLongitude').val()), 13);
 
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
 
-            L.marker([$('#postLatitude').val(), $('#postLongitude').val()]).addTo(map)
-                .bindPopup('محل انتخاب شده .')
-                .openPopup();
+                L.marker([$('#postLatitude').val(), $('#postLongitude').val()]).addTo(map)
+                    .bindPopup('محل انتخاب شده .')
+                    .openPopup();
+            } else {
+                $("#map").hide();
+            }
+
             var mySwiper = new Swiper('.swiper-container', {
                 lazy: true,
                 slidesPerView: 1,
@@ -300,18 +137,18 @@
                     prevEl: '.swiper-button-prev',
                 },
             })
-            var suggestions = new Swiper('.secondary-swiper-container', {
-                slidesPerView: 3,
-                spaceBetween: 100,
-                navigation: {
-                    nextEl: '#next',
-                    prevEl: '#prev'
-                },
-                pagination: {
-                    el: '#pagination',
-                    clickable: true,
-                },
-            })
+            //var suggestions = new Swiper('.secondary-swiper-container', {
+            //    slidesPerView: 2,
+            //    spaceBetween: 10,
+            //    navigation: {
+            //        nextEl: '#next',
+            //        prevEl: '#prev'
+            //    },
+            //    pagination: {
+            //        el: '#pagination',
+            //        clickable: true,
+            //    },
+            //})
         })
 
     </script>

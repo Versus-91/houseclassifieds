@@ -3,129 +3,131 @@
 @{ ViewBag.Title = L("HomePage");
     ViewBag.CurrentPageName = PageNames.Home;
     Layout = "layout/_front"; }
-<div class="container">
-    <div class="section">
-        <div class="columns">
-            <div class="column is-3 ">
-                <aside class="menu mt-2">
-                    <p class="menu-label">
-                        وضعیت آگهی
-                    </p>
-                    <ul class="menu-list">
-                        <li>
-                            <div class="field">
-                                <div class="control">
-                                    <label class="checkbox">
-                                        <input type="checkbox" id="featured">
-                                        ویژه
-                                    </label>
-                                </div>
+<div class="hero is-fullheight is-light is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <div class="section">
+                <div class="box">
+                    <div class="columns">
+                        <div class="column is-3 ">
+                            <aside class="menu mt-2">
+                                <p class="menu-label">
+                                    وضعیت آگهی
+                                </p>
+                                <ul class="menu-list">
+                                    <li>
+                                        <div class="field">
+                                            <div class="control">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" id="featured">
+                                                    ویژه
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <p class="menu-label">
+                                    متراژ
+                                </p>
+                                <ul class="menu-list">
+                                    <li>
+                                        <div class="field is-horizontal">
+                                            <div class="field-body">
+                                                <div class="field">
+                                                    <p class="control is-expanded">
+                                                        <input class="input is-danger" id="minArea" type="number" placeholder="حداقل">
+                                                    </p>
+                                                </div>
+                                                <div class="field">
+                                                    <p class="control is-expanded ">
+                                                        <input class="input is-success" id="maxArea" type="number" placeholder="حداکثر">
+                                                    </p>
+                                                </div>
+                                            </div>
+                                    </li>
+                                    <p class="menu-label">
+                                        قیمت
+                                    </p>
+                                    <ul class="menu-list">
+                                        <li>
+                                            <div class="field is-horizontal">
+                                                <div class="field-body">
+                                                    <div class="field">
+                                                        <p class="control is-expanded">
+                                                            <input class="input is-danger" id="minPrice" type="number" placeholder="حداقل">
+                                                        </p>
+                                                    </div>
+                                                    <div class="field">
+                                                        <p class="control is-expanded ">
+                                                            <input class="input is-success" id="maxPrice" type="number" placeholder="حداکثر">
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                        </li>
+                                    </ul>
+                                    <p class="menu-label">
+                                        تعداد خواب
+                                    </p>
+                                    <ul class="menu-list">
+                                        <li>
+                                            <div class="control">
+                                                <div class="select">
+                                                    <select>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">بیشتر از 4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <p class="menu-label">
+                                        نوع ملک
+                                    </p>
+                                    <ul class="menu-list">
+                                        <li>
+                                            <div class="control">
+                                                <div class="select">
+                                                    <select>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                        <option value="5">بیشتر از 4</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                    <ul class="menu-list mt-2">
+                                        <li>
+                                            <button class="button is-info" id="apply">اعمال</button>
+                                        </li>
+                                    </ul>
+                            </aside>
+                        </div>
+                        <div class="column is-9">
+                            <div class="tabs is-centered">
+                                <ul>
+                                    <li class="is-active"><a>جدیدترین</a></li>
+                                    <li><a>ارزانترین</a></li>
+                                    <li><a>گرانترین</a></li>
+                                </ul>
                             </div>
-                        </li>
-                    </ul>
-                    <p class="menu-label">
-                        متراژ
-                    </p>
-                    <ul class="menu-list">
-                        <li>
-                            <div class="field is-horizontal">
-                                <div class="field-body">
-                                    <div class="field">
-                                        <p class="control is-expanded">
-                                            <input class="input is-danger" id="minArea" type="number" placeholder="حداقل">
-                                        </p>
-                                    </div>
-                                    <div class="field">
-                                        <p class="control is-expanded ">
-                                            <input class="input is-success" id="maxArea" type="number" placeholder="حداکثر">
-                                        </p>
-                                    </div>
-                                </div>
-                        </li>
-                        <p class="menu-label">
-                            قیمت
-                        </p>
-                        <ul class="menu-list">
-                            <li>
-                                <div class="field is-horizontal">
-                                    <div class="field-body">
-                                        <div class="field">
-                                            <p class="control is-expanded">
-                                                <input class="input is-danger" id="minPrice" type="number" placeholder="حداقل">
-                                            </p>
-                                        </div>
-                                        <div class="field">
-                                            <p class="control is-expanded ">
-                                                <input class="input is-success" id="maxPrice" type="number" placeholder="حداکثر">
-                                            </p>
-                                        </div>
-                                    </div>
-                            </li>
-                        </ul>
-                        <p class="menu-label">
-                            تعداد خواب
-                        </p>
-                        <ul class="menu-list">
-                            <li>
-                                <div class="control">
-                                    <div class="select">
-                                        <select>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">بیشتر از 4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <p class="menu-label">
-                            نوع ملک
-                        </p>
-                        <ul class="menu-list">
-                            <li>
-                                <div class="control">
-                                    <div class="select">
-                                        <select>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">بیشتر از 4</option>
-                                        </select>
-                                    </div>
-                                </div>
-                            </li>
-                        </ul>
-                        <ul class="menu-list mt-2">
-                            <li>
-                                <button class="button is-info" id="apply">اعمال</button>
-                            </li>
-                        </ul>
-                </aside>
-            </div>
-            <div class="column is-9">
-                <div class="tabs is-centered">
-                    <ul>
-                        <li class="is-active"><a>جدیدترین</a></li>
-                        <li><a>ارزانترین</a></li>
-                        <li><a>گرانترین</a></li>
-                    </ul>
+                            <div class="columns is-multiline" id="pager" style="min-height:15vh;">
+                            </div>
+                            <nav class="pagination" role="navigation" aria-label="pagination">
+                                <a class="pagination-previous">قبلی</a>
+                                <a class="pagination-next">بعدی </a>
+                            </nav>
+                        </div>
+                    </div>
                 </div>
-                <div class="columns is-multiline" id="pager" style="min-height:15vh;">
-
-                </div>
-                <nav class="pagination" role="navigation" aria-label="pagination">
-                    <a class="pagination-previous">قبلی</a>
-                    <a class="pagination-next">بعدی </a>
-                </nav>
-
             </div>
-
         </div>
     </div>
-
 </div>
 @section scripts{
 
@@ -135,7 +137,7 @@
             var rowPerPage = 30;
             var totalPages = 0;
             var path = '/api/services/app/post/getall?SkipCount=' + (pageIndex - 1) * rowPerPage + '&MaxResultCount=' + 10;
-            function loadAds(path){
+            function loadAds(path) {
                 $.getJSON(path, function () {
                     console.log("success");
                 })
@@ -158,43 +160,43 @@
                         }
                         res.result.items.forEach((item) => {
                             $("#pager").append(`<div class=" column is-4">
-            <a class="fill-div" href="/ads/{{id}}">
-                <div class="card card-hover-shadow">
-                    <div class="card-image">
-                        <figure class="image is-4by3">
-                            <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&w=1000&q=80" alt="Placeholder image">
-                        </figure>
-                    </div>
-                    <div class="card-content">
-                        <div class="content">
-                            ${item.title}
-                            <br>
+                <a class="fill-div" href="/ads/${item.id}">
+                    <div class="card card-hover-shadow">
+                        <div class="card-image">
+                            <figure class="image is-4by3">
+                                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&w=1000&q=80" alt="Placeholder image">
+                            </figure>
                         </div>
-                        <nav class="level is-mobile">
-                            <div class="level-item has-text-centered">
-                                <div>
-                                    <p><i class="fas  fa-square has-text-success"></i></p>
-                                    <p>${item.area}</p>
-                                </div>
+                        <div class="card-content">
+                            <div class="content">
+                                ${item.title}
+                                <br>
                             </div>
-                            <div class="level-item has-text-centered">
-                                <div>
-                                    <p><i class="fas  fa-clock has-text-warning"></i></p>
-                                    <p>نوساز</p>
+                            <nav class="level is-mobile">
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p><i class="fas  fa-square has-text-success"></i></p>
+                                        <p>${item.area}</p>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="level-item has-text-centered">
-                                <div>
-                                    <p><i class="fas fa-bed has-text-grey"></i></p>
-                                    <p>${item.bedroom}</p>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p><i class="fas  fa-clock has-text-warning"></i></p>
+                                        <p>نوساز</p>
+                                    </div>
                                 </div>
-                            </div>
-                        </nav>
-                    </div>
+                                <div class="level-item has-text-centered">
+                                    <div>
+                                        <p><i class="fas fa-bed has-text-grey"></i></p>
+                                        <p>${item.bedroom}</p>
+                                    </div>
+                                </div>
+                            </nav>
+                        </div>
 
-                </div>
-            </a>
-        </div>`)
+                    </div>
+                </a>
+            </div>`)
                         })
                     })
                     .fail(function () {
@@ -223,7 +225,7 @@
                 if ($("#featured").is(":checked")) {
                     query.featured = true;
                 } else {
-                   delete query.featured ;
+                    delete query.featured;
                 }
                 loadAds(path + '&' + $.param(query));
             }

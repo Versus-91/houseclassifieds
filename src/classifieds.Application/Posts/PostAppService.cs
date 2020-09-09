@@ -1,8 +1,8 @@
 ﻿using Abp.Application.Services;
-using Abp.Application.Services.Dto;
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
+using classifieds.Images;
 using classifieds.Posts.Dto;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -30,18 +30,29 @@ namespace classifieds.Posts
                 .WhereIf(input.MinArea.HasValue && input.MaxArea.HasValue, t => t.Area > input.MinArea.Value && t.Area < input.MaxArea.Value)
                 .WhereIf(input.Type.HasValue, t => t.TypeId == input.Type.Value);
         }
-        public async Task<PagedResultDto<DetailedPostsDto>> GetDetails(PagedAndSortedResultRequestDto input)
+        public async Task<PostDto> GetDetails(int id)
         {
-            var items = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category)
-                .Skip(input.SkipCount).Take(input.MaxResultCount)
-
-                .Select(m => new DetailedPostsDto
+            var item = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category).Where(m => m.Id == id)
+                .Select(m => new PostDto
                 {
                     Id = m.Id,
-                    CityName = m.District.City.Name,
-                    CategoryName = m.Category.Name
-                }).ToListAsync();
-            return new PagedResultDto<DetailedPostsDto> { Items = items, TotalCount = items.Count() };
+                    Bedroom = m.Bedroom,
+                    Area = m.Area,
+                    Description = m.Description,
+                    Category = m.Category.Name,
+                    District = m.District.Name,
+                    Latitude = m.Latitude,
+                    Longitude = m.Longitude,
+                    Title = m.Title,
+                    CreationTime = m.CreationTime,
+                    City = m.District.City.Name,
+                    Images = m.Images.Select(m => new Image
+                    {
+                        Path = m.Path,
+                        Name = m.Name
+                    }).ToList(),
+                }).FirstOrDefaultAsync();
+            return item;
         }
     }
 }

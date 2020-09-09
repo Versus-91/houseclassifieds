@@ -1,12 +1,11 @@
 ﻿using Abp.Application.Services;
 using classifieds.Posts.Dto;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Threading.Tasks;
 
 namespace classifieds.Posts
 {
-    public interface IPostAppService:IAsyncCrudAppService<PostDto,int,GetAllPostsInput>
+    public interface IPostAppService : IAsyncCrudAppService<PostDto, int, GetAllPostsInput>
     {
+        Task<PostDto> GetDetails(int id);
     }
 }

@@ -21,11 +21,10 @@
     min-width: 0;
     width: 100%;
     height: 400px;
+    background-color: antiquewhite;
 }
 
 .secondary-swiper-container {
-    margin-left: auto;
-    margin-right: auto;
     position: relative;
     overflow: hidden;
     list-style: none;
@@ -33,26 +32,18 @@
     z-index: 1;
     min-width: 0;
     width: 100%;
-    height: 400px;
+    height: 800px;
 }
 
 .swiper-slide {
     text-align: center;
-    font-size: 18px;
 }
 
-    .swiper-slide img {
+    .swiper-slide .slider-img {
         width: auto;
         height: auto;
         max-width: 100%;
         max-height: 100%;
-        -ms-transform: translate(-50%, -50%);
-        -webkit-transform: translate(-50%, -50%);
-        -moz-transform: translate(-50%, -50%);
-        transform: translate(-50%, -50%);
-        position: absolute;
-        left: 50%;
-        top: 50%;
     }
 
 .page-load-status {
@@ -254,3 +245,37 @@ body {
         width: 100%;
         left: 0;
     }
+
+.dropzone {
+    background: #f4f3f3 !important;
+    border-radius: 5px;
+    border: 2px dashed rgb(0, 135, 247) !important;
+    border-image: none;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+    .dropzone .dz-preview {
+        margin: 5px !important;
+    }
+
+.dz-progress {
+    /* progress bar covers file name */
+    display: none !important;
+}
+
+/*.dropzone .dz-preview .dz-error-message {
+    top: 150px !important;
+}*/
+
+.dz-preview {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin: 16px;
+    min-height: 100px;
+}
+
+.dropzone .dz-preview .dz-image {
+    border-radius: 0 !important;
+}

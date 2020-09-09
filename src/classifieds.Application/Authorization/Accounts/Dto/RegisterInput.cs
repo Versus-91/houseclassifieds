@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using Abp.Auditing;
+﻿using Abp.Auditing;
 using Abp.Authorization.Users;
 using Abp.Extensions;
 using classifieds.Validation;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace classifieds.Authorization.Accounts.Dto
 {
@@ -12,7 +12,10 @@ namespace classifieds.Authorization.Accounts.Dto
         [Required]
         [StringLength(AbpUserBase.MaxNameLength)]
         public string Name { get; set; }
-
+        [Required]
+        [StringLength(AbpUserBase.MaxSurnameLength)]
+        [Phone]
+        public string PhoneNumber { get; set; }
         [Required]
         [StringLength(AbpUserBase.MaxSurnameLength)]
         public string Surname { get; set; }

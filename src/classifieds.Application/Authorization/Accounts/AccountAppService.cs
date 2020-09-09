@@ -1,8 +1,8 @@
-using System.Threading.Tasks;
-using Abp.Configuration;
+﻿using Abp.Configuration;
 using Abp.Zero.Configuration;
 using classifieds.Authorization.Accounts.Dto;
 using classifieds.Authorization.Users;
+using System.Threading.Tasks;
 
 namespace classifieds.Authorization.Accounts
 {
@@ -43,7 +43,8 @@ namespace classifieds.Authorization.Accounts
                 input.EmailAddress,
                 input.UserName,
                 input.Password,
-                true // Assumed email address is always confirmed. Change this if you want to implement email confirmation.
+                true, // Assumed email address is always confirmed. Change this if you want to implement email confirmation.
+                input.PhoneNumber
             );
 
             var isEmailConfirmationRequiredForLogin = await SettingManager.GetSettingValueAsync<bool>(AbpZeroSettingNames.UserManagement.IsEmailConfirmationRequiredForLogin);
