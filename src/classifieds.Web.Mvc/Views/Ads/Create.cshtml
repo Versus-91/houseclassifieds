@@ -77,6 +77,7 @@
 
                         </div>
                     </div>
+
                     <div class="field is-horizontal">
                         <div class="field-body">
                             <div class="field">
@@ -85,11 +86,15 @@
                                     <span class="help is-danger" asp-validation-for="Title"></span>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-
-                    <div class="field is-horizontal">
-                        <div class="field-body">
+                            <div class="field">
+                                <label asp-for="Area" class="label">متراژ</label>
+                                <div class="control has-icons-left ">
+                                    <input class="input area" id="area" asp-for="Area" placeholder="مساحت" />
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-globe"></i>
+                                    </span>
+                                </div>
+                            </div>
                             <div class="field" id="bedroom">
                                 <label asp-for="Bedroom" class="label">تعداد خواب</label>
                                 <div class="control  has-icons-left has-icons-right">
@@ -108,15 +113,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="field">
-                                <label asp-for="Area" class="label">متراژ</label>
-                                <div class="control has-icons-left ">
-                                    <input class="input area" id="area" asp-for="Area" placeholder="مساحت" />
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-globe"></i>
-                                    </span>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
                     <div class="field">
@@ -173,8 +170,16 @@
             <div class="dz-size my-2" data-dz-size></div>
         </div>
         <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-        <div class="dz-success-mark"><span>✔</span></div>
-        <div class="dz-error-mark"><span>✘</span></div>
+        <div class="dz-success-mark">
+            <span class="icon has-text-success">
+                <i class="fas fa-2x fa-check"></i>
+            </span>
+        </div>
+        <div class="dz-error-mark">
+            <span class="icon has-text-danger">
+                <i class="fas fa-2x fa-trash"></i>
+            </span>
+        </div>
         <div class="dz-error-message"><span data-dz-errormessage></span></div>
         <div data-dz-remove class="has-text-centered my-1">
             <div class="icon has-text-danger">
@@ -188,9 +193,8 @@
     <script src="~/lib/dropzone/dist/min/dropzone.min.js" asp-append-version="true"></script>
     <script src="~/libs/jquery-validate/jquery.validate.js" asp-append-version="true"></script>
     <script src="~/libs/jquery-validate/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
-    <script src="~/libs/persian-numbers-jquery-plugin-master/persianNum.jquery-2.min.js" asp-append-version="true"></script>
+    <script src="~/lib/persiandigits/persianNum.jquery-2.min.js" asp-append-version="true"></script>
     <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
-
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>

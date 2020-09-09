@@ -264,9 +264,9 @@ body {
     display: none !important;
 }
 
-/*.dropzone .dz-preview .dz-error-message {
+.dropzone .dz-preview .dz-error-message {
     top: 150px !important;
-}*/
+}
 
 .dz-preview {
     position: relative;

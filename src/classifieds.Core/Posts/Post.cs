@@ -30,6 +30,7 @@ namespace classifieds.Posts
         public uint View { get; set; }
         public double Deopsit { get; set; }
         public double Rent { get; set; }
+        public double Price { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public Post()

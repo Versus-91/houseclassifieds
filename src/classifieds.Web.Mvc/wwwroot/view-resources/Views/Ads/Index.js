@@ -4,9 +4,6 @@ $(document).ready(function () {
 	new AutoNumeric.multiple('.currency', { currencySymbol: '$' });
 	var form = $("#CreateAd");
 	$("body").persianNum();
-	$("#area").on('change paste keyup', function () {
-		$("#area").val(convertEnToPe($(this).val()));
-	})
 	var submitButton = $("#submitButton");
 	var marker = {};
 	var depositFormField = $("#deposit");
@@ -68,6 +65,7 @@ $(document).ready(function () {
 	var dropZone = new Dropzone('#dropzone', {
 		autoProcessQueue: false,
 		maxFiles: 8,
+		acceptedFiles: 'image/*',
 		maxFilesize: 1,
 		previewTemplate: document.querySelector('#tpl').innerHTML,
 		//addRemoveLinks: true,
