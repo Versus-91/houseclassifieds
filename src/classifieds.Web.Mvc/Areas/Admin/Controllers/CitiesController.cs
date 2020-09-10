@@ -1,26 +1,26 @@
-﻿using System.Threading.Tasks;
-using Abp.Application.Services.Dto;
+﻿using Abp.Application.Services.Dto;
 using Abp.AspNetCore.Mvc.Authorization;
 using Abp.AspNetCore.Mvc.Controllers;
 using classifieds.Authorization;
 using classifieds.Cities;
-using classifieds.Cities.Dto;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ReflectionIT.Mvc.Paging;
+using System.Threading.Tasks;
 
-namespace classifieds.Web.Controllers
+namespace classifieds.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [AbpMvcAuthorize(PermissionNames.Pages_Cities)]
     public class CitiesController : AbpController
     {
         private readonly ICityAppService _cityService;
+
         public CitiesController(ICityAppService cityService)
         {
             _cityService = cityService;
         }
+
         // GET: CategoriesController
-        public  ActionResult Index()
+        public ActionResult Index()
         {
             return View();
         }

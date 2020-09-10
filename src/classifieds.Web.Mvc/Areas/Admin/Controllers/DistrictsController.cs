@@ -12,18 +12,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Threading.Tasks;
 
-namespace classifieds.Web.Controllers
+namespace classifieds.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [AbpMvcAuthorize(PermissionNames.Pages_District)]
     public class DistrictsController : AbpController
     {
         private readonly IDistrictAppService _districtService;
         private readonly ICityAppService _cityService;
+
         public DistrictsController(IDistrictAppService districtService, ICityAppService cityService)
         {
             _districtService = districtService;
             _cityService = cityService;
         }
+
         public async Task<ActionResult> Index()
         {
             var cities = await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto() { MaxResultCount = Int32.MaxValue });
@@ -45,6 +48,7 @@ namespace classifieds.Web.Controllers
             };
             return PartialView("_EditModal", model);
         }
+
         public async Task<AjaxResponse> GetByCityId(int id)
         {
             var districts = await _districtService.GetByCityId(id);

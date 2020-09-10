@@ -102,7 +102,7 @@
 
         e.preventDefault();
         abp.ajax({
-            url: abp.appPath + 'cities/Edit/' + Id,
+            url: abp.appPath + 'admin/cities/Edit/' + Id,
             type: 'POST',
             dataType: 'html',
             success: function (content) {

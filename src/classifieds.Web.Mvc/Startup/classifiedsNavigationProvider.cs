@@ -17,7 +17,7 @@ namespace classifieds.Web.Startup
                 new MenuItemDefinition(
                         PageNames.PropertyTypes,
                         L("PropertyTypes"),
-                        url: "PropertyTypes",
+                        url: "admin/PropertyTypes",
                         icon: "fas fa-home",
                         requiresAuthentication: true)
                 )
@@ -25,14 +25,14 @@ namespace classifieds.Web.Startup
                 new MenuItemDefinition(
                         PageNames.Districts,
                         L("Districts"),
-                        url: "Districts",
+                        url: "admin/Districts",
                         icon: "fas fa-home",
                         requiresAuthentication: true)
                 ).AddItem(
                 new MenuItemDefinition(
                         PageNames.Posts,
                         L("Posts"),
-                        url: "Posts",
+                        url: "admin/Posts",
                         icon: "fas fa-home",
                         requiresAuthentication: true)
                 )
@@ -40,7 +40,7 @@ namespace classifieds.Web.Startup
                     new MenuItemDefinition(
                         PageNames.Categories,
                         L("Categories"),
-                        url: "Categories",
+                        url: "admin/Categories",
                         icon: "fas fa-home",
                         requiresAuthentication: true
                     )
@@ -48,7 +48,7 @@ namespace classifieds.Web.Startup
                     new MenuItemDefinition(
                         PageNames.Cities,
                         L("Cities"),
-                        url: "Cities",
+                        url: "admin/Cities",
                         icon: "fas fa-home",
                         requiresAuthentication: true
                     )
@@ -64,7 +64,7 @@ namespace classifieds.Web.Startup
                     new MenuItemDefinition(
                         PageNames.Tenants,
                         L("Tenants"),
-                        url: "Tenants",
+                        url: "admin/Tenants",
                         icon: "fas fa-building",
                         permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Tenants)
                     )
@@ -72,7 +72,7 @@ namespace classifieds.Web.Startup
                     new MenuItemDefinition(
                         PageNames.Users,
                         L("Users"),
-                        url: "Users",
+                        url: "admin/Users",
                         icon: "fas fa-users",
                         permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Users)
                     )
@@ -80,7 +80,7 @@ namespace classifieds.Web.Startup
                     new MenuItemDefinition(
                         PageNames.Roles,
                         L("Roles"),
-                        url: "Roles",
+                        url: "admin/Roles",
                         icon: "fas fa-theater-masks",
                         permissionDependency: new SimplePermissionDependency(PermissionNames.Pages_Roles)
                             )

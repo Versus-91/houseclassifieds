@@ -102,7 +102,7 @@
 
         e.preventDefault();
         abp.ajax({
-            url: abp.appPath + 'PropertyTypes/Edit/' + Id,
+            url: abp.appPath + 'admin/PropertyTypes/Edit/' + Id,
             type: 'POST',
             dataType: 'html',
             success: function (content) {

@@ -15,6 +15,7 @@ namespace classifieds.Authorization
             context.CreatePermission(PermissionNames.Pages_District, L("Districts"));
             context.CreatePermission(PermissionNames.Pages_PropertyTypes, L("PropertyTypes"));
             context.CreatePermission(PermissionNames.Pages_Categories, L("Categories"));
+            context.CreatePermission(PermissionNames.Pages_Posts, L("Categories"));
             context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
         }
 

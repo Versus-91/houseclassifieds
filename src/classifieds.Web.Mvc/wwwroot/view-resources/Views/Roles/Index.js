@@ -115,7 +115,7 @@
 
         e.preventDefault();
         abp.ajax({
-            url: abp.appPath + 'Roles/EditModal?roleId=' + roleId,
+            url: abp.appPath + 'admin/Roles/EditModal?roleId=' + roleId,
             type: 'POST',
             dataType: 'html',
             success: function (content) {

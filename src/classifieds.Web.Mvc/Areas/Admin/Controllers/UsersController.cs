@@ -1,14 +1,15 @@
-﻿using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Abp.Application.Services.Dto;
+﻿using Abp.Application.Services.Dto;
 using Abp.AspNetCore.Mvc.Authorization;
 using classifieds.Authorization;
 using classifieds.Controllers;
 using classifieds.Users;
 using classifieds.Web.Models.Users;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
-namespace classifieds.Web.Controllers
+namespace classifieds.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [AbpMvcAuthorize(PermissionNames.Pages_Users)]
     public class UsersController : classifiedsControllerBase
     {

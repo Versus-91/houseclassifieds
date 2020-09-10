@@ -125,5 +125,7 @@
     <text name="CreateNewCategory">Create New Category</text>
     <text name="CreateNewCity">Create New City</text>
     <text name="PropertyTypes">Property Types</text>
+    <text name="Title">Title</text>
+    <text name="CreatePost">Create Post</text>
   </texts>
 </localizationDictionary>

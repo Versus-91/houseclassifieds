@@ -100,7 +100,7 @@
 
         e.preventDefault();
         abp.ajax({
-            url: abp.appPath + 'categories/Edit/' + Id,
+            url: abp.appPath + 'admin/categories/Edit/' + Id,
             type: 'POST',
             dataType: 'html',
             success: function (content) {

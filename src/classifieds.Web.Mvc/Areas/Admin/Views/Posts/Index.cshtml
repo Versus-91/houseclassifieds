@@ -1,23 +1,23 @@
 ﻿@using classifieds.Web.Startup
 @model List<classifieds.Cities.Dto.CityDto>
-@{ ViewBag.Title = L("Cities");
-    ViewBag.CurrentPageName = PageNames.Cities; }
+@{ ViewBag.Title = L("Posts");
+    ViewBag.CurrentPageName = PageNames.Posts; }
 @section scripts
 {
 
     <environment names="Development">
-        <script src="~/view-resources/Views/Cities/Index.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/Posts/Index.js" asp-append-version="true"></script>
     </environment>
 
     <environment names="Staging,Production">
-        <script src="~/view-resources/Views/Cities/Index.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/Posts/Index.min.js" asp-append-version="true"></script>
     </environment>
 }
 <section class="content-header">
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <h1>@L("Cities")</h1>
+                <h1>@L("Posts")</h1>
             </div>
             <div class="col-sm-6">
                 <a href="javascript:;" data-toggle="modal" data-target="#CityCreateModal" class="btn bg-blue float-sm-right">
@@ -45,11 +45,11 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table id="CitiesTable" class="table table-striped table-bordered">
+                            <table id="PostsTable" class="table table-striped table-bordered">
                                 <thead>
                                     <tr>
                                         <th></th>
-                                        <th>@L("CityName")</th>
+                                        <th>@L("Title")</th>
                                         <th style="width: 150px">@L("Actions")</th>
                                     </tr>
                                 </thead>
@@ -64,7 +64,7 @@
     </div>
 </section>
 
-@await Html.PartialAsync("~/Views/Cities/_CreateModal.cshtml", Model)
+@await Html.PartialAsync("~/Areas/Admin/Views/Posts/_CreateModal.cshtml", Model)
 
 <div class="modal fade" id="CityEditModal" tabindex="-1" role="dialog" aria-labelledby="CityEditModalLabel" data-backdrop="static">
     <div class="modal-dialog modal-lg" role="document">
@@ -72,4 +72,3 @@
         </div>
     </div>
 </div>
-

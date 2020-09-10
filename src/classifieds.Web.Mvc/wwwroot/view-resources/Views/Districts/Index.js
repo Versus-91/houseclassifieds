@@ -108,7 +108,7 @@
 
         e.preventDefault();
         abp.ajax({
-            url: abp.appPath + 'districts/Edit/' + Id,
+            url: abp.appPath + 'admin/districts/Edit/' + Id,
             type: 'POST',
             dataType: 'html',
             success: function (content) {

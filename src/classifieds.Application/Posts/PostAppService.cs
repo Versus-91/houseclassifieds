@@ -2,6 +2,7 @@
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
+using classifieds.Authorization;
 using classifieds.Images;
 using classifieds.Posts.Dto;
 using Microsoft.EntityFrameworkCore;
@@ -17,6 +18,9 @@ namespace classifieds.Posts
         public PostAppService(IRepository<Post> repository) : base(repository)
         {
             _postRepository = repository;
+            CreatePermissionName = PermissionNames.Pages_Posts;
+            UpdatePermissionName = PermissionNames.Pages_Posts;
+            DeletePermissionName = PermissionNames.Pages_Posts;
         }
 
         protected override IQueryable<Post> CreateFilteredQuery(GetAllPostsInput input)

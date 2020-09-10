@@ -1,14 +1,15 @@
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Abp.Application.Services.Dto;
 using Abp.AspNetCore.Mvc.Authorization;
 using classifieds.Authorization;
 using classifieds.Controllers;
 using classifieds.Roles;
 using classifieds.Web.Models.Roles;
+using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
 
-namespace classifieds.Web.Controllers
+namespace classifieds.Web.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     [AbpMvcAuthorize(PermissionNames.Pages_Roles)]
     public class RolesController : classifiedsControllerBase
     {
