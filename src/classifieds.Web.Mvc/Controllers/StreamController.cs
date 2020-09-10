@@ -24,6 +24,7 @@ namespace classifieds.Controllers
         private readonly ILogger<StreamController> _logger;
         private readonly string[] _permittedExtensions = { ".jpg", ".jpeg" };
         private readonly string _targetFilePath;
+        private const string _wwwrootPath = "images";
         private readonly IRepository<Image> _imageService;
 
         // Get the default form options so that we can use them to set the default 
@@ -114,7 +115,7 @@ namespace classifieds.Controllers
                         {
                             return BadRequest(ModelState);
                         }
-
+                        Directory.CreateDirectory(_targetFilePath);
                         using (var targetStream = System.IO.File.Create(Path.Combine(_targetFilePath, trustedFileNameForFileStorage)))
                         {
                             await targetStream.WriteAsync(streamedFileContent);
@@ -122,7 +123,7 @@ namespace classifieds.Controllers
                             {
                                 Name = trustedFileNameForDisplay,
                                 Size = contentDisposition.Size ?? 0,
-                                Path = Path.Combine(_targetFilePath, trustedFileNameForFileStorage),
+                                Path = Path.Combine(_wwwrootPath, trustedFileNameForFileStorage),
                                 PostId = id
                             });
                             _logger.LogInformation(

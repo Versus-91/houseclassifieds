@@ -1,0 +1,79 @@
+﻿@model Microsoft.AspNetCore.Http.PathString;
+<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+    <div class="container">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <img src="/favicon.png" width="30" height="60">
+            </a>
+
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="/">
+                    خانه
+                </a>
+
+                <a class="navbar-item">
+                    مجله
+                </a>
+                <a class="navbar-item">
+                    آژانس های املاک
+                </a>
+            </div>
+
+            <div class="navbar-end">
+                <div class="navbar-item">
+                    <div class="buttons">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+
+            <a class="button is-primary" href="/ads/create">
+                <i class="fas fa-plus px-1"></i>
+                <strong> اعلان جدید</strong>
+            </a>
+                            <div class="navbar-item has-dropdown is-hoverable">
+                                <a class="navbar-link">
+                                    مدیریت کاربر
+                                </a>
+
+                                <div class="navbar-dropdown">
+                                    <a class="navbar-item" href="/manage">
+                                        <i class="fas fa-user px-1 has-text-info"></i>
+                                        پروفایل
+                                    </a>
+                                    <a class="navbar-item" href="/account/logout">
+                                        <i class="fas fa-sign-out-alt px-1 has-text-danger"></i>
+                                        خروج
+                                    </a>
+                                    <hr class="navbar-divider">
+                                    <a class="navbar-item">
+                                        <i class="fas fa-flag px-1 has-text-info"></i>
+                                        گزارش اشکال
+                                    </a>
+                                </div>
+                            </div> }
+                        else
+                        {
+
+
+            <a class="button is-success" href="/account/register">
+                <i class="fas fa-user px-1"></i>
+                <strong>ثبت نام</strong>
+            </a>
+                            <a class="button " href="/account/login?returnUrl=@Model">
+                                <i class="fas fa-sign-in-alt px-1 has-text-success"></i>
+                                ورود
+                            </a>}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

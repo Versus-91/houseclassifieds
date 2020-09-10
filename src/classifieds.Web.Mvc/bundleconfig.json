@@ -136,6 +136,12 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/view-resources/Views/Ads/Pagination.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Ads/Pagination.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/view-resources/Views/Account/Login.min.js",
     "inputFiles": [
       "wwwroot/view-resources/Views/Account/Login.js"

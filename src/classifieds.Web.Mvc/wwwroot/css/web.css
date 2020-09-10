@@ -279,3 +279,23 @@ body {
 .dropzone .dz-preview .dz-image {
     border-radius: 0 !important;
 }
+
+.overlay {
+    position: absolute;
+    bottom: 0;
+    background: rgb(0, 0, 0);
+    background: rgba(0, 0, 0, 0.5); /* Black see-through */
+    color: #f1f1f1;
+    width: 100%;
+    transition: .5s ease;
+    opacity: 1;
+    color: white;
+    padding: 10px;
+}
+
+.overlay-top-corner {
+    position: absolute;
+    top: 0;
+    color: white;
+    padding: 10px;
+}

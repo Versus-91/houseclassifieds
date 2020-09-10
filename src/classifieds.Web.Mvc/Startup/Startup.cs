@@ -15,13 +15,18 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
 using Newtonsoft.Json.Serialization;
+using SixLabors.ImageSharp.Web;
+using SixLabors.ImageSharp.Web.Caching;
+using SixLabors.ImageSharp.Web.Commands;
 using SixLabors.ImageSharp.Web.DependencyInjection;
+using SixLabors.ImageSharp.Web.Middleware;
+using SixLabors.ImageSharp.Web.Processors;
+using SixLabors.ImageSharp.Web.Providers;
 using System;
-using System.IO;
 
 namespace classifieds.Web.Startup
 {
@@ -61,7 +66,25 @@ namespace classifieds.Web.Startup
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.Configure<SMSoptions>(_appConfiguration);
             services.AddSignalR();
-            services.AddImageSharp();
+            services.AddImageSharp()
+                .SetRequestParser<QueryCollectionRequestParser>()
+                .Configure<PhysicalFileSystemCacheOptions>(options =>
+                {
+                    options.CacheFolder = "is-cache";
+                })
+                .SetCache(provider =>
+                {
+                    return new PhysicalFileSystemCache(
+                                provider.GetRequiredService<IOptions<PhysicalFileSystemCacheOptions>>(),
+                                provider.GetRequiredService<IWebHostEnvironment>(),
+                                provider.GetRequiredService<IOptions<ImageSharpMiddlewareOptions>>(),
+                                provider.GetRequiredService<FormatUtilities>());
+                })
+                .SetCacheHash<CacheHash>()
+                .AddProvider<PhysicalFileSystemProvider>()
+                .AddProcessor<ResizeWebProcessor>()
+                .AddProcessor<FormatWebProcessor>()
+                .AddProcessor<BackgroundColorWebProcessor>();
             // Configure Abp and Dependency Injection
             return services.AddAbp<classifiedsWebMvcModule>(
                 // Configure Log4Net logging
@@ -84,12 +107,9 @@ namespace classifieds.Web.Startup
             {
                 app.UseExceptionHandler("/Error");
             }
+            app.UseImageSharp();
+
             app.UseStaticFiles();
-            app.UseStaticFiles(new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(Path.Combine(env.ContentRootPath, "Images")),
-                RequestPath = "/images"
-            });
 
             app.UseRouting();
 

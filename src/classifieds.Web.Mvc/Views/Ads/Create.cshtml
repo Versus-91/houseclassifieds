@@ -10,8 +10,8 @@
     <div class="hero-body">
         <div class="container persian">
             <div class="box">
-                <h1>ارسال آگهی جدید</h1>
-                <br />
+                <h1 class="title is-4">ارسال آگهی جدید</h1>
+                <hr />
                 <form asp-action="create" enctype="multipart/form-data" id="CreateAd">
                     <div class="help is-danger" asp-validation-summary="All">
                     </div>
@@ -82,8 +82,11 @@
                         <div class="field-body">
                             <div class="field">
                                 <label asp-for="Title" class="label">عنوان</label>
-                                <div class="control">
+                                <div class="control has-icons-right">
                                     <input asp-for="Title" class="input" type="text" placeholder="عنوان">
+                                    <span class="icon is-small is-right">
+                                        <i class="fas fa-arrow-left"></i>
+                                    </span>
                                     <span class="help is-danger" asp-validation-for="Title"></span>
                                 </div>
                             </div>
@@ -91,6 +94,7 @@
                                 <label asp-for="Area" class="label">متراژ</label>
                                 <div class="control has-icons-left ">
                                     <input class="input realtime" id="area" asp-for="Area" placeholder="مساحت" />
+                                    <span class="help is-danger" asp-validation-for="Area"></span>
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-globe"></i>
                                     </span>

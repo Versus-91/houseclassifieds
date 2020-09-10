@@ -63,14 +63,23 @@
                                 <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
                             </a>
                         </div>*@
-                    <div class="field ">
-
+                    <p class="buttons">
                         @if (Model.IsSelfRegistrationAllowed)
                         {
-            <div class="control">
-                <a asp-action="Register" class="button is-fullwidth"><i class="fa fa-plus-circle"></i> @L("Register")</a>
-            </div>}
-                    </div>
+            <a asp-action="Register" class="button is-fullwidth">
+                <span class="icon">
+                    <i class="fa fa-plus-circle mx-2"></i>
+                    @L("Register")
+                </span>
+            </a>}
+                        <a asp-controller="home" asp-action="" class="button is-fullwidth mt-3">
+                            <span class="icon is-small">
+                                <i class="fa fa-home mx-2"></i>
+                                @L("Back")
+                            </span>
+                        </a>
+                    </p>
+
                 </div>
             </div>
         </div>

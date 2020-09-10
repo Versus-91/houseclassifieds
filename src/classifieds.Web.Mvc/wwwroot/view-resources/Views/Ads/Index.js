@@ -64,13 +64,24 @@ $(document).ready(function () {
 	}
 	navigator.geolocation.getCurrentPosition(showPosition, showError, { timeout: 10000 });
 
+	//dropzone uploader script
 	var dropZone = new Dropzone('#dropzone', {
 		autoProcessQueue: false,
 		maxFiles: 8,
+		preventDuplicates: true,
 		acceptedFiles: 'image/*',
-		maxFilesize: 1,
+		maxFilesize: 4,
 		previewTemplate: document.querySelector('#tpl').innerHTML,
 		//addRemoveLinks: true,
+		init: function () {
+			this.on('error', function (file, errorMessage) {
+				if (errorMessage.indexOf('big') !== -1) {
+					var errorDisplay = document.querySelectorAll('[data-dz-errormessage]');
+					console.log(errorDisplay)
+					errorDisplay[errorDisplay.length - 2].innerHTML = 'حجم فایل زیاد است.' + '<br/>حداکثر حجم فایل مجاز :' + this.options.maxFilesize + 'مگابایت ';
+				}
+			});
+		},
 		url: "/ads/create",
 		headers: {
 			'X-XSRF-TOKEN': $('input[name="__RequestVerificationToken"]').val()
@@ -79,6 +90,19 @@ $(document).ready(function () {
 			window.location.href = "../";
 		}
 	});
+	//remove duplcate files
+	dropZone.on("addedfile", function (file) {
+		if (this.files.length) {
+			var _i, _len;
+			for (_i = 0, _len = this.files.length; _i < _len - 1; _i++) // -1 to exclude current file
+			{
+				if (this.files[_i].name === file.name && this.files[_i].size === file.size && this.files[_i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+					this.removeFile(file);
+				}
+			}
+		}
+	});
+	//submit form
 	submitButton.click((e) => {
 		e.preventDefault();
 		var formData = new FormData();
