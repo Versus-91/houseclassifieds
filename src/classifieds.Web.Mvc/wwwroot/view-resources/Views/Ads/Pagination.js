@@ -1,21 +1,29 @@
 ﻿$(function () {
+    var url = document.location.href;
+    var params = url.split("?");
+    console.log(params);
     var pageIndex = 1;
     var rowPerPage = 30;
     var totalPages = 0;
-    var path = function () {
-        return '/api/services/app/post/getall?SkipCount=' + (pageIndex - 1) * rowPerPage + '&MaxResultCount=' + rowPerPage;
+    var path = function (filter) {
+        console.log('filter : ',filter)
+		if (filter) {
+            return '/api/services/app/post/getall?SkipCount=' + (pageIndex - 1) * rowPerPage + '&MaxResultCount=' + rowPerPage +'&'+ filter;
+		}
+        return '/api/services/app/post/getall?SkipCount=' + (pageIndex - 1) * rowPerPage + '&MaxResultCount=' + rowPerPage ;
     }
-    function loadAds(path) {
+    function loadAds(path, reloading = false) {
         $.getJSON(path, function () {
-            console.log("success");
         })
             .done(function (res) {
                 $("#pager").empty();
+                if (reloading) {
+                    pageIndex = 1;
+				}
                 if (res.result.totalCount === 0) {
                     $("#pager").append(`<div class="column is-vcentered has-text-centered"><p class="subtitle has-text-centered">نتیجه ای یافت نشد .</p></div>`)
                 }
                 totalPages = Math.ceil(res.result.totalCount / rowPerPage);
-                console.log("num of pages", totalPages);
                 if (pageIndex <= 1) {
                     $(".pagination-previous").attr("disabled", "disabled");
                 } else {
@@ -27,7 +35,6 @@
                 } else {
                     $(".pagination-next").removeAttr("disabled");
                 }
-                $("#pager").empty();
 
                 res.result.items.forEach((item) => {
                     var featuredIcon = item.isFeatured === true ? `<i class="fas  fa-check has-text-success"></i>` : `<i class="fas fa-times has-text-danger"></i>`;
@@ -73,7 +80,10 @@
                                     </div>
                                 </a>
                             </div>`);
-                })
+                });
+                $('html, body').animate({
+                    scrollTop: $("#mainContainer").offset().top
+                }, 200);
             })
             .fail(function () {
                 console.log("error");
@@ -89,19 +99,27 @@
         var minPrice = $("#minPrice").val();
         var maxPrice = $("#maxPrice").val();
         if (minArea & maxArea) {
+            console.log('area');
             query.minArea = minArea;
             query.maxArea = maxArea;
-        }
+		} else {
+            delete query.minArea ;
+            delete query.maxArea ;
+		}
         if (minPrice & maxPrice) {
-            query.minPrice = minPrice;
-            query.maxPrice = maxPrice;
-        }
+            delete query.minPrice ;
+            delete query.maxPrice ;
+		} else {
+            query.minPrice ;
+            query.maxPrice ;
+		}
         if ($("#featured").is(":checked")) {
             query.featured = true;
         } else {
             delete query.featured;
         }
-        loadAds(path + '&' + $.param(query));
+        console.log(query);
+        loadAds(path($.param(query)),true);
     }
     $("#apply").click(() => {
         FilterAds();
@@ -114,5 +132,5 @@
         pageIndex = pageIndex  - 1;
         loadAds(path())
     });
-    loadAds(path())
+    loadAds(path(params[1]))
 })

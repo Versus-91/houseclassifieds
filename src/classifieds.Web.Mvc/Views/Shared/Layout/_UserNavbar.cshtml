@@ -32,17 +32,23 @@
                     <div class="buttons">
                         @if (User.Identity.IsAuthenticated)
                         {
-
-            <a class="button is-primary" href="/ads/create">
-                <i class="fas fa-plus px-1"></i>
-                <strong> اعلان جدید</strong>
-            </a>
+                            <a class="button is-primary" href="/ads/create">
+                                <i class="fas fa-plus px-1"></i>
+                                <strong> اعلان جدید</strong>
+                            </a>
                             <div class="navbar-item has-dropdown is-hoverable">
                                 <a class="navbar-link">
                                     مدیریت کاربر
                                 </a>
 
                                 <div class="navbar-dropdown">
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <a class="navbar-item" href="/admin/users">
+                                            <i class="fas fa-cog px-1 has-text-info"></i>
+                                            مدیریت
+                                        </a>
+                                    }
                                     <a class="navbar-item" href="/manage">
                                         <i class="fas fa-user px-1 has-text-info"></i>
                                         پروفایل
@@ -57,20 +63,19 @@
                                         گزارش اشکال
                                     </a>
                                 </div>
-                            </div> }
+                            </div>
+                        }
                         else
                         {
-
-
-            <a class="button is-success" href="/account/register">
-                <i class="fas fa-user px-1"></i>
-                <strong>ثبت نام</strong>
-            </a>
+                            <a class="button is-success" href="/account/register">
+                                <i class="fas fa-user px-1"></i>
+                                <strong>ثبت نام</strong>
+                            </a>
                             <a class="button " href="/account/login?returnUrl=@Model">
                                 <i class="fas fa-sign-in-alt px-1 has-text-success"></i>
                                 ورود
-                            </a>}
-
+                            </a>
+                        }
                     </div>
                 </div>
             </div>

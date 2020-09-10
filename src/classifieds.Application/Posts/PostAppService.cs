@@ -28,6 +28,7 @@ namespace classifieds.Posts
             return base.CreateFilteredQuery(input)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
                 //.WhereIf(input.MinPrice.HasValue && input.MaxPrice.HasValue, t => t. == input.Featured.Value)
+                .WhereIf(input.Category.HasValue, t => t.CategoryId == input.Category.Value)
                 .WhereIf(input.District.HasValue, t => t.DistrictId == input.District.Value)
                 .WhereIf(input.Age.HasValue, t => t.Age == input.Age.Value)
                 .WhereIf(input.Beds.HasValue, t => t.Bedroom == input.Beds.Value)

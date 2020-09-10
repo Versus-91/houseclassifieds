@@ -178,6 +178,7 @@
 /* bootstrap model showing two scroll bars */
 html {
     overflow: visible;
+    scroll-behavior: smooth;
 }
 
 /* main sidebar not under model */
