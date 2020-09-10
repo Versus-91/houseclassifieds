@@ -1,11 +1,14 @@
 ﻿using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
+using Abp.AspNetCore.Mvc.Authorization;
 using Abp.AspNetCore.Mvc.Controllers;
+using classifieds.Authorization;
 using classifieds.PropertyTypes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace classifieds.Web.Controllers
 {
+    [AbpMvcAuthorize(PermissionNames.Pages_Cities)]
     public class PropertyTypesController : AbpController
     {
         private readonly ITypeAppService _typeService;

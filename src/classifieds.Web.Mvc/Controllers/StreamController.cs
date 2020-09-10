@@ -1,4 +1,5 @@
-﻿using Abp.Domain.Repositories;
+﻿using Abp.AspNetCore.Mvc.Authorization;
+using Abp.Domain.Repositories;
 using Abp.Runtime.Validation;
 using classifieds.Filters;
 using classifieds.Images;
@@ -18,6 +19,7 @@ using System.Threading.Tasks;
 
 namespace classifieds.Controllers
 {
+    [AbpMvcAuthorize]
     public class StreamController : classifiedsControllerBase
     {
         private readonly long _fileSizeLimit;

@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services;
 using Abp.Domain.Repositories;
+using classifieds.Authorization;
 using classifieds.Categories.Dto;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,9 @@ namespace classifieds.Categories
     {
         public CategoryAppService(IRepository<Category> repository):base(repository)
         {
+            CreatePermissionName = PermissionNames.Pages_Categories;
+            UpdatePermissionName = PermissionNames.Pages_Categories;
+            DeletePermissionName = PermissionNames.Pages_Categories;
 
         }
         

@@ -1,6 +1,8 @@
 ﻿using Abp.Application.Services.Dto;
+using Abp.AspNetCore.Mvc.Authorization;
 using Abp.AspNetCore.Mvc.Controllers;
 using Abp.Web.Models;
+using classifieds.Authorization;
 using classifieds.Cities;
 using classifieds.Districts;
 using classifieds.Districts.Dto;
@@ -12,6 +14,7 @@ using System.Threading.Tasks;
 
 namespace classifieds.Web.Controllers
 {
+    [AbpMvcAuthorize(PermissionNames.Pages_District)]
     public class DistrictsController : AbpController
     {
         private readonly IDistrictAppService _districtService;

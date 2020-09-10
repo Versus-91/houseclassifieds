@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Abp.Application.Services.Dto;
+using Abp.AspNetCore.Mvc.Authorization;
 using Abp.AspNetCore.Mvc.Controllers;
+using classifieds.Authorization;
 using classifieds.Categories;
 using classifieds.Categories.Dto;
 using classifieds.Web.Models.Categories;
@@ -10,6 +12,7 @@ using ReflectionIT.Mvc.Paging;
 
 namespace classifieds.Web.Controllers
 {
+    [AbpMvcAuthorize(PermissionNames.Pages_Categories)]
     public class CategoriesController : AbpController
     {
         private readonly ICategoryAppService _categoryService;
