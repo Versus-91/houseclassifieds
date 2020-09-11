@@ -161,9 +161,4 @@ namespace classifieds.Controllers
             return mediaType.Encoding;
         }
     }
-
-    public class FormData
-    {
-        public string Note { get; set; }
-    }
 }

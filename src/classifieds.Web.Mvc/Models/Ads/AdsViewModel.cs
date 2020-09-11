@@ -23,18 +23,19 @@ namespace classifieds.Web.Models.Ads
         public uint Deposit { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public PostDto ToPost()
+        public CreatePostInput ToPost()
         {
-            return new PostDto
+            return new CreatePostInput
             {
                 CategoryId = CategoryId,
-                Title = this.Title,
-                Description = this.Description,
-                DistrictId = this.DistrictId,
-                CreationTime = this.CreationTime,
-                Area = this.Area,
-                Bedroom = this.Bedroom,
-                TypeId = this.TypeId,
+                Title = Title,
+                Description = Description,
+                DistrictId = DistrictId,
+                Price = Price,
+                Deopsit = Deposit,
+                Area = Area,
+                Bedroom = Bedroom,
+                TypeId = TypeId,
                 Latitude = Latitude,
                 Longitude = Longitude,
 

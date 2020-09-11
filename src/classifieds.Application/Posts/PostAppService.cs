@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace classifieds.Posts
 {
-    public class PostAppService : AsyncCrudAppService<Post, PostDto, int, GetAllPostsInput>, IPostAppService
+    public class PostAppService : AsyncCrudAppService<Post, PostDto, int, GetAllPostsInput, CreatePostInput, UpdatePostInput>, IPostAppService
     {
         private readonly IRepository<Post> _postRepository;
         public PostAppService(IRepository<Post> repository) : base(repository)

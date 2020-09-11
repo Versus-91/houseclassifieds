@@ -14,7 +14,7 @@ namespace classifieds.Posts
     {
         public string Title { get; set; }
         public string Description { get; set; }
-        public bool IsFeatured { get; set; }
+        public bool IsFeatured { get; set; } = false;
         public int CategoryId { get; set; }
         public Category Category { get; set; }
         public List<Image> Images { get; set; }
