@@ -1,0 +1,155 @@
+﻿@using classifieds.Web.Startup
+@model classifieds.Posts.Dto.PostDto
+@{ ViewBag.Title = L("HomePage");
+    ViewBag.CurrentPageName = PageNames.Home;
+    Layout = "layout/_front"; }
+@section styles{
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin="" />
+}
+
+<div class="hero is-fullheight is-light is-bold">
+    <div class="hero-body">
+        <div class="container">
+            <div class="help is-danger" asp-validation-summary="All">
+            </div>
+            <a class="button" href="/admin/posts">بازگشت</a>
+
+            @if (Model.IsVerified != true)
+            {
+                <form action="/admin/posts/update" method="post" style="display:none" id="veriftPost">
+                    @Html.AntiForgeryToken()
+                    <input asp-for="Id" />
+                    <input asp-for="IsFeatured" />
+                    <input name="IsVerified" value="true" />
+                </form>
+                <button class="button is-success" href="/admin/posts" onclick="document.getElementById('veriftPost').submit();">تایید</button>
+            }
+            @*<a class="button is-danger" href="/admin/posts">حذف</a>*@
+            <input hidden name="Latitude" id="postLatitude" value="@Model.Latitude" />
+            <input hidden name="Longitude" id="postLongitude" value="@Model.Longitude" />
+            <div class="section box mt-5">
+                <div class="columns">
+                    <div class="column is-5">
+                        <h1 class="title">@Model.Title</h1>
+                        <h1 class="subtitle">@Model.Description</h1>
+                    </div>
+                    <div class="column is-7">
+                        <div class="columns is-multiline">
+                            <div class="column is-12">
+                                <div class="swiper-container">
+                                    <!-- Additional required wrapper -->
+                                    <div class="swiper-wrapper">
+                                        <!-- Slides -->
+                                        @foreach (var item in Model.Images)
+                                        {
+                                            <div class="swiper-slide">
+                                                <!-- Required swiper-lazy class and image source specified in data-src attribute -->
+                                                <img data-src="/@item.Path" class="swiper-lazy slider-img">
+                                                <!-- Preloader image -->
+                                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                                            </div>}
+
+                                    </div>
+                                    <!-- If we need pagination -->
+                                    <div class="swiper-pagination"></div>
+
+                                    <!-- If we need navigation buttons -->
+                                    <div class="swiper-button-prev"></div>
+                                    <div class="swiper-button-next"></div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <section class="level is-mobile">
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
+                            <p class="title is-5">@Model.Bedroom</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading"><i class="fas fa-2x fa-clock"></i></p>
+                            <p class="title"></p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading"><i class="fas fa-2x fa-parking"></i></p>
+                            <p class="title is-6">دارد</p>
+                        </div>
+                    </div>
+                    <div class="level-item has-text-centered">
+                        <div>
+                            <p class="heading"><i class="fas fa-2x fa-water has-text-info"></i></p>
+                            <p class="title is-6">دارد</p>
+                        </div>
+                    </div>
+                </section>
+                <div class="column is-12">
+                    <div id="map" style="height:300px"></div>
+                </div>
+                <section>
+                </section>
+
+            </div>
+        </div>
+        </div>
+</div>
+@section scripts{
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+            crossorigin=""></script>
+    <script>
+        $(function () {
+            console.log($('#postLatitude').val());
+            if ($('#postLatitude').val() != 0 && $('#postLongitude').val() != 0) {
+                var map = L.map('map').setView(L.latLng($('#postLatitude').val(), $('#postLongitude').val()), 13);
+
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                }).addTo(map);
+
+                L.marker([$('#postLatitude').val(), $('#postLongitude').val()]).addTo(map)
+                    .bindPopup('محل انتخاب شده .');
+            } else {
+                $("#map").hide();
+            }
+
+            var mySwiper = new Swiper('.swiper-container', {
+                lazy: true,
+                slidesPerView: 1,
+
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            })
+            //var suggestions = new Swiper('.secondary-swiper-container', {
+            //    slidesPerView: 2,
+            //    spaceBetween: 10,
+            //    navigation: {
+            //        nextEl: '#next',
+            //        prevEl: '#prev'
+            //    },
+            //    pagination: {
+            //        el: '#pagination',
+            //        clickable: true,
+            //    },
+            //})
+        })
+
+    </script>
+}

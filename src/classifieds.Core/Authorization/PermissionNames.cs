@@ -10,7 +10,7 @@
         public const string Pages_Categories = "Pages.Categuries";
         public const string Pages_PropertyTypes = "Pages.PropertyTypes";
         public const string Pages_Posts = "Pages.Posts";
-
+        public const string Pages_AdminPosts = "Pages.AdminPosts";
         public const string Pages_Roles = "Pages.Roles";
 
         public const string Posts_Create = "Posts.Create";

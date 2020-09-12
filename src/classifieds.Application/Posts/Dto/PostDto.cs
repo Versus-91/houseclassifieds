@@ -17,6 +17,7 @@ namespace classifieds.Posts.Dto
         [Required]
         public string Description { get; set; }
         public bool IsFeatured { get; set; } = false;
+        public bool IsVerified { get; set; } = false;
         public int CategoryId { get; set; }
         public string Category { get; set; }
         public ushort Area { get; set; }

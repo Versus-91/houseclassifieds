@@ -1,10 +1,10 @@
 ﻿(function ($) {
-    var _cityService = abp.services.app.post,
+    var _postService = abp.services.app.adminPost,
         l = abp.localization.getSource('classifieds'),
         _$modal = $('#PostCreateModal'),
         _$form = _$modal.find('form'),
         _$table = $('#PostsTable');
-
+    console.log(abp.services.app);
     var _$rolesTable = _$table.DataTable({
         paging: true,
         serverSide: true,
@@ -14,7 +14,7 @@
             filter.skipCount = data.start;
 
             abp.ui.setBusy(_$table);
-            _cityService.getAll(filter).done(function (result) {
+            _postService.getAllDetails(filter).done(function (result) {
                 callback({
                     recordsTotal: result.totalCount,
                     recordsFiltered: result.totalCount,
@@ -39,56 +39,67 @@
         columnDefs: [
             {
                 targets: 0,
-                className: 'control',
-                defaultContent: '',
-            },
-            {
-                targets: 1,
                 data: 'title',
                 sortable: false
             },
             {
+                targets: 1,
+                data: 'category',
+                sortable: false
+            },
+            {
                 targets: 2,
+                data: 'district',
+                sortable: false,
+                render: (data, type, row, meta) => {
+                    return row.city + ',' + row.district;
+                }
+            },
+            {
+                targets: 3,
+                data: 'isFeatured',
+                sortable: false,
+                render: (data, type, row, meta) => {
+                    return row.isFeatured === true ? `<span class="badge badge-success">فوری</span>` :`<span class="badge badge-danger">عادی</span>`
+                }
+            },
+            {
+                targets: 4,
+                data: 'isVerified',
+                sortable: false,
+                render: (data, type, row, meta) => {
+                    console.log(row)
+                    return row.isVerified === true ? `<span class="badge badge-success">تایید شده</span>` : `<span class="badge badge-danger">تایید نشده</span>`
+                }
+            },
+            {
+                targets: 5,
+                data: 'creationTime',
+                sortable: false,
+                render: (data, type, row, meta) => {
+                    return new Date(row.creationTime);
+                }
+            },
+            {
+                targets: 6,
                 data: null,
                 sortable: false,
                 autoWidth: false,
                 defaultContent: '',
                 render: (data, type, row, meta) => {
                     return [
-                        `   <button type="button" class="btn btn-sm bg-secondary edit-post" data-id="${row.id}" data-toggle="modal" data-target="#PostEditModal">`,
-                        `       <i class="fas fa-pencil-alt"></i> ${l('Edit')}`,
-                        '   </button>',
-                        `   <button type="button" class="btn btn-sm bg-danger delete-post" data-post-id="${row.id}" data-post-name="${row.title}">`,
-                        `       <i class="fas fa-trash"></i> ${l('Delete')}`,
-                        '   </button>',
+                        `   <a type="button" class="btn btn-sm bg-secondary " href="/admin/posts/${row.id}">`,
+                        `       <i class="fas fa-pencil-alt"></i> ${l('Show')}`,
+                        '   </a>',
+                        //`   <button type="button" class="btn btn-sm bg-danger delete-post" data-post-id="${row.id}" data-post-name="${row.title}">`,
+                        //`       <i class="fas fa-trash"></i> ${l('Delete')}`,
+                        //'   </button>',
                     ].join('');
                 }
             }
         ]
     });
 
-    _$form.find('.save-button').on('click', (e) => {
-        e.preventDefault();
-
-        if (!_$form.valid()) {
-            return;
-        }
-
-        var city = _$form.serializeFormToObject();
-
-        abp.ui.setBusy(_$modal);
-        _cityService
-            .create(city)
-            .done(function () {
-                _$modal.modal('hide');
-                _$form[0].reset();
-                abp.notify.info(l('SavedSuccessfully'));
-                _$rolesTable.ajax.reload();
-            })
-            .always(function () {
-                abp.ui.clearBusy(_$modal);
-            });
-    });
 
     $(document).on('click', '.delete-post', function () {
         var id = $(this).attr("data-post-id");
@@ -97,20 +108,7 @@
         deleteRole(id, name);
     });
 
-    $(document).on('click', '.edit-city', function (e) {
-        var Id = $(this).attr("data-id");
-
-        e.preventDefault();
-        abp.ajax({
-            url: abp.appPath + 'cities/Edit/' + Id,
-            type: 'POST',
-            dataType: 'html',
-            success: function (content) {
-                $('#CityEditModal div.modal-content').html(content);
-            },
-            error: function (e) { }
-        })
-    });
+ 
 
     abp.event.on('post.edited', (data) => {
         _$rolesTable.ajax.reload();
@@ -124,7 +122,7 @@
             null,
             (isConfirmed) => {
                 if (isConfirmed) {
-                    _cityService.delete({
+                    _postService.delete({
                         id: cityId
                     }).done(() => {
                         abp.notify.info(l('SuccessfullyDeleted'));

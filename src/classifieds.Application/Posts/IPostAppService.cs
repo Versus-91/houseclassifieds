@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services;
+using classifieds.Posts.Admin.Dto;
 using classifieds.Posts.Dto;
 using System.Threading.Tasks;
 

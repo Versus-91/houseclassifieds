@@ -1,32 +1,34 @@
 ﻿using Abp.Application.Services;
+using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using classifieds.Authorization;
 using classifieds.Images;
+using classifieds.Posts.Admin.Dto;
 using classifieds.Posts.Dto;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
 
 namespace classifieds.Posts
 {
-    public class PostAppService : AsyncCrudAppService<Post, PostDto, int, GetAllPostsInput, CreatePostInput, UpdatePostInput>, IPostAppService
+    [AbpAuthorize(PermissionNames.Pages_AdminPosts)]
+    public class AdminPostAppService : AsyncCrudAppService<Post, PostDto, int, GetAllPostsInput, CreatePostInput, AdminUpdatePostInput>, IAdminPostAppService
     {
         private readonly IRepository<Post> _postRepository;
-        public PostAppService(IRepository<Post> repository) : base(repository)
+        public AdminPostAppService(IRepository<Post> repository) : base(repository)
         {
             _postRepository = repository;
-            CreatePermissionName = PermissionNames.Pages_Posts;
-            UpdatePermissionName = PermissionNames.Pages_Posts;
-            DeletePermissionName = PermissionNames.Pages_Posts;
         }
 
         protected override IQueryable<Post> CreateFilteredQuery(GetAllPostsInput input)
         {
             return base.CreateFilteredQuery(input)
-                .Where(m=>m.IsVerified)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
                 //.WhereIf(input.MinPrice.HasValue && input.MaxPrice.HasValue, t => t. == input.Featured.Value)
                 .WhereIf(input.Category.HasValue, t => t.CategoryId == input.Category.Value)
@@ -52,6 +54,8 @@ namespace classifieds.Posts
                     Title = m.Title,
                     CreationTime = m.CreationTime,
                     City = m.District.City.Name,
+                    IsVerified = m.IsVerified,
+                    IsFeatured = m.IsFeatured,
                     Images = m.Images.Select(m => new Image
                     {
                         Path = m.Path,
@@ -59,6 +63,30 @@ namespace classifieds.Posts
                     }).ToList(),
                 }).FirstOrDefaultAsync();
             return item;
+        }
+        public async Task<PagedResultDto<PostDto>> GetAllDetails(GetAllPostsInput input)
+        {
+            var query = _postRepository.GetAllIncluding(m => m.District.City, m => m.Category);
+            var totalCount = _postRepository.GetAllIncluding(m => m.District.City, m => m.Category).Count();
+            query=ApplyPaging(query, input);
+            query=ApplySorting(query, input);
+            var posts = await query.Select(m => new PostDto
+                {
+                    Id = m.Id,
+                    Bedroom = m.Bedroom,
+                    Area = m.Area,
+                    Description = m.Description,
+                    Category = m.Category.Name,
+                    District = m.District.Name,
+                    Latitude = m.Latitude,
+                    Longitude = m.Longitude,
+                    Title = m.Title,
+                    CreationTime = m.CreationTime,
+                    City = m.District.City.Name,
+                    IsVerified = m.IsVerified,
+                    IsFeatured = m.IsFeatured,
+                }).ToListAsync();
+            return new PagedResultDto<PostDto>(totalCount, ObjectMapper.Map<List<PostDto>>(posts));
         }
     }
 }

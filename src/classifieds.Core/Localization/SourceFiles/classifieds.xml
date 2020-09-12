@@ -127,5 +127,10 @@
     <text name="PropertyTypes">Property Types</text>
     <text name="Title">Title</text>
     <text name="CreatePost">Create Post</text>
+    <text name="CreatedAt">Created At</text>
+    <text name="IsFeatured">Featured</text>
+    <text name="IsVerified">Verified</text>
+    <text name="Category">Category</text>
+    <text name="Location">Location</text>
   </texts>
 </localizationDictionary>
