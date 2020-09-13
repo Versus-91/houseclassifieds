@@ -1,7 +1,7 @@
 ﻿$(function () {
     var url = document.location.href;
     var params = url.split("?");
-    console.log(params);
+    var loading = false;
     var pageIndex = 1;
     var rowPerPage = 30;
     var totalPages = 0;
@@ -13,6 +13,7 @@
         return '/api/services/app/post/getall?SkipCount=' + (pageIndex - 1) * rowPerPage + '&MaxResultCount=' + rowPerPage ;
     }
     function loadAds(path, reloading = false) {
+        loading = true;
         $.getJSON(path, function () {
         })
             .done(function (res) {
@@ -27,7 +28,6 @@
                 if (pageIndex <= 1) {
                     $(".pagination-previous").attr("disabled", "disabled");
                 } else {
-                    console.log("enable prev");
                     $(".pagination-previous").removeAttr("disabled");
                 }
                 if (pageIndex >= totalPages) {
@@ -35,19 +35,25 @@
                 } else {
                     $(".pagination-next").removeAttr("disabled");
                 }
-
                 res.result.items.forEach((item) => {
-                    var featuredIcon = item.isFeatured === true ? `<i class="fas  fa-check has-text-success"></i>` : `<i class="fas fa-times has-text-danger"></i>`;
+                    var boolHasImage = item.images && item.images[0] ? true : false;
+                    var hasImageIcon = boolHasImage == false ? `<span class="fa-stack ">
+                                    <i class="fas fa-camera fa-stack-1x"></i>
+                                    <i class="fas fa-ban fa-stack-2x" style="color:Tomato"></i>
+                                    </span>` : `<span class="fa-stack " >
+                                    <i class="fas fa-camera fa-stack-1x has-text-info" style=" vertical-align: middle;"></i><span>${item.images.length}</span></span>`;
+                    var featuredIcon = item.isFeatured === true ? `<span class="fa-stack  has-text-success"><i class="fas fa-stack-1x fa-check-square"></i></span>` : ``;
                     $("#pager").append(`<div class=" column is-4">
                                 <a class="fill-div" href="/ads/${item.id}">
                                     <div class="card card-hover-shadow">
                                         <div class="card-image">
                                             <figure class="image is-4by3">
-                                                <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-1.2.1&w=1000&q=80" alt="Placeholder image">
-                                                <div class="overlay">${new persianDate(item.creationTime)}</div>
-
-
-                                                <div class="overlay-top-corner">${featuredIcon}</div>
+                                                <img src="${boolHasImage ? item.images[0].path +'?width=600&height=480' : '/img/placeholder.png'}" alt="Placeholder image">
+                                                <div class="overlay">${item.district.city.name + ',' + item.district.name}</div>
+                                                <div class="overlay-top-corner">
+                                                ${featuredIcon}
+                                                ${hasImageIcon}
+                                                </div>
                                             </figure>
                                         </div>
                                         <div class="card-content">
@@ -65,7 +71,7 @@
                                                 <div class="level-item has-text-centered">
                                                     <div>
                                                         <p><i class="fas  fa-clock has-text-warning"></i></p>
-                                                        <p>نوساز</p>
+                                                        <p>${item.age == 0 ? '--' : item.age}</p>
                                                     </div>
                                                 </div>
                                                 <div class="level-item has-text-centered">
@@ -81,6 +87,7 @@
                                 </a>
                             </div>`);
                 });
+                loading = false;
                 $('html, body').animate({
                     scrollTop: $("#mainContainer").offset().top
                 }, 200);
@@ -89,6 +96,7 @@
                 console.log("error");
             })
             .always(function () {
+                loading = false;
                 console.log("complete");
             });
     }
@@ -99,7 +107,6 @@
         var minPrice = $("#minPrice").val();
         var maxPrice = $("#maxPrice").val();
         if (minArea & maxArea) {
-            console.log('area');
             query.minArea = minArea;
             query.maxArea = maxArea;
 		} else {
@@ -118,7 +125,6 @@
         } else {
             delete query.featured;
         }
-        console.log(query);
         loadAds(path($.param(query)),true);
     }
     $("#apply").click(() => {

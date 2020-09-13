@@ -299,4 +299,6 @@ body {
     top: 0;
     color: white;
     padding: 10px;
+    display: inline-block;
+    vertical-align: middle;
 }

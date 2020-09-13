@@ -29,6 +29,8 @@ namespace classifieds.Posts
         protected override IQueryable<Post> CreateFilteredQuery(GetAllPostsInput input)
         {
             return base.CreateFilteredQuery(input)
+                .Include(m=>m.District.City)
+                .Include(m=>m.Category)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
                 //.WhereIf(input.MinPrice.HasValue && input.MaxPrice.HasValue, t => t. == input.Featured.Value)
                 .WhereIf(input.Category.HasValue, t => t.CategoryId == input.Category.Value)
@@ -47,13 +49,13 @@ namespace classifieds.Posts
                     Bedroom = m.Bedroom,
                     Area = m.Area,
                     Description = m.Description,
-                    Category = m.Category.Name,
-                    District = m.District.Name,
+                    Category = m.Category,
+                    District = m.District,
                     Latitude = m.Latitude,
                     Longitude = m.Longitude,
                     Title = m.Title,
                     CreationTime = m.CreationTime,
-                    City = m.District.City.Name,
+                    City = m.District.City,
                     IsVerified = m.IsVerified,
                     IsFeatured = m.IsFeatured,
                     Images = m.Images.Select(m => new Image
@@ -64,29 +66,29 @@ namespace classifieds.Posts
                 }).FirstOrDefaultAsync();
             return item;
         }
-        public async Task<PagedResultDto<PostDto>> GetAllDetails(GetAllPostsInput input)
-        {
-            var query = _postRepository.GetAllIncluding(m => m.District.City, m => m.Category);
-            var totalCount = _postRepository.GetAllIncluding(m => m.District.City, m => m.Category).Count();
-            query=ApplyPaging(query, input);
-            query=ApplySorting(query, input);
-            var posts = await query.Select(m => new PostDto
-                {
-                    Id = m.Id,
-                    Bedroom = m.Bedroom,
-                    Area = m.Area,
-                    Description = m.Description,
-                    Category = m.Category.Name,
-                    District = m.District.Name,
-                    Latitude = m.Latitude,
-                    Longitude = m.Longitude,
-                    Title = m.Title,
-                    CreationTime = m.CreationTime,
-                    City = m.District.City.Name,
-                    IsVerified = m.IsVerified,
-                    IsFeatured = m.IsFeatured,
-                }).ToListAsync();
-            return new PagedResultDto<PostDto>(totalCount, ObjectMapper.Map<List<PostDto>>(posts));
-        }
+        //public async Task<PagedResultDto<PostDto>> GetAllDetails(GetAllPostsInput input)
+        //{
+        //    var query = _postRepository.GetAllIncluding(m => m.District.City, m => m.Category);
+        //    var totalCount = _postRepository.GetAllIncluding(m => m.District.City, m => m.Category).Count();
+        //    query=ApplyPaging(query, input);
+        //    query=ApplySorting(query, input);
+        //    var posts = await query.Select(m => new PostDto
+        //        {
+        //            Id = m.Id,
+        //            Bedroom = m.Bedroom,
+        //            Area = m.Area,
+        //            Description = m.Description,
+        //            Category = m.Category.Name,
+        //            //District = m.District.Name,
+        //            Latitude = m.Latitude,
+        //            Longitude = m.Longitude,
+        //            Title = m.Title,
+        //            CreationTime = m.CreationTime,
+        //            //City = m.District.City.Name,
+        //            IsVerified = m.IsVerified,
+        //            IsFeatured = m.IsFeatured,
+        //        }).ToListAsync();
+        //    return new PagedResultDto<PostDto>(totalCount, ObjectMapper.Map<List<PostDto>>(posts));
+        //}
     }
 }

@@ -320,7 +320,7 @@
                     var sampleArray = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }
                         , { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }
                         , { id: 4, text: 'wontfix' }];
-                    $.get('/districts/GetByCityId?id=' + e.target.value, function (res) {
+                    $.get('/admin/districts/GetByCityId?id=' + e.target.value, function (res) {
                         var items = res.result.map(m => {
                             return {
                                 id: m.id,

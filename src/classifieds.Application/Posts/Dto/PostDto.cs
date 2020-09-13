@@ -1,6 +1,9 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Entities.Auditing;
+using classifieds.Categories;
+using classifieds.Cities;
+using classifieds.Districts;
 using classifieds.Images;
 using Newtonsoft.Json;
 using System;
@@ -19,11 +22,12 @@ namespace classifieds.Posts.Dto
         public bool IsFeatured { get; set; } = false;
         public bool IsVerified { get; set; } = false;
         public int CategoryId { get; set; }
-        public string Category { get; set; }
+        public Category Category { get; set; }
         public ushort Area { get; set; }
+        public ushort Age { get; set; }
         public byte Bedroom { get; set; }
-        public string City { get; set; }
-        public string District { get; set; }
+        public City City { get; set; }
+        public District District { get; set; }
         public int DistrictId { get; set; }
         public double Deopsit { get; set; }
         public double Rent { get; set; }

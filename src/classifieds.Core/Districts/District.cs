@@ -5,6 +5,7 @@ using classifieds.Posts;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
 
 namespace classifieds.Districts
 {
@@ -17,6 +18,7 @@ namespace classifieds.Districts
         {
             CreationTime = DateTime.Now;
         }
+        [JsonIgnore]
         public List<Post> Posts { get; set; }
     }
 }

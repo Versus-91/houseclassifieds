@@ -4,6 +4,7 @@ using Abp.Runtime.Validation;
 using classifieds.Filters;
 using classifieds.Images;
 using classifieds.Web.helpers;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
@@ -28,6 +29,7 @@ namespace classifieds.Controllers
         private readonly string _targetFilePath;
         private const string _wwwrootPath = "images";
         private readonly IRepository<Image> _imageService;
+        private readonly IWebHostEnvironment _env;
 
         // Get the default form options so that we can use them to set the default 
         // limits for request body data.
@@ -35,10 +37,12 @@ namespace classifieds.Controllers
 
         public StreamController(ILogger<StreamController> logger,
             IRepository<Image> imageService,
-            IConfiguration config)
+            IConfiguration config,
+            IWebHostEnvironment env
+            )
         {
             _fileSizeLimit = config.GetValue<long>("FileSizeLimit");
-
+            _env = env;
             // To save physical files to a path provided by configuration:
             _targetFilePath = config.GetValue<string>("StoredFilesPath");
             _logger = logger;
@@ -117,8 +121,8 @@ namespace classifieds.Controllers
                         {
                             return BadRequest(ModelState);
                         }
-                        Directory.CreateDirectory(_targetFilePath);
-                        using (var targetStream = System.IO.File.Create(Path.Combine(_targetFilePath, trustedFileNameForFileStorage)))
+                        Directory.CreateDirectory(Path.Combine(_env.WebRootPath, _targetFilePath));
+                        using (var targetStream = System.IO.File.Create(Path.Combine(_env.WebRootPath,_targetFilePath, trustedFileNameForFileStorage)))
                         {
                             await targetStream.WriteAsync(streamedFileContent);
                             await _imageService.InsertAsync(new Image

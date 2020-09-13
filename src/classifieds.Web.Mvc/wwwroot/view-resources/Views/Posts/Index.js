@@ -14,7 +14,7 @@
             filter.skipCount = data.start;
 
             abp.ui.setBusy(_$table);
-            _postService.getAllDetails(filter).done(function (result) {
+            _postService.getAll(filter).done(function (result) {
                 callback({
                     recordsTotal: result.totalCount,
                     recordsFiltered: result.totalCount,
@@ -45,14 +45,17 @@
             {
                 targets: 1,
                 data: 'category',
-                sortable: false
+                sortable: false,
+                render: (data, type, row, meta) => {
+                    return row.category.name;
+                }
             },
             {
                 targets: 2,
                 data: 'district',
                 sortable: false,
                 render: (data, type, row, meta) => {
-                    return row.city + ',' + row.district;
+                    return row.district.city.name + ',' + row.district.name;
                 }
             },
             {
@@ -68,7 +71,6 @@
                 data: 'isVerified',
                 sortable: false,
                 render: (data, type, row, meta) => {
-                    console.log(row)
                     return row.isVerified === true ? `<span class="badge badge-success">تایید شده</span>` : `<span class="badge badge-danger">تایید نشده</span>`
                 }
             },

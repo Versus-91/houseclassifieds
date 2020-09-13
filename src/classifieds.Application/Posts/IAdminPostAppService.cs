@@ -12,6 +12,6 @@ namespace classifieds.Posts
     public interface IAdminPostAppService : IAsyncCrudAppService<PostDto, int, GetAllPostsInput, CreatePostInput, AdminUpdatePostInput>
     {
      Task<PostDto> GetDetails(int id);
-     Task<PagedResultDto<PostDto>> GetAllDetails(GetAllPostsInput input);
+     //Task<PagedResultDto<PostDto>> GetAllDetails(GetAllPostsInput input);
 }
 }

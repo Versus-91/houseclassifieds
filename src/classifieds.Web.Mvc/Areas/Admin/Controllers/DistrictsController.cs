@@ -15,7 +15,6 @@ using System.Threading.Tasks;
 namespace classifieds.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AbpMvcAuthorize(PermissionNames.Pages_District)]
     public class DistrictsController : AbpController
     {
         private readonly IDistrictAppService _districtService;
@@ -26,6 +25,7 @@ namespace classifieds.Web.Areas.Admin.Controllers
             _districtService = districtService;
             _cityService = cityService;
         }
+        [AbpMvcAuthorize(PermissionNames.Pages_District)]
 
         public async Task<ActionResult> Index()
         {
@@ -36,6 +36,7 @@ namespace classifieds.Web.Areas.Admin.Controllers
             };
             return View(model);
         }
+        [AbpMvcAuthorize(PermissionNames.Pages_District)]
 
         public async Task<ActionResult> Edit(int id)
         {
@@ -48,7 +49,6 @@ namespace classifieds.Web.Areas.Admin.Controllers
             };
             return PartialView("_EditModal", model);
         }
-
         public async Task<AjaxResponse> GetByCityId(int id)
         {
             var districts = await _districtService.GetByCityId(id);

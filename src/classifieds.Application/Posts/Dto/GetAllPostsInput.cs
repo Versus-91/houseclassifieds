@@ -10,6 +10,7 @@ namespace classifieds.Posts.Dto
         public int? MinArea { get; set; }
         public int? MaxArea { get; set; }
         public int? District { get; set; }
+        public int? City { get; set; }
         public int? Category { get; set; }
         public int? Type { get; set; }
         public int? Age { get; set; }

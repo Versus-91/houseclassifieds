@@ -26,11 +26,14 @@ namespace classifieds.Posts
         protected override IQueryable<Post> CreateFilteredQuery(GetAllPostsInput input)
         {
             return base.CreateFilteredQuery(input)
+                .Include(m=> m.District.City)
+                .Include(m => m.Images)
                 .Where(m=>m.IsVerified)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
                 //.WhereIf(input.MinPrice.HasValue && input.MaxPrice.HasValue, t => t. == input.Featured.Value)
                 .WhereIf(input.Category.HasValue, t => t.CategoryId == input.Category.Value)
                 .WhereIf(input.District.HasValue, t => t.DistrictId == input.District.Value)
+                .WhereIf(input.City.HasValue, t => t.District.City.Id == input.City.Value)
                 .WhereIf(input.Age.HasValue, t => t.Age == input.Age.Value)
                 .WhereIf(input.Beds.HasValue, t => t.Bedroom == input.Beds.Value)
                 .WhereIf(input.MinArea.HasValue && input.MaxArea.HasValue, t => t.Area > input.MinArea.Value && t.Area < input.MaxArea.Value)
@@ -45,13 +48,11 @@ namespace classifieds.Posts
                     Bedroom = m.Bedroom,
                     Area = m.Area,
                     Description = m.Description,
-                    Category = m.Category.Name,
-                    District = m.District.Name,
+                    Category = m.Category,
                     Latitude = m.Latitude,
                     Longitude = m.Longitude,
                     Title = m.Title,
                     CreationTime = m.CreationTime,
-                    City = m.District.City.Name,
                     Images = m.Images.Select(m => new Image
                     {
                         Path = m.Path,
