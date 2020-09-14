@@ -28,6 +28,7 @@ namespace classifieds.Posts
             return base.CreateFilteredQuery(input)
                 .Include(m=> m.District.City)
                 .Include(m => m.Images)
+                .Include(m => m.Type)
                 .Where(m=>m.IsVerified)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
                 //.WhereIf(input.MinPrice.HasValue && input.MaxPrice.HasValue, t => t. == input.Featured.Value)
@@ -47,14 +48,17 @@ namespace classifieds.Posts
                     Id = m.Id,
                     Bedroom = m.Bedroom,
                     Area = m.Area,
+                    Type = ObjectMapper.Map<TypeViewModel>(m.Type),
                     Description = m.Description,
-                    Category = m.Category,
+                    Category = ObjectMapper.Map<CategoryViewModel>(m.Category),
                     Latitude = m.Latitude,
                     Longitude = m.Longitude,
+                    District = ObjectMapper.Map<DistrictViewModel>(m.District),
                     Title = m.Title,
                     CreationTime = m.CreationTime,
-                    Images = m.Images.Select(m => new Image
+                    Images = m.Images.Select(m => new ImageViewModel
                     {
+                        Id = m.Id,
                         Path = m.Path,
                         Name = m.Name
                     }).ToList(),

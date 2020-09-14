@@ -11,7 +11,6 @@ namespace classifieds.Images
         public string Type { get; set; }
         public long Size { get; set; }
         public int PostId { get; set; }
-        [JsonIgnore]
         public Post Post { get; set; }
     }
 }
