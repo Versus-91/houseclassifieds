@@ -16,8 +16,23 @@
       "destination": "wwwroot/libs/swiper",
       "library": "swiper@6.2.0",
       "provider": "jsdelivr",
-      "files": ["swiper-bundle.min.js","swiper-bundle.min.css"]
+      "files": [ "swiper-bundle.min.js", "swiper-bundle.min.css" ]
     },
+    {
+      "destination": "wwwroot/libs/photoswipe",
+      "library": "photoswipe@4.1.3",
+      "provider": "jsdelivr",
+      "files": [
+        "dist/photoswipe.min.css",
+        "dist/photoswipe.min.js",
+        "dist/photoswipe-ui-default.min.js",
+        "dist/default-skin/default-skin.min.css",
+        "dist/default-skin/default-skin.png",
+        "dist/default-skin/default-skin.svg",
+        "dist/photoswipe-ui-default.js"
+      ]
+    },
+
     //core libs end
 
     //abp libs start

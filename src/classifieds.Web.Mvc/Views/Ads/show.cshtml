@@ -5,29 +5,27 @@
     Layout = "layout/_front"; }
 @section styles{
     <link rel="stylesheet" href="~/libs/swiper/swiper-bundle.min.css" asp-append-version="true" type="text/css">
+    <link rel="stylesheet" href="~/libs/photoswipe/dist/photoswipe.min.css" asp-append-version="true" type="text/css">
+    <link rel="stylesheet" href="~/libs/photoswipe/dist/default-skin/default-skin.min.css" asp-append-version="true" type="text/css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin="" />
 }
-
 <div class="hero is-fullheight is-light is-bold">
     <div class="hero-body">
         <div class="container">
-            <input hidden name="Latitude" id="postLatitude" value="@Model.Latitude" />
-            <input hidden name="Longitude" id="postLongitude" value="@Model.Longitude" />
-            <div class="section box mt-5">
-                @*<article class="message">*@
-                @*<div class="message-header">
-                        <nav class="breadcrumb" aria-label="breadcrumbs">
-                            <ul>
-                                <li><a href="#">تهران</a></li>
-                                <li><a href="#">تهران</a></li>
-                                <li><a href="#">منطقه 1 </a></li>
-                                <li class="is-active"><a href="#" aria-current="page">الهیه</a></li>
-                            </ul>
-                        </nav>
-                    </div>*@
-                @*<div class="message-body">*@
+            <div class="box">
+                <input hidden name="Latitude" id="postLatitude" value="@Model.Latitude" />
+                <input hidden name="Longitude" id="postLongitude" value="@Model.Longitude" />
+                    <nav class="breadcrumb " aria-label="breadcrumbs">
+                        <ul>
+                            <li><a href="#">@Model.District.City.Name</a></li>
+                            <li><a href="#"> @Model.District.Name </a></li>
+                            <li><a href="#"> @Model.Category.Name </a></li>
+                            <li class="is-active"><a href="#" aria-current="page">@Model.Type.Name</a></li>
+                        </ul>
+                    </nav>
+                    <hr />
                 <div class="columns">
                     <div class="column is-5">
                         <h1 class="title">@Model.Title</h1>
@@ -38,25 +36,33 @@
                             <div class="column is-12">
                                 <div class="swiper-container">
                                     <!-- Additional required wrapper -->
-                                    <div class="swiper-wrapper">
-                                        <!-- Slides -->
-                                        @foreach (var item in Model.Images)
+                                    <ul class="swiper-wrapper my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                                        @if (Model.Images.Count > 0)
                                         {
-                            <div class="swiper-slide">
-                                <!-- Required swiper-lazy class and image source specified in data-src attribute -->
-                                <img data-src="/@item.Path" class="swiper-lazy slider-img">
-                                <!-- Preloader image -->
-                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                            </div>}
+                                            @foreach (var image in Model.Images)
+                                            {
+                                                <li class="swiper-slide" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                                                    <a title="click to zoom-in" href="/@image.Path" itemprop="contentUrl" data-size="1200x600">
+                                                        <img src="/@image.Path?height=300&width=600" itemprop="thumbnail" alt="Image description" />
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                        else
+                                        {
+                                            <li class="swiper-slide" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                                                <a title="click to zoom-in" href="http://placehold.it/1200x600/00897B/ffffff?text=:(" itemprop="contentUrl" data-size="1200x600">
+                                                    <img src="http://placehold.it/600x300/00897B/ffffff?text=:(" itemprop="thumbnail" alt="Image description" />
+                                                </a>
+                                            </li>
+                                        }
+                                    </ul>
 
-                                    </div>
-                                    <!-- If we need pagination -->
-                                    <div class="swiper-pagination"></div>
+
 
                                     <!-- If we need navigation buttons -->
                                     <div class="swiper-button-prev"></div>
                                     <div class="swiper-button-next"></div>
-
                                 </div>
 
                             </div>
@@ -68,13 +74,22 @@
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
-                            <p class="title is-5">@Model.Bedroom</p>
+                            <p class="title is-6">@Model.Bedroom</p>
                         </div>
                     </div>
                     <div class="level-item has-text-centered">
                         <div>
                             <p class="heading"><i class="fas fa-2x fa-clock"></i></p>
-                            <p class="title"></p>
+                            <p class="title is-6">
+                                @if (Model.Age > 0)
+                                {
+                                @Model.Age
+                                }
+                                else
+                                {
+                                    @Html.Raw("1")
+                                }
+                            </p>
                         </div>
                     </div>
                     <div class="level-item has-text-centered">
@@ -90,65 +105,380 @@
                         </div>
                     </div>
                 </section>
-                <div class="column is-12">
-                    <div id="map" style="height:300px"></div>
+                <div class="column is-12" id="map">
+                    <div style="height:300px"></div>
                 </div>
                 <section>
                 </section>
-                @*</div>
-                    </article>*@
+            </div>
+        </div>
+    </div>
+    </div>
+
+    <!-- Root element of PhotoSwipe. Must have class pswp. -->
+    <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+        <!-- Background of PhotoSwipe.
+        It's a separate element, as animating opacity is faster than rgba(). -->
+        <div class="pswp__bg"></div>
+
+        <!-- Slides wrapper with overflow:hidden. -->
+        <div class="pswp__scroll-wrap">
+
+            <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
+            <!-- don't modify these 3 pswp__item elements, data is added later on. -->
+            <div class="pswp__container">
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+                <div class="pswp__item"></div>
+            </div>
+
+            <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+            <div class="pswp__ui pswp__ui--hidden">
+
+                <div class="pswp__top-bar">
+
+                    <!--  Controls are self-explanatory. Order can be changed. -->
+
+                    <div class="pswp__counter"></div>
+
+                    <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                    <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                    <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                    <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                    <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
+                    <!-- element will get class pswp__preloader--active when preloader is running -->
+                    <div class="pswp__preloader">
+                        <div class="pswp__preloader__icn">
+                            <div class="pswp__preloader__cut">
+                                <div class="pswp__preloader__donut"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                    <div class="pswp__share-tooltip"></div>
+                </div>
+
+                <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+                </button>
+
+                <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+                </button>
+
+                <div class="pswp__caption">
+                    <div class="pswp__caption__center"></div>
+                </div>
 
             </div>
         </div>
     </div>
-</div>
-@section scripts{
-    <script src="~/libs/swiper/swiper-bundle.min.js" asp-append-version="true"></script>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-            crossorigin=""></script>
-    <script>
-        $(function () {
-            console.log($('#postLatitude').val());
-            if ($('#postLatitude').val() != 0 && $('#postLongitude').val() != 0) {
-                var map = L.map('map').setView(L.latLng($('#postLatitude').val(), $('#postLongitude').val()), 13);
+    @section scripts{
+        <script src="~/libs/swiper/swiper-bundle.min.js" asp-append-version="true"></script>
+        <script src="~/libs/photoswipe/dist/photoswipe.min.js" asp-append-version="true"></script>
+        <script src="~/lib/photoswipe/photoswipe-ui-default.js" asp-append-version="true"></script>
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+                integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+                crossorigin=""></script>
+        <script>
+            $(function () {
+                console.log($('#postLatitude').val());
+                if ($('#postLatitude').val() != 0 && $('#postLongitude').val() != 0) {
+                    var map = L.map('map').setView(L.latLng($('#postLatitude').val(), $('#postLongitude').val()), 13);
 
-                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                }).addTo(map);
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
 
-                L.marker([$('#postLatitude').val(), $('#postLongitude').val()]).addTo(map)
-                    .bindPopup('محل انتخاب شده .');
-            } else {
-                $("#map").hide();
-            }
+                    L.marker([$('#postLatitude').val(), $('#postLongitude').val()]).addTo(map)
+                        .bindPopup('محل انتخاب شده .');
+                } else {
+                    $("#map").hide();
+                }
 
-            var mySwiper = new Swiper('.swiper-container', {
-                lazy: true,
-                slidesPerView: 1,
+                //var mySwiper = new Swiper('.swiper-container', {
+                //    lazy: true,
+                //    slidesPerView: 1,
 
-                pagination: {
-                    el: '.swiper-pagination',
-                    clickable: true,
-                },
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
+                //    pagination: {
+                //        el: '.swiper-pagination',
+                //        clickable: true,
+                //    },
+                //    navigation: {
+                //        nextEl: '.swiper-button-next',
+                //        prevEl: '.swiper-button-prev',
+                //    },
+                //})
+                //var suggestions = new Swiper('.secondary-swiper-container', {
+                //    slidesPerView: 2,
+                //    spaceBetween: 10,
+                //    navigation: {
+                //        nextEl: '#next',
+                //        prevEl: '#prev'
+                //    },
+                //    pagination: {
+                //        el: '#pagination',
+                //        clickable: true,
+                //    },
+                //})
+                var mySwiper = new Swiper(".swiper-container", {
+                    // If loop true set photoswipe - counterEl: false
+                    loop: true,
+                    /* slidesPerView || auto - if you want to set width by css like flickity.js layout - in this case width:80% by CSS */
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    //centeredSlides: true,
+                    // If we need pagination
+                    pagination: {
+                        el: ".swiper-pagination",
+                        clickable: true,
+                        renderBullet: function (index, className) {
+                            return '<span class="' + className + '">' + (index + 1) + "</span>";
+                        }
+                    },
+                    // Navigation arrows
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    }
+                });
+
+                //PHOTOSWIPE
+                var initPhotoSwipeFromDOM = function (gallerySelector) {
+                    // parse slide data (url, title, size ...) from DOM elements
+                    // (children of gallerySelector)
+                    var parseThumbnailElements = function (el) {
+                        var thumbElements = el.childNodes,
+                            numNodes = thumbElements.length,
+                            items = [],
+                            figureEl,
+                            linkEl,
+                            size,
+                            item;
+
+                        for (var i = 0; i < numNodes; i++) {
+                            figureEl = thumbElements[i]; // <figure> element
+
+                            // include only element nodes
+                            if (figureEl.nodeType !== 1) {
+                                continue;
+                            }
+
+                            linkEl = figureEl.children[0]; // <a> element
+
+                            size = linkEl.getAttribute("data-size").split("x");
+
+                            // create slide object
+                            item = {
+                                src: linkEl.getAttribute("href"),
+                                w: parseInt(size[0], 10),
+                                h: parseInt(size[1], 10)
+                            };
+
+                            if (figureEl.children.length > 1) {
+                                // <figcaption> content
+                                item.title = figureEl.children[1].innerHTML;
+                            }
+
+                            if (linkEl.children.length > 0) {
+                                // <img> thumbnail element, retrieving thumbnail url
+                                item.msrc = linkEl.children[0].getAttribute("src");
+                            }
+
+                            item.el = figureEl; // save link to element for getThumbBoundsFn
+                            items.push(item);
+                        }
+
+                        return items;
+                    };
+
+                    // find nearest parent element
+                    var closest = function closest(el, fn) {
+                        return el && (fn(el) ? el : closest(el.parentNode, fn));
+                    };
+
+                    // triggers when user clicks on thumbnail
+                    var onThumbnailsClick = function (e) {
+                        e = e || window.event;
+                        e.preventDefault ? e.preventDefault() : (e.returnValue = false);
+
+                        var eTarget = e.target || e.srcElement;
+
+                        // find root element of slide
+                        var clickedListItem = closest(eTarget, function (el) {
+                            return el.tagName && el.tagName.toUpperCase() === "LI";
+                        });
+
+                        if (!clickedListItem) {
+                            return;
+                        }
+
+                        // find index of clicked item by looping through all child nodes
+                        // alternatively, you may define index via data- attribute
+                        var clickedGallery = clickedListItem.parentNode,
+                            childNodes = clickedListItem.parentNode.childNodes,
+                            numChildNodes = childNodes.length,
+                            nodeIndex = 0,
+                            index;
+
+                        for (var i = 0; i < numChildNodes; i++) {
+                            if (childNodes[i].nodeType !== 1) {
+                                continue;
+                            }
+
+                            if (childNodes[i] === clickedListItem) {
+                                index = nodeIndex;
+                                break;
+                            }
+                            nodeIndex++;
+                        }
+
+                        if (index >= 0) {
+                            // open PhotoSwipe if valid index found
+                            openPhotoSwipe(index, clickedGallery);
+                        }
+                        return false;
+                    };
+
+                    // parse picture index and gallery index from URL (#&pid=1&gid=2)
+                    var photoswipeParseHash = function () {
+                        var hash = window.location.hash.substring(1),
+                            params = {};
+
+                        if (hash.length < 5) {
+                            return params;
+                        }
+
+                        var vars = hash.split("&");
+                        for (var i = 0; i < vars.length; i++) {
+                            if (!vars[i]) {
+                                continue;
+                            }
+                            var pair = vars[i].split("=");
+                            if (pair.length < 2) {
+                                continue;
+                            }
+                            params[pair[0]] = pair[1];
+                        }
+
+                        if (params.gid) {
+                            params.gid = parseInt(params.gid, 10);
+                        }
+
+                        return params;
+                    };
+
+                    var openPhotoSwipe = function (
+                        index,
+                        galleryElement,
+                        disableAnimation,
+                        fromURL
+                    ) {
+                        var pswpElement = document.querySelectorAll(".pswp")[0],
+                            gallery,
+                            options,
+                            items;
+
+                        items = parseThumbnailElements(galleryElement);
+
+                        // define options (if needed)
+
+                        options = {
+                            /* "showHideOpacity" uncomment this If dimensions of your small thumbnail don't match dimensions of large image */
+                            //showHideOpacity:true,
+
+                            // Buttons/elements
+                            closeEl: true,
+                            captionEl: true,
+                            fullscreenEl: true,
+                            zoomEl: true,
+                            shareEl: true,
+                            counterEl: false,
+                            arrowEl: true,
+                            preloaderEl: true,
+                            // define gallery index (for URL)
+                            galleryUID: galleryElement.getAttribute("data-pswp-uid"),
+
+                            getThumbBoundsFn: function (index) {
+                                // See Options -> getThumbBoundsFn section of documentation for more info
+                                var thumbnail = items[index].el.getElementsByTagName("img")[0], // find thumbnail
+                                    pageYScroll =
+                                        window.pageYOffset || document.documentElement.scrollTop,
+                                    rect = thumbnail.getBoundingClientRect();
+
+                                return { x: rect.left, y: rect.top + pageYScroll, w: rect.width };
+                            }
+                        };
+
+                        // PhotoSwipe opened from URL
+                        if (fromURL) {
+                            if (options.galleryPIDs) {
+                                // parse real index when custom PIDs are used
+                                // parse real index when custom PIDs are used
+                                // http://photoswipe.com/documentation/faq.html#custom-pid-in-url
+                                for (var j = 0; j < items.length; j++) {
+                                    if (items[j].pid == index) {
+                                        options.index = j;
+                                        break;
+                                    }
+                                }
+                            } else {
+                                // in URL indexes start from 1
+                                options.index = parseInt(index, 10) - 1;
+                            }
+                        } else {
+                            options.index = parseInt(index, 10);
+                        }
+
+                        // exit if index not found
+                        if (isNaN(options.index)) {
+                            return;
+                        }
+
+                        if (disableAnimation) {
+                            options.showAnimationDuration = 0;
+                        }
+
+                        // Pass data to PhotoSwipe and initialize it
+                        gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, options);
+                        gallery.init();
+
+                        /* EXTRA CODE (NOT FROM THE CORE) - UPDATE SWIPER POSITION TO THE CURRENT ZOOM_IN IMAGE (BETTER UI) */
+
+                        // photoswipe event: Gallery unbinds events
+                        // (triggers before closing animation)
+                        gallery.listen("unbindEvents", function () {
+                            // This is index of current photoswipe slide
+                            var getCurrentIndex = gallery.getCurrentIndex();
+                            // Update position of the slider
+                            mySwiper.slideTo(getCurrentIndex, false);
+                        });
+                    };
+
+                    // loop through all gallery elements and bind events
+                    var galleryElements = document.querySelectorAll(gallerySelector);
+
+                    for (var i = 0, l = galleryElements.length; i < l; i++) {
+                        galleryElements[i].setAttribute("data-pswp-uid", i + 1);
+                        galleryElements[i].onclick = onThumbnailsClick;
+                    }
+
+                    // Parse URL and open gallery if it contains #&pid=3&gid=1
+                    var hashData = photoswipeParseHash();
+                    if (hashData.pid && hashData.gid) {
+                        openPhotoSwipe(hashData.pid, galleryElements[hashData.gid - 1], true, true);
+                    }
+                };
+
+                // execute above function
+                initPhotoSwipeFromDOM(".my-gallery");
+
             })
-            //var suggestions = new Swiper('.secondary-swiper-container', {
-            //    slidesPerView: 2,
-            //    spaceBetween: 10,
-            //    navigation: {
-            //        nextEl: '#next',
-            //        prevEl: '#prev'
-            //    },
-            //    pagination: {
-            //        el: '#pagination',
-            //        clickable: true,
-            //    },
-            //})
-        })
 
-    </script>
-}
+        </script>
+    }
