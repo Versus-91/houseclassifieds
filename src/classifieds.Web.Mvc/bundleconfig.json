@@ -154,15 +154,15 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/view-resources/Views/Ads/Index.min.js",
+    "outputFileName": "wwwroot/view-resources/Views/UserPosts/Index.min.js",
     "inputFiles": [
-      "wwwroot/view-resources/Views/Ads/Index.js"
+      "wwwroot/view-resources/Views/UserPosts/Index.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/view-resources/Views/Ads/Pagination.min.js",
+    "outputFileName": "wwwroot/view-resources/Views/UserPosts/Pagination.min.js",
     "inputFiles": [
-      "wwwroot/view-resources/Views/Ads/Pagination.js"
+      "wwwroot/view-resources/Views/UserPosts/Pagination.js"
     ]
   },
   {
@@ -196,9 +196,9 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/view-resources/Views/ads/show.min.js",
+    "outputFileName": "wwwroot/view-resources/Views/UserPosts/show.min.js",
     "inputFiles": [
-      "wwwroot/view-resources/Views/ads/show.js"
+      "wwwroot/view-resources/Views/UserPosts/show.js"
     ]
   }
 ]

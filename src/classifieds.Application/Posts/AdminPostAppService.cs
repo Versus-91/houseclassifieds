@@ -31,6 +31,7 @@ namespace classifieds.Posts
             return base.CreateFilteredQuery(input)
                 .Include(m=>m.District.City)
                 .Include(m=>m.Category)
+                .Include(m => m.Category)
                 .Include(m=>m.Type)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
                 //.WhereIf(input.MinPrice.HasValue && input.MaxPrice.HasValue, t => t. == input.Featured.Value)

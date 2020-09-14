@@ -29,6 +29,7 @@ namespace classifieds.Posts
                 .Include(m=> m.District.City)
                 .Include(m => m.Images)
                 .Include(m => m.Type)
+                .Include(m => m.Category)
                 .Where(m=>m.IsVerified)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
                 //.WhereIf(input.MinPrice.HasValue && input.MaxPrice.HasValue, t => t. == input.Featured.Value)
