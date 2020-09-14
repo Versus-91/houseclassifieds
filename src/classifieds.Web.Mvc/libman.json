@@ -12,7 +12,12 @@
         "jquery.min.map"
       ]
     },
-
+    {
+      "destination": "wwwroot/libs/swiper",
+      "library": "swiper@6.2.0",
+      "provider": "jsdelivr",
+      "files": ["swiper-bundle.min.js","swiper-bundle.min.css"]
+    },
     //core libs end
 
     //abp libs start
