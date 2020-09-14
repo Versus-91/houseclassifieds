@@ -188,5 +188,17 @@
     "inputFiles": [
       "wwwroot/view-resources/Views/Shared/Components/TenantChange/_ChangeModal.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/lib/photoswipe/photoswipe-ui-default.min.js",
+    "inputFiles": [
+      "wwwroot/lib/photoswipe/photoswipe-ui-default.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/view-resources/Views/ads/show.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/ads/show.js"
+    ]
   }
 ]
