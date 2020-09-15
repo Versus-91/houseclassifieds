@@ -12,5 +12,6 @@
         public const string Districts = "Districts"; 
         public const string Posts = "Posts";
         public const  string PropertyTypes = "Property Types";
+        public const  string Authorization = "authorization";
     }
 }
