@@ -79,8 +79,7 @@ var PhotoSwipeUI_Default =
 			shareButtons: [
 				{id:'facebook', label:'ارسال به فیسبوک', url:'https://www.facebook.com/sharer/sharer.php?u={{url}}'},
 				{id:'twitter', label:'توییتر', url:'https://twitter.com/intent/tweet?text={{text}}&url={{url}}'},
-				{id:'pinterest', label:'پینترست', url:'http://www.pinterest.com/pin/create/button/'+
-													'?url={{url}}&media={{image_url}}&description={{text}}'},
+				{id:'pinterest', label:'پینترست', url:'http://www.pinterest.com/pin/create/button/'+'?url={{url}}&media={{image_url}}&description={{text}}'},
 				{id:'download', label:'دانلود عکس', url:'{{raw_image_url}}', download:true}
 			],
 			getImageURLForShare: function( /* shareButtonData */ ) {

@@ -17,29 +17,33 @@
         <link href="~/css/web.min.css" rel="stylesheet" asp-append-version="true" />
     </environment>
 }
-
 <form action="/admin/posts/update" method="post" style="display:none" id="veriftPost">
     @Html.AntiForgeryToken()
     <input asp-for="Id" />
     <input asp-for="IsFeatured" />
-    <input asp-for="IsVerified" value="!@Model.IsVerified" />
+    @if (Model.IsVerified == true)
+    {
+        <input name="IsVerified" value="false" />
+
+    }
+    else
+    {
+        <input name="IsVerified" value="true" />
+    }
 </form>
 <input hidden name="Latitude" id="postLatitude" value="@Model.Latitude" />
 <input hidden name="Longitude" id="postLongitude" value="@Model.Longitude" />
 <div class="container py-3">
     <div class="card">
-        <div class="card-header">
-            <div class="help is-danger" asp-validation-summary="All">
-            </div>
-            <a class="button" href="/admin/posts">بازگشت</a>
-            @if (Model.IsVerified != true)
-            {
-                <button class="btn btn-success" href="/admin/posts" onclick="document.getElementById('veriftPost').submit();">تایید</button>
-            }
-            else
-            {
-                <button class="btn btn-danger" href="/admin/posts" onclick="document.getElementById('veriftPost').submit();">غیر فعال</button>
-            }
+        <nav aria-label="breadcrumbs">
+            <ol class="breadcrumb ">
+                <li class="breadcrumb-item">@Model.District.City.Name</li>
+                <li class="breadcrumb-item"> @Model.District.Name </li>
+                <li class="breadcrumb-item"> @Model.Category.Name </li>
+                <li class="breadcrumb-item">@Model.Type.Name</li>
+            </ol>
+        </nav>
+        <div class="help is-danger" asp-validation-summary="All">
         </div>
         <div class="card-body">
             <div class="row">
@@ -97,7 +101,7 @@
                             }
                             else
                             {
-                                @Html.Raw("1")
+                                @Html.Raw("N/A")
                             }
                         </p>
                     </div>
@@ -118,6 +122,17 @@
             <div class="col-12" id="map">
                 <div style="height:300px"></div>
             </div>
+        </div>
+        <div class="card-footer text-center">
+            <a class="button mx-3" href="/admin/posts">بازگشت</a>
+            @if (Model.IsVerified != true)
+            {
+                <button class="btn btn-success mx-3" href="/admin/posts" onclick="document.getElementById('veriftPost').submit();">تایید</button>
+            }
+            else
+            {
+                <button class="btn btn-danger mx-3" href="/admin/posts" onclick="document.getElementById('veriftPost').submit();">غیر فعال</button>
+            }
         </div>
     </div>
 
