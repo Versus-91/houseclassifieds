@@ -66,7 +66,7 @@
                                 <div class="card card-hover-shadow">
                                     <div class="card-image">
                                         <figure class="image is-4by3">
-                                            <img src="@(post.Images != null ? post.Images[0].Path +"?width=600&height=480" : "/img/placeholder.png")" alt="Placeholder image">
+                                            <img src="@(post.Images.Count > 0 ? post.Images[0]?.Path +"?width=600&height=480" : "/img/placeholder.png")" alt="Placeholder image">
                                             <div class="overlay">@(post.District.City.Name + ',' + post.District.Name)</div>
                                             @*<div class="overlay-top-corner">
                                                     ${featuredIcon}
