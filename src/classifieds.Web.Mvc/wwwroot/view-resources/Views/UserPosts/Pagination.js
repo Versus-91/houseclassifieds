@@ -22,7 +22,7 @@
                     pageIndex = 1;
 				}
                 if (res.result.totalCount === 0) {
-                    $("#pager").append(`<div class="column is-vcentered has-text-centered"><p class="subtitle has-text-centered">نتیجه ای یافت نشد .</p></div>`)
+                    $("#pager").append(`<div class="column is-vcentered has-text-centered" style="min-height:500px;"><p class="subtitle has-text-centered">نتیجه ای یافت نشد .</p></div>`)
                 }
                 totalPages = Math.ceil(res.result.totalCount / rowPerPage);
                 if (pageIndex <= 1) {
@@ -114,11 +114,11 @@
             delete query.maxArea ;
 		}
         if (minPrice & maxPrice) {
-            delete query.minPrice ;
-            delete query.maxPrice ;
+            query.minPrice = minPrice;
+            query.maxPrice = maxPrice ;
 		} else {
-            query.minPrice ;
-            query.maxPrice ;
+            delete query.minPrice ;
+            delete  query.maxPrice ;
 		}
         if ($("#featured").is(":checked")) {
             query.featured = true;

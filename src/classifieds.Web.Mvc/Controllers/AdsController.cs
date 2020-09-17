@@ -1,11 +1,13 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Runtime.Validation;
 using classifieds.Categories;
+using classifieds.Categories.Dto;
 using classifieds.Controllers;
 using classifieds.Districts;
 using classifieds.Posts;
 using classifieds.Posts.Dto;
 using classifieds.PropertyTypes;
+using classifieds.PropertyTypes.Dto;
 using classifieds.Web.Models.Ads;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -31,8 +33,12 @@ namespace classifieds.Web.Controllers
             _districtService = districtService;
             _typeService = typeService;
         }
-        public IActionResult Index(GetAllPostsInput inputs)
+        public async Task<IActionResult> Index(GetAllPostsInput inputs)
         {
+            ViewData["Categories"] = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, nameof(CategoryDto.Id), nameof(CategoryDto.Name),inputs.Category);
+            ViewData["Districts"] = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
+            ViewData["PropertyTypes"] = new SelectList((await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, nameof(PropertyTypeDto.Id), nameof(PropertyTypeDto.Name),inputs.Type);
+
             return View(inputs);
         }
         [Route("[controller]/{id:int:required}")]

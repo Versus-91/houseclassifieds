@@ -27,6 +27,19 @@
                                 </li>
                             </ul>
                             <p class="menu-label">
+                                دسته بندی
+                            </p>
+                            <ul class="menu-list">
+                                <li>
+                                    <div class="control">
+                                        <div class="select">
+                                            <select asp-items="@(ViewData["Categories"] as SelectList)">
+                                            </select>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <p class="menu-label">
                                 متراژ
                             </p>
                             <ul class="menu-list">
@@ -90,12 +103,7 @@
                                     <li>
                                         <div class="control">
                                             <div class="select">
-                                                <select>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="3">3</option>
-                                                    <option value="4">4</option>
-                                                    <option value="5">بیشتر از 4</option>
+                                                <select asp-items="@(ViewData["PropertyTypes"] as SelectList)">
                                                 </select>
                                             </div>
                                         </div>
@@ -116,7 +124,7 @@
                                 <li><a>گرانترین</a></li>
                             </ul>
                         </div>
-                        <div class="columns is-multiline" id="pager">
+                        <div class="columns is-multiline" id="pager" style="min-height:500px;">
                         </div>
 
                         <nav class="pagination" role="navigation" aria-label="pagination">

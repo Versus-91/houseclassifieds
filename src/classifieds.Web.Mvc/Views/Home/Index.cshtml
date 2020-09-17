@@ -11,9 +11,10 @@
                 <nav class="columns is-centered is-mobile has-text-centered mb-2">
                     @foreach (var item in Model.Categories)
                     {
-    <div class="column is-6-mobile is-2-desktop cat-tab " data-id="@item.Id">
-        <span class="title is-5 cat-tabs-link">@item.Name</span>
-    </div>}
+                        <div class="column is-6-mobile is-2-desktop cat-tab " data-id="@item.Id">
+                            <span class="title is-5 cat-tabs-link">@item.Name</span>
+                        </div>
+                    }
                 </nav>
                 <div class="box has-text-link">
                     <div class="columns is-centered is-vcentered has-text-centered py-2">
@@ -22,7 +23,8 @@
                                 <select class="select2" id="selectCity">
                                     @foreach (var item in Model.Cities)
                                     {
-                    <option value="@item.Id">@item.Name</option>}
+                                        <option value="@item.Id">@item.Name</option>
+                                    }
                                 </select>
                             </div>
                         </div>
@@ -49,264 +51,304 @@
                 </div>
             </div>
         </div>
-        <svg class="custom-border" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <polygon fill="white" points="0,100 100,0 100,100" />
-        </svg>
     </section>
 
 }
-<div class="container">
-    <div class="section">
-        <div class="content-header">
-            <div class="container-fluid">
-                <div class="row mb-2">
-                    <div class="col-sm-12">
-                        <h1 class="m-0 text-dark">@L("HomePage")</h1>
+<section class="hero  is-light is-bold">
+    <div class="hero-body">
+        <div class="container ">
+            <div class="section">
+                <div class="columns is-multiline">
+                    @foreach (var post in Model.Posts)
+                    {
+                        <div class=" column is-4">
+                            <a class="fill-div" href="/ads/@post.Id">
+                                <div class="card card-hover-shadow">
+                                    <div class="card-image">
+                                        <figure class="image is-4by3">
+                                            <img src="@(post.Images != null ? post.Images[0].Path +"?width=600&height=480" : "/img/placeholder.png")" alt="Placeholder image">
+                                            <div class="overlay">@(post.District.City.Name + ',' + post.District.Name)</div>
+                                            @*<div class="overlay-top-corner">
+                                                    ${featuredIcon}
+                                                    ${hasImageIcon}
+                                                </div>*@
+                                        </figure>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="content">
+                                            @post.Title
+                                            <br>
+                                        </div>
+                                        <nav class="level is-mobile">
+                                            <div class="level-item has-text-centered">
+                                                <div>
+                                                    <p><i class="fas  fa-square has-text-success"></i></p>
+                                                    <p>@post.Area</p>
+                                                </div>
+                                            </div>
+                                            <div class="level-item has-text-centered">
+                                                <div>
+                                                    <p><i class="fas  fa-clock has-text-warning"></i></p>
+                                                    <p>@post.Age </p>
+                                                </div>
+                                            </div>
+                                            <div class="level-item has-text-centered">
+                                                <div>
+                                                    <p><i class="fas fa-bed has-text-grey"></i></p>
+                                                    <p>@post.Bedroom</p>
+                                                </div>
+                                            </div>
+                                        </nav>
+                                    </div>
+
+                                </div>
+                            </a>
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="section">
+                <div class="box">
+                    <div class="columns">
+                        <div class="column is-4">
+                            <h2 class="has-text-centered">
+                                <strong>
+                                    خرید و فروش آپارتمان در تهران
+                                </strong>
+                            </h2>
+                            <br />
+                            <ul>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                        <div class="column is-4">
+                            <h2 class="has-text-centered">
+                                <strong>
+                                    رهن و اجاره آپارتمان در تهران
+                                </strong>
+                            </h2>
+                            <br />
+                            <ul>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                        <div class="column is-4">
+                            <h2 class="has-text-centered">
+                                <strong>
+                                    خرید و فروش و رهن و اجاره در دیگر شهرها
+                                </strong>
+                            </h2>
+                            <br />
+                            <ul>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="level is-mobile my-1">
+                                        <div class="level-right">
+                                            <div class="level-item">تهران</div>
+                                        </div>
+                                        <div class="level-left">
+                                            <div class="level-item has-text-info">44545</div>
+                                        </div>
+
+                                    </div>
+                                </li>
+
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="section">
-        <div class="columns">
-            <div class="column is-4">
-                <h2 class="has-text-centered">
-                    <strong>
-                        خرید و فروش آپارتمان در تهران
-                    </strong>
-                </h2>
-                <br />
-                <ul>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-
-                </ul>
-
-            </div>
-            <div class="column is-4">
-                <h2 class="has-text-centered">
-                    <strong>
-                        رهن و اجاره آپارتمان در تهران
-                    </strong>
-                </h2>
-                <br />
-                <ul>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-
-                </ul>
-
-            </div>
-            <div class="column is-4">
-                <h2 class="has-text-centered">
-                    <strong>
-                        خرید و فروش و رهن و اجاره در دیگر شهرها
-                    </strong>
-                </h2>
-                <br />
-                <ul>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-1">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-
-                </ul>
-            </div>
-        </div>
-
-    </div>
-
-</div>
+</section>
 @section Scripts{
     <script>
         "use strict";
