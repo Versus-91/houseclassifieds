@@ -1,17 +1,36 @@
-﻿Dropzone.autoDiscover = false;
+﻿
+Dropzone.autoDiscover = false;
 
 $(document).ready(function () {
+	var modalCloseButton = $("#cancel");
 	var priceMask = new AutoNumeric('#price', { currencySymbol: '$' });
 	var depositMask = new AutoNumeric('#deposit', { currencySymbol: '$' });
 	var form = $("#CreateAd");
-	$("body").persianNum();
-	realtime($("#area"));
+	var amenitiesList = [];
+
+
 	var submitButton = $("#submitButton");
 	var marker = {};
 	var depositFormField = $("#depositField");
 	var BedField = $("#bedroom");
 	var depositInput = $("#deposit");
-	if ($("#category option:selected").text().includes("رهن")) {
+
+	$(".is-amenity ").click((e) => {
+		e.preventDefault();
+		var id = e.target.attributes["data-id"].value;
+		var index = amenitiesList.findIndex(m => m == id);
+		if (index == -1) {
+			amenitiesList.push(Number(e.target.attributes["data-id"].value))
+		} else {
+			amenitiesList.splice(index,1)
+		}
+		e.target.classList.toggle('is-info');
+	});
+	$("body").persianNum();
+	realtime($("#area"));
+	modalCloseButton.click(() => {
+		$("#amenityModal").toggle("is-active");
+	});	if ($("#category option:selected").text().includes("رهن")) {
 		depositFormField.show();
 	} else {
 		depositFormField.hide();
@@ -43,8 +62,6 @@ $(document).ready(function () {
 	}).addTo(map);
 	map.on('click', onMapClick);
 	function showPosition(position) {
-		console.log('position')
-		console.log("asdasd:", position.coords)
 		map.setView([position.coords.latitude, position.coords.longitude])
 		marker = L.marker({ lat: position.coords.latitude, lng: position.coords.longitude }).addTo(map)
 			.bindPopup('محل انتخاب شده .')
@@ -77,7 +94,6 @@ $(document).ready(function () {
 			this.on('error', function (file, errorMessage) {
 				if (errorMessage.indexOf('big') !== -1) {
 					var errorDisplay = document.querySelectorAll('[data-dz-errormessage]');
-					console.log(errorDisplay)
 					errorDisplay[errorDisplay.length - 2].innerHTML = 'حجم فایل زیاد است.' + '<br/>حداکثر حجم فایل مجاز :' + this.options.maxFilesize + 'مگابایت ';
 				}
 			});
@@ -122,7 +138,6 @@ $(document).ready(function () {
 				} else {
 					formData.append('Price', 0);
 				}
-				console.log(depositMask.getNumericString());
 				if (depositMask.getNumericString()) {
 					formData.append('Deposit', depositMask.getNumericString());
 				} else {
@@ -135,9 +150,20 @@ $(document).ready(function () {
 			formData.append('Latitude', coordinates.lat);
 			formData.append('Longitude', coordinates.lng);
 		}
+		if (amenitiesList.length > 0) {
+				formData.append("Amenities", amenitiesList);
+		}
 		formData.forEach(function (value, key) {
 			object[key] = value;
 		});
+		console.log(object);
+		var json = JSON.stringify(object);
+		var jsonParse = JSON.parse(json);
+
+		jsonParse["Amenitites"] = amenitiesList;
+		console.log(JSON.stringify(jsonParse));
+
+
 		$.ajax({
 			type: "POST",
 			beforeSend: function (xhr) {
@@ -146,13 +172,11 @@ $(document).ready(function () {
 			url: "/ads/create",
 			contentType: 'application/json',
 			dataType: "json",
-			data: JSON.stringify(object), // serializes the form's elements.
+			data: JSON.stringify(jsonParse), // serializes the form's elements.
 			success: function (data) {
 				dropZone.options.url = '/stream/upload/' + data.result
 				dropZone.processQueue();
-				console.log(data); // show response from the php script.
 			}, error: function (err) {
-				console.log(err);
 				submitButton.removeClass("is-loading");
 
 			}

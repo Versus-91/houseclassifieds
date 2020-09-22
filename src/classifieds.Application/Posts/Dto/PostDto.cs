@@ -1,10 +1,13 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using Abp.Domain.Entities.Auditing;
+using classifieds.Amenities.Dto;
 using classifieds.Categories;
 using classifieds.Cities;
 using classifieds.Districts;
 using classifieds.Images;
+using classifieds.PostsAmenities;
+using classifieds.PostsAmenities.Dto;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -32,7 +35,8 @@ namespace classifieds.Posts.Dto
         public TypeViewModel Type { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public DateTime CreationTime { get; set; }
         public IList<ImageViewModel> Images { get; set; }
+        public IList<PostAmenityDto> PostAmenities { get; set; }
+
     }
 }

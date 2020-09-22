@@ -1,6 +1,7 @@
 ﻿using Abp.Domain.Entities;
 using classifieds.Amenities;
 using classifieds.Posts;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;

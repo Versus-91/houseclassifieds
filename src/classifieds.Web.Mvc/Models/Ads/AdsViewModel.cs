@@ -1,5 +1,7 @@
-﻿using classifieds.Posts.Dto;
+﻿using classifieds.Amenities.Dto;
+using classifieds.Posts.Dto;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace classifieds.Web.Models.Ads
@@ -25,6 +27,8 @@ namespace classifieds.Web.Models.Ads
         public uint Deposit { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public IList<int> Amenitites { get; set; }
+
         public CreatePostInput ToPost()
         {
             return new CreatePostInput

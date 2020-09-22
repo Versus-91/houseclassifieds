@@ -1,5 +1,8 @@
 ﻿using Abp.AutoMapper;
+using classifieds.Amenities.Dto;
+using classifieds.PostsAmenities.Dto;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace classifieds.Posts.Dto
@@ -26,5 +29,7 @@ namespace classifieds.Posts.Dto
         public uint Deposit { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public IList<PostAmenityDto> PostAmenities { get; set; }
+
     }
 }

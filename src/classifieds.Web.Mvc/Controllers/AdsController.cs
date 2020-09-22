@@ -1,17 +1,21 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Runtime.Validation;
 using Abp.Web.Models;
+using classifieds.Amenities;
+using classifieds.Amenities.Dto;
 using classifieds.Categories;
 using classifieds.Categories.Dto;
 using classifieds.Controllers;
 using classifieds.Districts;
 using classifieds.Posts;
 using classifieds.Posts.Dto;
+using classifieds.PostsAmenities.Dto;
 using classifieds.PropertyTypes;
 using classifieds.PropertyTypes.Dto;
 using classifieds.Web.Models.Ads;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace classifieds.Web.Controllers
@@ -23,22 +27,27 @@ namespace classifieds.Web.Controllers
         private readonly IDistrictAppService _districtService;
         private readonly ITypeAppService _typeService;
         private readonly ICategoryAppService _categoryService;
+        private readonly AmenityAppService _amenityService;
+
         public AdsController(
             IPostAppService postService,
             ICategoryAppService categoryService,
             IDistrictAppService districtService,
-            ITypeAppService typeService)
+            ITypeAppService typeService,
+             AmenityAppService amenityService)
         {
             _postService = postService;
             _categoryService = categoryService;
             _districtService = districtService;
             _typeService = typeService;
+            _amenityService = amenityService;
         }
         public async Task<IActionResult> Index(GetAllPostsInput inputs)
         {
             var types = (await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
             ViewData["Categories"] = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, nameof(CategoryDto.Id), nameof(CategoryDto.Name),inputs.Category);
             ViewData["Districts"] = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
+            ViewData["Amenitites"] = (await _amenityService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
             if (inputs.Type.Count == 0)
             {
                 ViewData["PropertyTypes"] = new SelectList(types, nameof(PropertyTypeDto.Id), nameof(PropertyTypeDto.Name));
@@ -63,7 +72,7 @@ namespace classifieds.Web.Controllers
         }
         public async Task<IActionResult> Create()
         {
-
+            ViewData["Amenities"] = (await _amenityService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
             ViewData["Categories"] = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
             ViewData["Districts"] = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
             ViewData["PropertyTypes"] = new SelectList((await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
@@ -78,7 +87,14 @@ namespace classifieds.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var post = await _postService.CreateAsync(inputs.ToPost());
+                var inputsPost = inputs.ToPost();
+                var amenities = new List<PostAmenityDto>();
+                foreach (var item in inputs.Amenitites)
+                {
+                    amenities.Add(new PostAmenityDto() {AmenityId = item });
+                }
+                inputsPost.PostAmenities = amenities;
+                var post = await _postService.CreateAsync(inputsPost);
                 return Json(post.Id);
             }
             else
