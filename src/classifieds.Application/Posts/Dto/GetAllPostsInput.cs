@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services.Dto;
+using System.Collections.Generic;
 
 namespace classifieds.Posts.Dto
 {
@@ -12,7 +13,7 @@ namespace classifieds.Posts.Dto
         public int? District { get; set; }
         public int? City { get; set; }
         public int? Category { get; set; }
-        public int? Type { get; set; }
+        public IList<int> Type { get; set; } = new List<int>();
         public int? Age { get; set; }
         public int? Beds { get; set; }
     }

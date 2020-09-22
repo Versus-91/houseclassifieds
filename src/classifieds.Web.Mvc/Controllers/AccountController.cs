@@ -173,7 +173,7 @@ namespace classifieds.Web.Controllers
                 }
                 else
                 {
-                    if (model.UserName.IsNullOrEmpty() || model.Password.IsNullOrEmpty())
+                    if ( model.Password.IsNullOrEmpty())
                     {
                         throw new UserFriendlyException(L("FormIsNotValidMessage"));
                     }
@@ -183,7 +183,7 @@ namespace classifieds.Web.Controllers
                     model.Name,
                     model.Surname,
                     model.EmailAddress,
-                    model.UserName,
+                    model.EmailAddress,
                     model.Password,
                     true, // Assumed email address is always confirmed. Change this if you want to implement email confirmation.
                     model.PhoneNumber

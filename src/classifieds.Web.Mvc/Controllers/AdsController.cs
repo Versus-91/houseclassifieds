@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.Runtime.Validation;
+using Abp.Web.Models;
 using classifieds.Categories;
 using classifieds.Categories.Dto;
 using classifieds.Controllers;
@@ -35,9 +36,18 @@ namespace classifieds.Web.Controllers
         }
         public async Task<IActionResult> Index(GetAllPostsInput inputs)
         {
+            var types = (await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
             ViewData["Categories"] = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, nameof(CategoryDto.Id), nameof(CategoryDto.Name),inputs.Category);
             ViewData["Districts"] = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
-            ViewData["PropertyTypes"] = new SelectList((await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, nameof(PropertyTypeDto.Id), nameof(PropertyTypeDto.Name),inputs.Type);
+            if (inputs.Type.Count == 0)
+            {
+                ViewData["PropertyTypes"] = new SelectList(types, nameof(PropertyTypeDto.Id), nameof(PropertyTypeDto.Name));
+
+            }
+            else
+            {
+                ViewData["PropertyTypes"] = new SelectList(types, nameof(PropertyTypeDto.Id), nameof(PropertyTypeDto.Name), inputs.Type[0]);
+            }
 
             return View(inputs);
         }
@@ -45,9 +55,9 @@ namespace classifieds.Web.Controllers
         public async Task<IActionResult> Show(int id)
         {
             var post = await _postService.GetDetails(id);
-            if (post != null)
+            if (post != null && post.IsVerified)
             {
-                return View(post);
+               return View(post);
             }
             return NotFound();
         }
@@ -77,7 +87,7 @@ namespace classifieds.Web.Controllers
                 ViewData["Categories"] = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
                 ViewData["Districts"] = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
                 ViewData["PropertyTypes"] = new SelectList((await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
-                return View();
+                return BadRequest(ModelState);
             }
         }
     }

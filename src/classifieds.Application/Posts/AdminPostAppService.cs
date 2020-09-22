@@ -40,7 +40,7 @@ namespace classifieds.Posts
                 .WhereIf(input.Age.HasValue, t => t.Age == input.Age.Value)
                 .WhereIf(input.Beds.HasValue, t => t.Bedroom == input.Beds.Value)
                 .WhereIf(input.MinArea.HasValue && input.MaxArea.HasValue, t => t.Area > input.MinArea.Value && t.Area < input.MaxArea.Value)
-                .WhereIf(input.Type.HasValue, t => t.TypeId == input.Type.Value);
+                .WhereIf(input.Type != null && input.Type.Count > 0, t => input.Type.Contains(t.TypeId));
         }
         public async Task<PostDto> GetDetails(int id)
         {

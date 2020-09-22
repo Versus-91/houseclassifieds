@@ -1,11 +1,13 @@
 ﻿using Abp.Application.Services;
+using Abp.Application.Services.Dto;
+using Abp.Authorization;
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using classifieds.Authorization;
-using classifieds.Images;
 using classifieds.Posts.Dto;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
@@ -30,7 +32,7 @@ namespace classifieds.Posts
                 .Include(m => m.Images)
                 .Include(m => m.Type)
                 .Include(m => m.Category)
-                .Where(m=>m.IsVerified)
+                .Where(m=>m.IsVerified ==true)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
                 //.WhereIf(input.MinPrice.HasValue && input.MaxPrice.HasValue, t => t. == input.Featured.Value)
                 .WhereIf(input.Category.HasValue, t => t.CategoryId == input.Category.Value)
@@ -39,7 +41,7 @@ namespace classifieds.Posts
                 .WhereIf(input.Age.HasValue, t => t.Age == input.Age.Value)
                 .WhereIf(input.Beds.HasValue, t => t.Bedroom == input.Beds.Value)
                 .WhereIf(input.MinArea.HasValue && input.MaxArea.HasValue, t => t.Area > input.MinArea.Value && t.Area < input.MaxArea.Value)
-                .WhereIf(input.Type.HasValue, t => t.TypeId == input.Type.Value);
+                .WhereIf(input.Type != null && input.Type.Count > 0, t => input.Type.Contains(t.TypeId));
         }
         public async Task<PostDto> GetDetails(int id)
         {
@@ -49,6 +51,8 @@ namespace classifieds.Posts
                     Id = m.Id,
                     Bedroom = m.Bedroom,
                     Area = m.Area,
+                    IsVerified = m.IsVerified,
+                    IsFeatured = m.IsFeatured,
                     Type = ObjectMapper.Map<TypeViewModel>(m.Type),
                     Description = m.Description,
                     Category = ObjectMapper.Map<CategoryViewModel>(m.Category),
@@ -65,6 +69,34 @@ namespace classifieds.Posts
                     }).ToList(),
                 }).FirstOrDefaultAsync();
             return item;
+        }
+        [AbpAuthorize]
+        public async Task<PagedResultDto<PostDto>> GetUserPosts()
+        {
+            var items = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category).Where(m => m.CreatorUserId == AbpSession.UserId)
+                .Select(m => new PostDto
+                {
+                    Id = m.Id,
+                    Bedroom = m.Bedroom,
+                    Area = m.Area,
+                    Type = ObjectMapper.Map<TypeViewModel>(m.Type),
+                    Description = m.Description,
+                    Category = ObjectMapper.Map<CategoryViewModel>(m.Category),
+                    Latitude = m.Latitude,
+                    Longitude = m.Longitude,
+                    District = ObjectMapper.Map<DistrictViewModel>(m.District),
+                    Title = m.Title,
+                    IsFeatured = m.IsFeatured,
+                    IsVerified = m.IsVerified,
+                    CreationTime = m.CreationTime,
+                    Images = m.Images.Select(m => new ImageViewModel
+                    {
+                        Id = m.Id,
+                        Path = m.Path,
+                        Name = m.Name
+                    }).ToList(),
+                }).ToListAsync();
+             return new PagedResultDto<PostDto>(items.Count, ObjectMapper.Map<List<PostDto>>(items));
         }
     }
 }

@@ -13,14 +13,14 @@ using System.ComponentModel.DataAnnotations;
 namespace classifieds.Posts.Dto
 {
     [AutoMap(typeof(Post))]
-    public class PostDto : EntityDto, IHasCreationTime
+    public class PostDto : AuditedEntityDto, IHasCreationTime
     {
         [Required]
         public string Title { get; set; }
         [Required]
         public string Description { get; set; }
-        public bool IsFeatured { get; set; } = false;
-        public bool IsVerified { get; set; } = false;
+        public bool IsFeatured { get; set; }
+        public bool IsVerified { get; set; }
         public CategoryViewModel Category { get; set; }
         public ushort Area { get; set; }
         public ushort Age { get; set; }

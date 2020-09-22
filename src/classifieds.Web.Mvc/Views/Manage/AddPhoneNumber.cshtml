@@ -1,29 +1,49 @@
 ﻿@model classifieds.Models.ManageViewModels.AddPhoneNumberViewModel
 @{ ViewData["Title"] = "Add Phone Number";
     Layout = "layout/_front"; }
-<div class="container">
-    <section class="section">
-        <form asp-controller="Manage" asp-action="AddPhoneNumber" method="post" class="form-horizontal">
-            <h4>افزودن شماره تلفن</h4>
-            <hr />
-            <div asp-validation-summary="All" class="help is-danger"></div>
+@section hero{
+    <div class="hero is-bold is-primary">
+        <div class="hero-body">
+            <div class="container">
+                sssss
+            </div>
 
-            <div class="field">
-                <div class="columns">
-                    <div class="column is-6">
+        </div>
+        <div class="hero-foot">
+            <nav class="tabs is-boxed is-fullwidth">
+                <div class="container">
+                    <ul>
+                        <li><a href="/manage">لیست آگهی ها</a></li>
+                        <li><a href="/manage/changepassword">تغییر رمز</a></li>
+                        <li class="is-active"><a href="/Manage/AddPhoneNumber">افزودن شماره تماس</a></li>
+                        <li><a>مشخصات</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+}
+<div class="container">
+    <section class="section ">
+        <div class="columns is-centered">
+            <div class="column is-8">
+                <form asp-controller="Manage" asp-action="AddPhoneNumber" method="post">
+                    <h4>افزودن شماره تلفن</h4>
+                    <hr />
+                    <div asp-validation-summary="All" class="help is-danger"></div>
+                    <div class="field">
                         <input dir="ltr" asp-for="PhoneNumber" class="input" type="text" placeholder="شماره موبایل">
                         <span asp-validation-for="PhoneNumber" class="help is-danger"></span>
                     </div>
-                </div>
-
+                    <div class="field">
+                        <p class="control">
+                            <button type="submit" class="button is-primary">ارسال کد تایید</button>
+                            <a href="/manage" class="button is-link">بازگشت</a>
+                        </p>
+                    </div>
+                </form>
             </div>
-            <div class="field">
-                <p class="control">
-                    <button type="submit" class="button is-primary">ارسال کد تایید</button>
-                    <a href="/manage" class="button is-link">بازگشت</a>
-                </p>
-            </div>
-        </form>
+        </div>
     </section>
 </div>
 @section Scripts {

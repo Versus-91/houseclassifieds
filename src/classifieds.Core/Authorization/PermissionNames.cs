@@ -12,7 +12,7 @@
         public const string Pages_Posts = "Pages.Posts";
         public const string Pages_AdminPosts = "Pages.AdminPosts";
         public const string Pages_Roles = "Pages.Roles";
-
+        public const string Pages_Amenities = "Pages.Amenities";
         public const string Posts_Create = "Posts.Create";
     }
 }

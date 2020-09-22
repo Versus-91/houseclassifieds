@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using classifieds.Posts.Dto;
 using Microsoft.AspNetCore.Identity;
 
 namespace classifieds.Models.ManageViewModels
@@ -11,6 +12,7 @@ namespace classifieds.Models.ManageViewModels
         public bool HasPassword { get; set; }
 
         public IList<UserLoginInfo> Logins { get; set; }
+        public IReadOnlyList<PostDto> Posts { get; set; }
 
         public string PhoneNumber { get; set; }
 

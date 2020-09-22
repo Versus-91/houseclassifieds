@@ -1,11 +1,14 @@
-﻿using Abp.AspNetCore.Mvc.Controllers;
+﻿using Abp.Application.Services.Dto;
+using Abp.AspNetCore.Mvc.Controllers;
 using Abp.Net.Mail;
 using Abp.Runtime.Validation;
 using Castle.Core.Logging;
 using classifieds.Authorization.Users;
 using classifieds.Identity;
 using classifieds.Models.ManageViewModels;
+using classifieds.Posts;
 using classifieds.Services;
+using classifieds.Users;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -19,22 +22,28 @@ namespace classifieds.Web.Controllers
     {
         private readonly UserManager _userManager;
         private readonly SignInManager _signInManager;
+        private readonly IUserAppService _userAppManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private readonly IPostAppService _postsService;
 
         public ManageController(
           UserManager userManager,
           SignInManager signInManager,
           IEmailSender emailSender,
           ISmsSender smsSender,
-          ILogger logger)
+          ILogger logger,
+          IPostAppService postsService,
+          IUserAppService userAppManager)
         {
+            _userAppManager = userAppManager;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = logger;
+            _postsService = postsService;
         }
 
         //
@@ -62,7 +71,8 @@ namespace classifieds.Web.Controllers
                 PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
                 TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
                 Logins = await _userManager.GetLoginsAsync(user),
-                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user)
+                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
+                Posts = (await _postsService.GetUserPosts()).Items
             };
             return View(model);
         }
@@ -95,7 +105,11 @@ namespace classifieds.Web.Controllers
         {
             return View();
         }
-
+        public async Task<IActionResult> UserInfo()
+        {
+            var model = await _userAppManager.GetAsync(new EntityDto<long>() {Id = AbpSession.UserId.Value });
+            return View(model);
+        }
         //
         // POST: /Manage/AddPhoneNumber
         [HttpPost]

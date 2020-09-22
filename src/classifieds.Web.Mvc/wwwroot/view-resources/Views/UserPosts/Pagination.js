@@ -89,7 +89,7 @@
                 });
                 loading = false;
                 $('html, body').animate({
-                    scrollTop: $("#mainContainer").offset().top
+                    scrollTop: $("#mainContainer").offset().top - 20
                 }, 200);
             })
             .fail(function () {

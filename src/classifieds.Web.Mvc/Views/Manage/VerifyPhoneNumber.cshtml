@@ -1,6 +1,28 @@
 ﻿@model classifieds.Models.ManageViewModels.VerifyPhoneNumberViewModel
 @{ ViewData["Title"] = "Verify Phone Number";
     Layout = "layout/_front"; }
+@section hero{
+    <div class="hero is-bold is-primary">
+        <div class="hero-body">
+            <div class="container">
+                sssss
+            </div>
+
+        </div>
+        <div class="hero-foot">
+            <nav class="tabs is-boxed is-fullwidth">
+                <div class="container">
+                    <ul>
+                        <li><a href="/manage">لیست آگهی ها</a></li>
+                        <li ><a href="/manage/changepassword">تغییر رمز</a></li>
+                        <li class="is-active"><a href="/Manage/AddPhoneNumber">افزودن شماره تماس</a></li>
+                        <li><a>مشخصات</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+}
 <div class="container">
     <section class="section">
         <h2>@ViewData["Title"].</h2>

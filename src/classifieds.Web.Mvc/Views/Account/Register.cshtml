@@ -19,7 +19,7 @@
                     <form id="RegisterForm" asp-action="Register" class="box" method="post">
                         @if (ViewBag.ErrorMessage != null)
                         {
-            <div class="alert alert-danger">
+            <div class="notification is-danger">
                 <i class="fas fa-warning"></i> @ViewBag.ErrorMessage
             </div>}
                         <input type="hidden" name="IsExternalLogin" value="@Model.IsExternalLogin.ToString()" />
@@ -57,14 +57,7 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="field mb-3">
-                            <div class="control has-icons-right">
-                                <input type="text" name="UserName" class="input" placeholder="@L("UserName")" value="@Model.UserName" required maxlength="@AbpUserBase.MaxUserNameLength">
-                                <span class="icon is-small is-right">
-                                    <i class="fas fa-user"></i>
-                                </span>
-                            </div>
-                        </div>
+
                         <div class="field mb-3">
                             <div class="control has-icons-right">
                                 <input type="password" name="Password" class="input" placeholder="@L("Password")" required maxlength="@AbpUserBase.MaxPlainPasswordLength">

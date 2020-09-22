@@ -148,6 +148,12 @@
     ]
   },
   {
+    "outputFileName": "wwwroot/view-resources/Views/Amenities/Index.min.js",
+    "inputFiles": [
+      "wwwroot/view-resources/Views/Amenities/Index.js"
+    ]
+  },
+  {
     "outputFileName": "wwwroot/view-resources/Views/Categories/Index.min.js",
     "inputFiles": [
       "wwwroot/view-resources/Views/Categories/Index.js"

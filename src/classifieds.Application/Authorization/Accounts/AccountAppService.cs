@@ -2,6 +2,8 @@
 using Abp.Zero.Configuration;
 using classifieds.Authorization.Accounts.Dto;
 using classifieds.Authorization.Users;
+using classifieds.Users.Dto;
+using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 namespace classifieds.Authorization.Accounts
@@ -12,11 +14,13 @@ namespace classifieds.Authorization.Accounts
         public const string PasswordRegex = "(?=^.{8,}$)(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\\s)[0-9a-zA-Z!@#$%^&*()]*$";
 
         private readonly UserRegistrationManager _userRegistrationManager;
+        private readonly UserManager _userManager;
 
         public AccountAppService(
-            UserRegistrationManager userRegistrationManager)
+            UserRegistrationManager userRegistrationManager, UserManager userManager)
         {
             _userRegistrationManager = userRegistrationManager;
+            _userManager = userManager;
         }
 
         public async Task<IsTenantAvailableOutput> IsTenantAvailable(IsTenantAvailableInput input)
@@ -53,6 +57,12 @@ namespace classifieds.Authorization.Accounts
             {
                 CanLogin = user.IsActive && (user.IsEmailConfirmed || !isEmailConfirmationRequiredForLogin)
             };
+        }
+        [HttpGet]
+        public UserDto User()
+        {
+            var user =  _userManager.GetUserById(AbpSession.UserId.Value);
+            return ObjectMapper.Map<UserDto>(user);
         }
     }
 }

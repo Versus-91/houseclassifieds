@@ -114,13 +114,20 @@ $(document).ready(function () {
 		var items = form.serializeArray();
 		for (var i = 0; i < items.length; i++) {
 			if (items[i].name.toLowerCase() != "price" && items[i].name.toLowerCase() != "deposit") {
-				console.log('if:', items[i].name.toLowerCase());
 				formData.append(items[i].name, items[i].value);
 			}
 			else {
-				console.log('else:', items[i].name.toLowerCase());
-				formData.append('Price', priceMask.getNumericString());
-				formData.append('Deposit', depositMask.getNumericString());
+				if (priceMask.getNumericString()) {
+					formData.append('Price', priceMask.getNumericString());
+				} else {
+					formData.append('Price', 0);
+				}
+				console.log(depositMask.getNumericString());
+				if (depositMask.getNumericString()) {
+					formData.append('Deposit', depositMask.getNumericString());
+				} else {
+					formData.append('Deposit', 0);
+				}
 			}
 		}
 		if (!$.isEmptyObject(marker)) {

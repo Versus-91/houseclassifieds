@@ -13,8 +13,10 @@
                 <h1 class="title is-4">ارسال آگهی جدید</h1>
                 <hr />
                 <form asp-action="create" enctype="multipart/form-data" id="CreateAd">
-                    <div class="help is-danger" asp-validation-summary="All">
+
+                    <div class="help is-danger my-2" asp-validation-summary="All">
                     </div>
+                    
                     <div class="field is-horizontal">
                         <div class="field-body">
                             <div class="field">
@@ -93,12 +95,13 @@
                             <div class="field">
                                 <label asp-for="Area" class="label">متراژ</label>
                                 <div class="control has-icons-left ">
-                                    <input class="input realtime" id="area" asp-for="Area" placeholder="مساحت" />
-                                    <span class="help is-danger" asp-validation-for="Area"></span>
+                                    <input class="input " asp-for="Area" placeholder="مساحت" />
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-globe"></i>
                                     </span>
                                 </div>
+                                <span class="help is-danger" asp-validation-for="Area"></span>
+
                             </div>
                             <div class="field" id="bedroom">
                                 <label asp-for="Bedroom" class="label">تعداد خواب</label>
@@ -116,6 +119,7 @@
                                             <i class="fas fa-bed"></i>
                                         </span>
                                     </div>
+                                    <span class="help is-danger" asp-validation-for="Bedroom"></span>
                                 </div>
                             </div>
 

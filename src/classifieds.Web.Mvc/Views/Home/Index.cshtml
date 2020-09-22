@@ -42,9 +42,9 @@
                             </div>
                         </div>
                         <div class="column">
-                            <button class="button is-info is-rounded is-fullwidth-mobile" id="send">
+                            <a class="button is-info is-rounded is-fullwidth-mobile" id="send">
                                 <i class="fas fa-search"></i>
-                            </button>
+                            </a>
                         </div>
                     </div>
 
@@ -61,7 +61,7 @@
                 <div class="columns is-multiline">
                     @foreach (var post in Model.Posts)
                     {
-                        <div class=" column is-4">
+                        <div class=" column is-3">
                             <a class="fill-div" href="/ads/@post.Id">
                                 <div class="card card-hover-shadow">
                                     <div class="card-image">
@@ -375,10 +375,7 @@
                         $("#selectDistrict").select2({ data: items });
                     })
                 } else {
-
                     $("#selectDistrict").prop("disabled", true);
-
-
                 }
             });
             $(".cat-tab").click(function () {

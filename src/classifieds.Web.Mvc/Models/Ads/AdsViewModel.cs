@@ -6,19 +6,21 @@ namespace classifieds.Web.Models.Ads
 {
     public class AdsViewModel
     {
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "عنوان را پر کنید")]
         public string Title { get; set; }
-        [Required]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "توضیحات را پر کنید")]
         public string Description { get; set; }
-        [Required]
+        [Required(ErrorMessage ="دسته بندی را مشخص کنید")]
         public int CategoryId { get; set; }
-        [Required]
+        [Required(ErrorMessage = "محل را انتخاب کنید")]
         public int DistrictId { get; set; }
-        [Required]
+        [Required(ErrorMessage ="نوع ملک باید پر شود.")]
         public int TypeId { get; set; }
+        [Range(0, ushort.MaxValue, ErrorMessage = "حداکثر مقدار {2} است.")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "مساحت را پر کنید")]
         public ushort Area { get; set; }
-        public byte Bedroom { get; set; }
-        public DateTime CreationTime { get; set; }
+        [Range(0, byte.MaxValue, ErrorMessage = "حداکثر مقدار {2} است.")]
+        public byte? Bedroom { get; set; }
         public uint Price { get; set; }
         public uint Deposit { get; set; }
         public double Latitude { get; set; }
@@ -32,9 +34,9 @@ namespace classifieds.Web.Models.Ads
                 Description = Description,
                 DistrictId = DistrictId,
                 Price = Price,
-                Deopsit = Deposit,
+                Deposit = Deposit,
                 Area = Area,
-                Bedroom = Bedroom,
+                Bedroom = Bedroom.Value,
                 TypeId = TypeId,
                 Latitude = Latitude,
                 Longitude = Longitude,

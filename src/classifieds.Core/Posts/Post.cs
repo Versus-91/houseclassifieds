@@ -10,7 +10,7 @@ using System.Collections.Generic;
 
 namespace classifieds.Posts
 {
-    public class Post : Entity, IHasCreationTime
+    public class Post : AuditedEntity, IHasCreationTime
     {
         public string Title { get; set; }
         public string Description { get; set; }
