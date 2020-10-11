@@ -13,5 +13,7 @@
         public const string Posts = "Posts";
         public const  string PropertyTypes = "Property Types";
         public const  string Authorization = "authorization";
+        public const  string Amenities = "Amenities";
+
     }
 }

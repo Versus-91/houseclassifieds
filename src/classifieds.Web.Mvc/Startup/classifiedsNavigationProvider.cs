@@ -13,11 +13,21 @@ namespace classifieds.Web.Startup
         public override void SetNavigation(INavigationProviderContext context)
         {
             context.Manager.MainMenu
+
                 .AddItem(
                     new MenuItemDefinition(
                         PageNames.Home,
                         L("HomePage"),
                         url: "",
+                        order: 1,
+                        icon: "fas fa-home"
+                    )
+                )
+                                .AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Amenities,
+                        L("Amenities"),
+                        url: "admin/amenities",
                         order: 1,
                         icon: "fas fa-home"
                     )

@@ -1,6 +1,6 @@
 ﻿@using classifieds.Web.Startup
-@{ ViewBag.Title = L("Cities");
-    ViewBag.CurrentPageName = PageNames.Cities; }
+@{ ViewBag.Title = L("Amenities");
+    ViewBag.CurrentPageName = PageNames.Amenities; }
 @section styles{ 
     <style>
         .icon-picker-list {
@@ -153,7 +153,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-6">
-                <h1>@L("Amenitites")</h1>
+                <h1>@L("Amenities")</h1>
             </div>
             <div class="col-sm-6">
                 <a href="javascript:;" data-toggle="modal" data-target="#CreateModal" class="btn bg-blue float-sm-right">
@@ -188,7 +188,7 @@
                                         <th></th>
                                         <th>@L("Name")</th>
                                         <th>@L("Description")</th>
-                                        <th>@L("icon")</th>
+                                        <th>@L("Icon")</th>
                                         <th style="width: 150px">@L("Actions")</th>
                                     </tr>
                                 </thead>

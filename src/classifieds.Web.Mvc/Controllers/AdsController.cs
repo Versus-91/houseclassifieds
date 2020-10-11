@@ -47,7 +47,7 @@ namespace classifieds.Web.Controllers
             var types = (await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
             ViewData["Categories"] = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, nameof(CategoryDto.Id), nameof(CategoryDto.Name),inputs.Category);
             ViewData["Districts"] = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
-            ViewData["Amenitites"] = (await _amenityService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
+            //ViewData["Amenitites"] = (await _amenityService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
             if (inputs.Type.Count == 0)
             {
                 ViewData["PropertyTypes"] = new SelectList(types, nameof(PropertyTypeDto.Id), nameof(PropertyTypeDto.Name));

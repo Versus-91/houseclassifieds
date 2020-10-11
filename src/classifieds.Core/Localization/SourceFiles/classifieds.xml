@@ -132,5 +132,10 @@
     <text name="IsVerified">Verified</text>
     <text name="Category">Category</text>
     <text name="Location">Location</text>
+    <text name="Amenities">Amenities</text>
+    <text name="Description">Description</text>
+    <text name="Icon">Icon</text>
+    <text name="Authorization">Authorization</text>
+
   </texts>
 </localizationDictionary>
