@@ -40,9 +40,7 @@
 <body class="site">
     @await Html.PartialAsync("Layout/_UserNavbar", returnUrl)
     @RenderSection("hero", required: false)
-    <main class="Site-content" id="app">
         @RenderBody()
-    </main>
     <footer class="footer  has-background-light ">
         <div class="content has-text-centered">
             <p>
@@ -76,7 +74,6 @@
                     });
                 });
             }
-            $('.select2').select2()
         });
     </script>
     @RenderSection("scripts", required: false)
