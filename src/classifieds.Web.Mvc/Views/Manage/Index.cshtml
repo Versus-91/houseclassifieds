@@ -24,9 +24,10 @@
         </div>
     </div>
 }
-<div class="container">
-    <div class="section">
-        <div class="column is-10  has-text-centered is-12-mobile">
+<div class="section">
+    <div class="container">
+        <div class="columns">
+        <div class=" column is-10  has-text-centered is-12-mobile">
             @if (!string.IsNullOrEmpty(query))
             {
                 <div class="notification is-primary">
@@ -58,56 +59,61 @@
                 </div>
                 </div>
                 <hr class="my-5">
-                <table class="table is-fullwidth ">
-                    <thead>
-                        <tr>
-                            <th>شناسه</th>
-                            <th>عنوان</th>
-                            <th>شهر</th>
-                            <th>منطقه</th>
-                            <th>وضعیت</th>
-                            <th>دسته بندی</th>
-                            <th>منو</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @if (Model.Posts.Count > 0)
-                        {
-                            @foreach (var item in Model.Posts)
-                            {
+                <div class="column is-12">
+                    <div class="table-container">
+
+                        <table class="table is-fullwidth" style="overflow-x:auto">
+                            <thead>
                                 <tr>
-                                    <th>@item.Id</th>
-                                    <td>
-                                        @item.Title
-                                    </td>
-                                    <td>@item.District.City.Name </td>
-                                    <td>@item.District.Name </td>
-                                    <td>
-                                        @if (item.IsVerified)
-                                        {
-                                            <span class="tag is-success">تایید شده</span>
-                                        }
-                                        else
-                                        {
-                                            <span class="tag is-danger">تایید نشده</span>
-                                        }
-                                    </td>
-                                    <td>@item.Category.Name</td>
-                                    <td><a href="/ads/@item.Id">مشاهده</a></td>
+                                    <th>شناسه</th>
+                                    <th>عنوان</th>
+                                    <th>شهر</th>
+                                    <th>منطقه</th>
+                                    <th>وضعیت</th>
+                                    <th>دسته بندی</th>
+                                    <th>منو</th>
                                 </tr>
-                            }
-                        }
-                        else
-                        {
-                            <tr>
-                                <td>
-                                    @Html.Raw("موردی پیدا نشد.")
-                                </td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
+                            </thead>
+                            <tbody>
+                                @if (Model.Posts.Count > 0)
+                                {
+                                    @foreach (var item in Model.Posts)
+                                    {
+                                        <tr>
+                                            <th>@item.Id</th>
+                                            <td>
+                                                @item.Title
+                                            </td>
+                                            <td>@item.District.City.Name </td>
+                                            <td>@item.District.Name </td>
+                                            <td>
+                                                @if (item.IsVerified)
+                                                {
+                                                    <span class="tag is-success">تایید شده</span>
+                                                }
+                                                else
+                                                {
+                                                    <span class="tag is-danger">تایید نشده</span>
+                                                }
+                                            </td>
+                                            <td>@item.Category.Name</td>
+                                            <td><a href="/ads/@item.Id">مشاهده</a></td>
+                                        </tr>
+                                    }
+                                }
+                                else
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.Raw("موردی پیدا نشد.")
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-</div>

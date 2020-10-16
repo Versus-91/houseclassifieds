@@ -26,12 +26,12 @@
                 }
                 totalPages = Math.ceil(res.result.totalCount / rowPerPage);
                 if (pageIndex <= 1) {
-                    $(".pagination-previous").attr("disabled", "disabled");
+                    $(".pagination-previous").attr("disabled", true);
                 } else {
                     $(".pagination-previous").removeAttr("disabled");
                 }
                 if (pageIndex >= totalPages) {
-                    $(".pagination-next").attr("disabled", "disabled");
+                    $(".pagination-next").attr("disabled", true);
                 } else {
                     $(".pagination-next").removeAttr("disabled");
                 }
@@ -45,10 +45,10 @@
                     var featuredIcon = item.isFeatured === true ? `<span class="fa-stack  has-text-success"><i class="fas fa-stack-1x fa-check-square"></i></span>` : ``;
                     $("#pager").append(`<div class=" column is-4">
                                 <a class="fill-div" href="/ads/${item.id}">
-                                    <div class="card card-hover-shadow" data-label="Progress">
+                                    <div class="card card-hover-shadow" data-label="${item.category.name}">
                                         <div class="card-image">
                                             <figure class="image is-4by3">
-                                                <img src="v ${boolHasImage ? item.images[0].path +'?width=600&height=480' : '/img/placeholder.png'}" alt="Placeholder image">
+                                                <img src="${boolHasImage ? item.images[0].path +'?width=600&height=480' : '/img/placeholder.png'}" alt="Placeholder image">
                                                 <div class="overlay">${item.district.city.name + ',' + item.district.name}</div>
                                                 <div class="overlay-top-corner">
                                                 ${featuredIcon}
@@ -131,12 +131,15 @@
         FilterAds();
     });
     $(".pagination-next").click(() => {
-        pageIndex= pageIndex + 1;
-        loadAds(path())
+            pageIndex = pageIndex + 1;
+            loadAds(path());
     });
     $(".pagination-previous").click(() => {
+        if ($(this).attr('disabled')) {
+            return;
+        }
         pageIndex = pageIndex  - 1;
-        loadAds(path())
+        loadAds(path());
     });
     loadAds(path(params[1]))
 })

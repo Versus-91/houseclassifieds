@@ -11,115 +11,145 @@
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin="" />
 }
-<div class="hero is-fullheight is-light is-bold">
-    <div class="hero-body">
-        <div class="container">
-            <div class="box">
-                <input hidden name="Latitude" id="postLatitude" value="@Model.Latitude" />
-                <input hidden name="Longitude" id="postLongitude" value="@Model.Longitude" />
-                    <nav class="breadcrumb " aria-label="breadcrumbs">
-                        <ul>
-                            <li><a href="#">@Model.District.City.Name</a></li>
-                            <li><a href="#"> @Model.District.Name </a></li>
-                            <li><a href="#"> @Model.Category.Name </a></li>
-                            <li class="is-active"><a href="#" aria-current="page">@Model.Type.Name</a></li>
-                        </ul>
-                    </nav>
+<div class="section has-background-success-light">
+    <div class="container " id="mainContainer">
+        <div class="box">
+            <input hidden name="Latitude" id="postLatitude" value="@Model.Latitude" />
+            <input hidden name="Longitude" id="postLongitude" value="@Model.Longitude" />
+            <nav class="breadcrumb " aria-label="breadcrumbs">
+                <ul>
+                    <li><a href="#">@Model.District.City.Name</a></li>
+                    <li><a href="#"> @Model.District.Name </a></li>
+                    <li><a href="#"> @Model.Category.Name </a></li>
+                    <li class="is-active"><a href="#" aria-current="page">@Model.Type.Name</a></li>
+                </ul>
+            </nav>
+            <hr />
+            <div class="columns">
+                <div class="column is-6 ">
+                    <h1 class="title is-4">@Model.Title</h1>
                     <hr />
-                <div class="columns">
-                    <div class="column is-5">
-                        <h1 class="title is-4">@Model.Title</h1>
-                        <hr />
-                        <h1 class="subtitle is-5">@Model.Description</h1>
-                        <hr />
-                        <button class="button is-primary">
-                            <span class="icon">
-                                <i class="fas fa-phone"></i>
-                            </span>
-                            <span>تماس</span>
-                        </button>
-                    </div>
-                    <div class="column is-7">
-                        <div class="columns is-multiline">
-                            <div class="column is-12">
-                                <div class="swiper-container">
-                                    <!-- Additional required wrapper -->
-                                    <ul class="swiper-wrapper my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-                                        @if (Model.Images.Count > 0)
-                                        {
-                                            @foreach (var image in Model.Images)
-                                            {
-                                                <li class="swiper-slide" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                                    <a title="click to zoom-in" href="/@image.Path" itemprop="contentUrl" data-size="1200x600">
-                                                        <img src="/@image.Path?height=300&width=600&rsampler=nearest&rmode=stretch" itemprop="thumbnail" alt="Image description" />
-                                                    </a>
-                                                </li>
-                                            }
-                                        }
-                                        else
+                    <h1 class="subtitle is-5">@Model.Description</h1>
+                    <hr />
+                    <button class="button is-primary">
+                        <span class="icon">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        <span>تماس</span>
+                    </button>
+                </div>
+                <div class="column is-6">
+                    <div class="columns is-multiline">
+                        <div class="column is-12">
+                            <div class="swiper-container" id="images">
+                                <!-- Additional required wrapper -->
+                                <ul class="swiper-wrapper my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                                    @if (Model.Images.Count > 0)
+                                    {
+                                        @foreach (var image in Model.Images)
                                         {
                                             <li class="swiper-slide" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                                <a title="click to zoom-in" href="http://placehold.it/1200x600/00897B/ffffff?text=:(" itemprop="contentUrl" data-size="1200x600">
-                                                    <img src="http://placehold.it/600x300/00897B/ffffff?text=:(" itemprop="thumbnail" alt="Image description" />
+                                                <a title="click to zoom-in" href="/@image.Path" itemprop="contentUrl" data-size="1200x600">
+                                                    <img src="/@image.Path?height=400&width=480&rsampler=nearest&rmode=stretch" itemprop="thumbnail" alt="Image description" />
                                                 </a>
                                             </li>
                                         }
-                                    </ul>
+                                    }
+                                    else
+                                    {
+                                        <li class="swiper-slide" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
+                                            <a title="click to zoom-in" href="http://placehold.it/1200x600/00897B/ffffff?text=:(" itemprop="contentUrl" data-size="1200x600">
+                                                <img src="http://placehold.it/600x300/00897B/ffffff?text=:(" itemprop="thumbnail" alt="Image description" />
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
 
 
 
-                                    <!-- If we need navigation buttons -->
-                                    <div class="swiper-button-prev"></div>
-                                    <div class="swiper-button-next"></div>
-                                </div>
-
+                                <!-- If we need navigation buttons -->
+                                <div class="swiper-button-prev"></div>
+                                <div class="swiper-button-next"></div>
                             </div>
 
                         </div>
+
                     </div>
                 </div>
-                <section class="level is-mobile">
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
-                            <p class="title is-6">@Model.Bedroom</p>
-                        </div>
+            </div>
+            <section class="level is-mobile">
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
+                        <p class="title is-6">@Model.Bedroom</p>
                     </div>
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading"><i class="fas fa-2x fa-clock"></i></p>
-                            <p class="title is-6">
-                                @if (Model.Age > 0)
-                                {
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading"><i class="fas fa-2x fa-clock"></i></p>
+                        <p class="title is-6">
+                            @if (Model.Age > 0)
+                            {
                                 @Model.Age
-                                }
-                                else
-                                {
-                                    @Html.Raw("N/A")
-                                }
-                            </p>
-                        </div>
+                            }
+                            else
+                            {
+                                @Html.Raw("N/A")
+                            }
+                        </p>
                     </div>
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading"><i class="fas fa-2x fa-parking"></i></p>
-                            <p class="title is-6">دارد</p>
-                        </div>
-                    </div>
-                    <div class="level-item has-text-centered">
-                        <div>
-                            <p class="heading"><i class="fas fa-2x fa-water has-text-info"></i></p>
-                            <p class="title is-6">دارد</p>
-                        </div>
-                    </div>
-                </section>
-                <div class="column is-12" id="map">
-                    <div style="height:300px"></div>
                 </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading"><i class="fas fa-2x fa-parking"></i></p>
+                        <p class="title is-6">دارد</p>
+                    </div>
+                </div>
+                <div class="level-item has-text-centered">
+                    <div>
+                        <p class="heading"><i class="fas fa-2x fa-water has-text-info"></i></p>
+                        <p class="title is-6">دارد</p>
+                    </div>
+                </div>
+            </section>
+            <div class="column is-12" id="map">
+                <div style="height:300px"></div>
             </div>
         </div>
     </div>
-    </div>
+    <div class="section">
+        <div class="container mt-3">
+            <div class="column is-12">
+                <div class="swiper-container-suggestion" id="suggestions">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-suggestion-slide">
+                            <p>sdsdsds</p>
+                        </div>
+                        <div class="swiper-suggestion-slide">
+                            <p>sdsdsds</p>
+                        </div>
+                        <div class="swiper-suggestion-slide">
+                            <p>sdsdsds</p>
+                        </div>
+                        <div class="swiper-suggestion-slide">
+                            <p>sdsdsds</p>
+                        </div>                        <div class="swiper-suggestion-slide">
+                            sssssssssssssssssss
+                        </div>                        <div class="swiper-suggestion-slide">
+                            sssssssssssssssssss
+                        </div>                        <div class="swiper-suggestion-slide">
+                            sssssssssssssssssss
+                        </div>
+                    </div>
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                </div>
+
+            </div>
+        </div>
+            </div>
+        </div>
 
     <!-- Root element of PhotoSwipe. Must have class pswp. -->
     <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

@@ -11,12 +11,11 @@
         <script src="~/view-resources/Views/Account/Login.min.js" asp-append-version="true"></script>
     </environment>
 }
-<section class="hero is-success is-fullheight is-bold">
-    <div class="hero-body">
+<div class="area">
+    <div class="section">
         <div class="container">
             <div class="columns is-centered">
-                <div class="column is-5-tablet is-4-desktop is-3-widescreen">
-
+                <div class="column is-5-tablet is-4-desktop is-4-widescreen">
                     <form id="LoginForm" asp-action="Login" class="box" method="post">
                         <input type="hidden" name="returnUrl" value="@Model.ReturnUrl" />
                         <input type="hidden" name="returnUrlHash" />
@@ -67,14 +66,14 @@
                         @if (Model.IsSelfRegistrationAllowed)
                         {
             <a asp-action="Register" class="button is-fullwidth">
-                <span class="icon">
+                <span class="icon  has-text-grey">
                     <i class="fa fa-plus-circle mx-2"></i>
                     @L("Register")
                 </span>
             </a>}
                         <a asp-controller="home" asp-action="" class="button is-fullwidth mt-3">
-                            <span class="icon is-small">
-                                <i class="fa fa-home mx-2"></i>
+                            <span class="icon  has-text-grey">
+                                <i class="fa fa-home mx-2 "></i>
                                 @L("Back")
                             </span>
                         </a>
@@ -84,4 +83,16 @@
             </div>
         </div>
     </div>
-</section>
+    <ul class="circles">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
