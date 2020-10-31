@@ -3,6 +3,7 @@ using Abp.Domain.Repositories;
 using Abp.ObjectMapping;
 using classifieds.Authorization;
 using classifieds.Districts.Dto;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -24,6 +25,11 @@ namespace classifieds.Districts
         public async Task<List<DistrictDto>> GetByCityId(int id)
         {
             var districts = await _districtSrvice.GetAllListAsync(m => m.CityId == id);
+            return _objectMapper.Map<List<DistrictDto>>(districts);
+        }
+        public async Task<List<DistrictDto>> Find(string query)
+        {
+            var districts = await _districtSrvice.GetAllListAsync(m=>m.Name.Contains(query));
             return _objectMapper.Map<List<DistrictDto>>(districts);
         }
     }

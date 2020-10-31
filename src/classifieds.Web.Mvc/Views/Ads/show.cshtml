@@ -11,28 +11,58 @@
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin="" />
 }
-<div class="section has-background-success-light">
+<div class="section has-background-white-ter">
     <div class="container " id="mainContainer">
+        <input hidden name="Latitude" id="postLatitude" value="@Model.Latitude" />
+        <input hidden name="Longitude" id="postLongitude" value="@Model.Longitude" />
+        <nav class="breadcrumb " aria-label="breadcrumbs">
+            <ul>
+                <li><a href="#">@Model.District.City.Name</a></li>
+                <li><a href="#"> @Model.District.Name </a></li>
+                <li><a href="#"> @Model.Category.Name </a></li>
+                <li class="is-active"><a href="#" aria-current="page">@Model.Type.Name</a></li>
+            </ul>
+        </nav>
         <div class="box">
-            <input hidden name="Latitude" id="postLatitude" value="@Model.Latitude" />
-            <input hidden name="Longitude" id="postLongitude" value="@Model.Longitude" />
-            <nav class="breadcrumb " aria-label="breadcrumbs">
-                <ul>
-                    <li><a href="#">@Model.District.City.Name</a></li>
-                    <li><a href="#"> @Model.District.Name </a></li>
-                    <li><a href="#"> @Model.Category.Name </a></li>
-                    <li class="is-active"><a href="#" aria-current="page">@Model.Type.Name</a></li>
-                </ul>
-            </nav>
-            <hr />
             <div class="columns">
-                <div class="column is-6 ">
+                <div class="column is-6 has-text-centered">
                     <h1 class="title is-4">@Model.Title</h1>
-                    <hr />
+                    <h3 class="subtitle is-5 my-2">@Model.Category.Name</h3>
+                    <section class="level is-mobile mt-1">
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
+                                <p class="title is-6 has-text-grey">تعداد خواب</p>
+                                <p class="title is-6 my-2">@Model.Bedroom</p>
+                            </div>
+                        </div>
+                        <div class="level-item has-text-centered my-5">
+                            <div>
+                                <p class="heading"><i class="fas fa-2x fa-clock has-text-grey"></i></p>
+                                <p class="title is-6 has-text-grey">عمر بنا</p>
+                                <p class="title is-6 my-2">
+                                    @if (Model.Age > 0)
+                                    {
+                                        @Model.Age
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw("N/A")
+                                    }
+                                </p>
+                            </div>
+                        </div>
+                        <div class="level-item has-text-centered">
+                            <div>
+                                <p class="heading"><i class="fas fa-2x fa-chart-area has-text-grey"></i></p>
+                                <p class="title is-6 has-text-grey">مساحت</p>
+                                <p class="title is-6">@Model.Area متر</p>
+                            </div>
+                        </div>
+                    </section>
                     <h1 class="subtitle is-5">@Model.Description</h1>
-                    <hr />
                     <button class="button is-primary">
-                        <span class="icon">
+                        <span class="icon ">
                             <i class="fas fa-phone"></i>
                         </span>
                         <span>تماس</span>
@@ -77,41 +107,6 @@
                     </div>
                 </div>
             </div>
-            <section class="level is-mobile">
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
-                        <p class="title is-6">@Model.Bedroom</p>
-                    </div>
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading"><i class="fas fa-2x fa-clock"></i></p>
-                        <p class="title is-6">
-                            @if (Model.Age > 0)
-                            {
-                                @Model.Age
-                            }
-                            else
-                            {
-                                @Html.Raw("N/A")
-                            }
-                        </p>
-                    </div>
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading"><i class="fas fa-2x fa-parking"></i></p>
-                        <p class="title is-6">دارد</p>
-                    </div>
-                </div>
-                <div class="level-item has-text-centered">
-                    <div>
-                        <p class="heading"><i class="fas fa-2x fa-water has-text-info"></i></p>
-                        <p class="title is-6">دارد</p>
-                    </div>
-                </div>
-            </section>
             <div class="column is-12" id="map">
                 <div style="height:300px"></div>
             </div>

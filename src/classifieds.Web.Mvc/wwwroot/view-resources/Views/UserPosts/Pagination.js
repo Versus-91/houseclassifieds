@@ -57,20 +57,20 @@
                                             </figure>
                                         </div>
                                         <div class="card-content">
-                                            <div class="content">
+                                            <div class="content has-text-centered">
                                                 ${item.title}
                                                 <br>
                                             </div>
                                             <nav class="level is-mobile">
                                                 <div class="level-item has-text-centered">
                                                     <div>
-                                                        <p><i class="fas  fa-square has-text-success"></i></p>
+                                                        <p><i class="fas fa-chart-area has-text-grey"></i></p>
                                                         <p>${item.area}</p>
                                                     </div>
                                                 </div>
                                                 <div class="level-item has-text-centered">
                                                     <div>
-                                                        <p><i class="fas  fa-clock has-text-warning"></i></p>
+                                                        <p><i class="fas  fa-clock has-text-grey"></i></p>
                                                         <p>${item.age == 0 ? '--' : item.age}</p>
                                                     </div>
                                                 </div>
@@ -82,7 +82,11 @@
                                                 </div>
                                             </nav>
                                         </div>
-
+                                        <footer class="card-footer">
+                                          <a href="#" class="card-footer-item">
+                                              <p><i class="fas fa-phone has-text-success"></i>  اطلاعات تماس</p>
+                                          </a>
+                                        </footer>
                                     </div>
                                 </a>
                             </div>`);
