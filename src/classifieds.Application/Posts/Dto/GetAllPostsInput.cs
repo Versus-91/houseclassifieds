@@ -14,6 +14,7 @@ namespace classifieds.Posts.Dto
         public int? City { get; set; }
         public int? Category { get; set; }
         public IList<int> Type { get; set; } = new List<int>();
+        public IList<int> Amenities { get; set; } = new List<int>();
         public int? Age { get; set; }
         public int? Beds { get; set; }
     }

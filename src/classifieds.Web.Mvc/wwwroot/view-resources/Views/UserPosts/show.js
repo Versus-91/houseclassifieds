@@ -33,28 +33,7 @@
             prevEl: '.swiper-button-prev',
         }
     });
-    var suggestions = new Swiper("#suggestions", {
-        // If loop true set photoswipe - counterEl: false
-        /* slidesPerView || auto - if you want to set width by css like flickity.js layout - in this case width:80% by CSS */
-        slidesPerView: 3,
-        centeredSlides: true,
-        autoHeight: true, //enable auto height
-        loop: true,
-        spaceBetween: 10,
-        // If we need pagination
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-            renderBullet: function (index, className) {
-                return '<span class="' + className + '">' + (index + 1) + "</span>";
-            }
-        },
-        // Navigation arrows
-        navigation: {
-            nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev',
-        }
-    });
+
     //PHOTOSWIPE
     var initPhotoSwipeFromDOM = function (gallerySelector) {
         // parse slide data (url, title, size ...) from DOM elements
