@@ -9,6 +9,7 @@ namespace classifieds.Districts
 {
     public interface IDistrictAppService:IAsyncCrudAppService<DistrictDto>
     {
+        Task<List<LocationSearchDto>> Find(string query);
         Task<List<DistrictDto>> GetByCityId(int id);
     }
 }

@@ -38,8 +38,8 @@ namespace classifieds.Posts
                 .WhereIf(input.Category.HasValue, t => t.CategoryId == input.Category.Value)
                 .WhereIf(input.District.HasValue, t => t.DistrictId == input.District.Value)
                 .WhereIf(input.City.HasValue, t => t.District.City.Id == input.City.Value)
-                .WhereIf(input.Age.HasValue, t => t.Age == input.Age.Value)
-                .WhereIf(input.Beds.HasValue, t => t.Bedroom == input.Beds.Value)
+                .WhereIf(input.Age.HasValue, t => t.Age >= input.Age.Value)
+                .WhereIf(input.Beds.HasValue, t => t.Bedroom >= input.Beds.Value)
                 .WhereIf(input.MinArea.HasValue && input.MaxArea.HasValue, t => t.Area > input.MinArea.Value && t.Area < input.MaxArea.Value)
                 .WhereIf(input.Amenities != null && input.Amenities.Count > 0, t => t.PostAmenities.Any(m=>input.Amenities.Contains(m.AmenityId)))
                 .WhereIf(input.Type != null && input.Type.Count > 0, t => input.Type.Contains(t.TypeId));
