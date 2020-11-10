@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
+using classifieds.Amenities.Dto;
 using classifieds.PostsAmenities;
 
 namespace classifieds.PostsAmenities.Dto
@@ -9,6 +10,7 @@ namespace classifieds.PostsAmenities.Dto
     {
         public int PostId { get; set; }
         public int AmenityId { get; set; }
+        public AmenityDto Amenity { get; set; }
 
     }
 }

@@ -4,8 +4,10 @@ using Abp.Authorization;
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
+using classifieds.Amenities.Dto;
 using classifieds.Authorization;
 using classifieds.Posts.Dto;
+using classifieds.PostsAmenities.Dto;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -62,6 +64,10 @@ namespace classifieds.Posts
                     District = ObjectMapper.Map<DistrictViewModel>(m.District),
                     Title = m.Title,
                     CreationTime = m.CreationTime,
+                    PostAmenities = m.PostAmenities.Select(m=>new PostAmenityDto {
+                        Amenity = ObjectMapper.Map<AmenityDto>(m.Amenity),
+                        Id=m.Id,
+                    }).ToList(),
                     Images = m.Images.Select(m => new ImageViewModel
                     {
                         Id = m.Id,

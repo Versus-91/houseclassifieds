@@ -4,8 +4,11 @@ using System.Text;
 
 namespace classifieds.Districts.Dto
 {
-    public class LocationSearchDto:DistrictDto
+    public class LocationSearchDto
     {
+        public string Name { get; set; }
+        public int Id { get; set; }
+
         public bool IsCity { get; set; }
     }
 }
