@@ -64,9 +64,10 @@ namespace classifieds.Posts
                     District = ObjectMapper.Map<DistrictViewModel>(m.District),
                     Title = m.Title,
                     CreationTime = m.CreationTime,
-                    PostAmenities = m.PostAmenities.Select(m=>new PostAmenityDto {
-                        Amenity = ObjectMapper.Map<AmenityDto>(m.Amenity),
-                        Id=m.Id,
+                    Amenities = m.PostAmenities.Select(m=>new AmenityDto {
+                        Name=m.Amenity.Name,
+                        Icon= m.Amenity.Icon,
+                        Id=m.Amenity.Id,
                     }).ToList(),
                     Images = m.Images.Select(m => new ImageViewModel
                     {

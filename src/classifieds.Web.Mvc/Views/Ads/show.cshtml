@@ -89,14 +89,14 @@
                     <h3>امکانات</h3>
                     <hr />
                     <div class="columns">
-                        @if (Model.PostAmenities.Count > 0)
+                        @if (Model.Amenities.Count > 0)
                         {
 
-                            @foreach (var item in Model.PostAmenities)
+                            @foreach (var item in Model.Amenities)
                             {
                                 <div class="column is-6">
-                                    <i class="@item.Amenity.Icon"></i>
-                                    @item.Amenity.Name
+                                    <i class="@item.Icon"></i>
+                                    @item.Name
                                 </div>
                             }
                         }

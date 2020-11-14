@@ -36,7 +36,7 @@ namespace classifieds.Posts.Dto
         public double Latitude { get; set; }
         public double Longitude { get; set; }
         public IList<ImageViewModel> Images { get; set; }
-        public IList<PostAmenityDto> PostAmenities { get; set; }
+        public IList<AmenityDto> Amenities { get; set; }
 
     }
 }

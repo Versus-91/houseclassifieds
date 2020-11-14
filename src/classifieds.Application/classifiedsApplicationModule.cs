@@ -2,6 +2,9 @@
 using Abp.Modules;
 using Abp.Reflection.Extensions;
 using classifieds.Authorization;
+using classifieds.Posts;
+using classifieds.Posts.Dto;
+using System.Linq;
 
 namespace classifieds
 {
@@ -14,6 +17,11 @@ namespace classifieds
         {
             Configuration.Authorization.Providers.Add<classifiedsAuthorizationProvider>();
             Configuration.MultiTenancy.IsEnabled = false;
+            Configuration.Modules.AbpAutoMapper().Configurators.Add(config =>
+            {
+                config.CreateMap<Post, PostDto>()
+                      .ForMember(u => u.Amenities, options => options.MapFrom(input => input.PostAmenities.Select(m=>m.Amenity)));
+            });
         }
 
         public override void Initialize()
