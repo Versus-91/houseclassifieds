@@ -64,5 +64,28 @@ namespace classifieds.Authorization.Accounts
             var user =  _userManager.GetUserById(AbpSession.UserId.Value);
             return ObjectMapper.Map<UserDto>(user);
         }
+        [HttpPut]
+        public  async Task<UserDto> UpdateAsync(UserDto input)
+        {
+            
+              var user = await _userManager.GetUserByIdAsync(input.Id);
+
+            MapToEntity(input, user);
+
+            CheckErrors(await _userManager.UpdateAsync(user));
+
+            if (input.RoleNames != null)
+            {
+                CheckErrors(await _userManager.SetRolesAsync(user, input.RoleNames));
+            }
+
+            return   ObjectMapper.Map<UserDto>(user);
+        }
+        protected  void MapToEntity(UserDto input, User user)
+        {
+            ObjectMapper.Map(input, user);
+            user.SetNormalizedNames();
+        }
+
     }
 }
