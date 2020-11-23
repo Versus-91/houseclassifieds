@@ -1,4 +1,4 @@
-﻿using Abp.Application.Services;
+﻿ using Abp.Application.Services;
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Collections.Extensions;
@@ -55,6 +55,9 @@ namespace classifieds.Posts
                     Bedroom = m.Bedroom,
                     Area = m.Area,
                     IsVerified = m.IsVerified,
+                    DistrictId=m.DistrictId,
+                    CategoryId=m.CategoryId,
+                    TypeId=m.TypeId,
                     IsFeatured = m.IsFeatured,
                     Type = ObjectMapper.Map<TypeViewModel>(m.Type),
                     Description = m.Description,
@@ -105,6 +108,36 @@ namespace classifieds.Posts
                     }).ToList(),
                 }).ToListAsync();
              return new PagedResultDto<PostDto>(items.Count, ObjectMapper.Map<List<PostDto>>(items));
+        }
+        public async Task<PagedResultDto<PostDto>> Recommendations(PostDto post)
+        {
+            var items = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category).Where(m =>m.IsVerified && m.Id != post.Id && m.CategoryId == post.CategoryId && m.DistrictId == post.DistrictId && m.TypeId == post.TypeId)
+                .Select(m => new PostDto
+                {
+                    Id = m.Id,
+                    Bedroom = m.Bedroom,
+                    Area = m.Area,
+                    Type = ObjectMapper.Map<TypeViewModel>(m.Type),
+                    Description = m.Description,
+                    DistrictId = m.DistrictId,
+                    CategoryId = m.CategoryId,
+                    TypeId = m.TypeId,
+                    Category = ObjectMapper.Map<CategoryViewModel>(m.Category),
+                    Latitude = m.Latitude,
+                    Longitude = m.Longitude,
+                    District = ObjectMapper.Map<DistrictViewModel>(m.District),
+                    Title = m.Title,
+                    IsFeatured = m.IsFeatured,
+                    IsVerified = m.IsVerified,
+                    CreationTime = m.CreationTime,
+                    Images = m.Images.Select(m => new ImageViewModel
+                    {
+                        Id = m.Id,
+                        Path = m.Path,
+                        Name = m.Name
+                    }).ToList(),
+                }).Take(4).ToListAsync();
+            return new PagedResultDto<PostDto>(items.Count, ObjectMapper.Map<List<PostDto>>(items));
         }
     }
 }

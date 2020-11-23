@@ -1,7 +1,9 @@
 ﻿@model classifieds.Users.Dto.UserDto
 @{ ViewData["Title"] = "مشخصات کاربر";
     Layout = "layout/_front"; }
+
 @section hero{
+
     <div class="hero is-bold is-primary">
         <div class="hero-body">
             <div class="container">
@@ -14,7 +16,7 @@
                 <div class="container">
                     <ul>
                         <li><a href="/manage">لیست آگهی ها</a></li>
-                        <li ><a href="/manage/changepassword">تغییر رمز</a></li>
+                        <li><a href="/manage/changepassword">تغییر رمز</a></li>
                         <li><a href="/Manage/AddPhoneNumber">افزودن شماره تماس</a></li>
                         <li class="is-active" href="/Manage/UserInfo"><a>مشخصات</a></li>
                     </ul>
@@ -25,9 +27,64 @@
 }
 <div class="container">
     <section class="section">
-     @Model
+        @Model
     </section>
 </div>
 @section Scripts {
+    <script src="~/libs/cropperjs/cropper.min.js"></script>
+    <script>
+        function getRoundedCanvas(sourceCanvas) {
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            var width = sourceCanvas.width;
+            var height = sourceCanvas.height;
+
+            canvas.width = width;
+            canvas.height = height;
+            context.imageSmoothingEnabled = true;
+            context.drawImage(sourceCanvas, 0, 0, width, height);
+            context.globalCompositeOperation = 'destination-in';
+            context.beginPath();
+            context.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI, true);
+            context.fill();
+            return canvas;
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+            var image = document.getElementById('image');
+            var button = document.getElementById('button');
+            var result = document.getElementById('result');
+            var croppable = false;
+            var cropper = new Cropper(image, {
+                aspectRatio: 1,
+                viewMode: 1,
+                ready: function () {
+                    croppable = true;
+                },
+            });
+
+            button.onclick = function () {
+                var croppedCanvas;
+                var roundedCanvas;
+                var roundedImage;
+
+                if (!croppable) {
+                    return;
+                }
+
+                // Crop
+                croppedCanvas = cropper.getCroppedCanvas();
+
+                // Round
+                roundedCanvas = getRoundedCanvas(croppedCanvas);
+
+                // Show
+                roundedImage = document.createElement('img');
+                roundedImage.src = roundedCanvas.toDataURL()
+                result.innerHTML = '';
+                result.appendChild(roundedImage);
+            };
+        });
+    </script>
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }

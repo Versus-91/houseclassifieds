@@ -66,7 +66,9 @@ namespace classifieds.Web.Controllers
             var post = await _postService.GetDetails(id);
             if (post != null && post.IsVerified)
             {
-               return View(post);
+                var recommendations = (await _postService.Recommendations(post)).Items;
+                var model = new ShowAdViewModel { Post = post,Recommendations= recommendations };
+               return View(model);
             }
             return NotFound();
         }

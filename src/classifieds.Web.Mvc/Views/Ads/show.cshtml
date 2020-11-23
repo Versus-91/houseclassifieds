@@ -1,5 +1,5 @@
 ﻿@using classifieds.Web.Startup
-@model classifieds.Posts.Dto.PostDto
+@model classifieds.Web.Models.Ads.ShowAdViewModel
 @{ ViewBag.Title = L("HomePage");
     ViewBag.CurrentPageName = PageNames.Home;
     Layout = "layout/_front"; }
@@ -13,27 +13,27 @@
 }
 <div class="section has-background-white-ter">
     <div class="container " id="mainContainer">
-        <input hidden name="Latitude" id="postLatitude" value="@Model.Latitude" />
-        <input hidden name="Longitude" id="postLongitude" value="@Model.Longitude" />
+        <input hidden name="Latitude" id="postLatitude" value="@Model.Post.Latitude" />
+        <input hidden name="Longitude" id="postLongitude" value="@Model.Post.Longitude" />
         <nav class="breadcrumb " aria-label="breadcrumbs">
             <ul>
-                <li><a href="#">@Model.District.City.Name</a></li>
-                <li><a href="#"> @Model.District.Name </a></li>
-                <li><a href="#"> @Model.Category.Name </a></li>
-                <li class="is-active"><a href="#" aria-current="page">@Model.Type.Name</a></li>
+                <li><a href="#">@Model.Post.District.City.Name</a></li>
+                <li><a href="#"> @Model.Post.District.Name </a></li>
+                <li><a href="#"> @Model.Post.Category.Name </a></li>
+                <li class="is-active"><a href="#" aria-current="page">@Model.Post.Type.Name</a></li>
             </ul>
         </nav>
         <div class="box">
             <div class="columns">
                 <div class="column is-5 has-text-centered">
-                    <h1 class="title is-4">@Model.Title</h1>
-                    <h3 class="subtitle is-5 my-2">@Model.Category.Name</h3>
+                    <h1 class="title is-4">@Model.Post.Title</h1>
+                    <h3 class="subtitle is-5 my-2">@Model.Post.Category.Name</h3>
                     <section class="level is-mobile mt-1">
                         <div class="level-item has-text-centered">
                             <div>
                                 <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
                                 <p class="title is-6 has-text-grey">تعداد خواب</p>
-                                <p class="title is-6 my-2">@Model.Bedroom</p>
+                                <p class="title is-6 my-2">@Model.Post.Bedroom</p>
                             </div>
                         </div>
                         <div class="level-item has-text-centered my-5">
@@ -41,9 +41,9 @@
                                 <p class="heading"><i class="fas fa-2x fa-clock has-text-grey"></i></p>
                                 <p class="title is-6 has-text-grey">عمر بنا</p>
                                 <p class="title is-6 my-2">
-                                    @if (Model.Age > 0)
+                                    @if (Model.Post.Age > 0)
                                     {
-                                        @Model.Age
+                                        @Model.Post.Age
                                     }
                                     else
                                     {
@@ -56,11 +56,11 @@
                             <div>
                                 <p class="heading"><i class="fas fa-2x fa-chart-area has-text-grey"></i></p>
                                 <p class="title is-6 has-text-grey">مساحت</p>
-                                <p class="title is-6">@Model.Area متر</p>
+                                <p class="title is-6">@Model.Post.Area متر</p>
                             </div>
                         </div>
                     </section>
-                    <h1 class="subtitle is-5">@Model.Description</h1>
+                    <h1 class="subtitle is-5">@Model.Post.Description</h1>
 
                     <button class="button is-primary">
                         <span class="icon ">
@@ -72,119 +72,122 @@
                 <div class="column is-7">
                     <div class="row">
                         <div id="demo-test-gallery" class="demo-gallery">
-                            @foreach (var image in Model.Images)
+                            @foreach (var image in Model.Post.Images)
                             {
                                 <a href="/@image.Path" data-size="1600x1600" data-med="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_b.jpg" data-med-size="1024x1024" data-author="Folkert Gorter" class="demo-gallery__img--main">
                                     <img src="/@image.Path?height=240&width=240&rsampler=nearest&rmode=stretch" alt="" />
                                     <figure>This is dummy caption.</figure>
                                 </a>
 
-                                }
-                            </div>
+                            }
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="columns">
-                <div class="column is-7">
-                    <h3>امکانات</h3>
-                    <hr />
-                    <div class="columns">
-                        @if (Model.Amenities.Count > 0)
-                        {
+            @if (Model.Post.Amenities.Count > 0)
+            {
+                <div class="columns">
+                    <div class="column is-7">
+                        <h3>امکانات</h3>
+                        <hr />
+                        <div class="columns">
 
-                            @foreach (var item in Model.Amenities)
+
+                            @foreach (var item in Model.Post.Amenities)
                             {
                                 <div class="column is-6">
                                     <i class="@item.Icon"></i>
                                     @item.Name
                                 </div>
                             }
-                        }
-                    </div>
-                </div>
-                <div class="column is-5" id="map">
-                    <div style="height:300px"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="section">
-        <div class="container mt-3">
-            <div class="columns is-12">
-                <div class="column is-3">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
 
-                            <div class="content">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Phasellus nec iaculis mauris. <a>@@bulmaio</a>.
-                                <a href="#">#css</a> <a href="#">#responsive</a>
-                                <br>
-                                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                            </div>
                         </div>
+                    </div>
+                    <div class="column is-5" id="map">
+                        <div style="height:300px"></div>
                     </div>
                 </div>
-                <div class="column is-3">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                            </figure>
+            }
+        </div>
+    </div>
+    @if (Model.Recommendations.Count > 0)
+    {
+        <div class="section">
+            <div class="container mt-3">
+                <div class="columns is-12 is-multiline">
+                    @foreach (var post in Model.Recommendations)
+                    {
+                    <div class=" column is-3">
+                            <a class="fill-div" href="/ads/@post.Id">
+                                <div class="card card-hover-shadow" data-label="@post.Category.Name">
+                                    <div class="card-image">
+                                        <figure class="image is-4by3">
+                                            @if (post.Images.Count > 0)
+                                            {
+                                                <img src=" /@post.Images[0].Path?width=600&height=480" alt="Placeholder image">
+
+                                            }
+                                            else
+                                            {
+                                                <img src="/img/placeholder.png'" alt="Placeholder image">
+
+                                            }
+                                            <div class="overlay">@post.District.City.Name -  @post.District.Name</div>
+                                            @*<div class="overlay-top-corner">
+            @{featuredIcon}
+            @{hasImageIcon}
+        </div>*@
+                                        </figure>
+                                    </div>
+                                    <div class="card-content">
+                                        <div class="content has-text-centered">
+                                            @post.Title
+                                            <br>
+                                        </div>
+                                        <nav class="level is-mobile">
+                                            <div class="level-item has-text-centered">
+                                                <div>
+                                                    <p><i class="fas fa-chart-area has-text-grey"></i></p>
+                                                    <p>@post.Area</p>
+                                                </div>
+                                            </div>
+                                            <div class="level-item has-text-centered">
+                                                <div>
+                                                    <p><i class="fas  fa-clock has-text-grey"></i></p>
+                                                    <p>
+                                                    @if (post.Age == 0)
+                                                    {
+                                                        Html.Raw("N/A");
+                                                    }
+                                                    else
+                                                    {
+                                                        Html.Raw(post.Age);
+                                                    }
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="level-item has-text-centered">
+                                                <div>
+                                                    <p><i class="fas fa-bed has-text-grey"></i></p>
+                                                    <p>@post.Bedroom</p>
+                                                </div>
+                                            </div>
+                                        </nav>
+                                    </div>
+                                    <footer class="card-footer">
+                                        <a href="#" class="card-footer-item">
+                                            <p><i class="fas fa-phone has-text-success"></i>  اطلاعات تماس</p>
+                                        </a>
+                                    </footer>
+                                </div>
+                            </a>
                         </div>
-                        <div class="card-content">
-                            <div class="content">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Phasellus nec iaculis mauris. <a>@@bulmaio</a>.
-                                <a href="#">#css</a> <a href="#">#responsive</a>
-                                <br>
-                                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                            </div>
-                        </div>
-                    </div>
-                </div>                <div class="column is-3">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="content">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Phasellus nec iaculis mauris. <a>@@bulmaio</a>.
-                                <a href="#">#css</a> <a href="#">#responsive</a>
-                                <br>
-                                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                            </div>
-                        </div>
-                    </div>
-                </div>                <div class="column is-3">
-                    <div class="card">
-                        <div class="card-image">
-                            <figure class="image is-4by3">
-                                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-                            </figure>
-                        </div>
-                        <div class="card-content">
-                            <div class="content">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                Phasellus nec iaculis mauris. <a>@@bulmaio</a>.
-                                <a href="#">#css</a> <a href="#">#responsive</a>
-                                <br>
-                                <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                            </div>
-                        </div>
-                    </div>
+                    }
                 </div>
             </div>
         </div>
-    </div>
+
+    }
 </div>
 
 

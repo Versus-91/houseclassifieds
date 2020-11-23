@@ -13,6 +13,16 @@
       ]
     },
     {
+      "library": "cropperjs@1.5.9",
+      "destination": "wwwroot/libs/cropperjs",
+      "files": [
+        "cropper.js",
+        "cropper.min.js",
+        "cropper.min.css",
+        "cropper.css"
+      ]
+    },
+    {
       "destination": "wwwroot/libs/swiper",
       "library": "swiper@6.2.0",
       "provider": "jsdelivr",

@@ -11,6 +11,5 @@ namespace classifieds.Web.Models.Ads
         public IList<CityDto> Cities { get; set; }
         public IReadOnlyList<CategoryDto> Categories { get; set; }
         public IList<PropertyTypeDto> Types { get; set; }
-        public IList<PostDto> Posts { get; set; }
     }
 }

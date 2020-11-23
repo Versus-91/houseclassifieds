@@ -1,62 +1,53 @@
 ﻿@model classifieds.Models.ManageViewModels.IndexViewModel
-@{ ViewData["Title"] = "Manage your account";
+@{ ViewData["Title"] = "مدیریت کاربر";
     Layout = "layout/_front";
     string query = (ViewData["query"] ?? string.Empty) as string; }
 @section hero{
-    <div class="hero is-bold is-primary">
-        <div class="hero-body">
-            <div class="container">
-                sssss
-            </div>
-
-        </div>
-        <div class="hero-foot">
-            <nav class="tabs is-boxed is-fullwidth">
-                <div class="container">
-                    <ul>
-                        <li class="is-active"><a href="/manage">لیست آگهی ها</a></li>
-                        <li><a href="/manage/changepassword">تغییر رمز</a></li>
-                        <li><a href="/Manage/AddPhoneNumber">افزودن شماره تماس</a></li>
-                        @*<li><a href="/Manage/UserInfo">مشخصات</a></li>*@
-                    </ul>
-                </div>
-            </nav>
-        </div>
-    </div>
+    @await Html.PartialAsync("tabs.cshtml", model: 1)
 }
+@section styles{
+    <link href="~/libs/cropperjs/cropper.min.css" rel="stylesheet" />
+    <style>
+        .cropper-view-box,
+        .cropper-face {
+            border-radius: 50%;
+        }
+    </style>
+}
+
 <div class="section">
     <div class="container">
         <div class="columns">
-        <div class=" column is-10  has-text-centered is-12-mobile">
-            @if (!string.IsNullOrEmpty(query))
-            {
-                <div class="notification is-primary">
-                    @ViewData["StatusMessage"]
-                </div>}
-            <div class="columns is-multiline is-mobile is-centered">
-                <div class="column is-3 ">رمزعبور</div>
-                <div class="column is-3 ">
-                    @if (Model.HasPassword)
-                    {
-                        <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">تغییر</a> }
-                    else
-                    {
-                        <a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">ایجاد</a>}
-                </div>
-                <div class="column is-3 ">شماره موبایل</div>
-                <div class="column is-3 ">
-                    <div class="buttons">
-                        @if (Model.PhoneNumber != null)
+            <div class=" column is-12  has-text-centered is-12-mobile">
+                @if (!string.IsNullOrEmpty(query))
+                {
+                    <div class="notification is-primary">
+                        @ViewData["StatusMessage"]
+                    </div>}
+                <div class="columns is-multiline is-mobile is-centered">
+                    <div class="column is-3 ">رمزعبور</div>
+                    <div class="column is-3 ">
+                        @if (Model.HasPassword)
                         {
-                            <a asp-controller="Manage" asp-action="AddPhoneNumber" class="button is-info is-small">تغییر</a>
-                            <form asp-controller="Manage" asp-action="RemovePhoneNumber" method="post">
-                                <button type="submit" class="button is-danger is-small">حذف</button>
-                            </form> }
+                            <a asp-controller="Manage" asp-action="ChangePassword" class="btn-bracketed">تغییر</a> }
                         else
                         {
-                            <a asp-controller="Manage" asp-action="AddPhoneNumber" class="button is-info is-small">افزودن</a>}
+                            <a asp-controller="Manage" asp-action="SetPassword" class="btn-bracketed">ایجاد</a>}
                     </div>
-                </div>
+                    <div class="column is-3 ">شماره موبایل</div>
+                    <div class="column is-3 ">
+                        <div class="buttons">
+                            @if (Model.PhoneNumber != null)
+                            {
+                                <a asp-controller="Manage" asp-action="AddPhoneNumber" class="button is-info is-small">تغییر</a>
+                                <form asp-controller="Manage" asp-action="RemovePhoneNumber" method="post">
+                                    <button type="submit" class="button is-danger is-small">حذف</button>
+                                </form> }
+                            else
+                            {
+                                <a asp-controller="Manage" asp-action="AddPhoneNumber" class="button is-info is-small">افزودن</a>}
+                        </div>
+                    </div>
                 </div>
                 <hr class="my-5">
                 <div class="column is-12">
@@ -112,8 +103,177 @@
                             </tbody>
                         </table>
                     </div>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
+@section Scripts {
+    <script src="~/libs/cropperjs/cropper.min.js"></script>
+    <script>
+
+        class BulmaModal {
+            constructor(selector) {
+                this.elem = document.querySelector(selector)
+                this.close_data()
+            }
+
+            show() {
+                this.elem.classList.toggle('is-active')
+                this.on_show()
+            }
+
+            close() {
+                this.elem.classList.toggle('is-active')
+                this.on_close()
+            }
+
+            close_data() {
+                var modalClose = this.elem.querySelectorAll("[data-bulma-modal='close'], .modal-background")
+                var that = this
+                modalClose.forEach(function (e) {
+                    e.addEventListener("click", function () {
+
+                        that.elem.classList.toggle('is-active')
+
+                        var event = new Event('modal:close')
+
+                        that.elem.dispatchEvent(event);
+                    })
+                })
+            }
+
+            on_show() {
+                var event = new Event('modal:show')
+
+                this.elem.dispatchEvent(event);
+            }
+
+            on_close() {
+                var event = new Event('modal:close')
+
+                this.elem.dispatchEvent(event);
+            }
+
+            addEventListener(event, callback) {
+                this.elem.addEventListener(event, callback)
+            }
+        }
+        function getRoundedCanvas(sourceCanvas) {
+            var canvas = document.createElement('canvas');
+            var context = canvas.getContext('2d');
+            var width = sourceCanvas.width;
+            var height = sourceCanvas.height;
+
+            canvas.width = width;
+            canvas.height = height;
+            context.imageSmoothingEnabled = true;
+            context.drawImage(sourceCanvas, 0, 0, width, height);
+            context.globalCompositeOperation = 'destination-in';
+            context.beginPath();
+            context.arc(width / 2, height / 2, Math.min(width, height) / 2, 0, 2 * Math.PI, true);
+            context.fill();
+            return canvas;
+        }
+        
+        window.addEventListener('DOMContentLoaded', function () {
+            var image = document.getElementById('image');
+            var uploadImageButton = document.getElementById('uploadButton');
+            var submitImageButton = document.getElementById('sendFile');
+            var imageInput = document.getElementById('imageInput');
+            var croppable = false;
+            var cropper;
+            var mdl = new BulmaModal("#myModal")
+
+            uploadImageButton.addEventListener("click", function () {
+                mdl.show()
+            })
+
+            mdl.addEventListener('modal:show', function () {
+                if (!cropper) {
+                    cropper = new Cropper(image, {
+                        aspectRatio: 1,
+                        viewMode: 1,
+                        ready: function () {
+                            croppable = true;
+                        },
+                    });
+                }
+
+            })
+
+            mdl.addEventListener("modal:close", function () {
+                console.log("closed")
+            })
+            imageInput.addEventListener('change', (e) => {
+                if (e.target.files && e.target.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (event) {
+                        image.setAttribute('src', event.target.result);
+                        cropper.destroy();
+                         cropper = new Cropper(image, {
+                            aspectRatio: 1,
+                            viewMode: 1,
+                            ready: function () {
+                                croppable = true;
+                            },
+                        });
+                    };
+                    reader.readAsDataURL(e.target.files[0]);
+                }
+            });
+            submitImageButton.onclick = function () {
+                var croppedCanvas;
+                var roundedCanvas;
+                //var roundedImage;
+
+                if (!croppable) {
+                    return;
+                }
+                croppedCanvas = cropper.getCroppedCanvas();
+                roundedCanvas = getRoundedCanvas(croppedCanvas);
+                roundedCanvas.toBlob(function (blob) {
+                    var formData = new FormData();
+                    formData.append('upload', blob, 'imagetest.jpeg');
+                    fetch("/stream/avatar", {
+                        headers: {
+                            //'Content-Type': 'multipart/form-data',
+                            'X-XSRF-TOKEN': document.getElementsByName('__RequestVerificationToken')[0].value
+                            // 'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                        method: 'POST',
+                        body: formData,
+                    }).then((response) => {
+                        console.log(response)
+                    })
+                }, 'image/jpeg', 1);
+                //const formData = new FormData();
+                //croppedCanvas = cropper.getCroppedCanvas();
+                //roundedCanvas = getRoundedCanvas(croppedCanvas);
+  
+                //formData.append('files', roundedCanvas.toDataURL(),'avatar')
+                //fetch("/stream/avatar", {
+                //    headers: {
+                //        //'Content-Type': 'multipart/form-data',
+                //        'X-XSRF-TOKEN':'CfDJ8OZLQEATzN5Jow0SKHc-EFHvFRY2OMcY3FAXhfNMXJXKLNTe2WEi9M2edTxBgEARFFyot9s13Eh4WIVGNq2w0eptvYR2IsoiQeYXR__5-bG3f4fMiQwo9GLS8QyBCe1uAeCIFL_jBfBocj6cyK8gwX11uB_2m_RPOMKBJaGO5DCD85lFwW16BG6c1CuNwkATjQ'
+                //        // 'Content-Type': 'application/x-www-form-urlencoded',
+                //    },
+                //    method: 'POST',
+                //    body: formData,
+                //}).then((response) => {
+                //    console.log(response)
+                //})
+                // Crop
+                //croppedCanvas = cropper.getCroppedCanvas();
+
+                // Round
+
+                // Show
+                //roundedImage = document.createElement('img');
+                //roundedImage.src = roundedCanvas.toDataURL()
+                //roundedCanvas.toDataURL();
+            };
+        });
+    </script>
+}
+}

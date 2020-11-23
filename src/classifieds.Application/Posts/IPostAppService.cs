@@ -10,5 +10,6 @@ namespace classifieds.Posts
     {
         Task<PostDto> GetDetails(int id);
         Task<PagedResultDto<PostDto>> GetUserPosts();
+        Task<PagedResultDto<PostDto>> Recommendations(PostDto post);
     }
 }

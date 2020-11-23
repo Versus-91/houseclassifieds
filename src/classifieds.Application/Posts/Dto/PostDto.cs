@@ -22,6 +22,10 @@ namespace classifieds.Posts.Dto
         public string Title { get; set; }
         [Required]
         public string Description { get; set; }
+        public int CategoryId { get; set; }
+        public int DistrictId { get; set; }
+        public int TypeId { get; set; }
+
         public bool IsFeatured { get; set; }
         public bool IsVerified { get; set; }
         public CategoryViewModel Category { get; set; }
