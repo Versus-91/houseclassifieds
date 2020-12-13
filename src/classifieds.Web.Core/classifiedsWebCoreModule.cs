@@ -13,6 +13,8 @@ using classifieds.Authentication.JwtBearer;
 using classifieds.Configuration;
 using classifieds.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ApplicationParts;
+using Abp.Application.Services;
+using System.Linq;
 
 namespace classifieds
 {
@@ -45,7 +47,18 @@ namespace classifieds
             Configuration.Modules.AbpAspNetCore()
                  .CreateControllersForAppServices(
                      typeof(classifiedsApplicationModule).GetAssembly()
-                 );
+                 ).ConfigureControllerModel(model =>
+                 {
+                     for (var i = model.Actions.Count - 1; i >= 0; i--)
+                     {
+                         var remoteServiceAtt = model.Actions[i].ActionMethod.GetCustomAttributes(typeof(RemoteServiceAttribute), true).Cast<RemoteServiceAttribute>().FirstOrDefault();
+                         if (remoteServiceAtt != null && !remoteServiceAtt.IsEnabled)
+                         {
+                             model.Actions.RemoveAt(i);
+                         }
+                     }
+                 });
+            ;
 
             ConfigureTokenAuth();
         }

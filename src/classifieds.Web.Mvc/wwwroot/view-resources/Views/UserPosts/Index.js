@@ -174,7 +174,7 @@ $(document).ready(function () {
 			dataType: "json",
 			data: JSON.stringify(jsonParse), // serializes the form's elements.
 			success: function (data) {
-				dropZone.options.url = '/stream/upload/' + data.result
+				dropZone.options.url = '/upload/' + data.result
 				dropZone.processQueue();
 			}, error: function (err) {
 				submitButton.removeClass("is-loading");

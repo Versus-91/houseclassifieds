@@ -25,11 +25,12 @@ namespace classifieds.Posts.Dto
         public ushort Area { get; set; }
         [Range(0, byte.MaxValue, ErrorMessage = "حداکثر مقدار {2} است.")]
         public byte? Bedroom { get; set; }
-        public uint Price { get; set; }
-        public uint Deposit { get; set; }
+        public double Deposit { get; set; }
+        public double Rent { get; set; }
+        public double Price { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public IList<PostAmenityDto> PostAmenities { get; set; }
+        public IList<int> Amenities { get; set; } = new List<int>();
 
     }
 }

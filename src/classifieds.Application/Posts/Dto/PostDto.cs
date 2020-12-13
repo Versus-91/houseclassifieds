@@ -25,15 +25,16 @@ namespace classifieds.Posts.Dto
         public int CategoryId { get; set; }
         public int DistrictId { get; set; }
         public int TypeId { get; set; }
+        public long UserId { get; set; }
 
         public bool IsFeatured { get; set; }
         public bool IsVerified { get; set; }
         public CategoryViewModel Category { get; set; }
-        public ushort Area { get; set; }
+        public uint Area { get; set; }
         public ushort Age { get; set; }
         public byte Bedroom { get; set; }
         public DistrictViewModel District { get; set; }
-        public double Deopsit { get; set; }
+        public double Deposit { get; set; }
         public double Rent { get; set; }
         public double Price { get; set; }
         public TypeViewModel Type { get; set; }
@@ -41,6 +42,5 @@ namespace classifieds.Posts.Dto
         public double Longitude { get; set; }
         public IList<ImageViewModel> Images { get; set; }
         public IList<AmenityDto> Amenities { get; set; }
-
     }
 }

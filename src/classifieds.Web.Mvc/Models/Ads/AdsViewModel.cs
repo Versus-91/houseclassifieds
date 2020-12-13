@@ -44,6 +44,7 @@ namespace classifieds.Web.Models.Ads
                 TypeId = TypeId,
                 Latitude = Latitude,
                 Longitude = Longitude,
+                Amenities = Amenitites,
 
             };
         }

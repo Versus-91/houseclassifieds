@@ -64,7 +64,7 @@ namespace classifieds.Web.Startup
 
             services.AddScoped<IWebResourceManager, WebResourceManager>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
-            services.Configure<SMSoptions>(_appConfiguration);
+            services.Configure<SMSoptions>(_appConfiguration.GetSection("twillo"));
             services.AddSignalR();
             services.AddImageSharp()
                 .SetRequestParser<QueryCollectionRequestParser>()
@@ -83,8 +83,8 @@ namespace classifieds.Web.Startup
                 .SetCacheHash<CacheHash>()
                 .AddProvider<PhysicalFileSystemProvider>()
                 .AddProcessor<ResizeWebProcessor>()
-                .AddProcessor<FormatWebProcessor>()
-                .AddProcessor<BackgroundColorWebProcessor>();
+                .RemoveProcessor<FormatWebProcessor>()
+                .RemoveProcessor<BackgroundColorWebProcessor>();
             // Configure Abp and Dependency Injection
             return services.AddAbp<classifiedsWebMvcModule>(
                 // Configure Log4Net logging

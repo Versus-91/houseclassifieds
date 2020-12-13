@@ -48,14 +48,14 @@ namespace classifieds.Web.Controllers
             ViewData["Categories"] = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, nameof(CategoryDto.Id), nameof(CategoryDto.Name),inputs.Category);
             ViewData["Districts"] = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
             //ViewData["Amenitites"] = (await _amenityService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
-            if (inputs.Type.Count == 0)
+            if (inputs.Types.Count == 0)
             {
                 ViewData["PropertyTypes"] = new SelectList(types, nameof(PropertyTypeDto.Id), nameof(PropertyTypeDto.Name));
 
             }
             else
             {
-                ViewData["PropertyTypes"] = new SelectList(types, nameof(PropertyTypeDto.Id), nameof(PropertyTypeDto.Name), inputs.Type[0]);
+                ViewData["PropertyTypes"] = new SelectList(types, nameof(PropertyTypeDto.Id), nameof(PropertyTypeDto.Name), inputs.Types[0]);
             }
 
             return View(inputs);
@@ -90,12 +90,7 @@ namespace classifieds.Web.Controllers
             if (ModelState.IsValid)
             {
                 var inputsPost = inputs.ToPost();
-                var amenities = new List<PostAmenityDto>();
-                foreach (var item in inputs.Amenitites)
-                {
-                    amenities.Add(new PostAmenityDto() {AmenityId = item });
-                }
-                inputsPost.PostAmenities = amenities;
+    
                 var post = await _postService.CreateAsync(inputsPost);
                 return Json(post.Id);
             }

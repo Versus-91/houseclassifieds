@@ -6,7 +6,10 @@ using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using classifieds.Amenities.Dto;
 using classifieds.Authorization;
+using classifieds.Authorization.Users;
+using classifieds.Categories;
 using classifieds.Posts.Dto;
+using classifieds.PostsAmenities;
 using classifieds.PostsAmenities.Dto;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
@@ -19,12 +22,16 @@ namespace classifieds.Posts
     public class PostAppService : AsyncCrudAppService<Post, PostDto, int, GetAllPostsInput, CreatePostInput, UpdatePostInput>, IPostAppService
     {
         private readonly IRepository<Post> _postRepository;
-        public PostAppService(IRepository<Post> repository) : base(repository)
+        private readonly IRepository<Category> _categoryRepository;
+        private readonly IRepository<User, long> _userRepository;
+        public PostAppService(IRepository<Post> repository, IRepository<Category> categoryRepository, IRepository<User, long> userRepository) : base(repository)
         {
             _postRepository = repository;
+            _categoryRepository = categoryRepository;
             CreatePermissionName = PermissionNames.Pages_Posts;
             UpdatePermissionName = PermissionNames.Pages_Posts;
             DeletePermissionName = PermissionNames.Pages_Posts;
+            _userRepository = userRepository;
         }
 
         protected override IQueryable<Post> CreateFilteredQuery(GetAllPostsInput input)
@@ -34,7 +41,7 @@ namespace classifieds.Posts
                 .Include(m => m.Images)
                 .Include(m => m.Type)
                 .Include(m => m.Category)
-                .Include(m=>m.PostAmenities)
+                .Include(m=>m.PostAmenities).ThenInclude(m=>m.Amenity)
                 .Where(m=>m.IsVerified ==true)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
                 .WhereIf(input.Category.HasValue, t => t.CategoryId == input.Category.Value)
@@ -42,9 +49,12 @@ namespace classifieds.Posts
                 .WhereIf(input.City.HasValue, t => t.District.City.Id == input.City.Value)
                 .WhereIf(input.Age.HasValue, t => t.Age >= input.Age.Value)
                 .WhereIf(input.Beds.HasValue, t => t.Bedroom >= input.Beds.Value)
-                .WhereIf(input.MinArea.HasValue && input.MaxArea.HasValue, t => t.Area > input.MinArea.Value && t.Area < input.MaxArea.Value)
+                .WhereIf(input.MinArea.HasValue && input.MaxArea.HasValue, t => t.Area >= input.MinArea.Value && t.Area <= input.MaxArea.Value)
+                .WhereIf(input.MinPrice.HasValue && input.MaxPrice.HasValue, t => t.Price >= input.MinPrice.Value && t.Price <= input.MaxPrice.Value)
+                .WhereIf(input.MinRent.HasValue && input.MaxRent.HasValue, t => t.Rent >= input.MinRent.Value && t.Rent <= input.MaxRent.Value)
+                .WhereIf(input.MinDeposit.HasValue && input.MaxDeposit.HasValue, t => t.Deposit >= input.MinDeposit.Value && t.Deposit <= input.MaxDeposit.Value)
                 .WhereIf(input.Amenities != null && input.Amenities.Count > 0, t => t.PostAmenities.Any(m=>input.Amenities.Contains(m.AmenityId)))
-                .WhereIf(input.Type != null && input.Type.Count > 0, t => input.Type.Contains(t.TypeId));
+                .WhereIf(input.Types != null && input.Types.Count > 0, t => input.Types.Contains(t.TypeId));
         }
         public async Task<PostDto> GetDetails(int id)
         {
@@ -56,7 +66,10 @@ namespace classifieds.Posts
                     Area = m.Area,
                     IsVerified = m.IsVerified,
                     DistrictId=m.DistrictId,
-                    CategoryId=m.CategoryId,
+                    Price = m.Price,
+                    Deposit = m.Deposit,
+                    Rent = m.Rent,
+                    CategoryId =m.CategoryId,
                     TypeId=m.TypeId,
                     IsFeatured = m.IsFeatured,
                     Type = ObjectMapper.Map<TypeViewModel>(m.Type),
@@ -84,7 +97,40 @@ namespace classifieds.Posts
         [AbpAuthorize]
         public async Task<PagedResultDto<PostDto>> GetUserPosts()
         {
-            var items = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category).Where(m => m.CreatorUserId == AbpSession.UserId)
+            var items = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category,m => m.PostAmenities).Where(m => m.CreatorUserId == AbpSession.UserId)
+                .Select(m => new PostDto
+                {
+                    Id = m.Id,
+                    Bedroom = m.Bedroom,
+                    Area = m.Area,
+                    Type = ObjectMapper.Map<TypeViewModel>(m.Type),
+                    Description = m.Description,
+                    Category = ObjectMapper.Map<CategoryViewModel>(m.Category),
+                    Latitude = m.Latitude,
+                    Longitude = m.Longitude,
+                    District = ObjectMapper.Map<DistrictViewModel>(m.District),
+                    Title = m.Title,
+                    IsFeatured = m.IsFeatured,
+                    Price = m.Price,
+                    Deposit = m.Deposit,
+                    Rent = m.Rent,
+                    IsVerified = m.IsVerified,
+                    CreationTime = m.CreationTime,
+                    CreatorUserId = m.CreatorUserId,
+                    Amenities =ObjectMapper.Map<List<AmenityDto>>( m.PostAmenities.Select(m=>m.Amenity).ToList()),
+                    Images = m.Images.Select(m => new ImageViewModel
+                    {
+                        Id = m.Id,
+                        Path = m.Path,
+                        Name = m.Name
+                    }).ToList(),
+                }).OrderByDescending(m=>m.CreationTime).ToListAsync();
+             return new PagedResultDto<PostDto>(items.Count, ObjectMapper.Map<List<PostDto>>(items));
+        }
+        [RemoteService(false)]
+        public async Task<PagedResultDto<PostDto>> GetUserPostsByUserId(long id )
+        {
+            var items = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category).Where(m => m.CreatorUserId == id)
                 .Select(m => new PostDto
                 {
                     Id = m.Id,
@@ -107,7 +153,7 @@ namespace classifieds.Posts
                         Name = m.Name
                     }).ToList(),
                 }).ToListAsync();
-             return new PagedResultDto<PostDto>(items.Count, ObjectMapper.Map<List<PostDto>>(items));
+            return new PagedResultDto<PostDto>(items.Count, ObjectMapper.Map<List<PostDto>>(items));
         }
         public async Task<PagedResultDto<PostDto>> Recommendations(PostDto post)
         {
@@ -120,6 +166,9 @@ namespace classifieds.Posts
                     Type = ObjectMapper.Map<TypeViewModel>(m.Type),
                     Description = m.Description,
                     DistrictId = m.DistrictId,
+                    Price = m.Price,
+                    Deposit = m.Deposit,
+                    Rent = m.Rent,
                     CategoryId = m.CategoryId,
                     TypeId = m.TypeId,
                     Category = ObjectMapper.Map<CategoryViewModel>(m.Category),
@@ -138,6 +187,51 @@ namespace classifieds.Posts
                     }).ToList(),
                 }).Take(4).ToListAsync();
             return new PagedResultDto<PostDto>(items.Count, ObjectMapper.Map<List<PostDto>>(items));
+        }
+        [RemoteService(false)]
+        public async Task<List<LlocationPostsCount>> CitiesPostsCount()
+        {
+            var categories = await _categoryRepository.GetAllListAsync();
+            var postsCountPerCategory = new List<LlocationPostsCount>();
+            foreach (var category in categories)
+            {
+
+                 var counts = await _postRepository.GetAll().Where(m => m.Category.Name.Equals(category.Name)&&m.IsVerified == true).GroupBy(m => m.District.CityId )
+                  .Select(n => new PostsCountDto
+                 {
+                   CityId = n.Key,
+                   Count=n.Count(),
+                   //DistrictId =n..DistrictId
+                 }
+               ).Take(10).ToListAsync();
+                postsCountPerCategory.Add(new LlocationPostsCount { CategoryName= category .Name,CategoryId=category.Id,Count= counts,CityName="کابل"});
+            }
+            return postsCountPerCategory;
+        }
+        [RemoteService(false)]
+        public async Task<List<UserPostsCountDto>> UsersPostsCount()
+        {
+            var usersPostsCount =await _userRepository.GetAll().Select(m=>new UserPostsCountDto
+            {
+                Avatar = m.Avatar,
+                Name = m.FullName ,
+                UserName = m.UserName,
+                Id= m.Id,
+                PostsCount = m.Posts.Where(m=>m.IsVerified == true)
+                .Count() }).OrderByDescending(m=>m.PostsCount).Take(10).ToListAsync();
+            return usersPostsCount;
+       }
+        public override async Task<PostDto> CreateAsync(CreatePostInput input)
+        {
+            List<PostAmenity> amenities=new List<PostAmenity>();
+            foreach (var amenity in input.Amenities)
+            {
+                amenities.Add(new PostAmenity(){AmenityId= amenity });
+            }
+            var post = ObjectMapper.Map<Post>(input);
+            post.PostAmenities = amenities;   
+            await _postRepository.InsertAndGetIdAsync(post);
+            return ObjectMapper.Map<PostDto>(post);
         }
     }
 }

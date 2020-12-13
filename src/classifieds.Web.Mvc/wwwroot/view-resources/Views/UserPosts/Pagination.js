@@ -1,4 +1,5 @@
 ﻿$(function () {
+    $('.select2').select2();
     var url = document.location.href;
     var params = url.split("?");
     var loading = false;
@@ -22,7 +23,7 @@
                     pageIndex = 1;
 				}
                 if (res.result.totalCount === 0) {
-                    $("#pager").append(`<div class="column is-vcentered has-text-centered" style="min-height:500px;"><p class="subtitle has-text-centered">نتیجه ای یافت نشد .</p></div>`)
+                    $("#pager").append(`<div class="column is-vcentered has-text-centered" style="min-height:350px;"><p class="subtitle has-text-centered">نتیجه ای یافت نشد .</p></div>`)
                 }
                 totalPages = Math.ceil(res.result.totalCount / rowPerPage);
                 if (pageIndex <= 1) {
@@ -43,8 +44,8 @@
                                     </span>` : `<span class="fa-stack " >
                                     <i class="fas fa-camera fa-stack-1x has-text-info" style=" vertical-align: middle;"></i><span>${item.images.length}</span></span>`;
                     var featuredIcon = item.isFeatured === true ? `<span class="fa-stack  has-text-success"><i class="fas fa-stack-1x fa-check-square"></i></span>` : ``;
-                    $("#pager").append(`<div class=" column is-4">
-                                <a class="fill-div" href="/ads/${item.id}">
+                    $("#pager").append(`<div class=" column is-12-mobile is-half-tablet is-one-third-desktop  is-one-third-fullhd">
+                                <a class="fill-div has-text-grey" href="/ads/${item.id}">
                                     <div class="card card-hover-shadow" data-label="${item.category.name}">
                                         <div class="card-image">
                                             <figure class="image is-4by3">
@@ -106,10 +107,19 @@
     }
     function FilterAds() {
         var query = {};
+        var category = $('#categories').find(":selected").val();
+        var peopertTypes = $('.chosen-select').val();
+
         var minArea = $("#minArea").val();
         var maxArea = $("#maxArea").val();
         var minPrice = $("#minPrice").val();
         var maxPrice = $("#maxPrice").val();
+        if (!!category) {
+            query.category = category;
+        }
+        if (!!peopertTypes) {
+            query.types = peopertTypes;
+        }
         if (minArea & maxArea) {
             query.minArea = minArea;
             query.maxArea = maxArea;

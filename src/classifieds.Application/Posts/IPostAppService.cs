@@ -2,6 +2,7 @@
 using Abp.Application.Services.Dto;
 using classifieds.Posts.Admin.Dto;
 using classifieds.Posts.Dto;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace classifieds.Posts
@@ -11,5 +12,8 @@ namespace classifieds.Posts
         Task<PostDto> GetDetails(int id);
         Task<PagedResultDto<PostDto>> GetUserPosts();
         Task<PagedResultDto<PostDto>> Recommendations(PostDto post);
+        Task<List<LlocationPostsCount>> CitiesPostsCount();
+        Task<List<UserPostsCountDto>> UsersPostsCount();
+        Task<PagedResultDto<PostDto>> GetUserPostsByUserId(long id);
     }
 }

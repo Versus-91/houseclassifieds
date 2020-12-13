@@ -1,5 +1,6 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AspNetCore.Mvc.Controllers;
+using Abp.Authorization;
 using Abp.Net.Mail;
 using Abp.Runtime.Validation;
 using Castle.Core.Logging;
@@ -9,35 +10,37 @@ using classifieds.Models.ManageViewModels;
 using classifieds.Posts;
 using classifieds.Services;
 using classifieds.Users;
+using classifieds.Users.Dto;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace classifieds.Web.Controllers
 {
-    [Authorize]
-    public class ManageController : AbpController
+    public class UsersController : AbpController
     {
         private readonly UserManager _userManager;
+        private readonly UserStore _userStore;
         private readonly SignInManager _signInManager;
-        private readonly IUserAppService _userAppManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
         private readonly IPostAppService _postsService;
 
-        public ManageController(
+        public UsersController(
           UserManager userManager,
           SignInManager signInManager,
           IEmailSender emailSender,
           ISmsSender smsSender,
           ILogger logger,
           IPostAppService postsService,
-          IUserAppService userAppManager)
+          UserStore userStore
+          )
         {
-            _userAppManager = userAppManager;
+            _userStore = userStore;
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
@@ -48,8 +51,10 @@ namespace classifieds.Web.Controllers
 
         //
         // GET: /Manage/Index
-        [HttpGet]
-        public async Task<IActionResult> Index(ManageMessageId? message = null)
+        [AbpAllowAnonymous]
+        [HttpGet("/[controller]/{name}")]
+        [HttpGet("/[controller]")]
+        public async Task<IActionResult> Index(string name,ManageMessageId? message = null)
         {
             ViewData["StatusMessage"] =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -59,21 +64,42 @@ namespace classifieds.Web.Controllers
                 : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
                 : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
                 : "";
-
-            var user = await GetCurrentUserAsync();
-            if (user == null)
+            User user;
+            IndexViewModel model;
+            if (name == null)
             {
-                return View("Error");
+                user = await GetCurrentUserAsync();
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                model = new IndexViewModel
+                {
+                    User = ObjectMapper.Map<UserDto>(user),
+                    HasPassword = await _userManager.HasPasswordAsync(user),
+                    PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
+                    TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
+                    Logins = await _userManager.GetLoginsAsync(user),
+                    BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
+                    Posts = (await _postsService.GetUserPosts()).Items
+                };
             }
-            var model = new IndexViewModel
+            else
             {
-                HasPassword = await _userManager.HasPasswordAsync(user),
-                PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
-                TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
-                Logins = await _userManager.GetLoginsAsync(user),
-                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
-                Posts = (await _postsService.GetUserPosts()).Items
-            };
+                 user = await _userStore.UserRepository.GetAll().Where(m => m.UserName.Equals(name)).FirstOrDefaultAsync();
+                if (user == null)
+                {
+                    return NotFound();
+                }
+                model = new IndexViewModel
+                {
+                    User = ObjectMapper.Map<UserDto>(user),
+                    Posts = (await _postsService.GetUserPostsByUserId(user.Id)).Items
+                };
+            }
+
+
+
             return View(model);
         }
 
@@ -82,7 +108,7 @@ namespace classifieds.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [DisableValidation]
-
+        [AbpAuthorize]
         public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel account)
         {
             ManageMessageId? message = ManageMessageId.Error;
@@ -101,20 +127,19 @@ namespace classifieds.Web.Controllers
 
         //
         // GET: /Manage/AddPhoneNumber
+        [AbpAuthorize]
         public IActionResult AddPhoneNumber()
         {
             return View();
         }
-        public async Task<IActionResult> UserInfo()
-        {
-            var model = await _userAppManager.GetAsync(new EntityDto<long>() {Id = AbpSession.UserId.Value });
-            return View(model);
-        }
+
         //
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         [DisableValidation]
+        [AbpAuthorize]
+
         public async Task<IActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
             if (!ModelState.IsValid)
@@ -145,6 +170,8 @@ namespace classifieds.Web.Controllers
         // POST: /Manage/EnableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AbpAuthorize]
+
         public async Task<IActionResult> EnableTwoFactorAuthentication()
         {
             var user = await GetCurrentUserAsync();
@@ -161,6 +188,8 @@ namespace classifieds.Web.Controllers
         // POST: /Manage/DisableTwoFactorAuthentication
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AbpAuthorize]
+
         public async Task<IActionResult> DisableTwoFactorAuthentication()
         {
             var user = await GetCurrentUserAsync();
@@ -176,6 +205,7 @@ namespace classifieds.Web.Controllers
         //
         // GET: /Manage/VerifyPhoneNumber
         [HttpGet]
+        [AbpAuthorize]
         public async Task<IActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var user = await GetCurrentUserAsync();
@@ -192,6 +222,8 @@ namespace classifieds.Web.Controllers
         // POST: /Manage/VerifyPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AbpAuthorize]
+
         public async Task<IActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
         {
             if (!ModelState.IsValid)
@@ -218,6 +250,7 @@ namespace classifieds.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [DisableValidation]
+        [AbpAuthorize]
 
         public async Task<IActionResult> RemovePhoneNumber()
         {
@@ -237,6 +270,8 @@ namespace classifieds.Web.Controllers
         //
         // GET: /Manage/ChangePassword
         [HttpGet]
+        [AbpAuthorize]
+
         public IActionResult ChangePassword()
         {
             return View();
@@ -247,6 +282,7 @@ namespace classifieds.Web.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [DisableValidation]
+        [AbpAuthorize]
 
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
@@ -273,6 +309,8 @@ namespace classifieds.Web.Controllers
         //
         // GET: /Manage/SetPassword
         [HttpGet]
+        [AbpAuthorize]
+
         public IActionResult SetPassword()
         {
             return View();
@@ -282,6 +320,8 @@ namespace classifieds.Web.Controllers
         // POST: /Manage/SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [AbpAuthorize]
+
         public async Task<IActionResult> SetPassword(SetPasswordViewModel model)
         {
             if (!ModelState.IsValid)
@@ -306,6 +346,8 @@ namespace classifieds.Web.Controllers
 
         //GET: /Manage/ManageLogins
         [HttpGet]
+        [AbpAuthorize]
+
         public async Task<IActionResult> ManageLogins(ManageMessageId? message = null)
         {
             ViewData["StatusMessage"] =
@@ -352,7 +394,15 @@ namespace classifieds.Web.Controllers
 
         private Task<User> GetCurrentUserAsync()
         {
-            return _userManager.GetUserAsync(HttpContext.User);
+            if (User.Identity.IsAuthenticated)
+            {
+                return _userManager.GetUserAsync(HttpContext.User);
+
+            }
+            else
+            {
+                return null;
+            }
         }
 
         #endregion

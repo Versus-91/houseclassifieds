@@ -1,9 +1,18 @@
-﻿using Abp.Configuration;
+﻿using Abp.Authorization;
+using Abp.Configuration;
+using Abp.Domain.Repositories;
+using Abp.Runtime.Session;
+using Abp.Runtime.Validation;
+using Abp.UI;
 using Abp.Zero.Configuration;
 using classifieds.Authorization.Accounts.Dto;
 using classifieds.Authorization.Users;
 using classifieds.Users.Dto;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace classifieds.Authorization.Accounts
@@ -15,12 +24,20 @@ namespace classifieds.Authorization.Accounts
 
         private readonly UserRegistrationManager _userRegistrationManager;
         private readonly UserManager _userManager;
+        private readonly UserStore _userStore;
+        private readonly IAbpSession _abpSession;
+        private readonly LogInManager _logInManager;
+        private readonly IPasswordHasher<User> _passwordHasher;
 
         public AccountAppService(
-            UserRegistrationManager userRegistrationManager, UserManager userManager)
+            UserRegistrationManager userRegistrationManager, UserManager userManager, UserStore userStore, IAbpSession abpSession, LogInManager logInManager, IPasswordHasher<User> passwordHasher)
         {
             _userRegistrationManager = userRegistrationManager;
             _userManager = userManager;
+            _userStore = userStore;
+            _abpSession = abpSession;
+            _logInManager = logInManager;
+            _passwordHasher = passwordHasher;
         }
 
         public async Task<IsTenantAvailableOutput> IsTenantAvailable(IsTenantAvailableInput input)
@@ -59,33 +76,77 @@ namespace classifieds.Authorization.Accounts
             };
         }
         [HttpGet]
+        [AbpAuthorize]
         public UserDto User()
         {
             var user =  _userManager.GetUserById(AbpSession.UserId.Value);
+    
             return ObjectMapper.Map<UserDto>(user);
         }
         [HttpPut]
-        public  async Task<UserDto> UpdateAsync(UserDto input)
+        public async Task<bool> ChangePassword(ChangePasswordInput input)
         {
-            
-              var user = await _userManager.GetUserByIdAsync(input.Id);
-
-            MapToEntity(input, user);
-
-            CheckErrors(await _userManager.UpdateAsync(user));
-
-            if (input.RoleNames != null)
+            if (_abpSession.UserId == null)
             {
-                CheckErrors(await _userManager.SetRolesAsync(user, input.RoleNames));
+                throw new UserFriendlyException("Please log in before attemping to change password.");
             }
+            long userId = _abpSession.UserId.Value;
+            var user = await _userManager.GetUserByIdAsync(userId);
+            var loginAsync = await _logInManager.LoginAsync(user.UserName, input.OldPassword, shouldLockout: false);
+            if (loginAsync.Result != AbpLoginResultType.Success)
+            {
+                throw new UserFriendlyException("Your 'Existing Password' did not match the one on record.  Please try again or contact an administrator for assistance in resetting your password.");
+            }
+            if (!new Regex(AccountAppService.PasswordRegex).IsMatch(input.NewPassword))
+            {
+                throw new UserFriendlyException("Passwords must be at least 8 characters, contain a lowercase, uppercase, and number.");
+            }
+            user.Password = _passwordHasher.HashPassword(user, input.NewPassword);
+            CurrentUnitOfWork.SaveChanges();
+            return true;
 
-            return   ObjectMapper.Map<UserDto>(user);
         }
+
         protected  void MapToEntity(UserDto input, User user)
         {
             ObjectMapper.Map(input, user);
             user.SetNormalizedNames();
         }
+        [HttpPost]
+        public async Task<string> CheckUsername(CheckUserInput input)
+        {
+          
+                var user = await _userManager.FindByNameAsync(input.username);
+                if (user == null)
+                {
+                    return  "available";
+                }
+                return "unavailable";
+            
+        }
+        [HttpPost]
+        public async Task<string> CheckPhoneNumber(CheckPhoneInput input)
+        {
 
+            var user = await _userStore.UserRepository.FirstOrDefaultAsync(m=>m.PhoneNumber.Equals(input.PhoneNumber));
+            if (user == null)
+            {
+                return "available";
+            }
+            return "unavailable";
+
+        }
+        [HttpPost]
+        public async Task<string> CheckEmail(CheckEmailInput input)
+        {
+
+            var user = await _userManager.FindByEmailAsync(input.EmailAddress);
+            if (user == null)
+            {
+                return "available";
+            }
+            return "unavailable";
+
+        }
     }
 }

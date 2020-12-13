@@ -42,9 +42,9 @@
                             </div>
                         </div>
                         <div class="column">
-                            <a class="button is-info is-rounded is-fullwidth-mobile" id="send">
+                            <button class="button is-info is-rounded is-fullwidth-mobile" id="send">
                                 <i class="fas fa-search"></i>
-                            </a>
+                            </button>
                         </div>
                     </div>
 
@@ -61,163 +61,41 @@
             دسترسی سریع به محبوب‌ترین محله‌ها از طریق لینک‌های زیر
 
         </p>
-        <div class="columns my-5">
-            <div class="column is-4">
+
+        <div class="columns is-multiline my-5">
+            @foreach (var category in Model.PostsCount)
+            {
+            <div class="column is-4 ">
                 <h2 class="has-text-centered">
                     <strong>
-                        خرید و فروش آپارتمان در تهران
+                        @category.CategoryName در @category.CityName
                     </strong>
                 </h2>
                 <br />
                 <ul>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
+                    @foreach (var district in category.Count)
+                    {
 
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
+                        <li>
+                            <a href="/ads/category=@category.CategoryName&district=@district.CityId">
 
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
+                                <div class="level is-mobile my-2 box card-hover-shadow">
+                                    <div class="level-right">
+                                        <div class="level-item">@district.CityId</div>
+                                    </div>
+                                    <div class="level-left">
+                                        <div class="level-item has-text-info">@district.Count</div>
+                                    </div>
 
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-
-                </ul>
-
-            </div>
-            <div class="column is-4">
-                <h2 class="has-text-centered">
-                    <strong>
-                        رهن و اجاره آپارتمان در تهران
-                    </strong>
-                </h2>
-                <br />
-                <ul>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-
+                                </div>
+                            </a>
+                        </li>
+                    }
                 </ul>
             </div>
-            <div class="column is-4">
+            }
+
+        <div class="column is-4 ">
                 <h2 class="has-text-centered">
                     <strong>
                         خرید و فروش و رهن و اجاره در دیگر شهرها
@@ -226,15 +104,17 @@
                 <br />
                 <ul>
                     <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
+                        <a href="#">
+                            <div class="level is-mobile my-2 box card-hover-shadow">
+                                <div class="level-right">
+                                    <div class="level-item">تهران</div>
+                                </div>
+                                <div class="level-left">
+                                    <div class="level-item has-text-info">44545</div>
+                                </div>
 
-                        </div>
+                            </div>
+                        </a>
                     </li>
                     <li>
                         <div class="level is-mobile my-2 box card-hover-shadow">
@@ -293,9 +173,8 @@
 
                         </div>
                     </li>
-
                 </ul>
-            </div>
+        </div>
         </div>
         <h5 class="has-text-centered title is-5">
             آژانس های املاک برتر
@@ -304,18 +183,20 @@
             آیهوم به عنوان یار قدیمی املاک افتخار همکاری با آژانس های املاک معتبر کشور را دارد
         </p>
         <div class="columns is-multiline my-5 is-mobile">
-            <div class="column is-6-mobile is-2-desktop">کاربر</div>
-            <div class="column is-6-mobile is-2-desktop">کاربر</div>
-            <div class="column is-6-mobile is-2-desktop">کاربر</div>
-            <div class="column is-6-mobile is-2-desktop">کاربر</div>
-            <div class="column is-6-mobile is-2-desktop">کاربر</div>
-            <div class="column is-6-mobile is-2-desktop">کاربر</div>
-            <div class="column is-6-mobile is-2-desktop">کاربر</div>
-            <div class="column is-6-mobile is-2-desktop">کاربر</div>
-            <div class="column is-6-mobile is-2-desktop">کاربر</div>
-            <div class="column is-6-mobile is-2-desktop">کاربر</div>
-            <div class="column is-6-mobile is-2-desktop">کاربر</div>
-            <div class="column is-6-mobile is-2-desktop">کاربر</div>
+            @foreach (var user in Model.UserPostsCount)
+            {
+            <div class="column is-6-mobile is-2-desktop">
+                <a class="has-text-black" href="/users/@user.UserName">
+                    <div class="box">
+                        <figure class="image is-64x64">
+                            <img class="is-rounded" src="/@user.Avatar">
+                        </figure>
+                    </div>
+                </a>
+              </div>
+
+            }
+
         </div>
         <h5 class="has-text-centered title is-5">
             تازه ترین مطالب بلاگ

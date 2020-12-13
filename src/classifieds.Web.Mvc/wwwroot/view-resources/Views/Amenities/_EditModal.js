@@ -1,7 +1,7 @@
 ﻿(function ($) {
-    var _cityService = abp.services.app.city,
+    var _cityService = abp.services.app.amenity,
         l = abp.localization.getSource('classifieds'),
-        _$modal = $('#CityEditModal'),
+        _$modal = $('#AmenityEditModal'),
         _$form = _$modal.find('form');
 
     function save() {
@@ -14,7 +14,7 @@
         _cityService.update(city).done(function () {
             _$modal.modal('hide');
             abp.notify.info(l('SavedSuccessfully'));
-            abp.event.trigger('city.edited', city);
+            abp.event.trigger('amenity.edited', city);
         }).always(function () {
             abp.ui.clearBusy(_$form);
         });

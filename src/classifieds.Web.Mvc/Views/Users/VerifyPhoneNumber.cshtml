@@ -5,8 +5,8 @@
     @await Html.PartialAsync("tabs.cshtml", model: 3);
 
 }
-<div class="container">
-    <section class="section">
+<div class="section Site-content">
+    <section class="container">
         <h2>@ViewData["Title"].</h2>
 
         <form asp-controller="Manage" asp-action="VerifyPhoneNumber" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">

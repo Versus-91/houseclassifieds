@@ -553,8 +553,7 @@ a.demo-gallery__img--main {
 @media screen and (max-width: 350px) {
     .demo-gallery a {
         width: 81px;
-        margin: 0 1px 1px 0;
-    }
+        margin: 0 1px 1px 0; }
 
     a.demo-gallery__img--main {
         width: 109px;

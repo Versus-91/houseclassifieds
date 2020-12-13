@@ -1,14 +1,12 @@
 ﻿@model classifieds.Models.ManageViewModels.AddPhoneNumberViewModel
 @{ ViewData["Title"] = "Add Phone Number";
     Layout = "layout/_front"; }
-@section hero{
-    @await Html.PartialAsync("tabs.cshtml", model: 1)
-}
-<div class="section">
+
+<div class="section Site-content">
     <section class="container">
         <div class="columns is-centered">
             <div class="column is-8">
-                <form asp-controller="Manage" asp-action="AddPhoneNumber" method="post">
+                <form asp-controller="Users" asp-action="AddPhoneNumber" method="post">
                     <h4>افزودن شماره تلفن</h4>
                     <hr />
                     <div asp-validation-summary="All" class="help is-danger"></div>
@@ -19,7 +17,7 @@
                     <div class="field">
                         <p class="control">
                             <button type="submit" class="button is-primary">ارسال کد تایید</button>
-                            <a href="/manage" class="button is-link">بازگشت</a>
+                            <a href="/users" class="button is-link">بازگشت</a>
                         </p>
                     </div>
                 </form>

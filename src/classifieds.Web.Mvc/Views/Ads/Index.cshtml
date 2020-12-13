@@ -4,6 +4,7 @@
     ViewBag.CurrentPageName = PageNames.Home;
     Layout = "layout/_front";
 }
+
 <style>
     .card::before {
         position: absolute;
@@ -30,9 +31,8 @@
         box-shadow: 4px 4px 15px rgba(26, 35, 126, 0.2);
     }
 </style>
-<div class="section has-background-success-light	">
+<div class="section Site-content">
     <div class="container " id="mainContainer">
-        <div class="box">
             <div class="columns">
                 <div class="column is-3 ">
                     <aside class="menu mt-2">
@@ -58,7 +58,7 @@
                             <li>
                                 <div class="control">
                                     <div class="select">
-                                        <select asp-items="@(ViewData["Categories"] as SelectList)">
+                                        <select id="categories" asp-items="@(ViewData["Categories"] as SelectList)" asp-for="Category">
                                         </select>
                                     </div>
                                 </div>
@@ -82,7 +82,9 @@
                                             </p>
                                         </div>
                                     </div>
+                                  </div>  
                             </li>
+                            </ul>   
                             <p class="menu-label">
                                 قیمت
                             </p>
@@ -100,6 +102,7 @@
                                                     <input class="input is-success" id="maxPrice" type="number" placeholder="حداکثر">
                                                 </p>
                                             </div>
+                                        </div>
                                         </div>
                                 </li>
                             </ul>
@@ -127,13 +130,14 @@
                             <ul class="menu-list">
                                 <li>
                                     <div class="control">
-                                        <div class="select">
-                                            <select asp-items="@(ViewData["PropertyTypes"] as SelectList)">
+                                        <div class="select is-fullwidth">
+                                            <select id="propertyTypes" class="select2" asp-items="@(ViewData["PropertyTypes"] as SelectList)" multiple="multiple" asp-for="Types">
                                             </select>
                                         </div>
                                     </div>
                                 </li>
                             </ul>
+                        <br />
                             <ul class="menu-list mt-2">
                                 <li>
                                     <button class="button is-info" id="apply">اعمال</button>
@@ -149,7 +153,7 @@
                             <li><a>گرانترین</a></li>
                         </ul>
                     </div>
-                    <div class="columns is-multiline" id="pager" style="min-height:500px;">
+                    <div class="columns is-multiline" id="pager" >
                     </div>
 
                     <nav class="pagination" role="navigation" aria-label="pagination">
@@ -160,9 +164,10 @@
             </div>
         </div>
     </div>
-</div>
 @section scripts{
     <script asp-append-version="true" src="~/lib/PersianDate-1.1.0/dist/persian-date.min.js"></script>
+        
+    </script>
     <environment names="Development">
         <script asp-append-version="true" src="~/view-resources/Views/UserPosts/pagination.js"></script>
 

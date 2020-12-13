@@ -1,6 +1,7 @@
 ﻿using Abp.AspNetCore.Mvc.Authorization;
 using Abp.Domain.Repositories;
 using Abp.Runtime.Validation;
+using classifieds.Authorization.Users;
 using classifieds.Filters;
 using classifieds.Images;
 using classifieds.Web.helpers;
@@ -20,15 +21,14 @@ using System.Threading.Tasks;
 
 namespace classifieds.Controllers
 {
-    public class StreamController : classifiedsControllerBase
+    public class UploadController : classifiedsControllerBase
     {
         private readonly long _fileSizeLimit;
-        private readonly ILogger<StreamController> _logger;
+        private readonly ILogger<UploadController> _logger;
         private readonly string[] _permittedExtensions = { ".jpg", ".jpeg" };
         private readonly string _postImagesFilePath;
         private readonly string _avatarsFilePath;
-
-
+        private readonly UserManager _userManager;
         private readonly IRepository<Image> _imageService;
         private readonly IWebHostEnvironment _env;
 
@@ -36,9 +36,10 @@ namespace classifieds.Controllers
         // limits for request body data.
         private static readonly FormOptions _defaultFormOptions = new FormOptions();
 
-        public StreamController(ILogger<StreamController> logger,
+        public UploadController(ILogger<UploadController> logger,
             IRepository<Image> imageService,
             IConfiguration config,
+            UserManager userManager,
             IWebHostEnvironment env
             )
         {
@@ -51,12 +52,13 @@ namespace classifieds.Controllers
             // To save physical files to the temporary files folder, use:
             //_targetFilePath = Path.GetTempPath();
             _imageService = imageService;
+            _userManager = userManager;
         }
 
 
 
         #region snippet_UploadPhysical
-        [HttpPost("[controller]/upload/{id}")]
+        [HttpPost("[controller]/{id}")]
         [DisableFormValueModelBinding]
         [DisableValidation]
         //[ValidateAntiForgeryToken]
@@ -155,9 +157,12 @@ namespace classifieds.Controllers
         [HttpPost("[controller]/avatar")]
         [DisableFormValueModelBinding]
         [DisableValidation]
+        [AbpMvcAuthorize]
         //[ValidateAntiForgeryToken]
+
         public async Task<IActionResult> UploadAvatar()
         {
+
             if (!MultipartRequestHelper.IsMultipartContentType(Request.ContentType))
             {
                 ModelState.AddModelError("File",
@@ -223,18 +228,13 @@ namespace classifieds.Controllers
                         using (var targetStream = System.IO.File.Create(Path.Combine(_env.WebRootPath, _avatarsFilePath, trustedFileNameForFileStorage)))
                         {
                             await targetStream.WriteAsync(streamedFileContent);
-                            //await _imageService.InsertAsync(new Image
-                            //{
-                            //    Name = trustedFileNameForDisplay,
-                            //    Size = contentDisposition.Size ?? 0,
-                            //    Path = Path.Combine(_wwwrootAvatarsPath, trustedFileNameForFileStorage),
-                            //    PostId = id
-                            //});
-                            _logger.LogInformation(
-                                "Uploaded file '{TrustedFileNameForDisplay}' saved to " +
-                                "'{TargetFilePath}' as {TrustedFileNameForFileStorage}",
-                                trustedFileNameForDisplay, _avatarsFilePath,
-                                trustedFileNameForFileStorage);
+                            var user = await _userManager.GetUserByIdAsync(AbpSession.UserId.Value);
+                            if (!String.IsNullOrEmpty(user.Avatar))
+                            {
+                                System.IO.File.Delete(Path.Combine(_env.WebRootPath, user.Avatar));
+                            }
+                            user.Avatar = Path.Combine(_avatarsFilePath, trustedFileNameForFileStorage);
+                            await _userManager.UpdateAsync(user);
                         }
                     }
                 }

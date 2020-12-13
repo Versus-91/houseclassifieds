@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Abp.Authorization.Users;
 using Abp.Extensions;
+using classifieds.Posts;
 
 namespace classifieds.Authorization.Users
 {
@@ -9,6 +10,7 @@ namespace classifieds.Authorization.Users
     {
         public const string DefaultPassword = "123qwe";
         public string Avatar { get; set; }
+        public IList<Post> Posts { get; set; }
         public static string CreateRandomPassword()
         {
             return Guid.NewGuid().ToString("N").Truncate(16);

@@ -11,6 +11,9 @@ using Abp.Domain.Uow;
 using Abp.Organizations;
 using Abp.Runtime.Caching;
 using classifieds.Authorization.Roles;
+using System.Threading.Tasks;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace classifieds.Authorization.Users
 {
@@ -54,5 +57,6 @@ namespace classifieds.Authorization.Users
                 settingManager)
         {
         }
+
     }
 }

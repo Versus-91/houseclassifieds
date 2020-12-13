@@ -68,10 +68,10 @@
                 defaultContent: '',
                 render: (data, type, row, meta) => {
                     return [
-                        `   <button type="button" class="btn btn-sm bg-secondary edit-city" data-id="${row.id}" data-toggle="modal" data-target="#CityEditModal">`,
+                        `   <button type="button" class="btn btn-sm bg-secondary edit-amenity" data-id="${row.id}" data-toggle="modal" data-target="#AmenityEditModal">`,
                         `       <i class="fas fa-pencil-alt"></i> ${l('Edit')}`,
                         '   </button>',
-                        `   <button type="button" class="btn btn-sm bg-danger delete-city" data-city-id="${row.id}" data-city-name="${row.name}">`,
+                        `   <button type="button" class="btn btn-sm bg-danger delete-amenity" data-amenity-id="${row.id}" data-amenity-name="${row.name}">`,
                         `       <i class="fas fa-trash"></i> ${l('Delete')}`,
                         '   </button>',
                     ].join('');
@@ -103,29 +103,29 @@
             });
     });
 
-    $(document).on('click', '.delete-city', function () {
-        var cityId = $(this).attr("data-city-id");
-        var cityName = $(this).attr('data-city-name');
+    $(document).on('click', '.delete-amenity', function () {
+        var cityId = $(this).attr("data-amenity-id");
+        var cityName = $(this).attr('data-amenity-name');
 
         deleteRole(cityId, cityName);
     });
 
-    $(document).on('click', '.edit-city', function (e) {
+    $(document).on('click', '.edit-amenity', function (e) {
         var Id = $(this).attr("data-id");
 
         e.preventDefault();
         abp.ajax({
-            url: abp.appPath + 'admin/cities/Edit/' + Id,
+            url: abp.appPath + 'admin/amenities/Edit/' + Id,
             type: 'POST',
             dataType: 'html',
             success: function (content) {
-                $('#CityEditModal div.modal-content').html(content);
+                $('#AmenityEditModal div.modal-content').html(content);
             },
             error: function (e) { }
         })
     });
 
-    abp.event.on('city.edited', (data) => {
+    abp.event.on('amenity.edited', (data) => {
         _$amenitiesTable.ajax.reload();
     });
 

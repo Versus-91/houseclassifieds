@@ -1,4 +1,4 @@
-﻿@model int
+﻿@model classifieds.Users.Dto.UserDto
     <div class="modal" id="myModal">
         <div class="modal-background"></div>
         <div class="modal-card">
@@ -10,7 +10,7 @@
                 <div class="container ">
                     <div class="columns is-centered is-multiline">
                         @Html.AntiForgeryToken()
-                        <img id="image" src="images\16f9182af90c452da7d2d7ec7b89b659.jpg" alt="Picture">
+                        <img id="image" src="/@Model.Avatar" alt="Picture">
                         <div class="column is-4-desktop is-8-mobile">
                             <div class="field mt-2">
                                 <div class="file is-primary">
@@ -45,18 +45,22 @@
                 <div class="columns is-mobile">
                     <div class="column is-2-desktop is-6-mobile">
                         <figure class="image is-128x128">
-                            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                            <img class="is-rounded" src="/@Model.Avatar">
                         </figure>
-                        <div class="card-content is-overlay ">
-                            <span class="icon has-text-info" id="uploadButton">
-                                <i class="fas fa-camera"></i>
-                            </span>
-                        </div>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="card-content is-overlay ">
+                                <span class="icon has-text-danger" id="uploadButton">
+                                    <i class="fas fa-camera"></i>
+                                </span>
+                            </div>
+                        }
+
                     </div>
 
                     <div class="column is-10-desktop is-6-mobile">
                         <div class="title is-5 my-4">
-                            قادر قریبیان
+                            @Model.FullName 
                         </div>
                     </div>
 
@@ -70,10 +74,10 @@
         <nav class="tabs is-boxed is-fullwidth">
             <div class="container">
                 <ul>
-                    <li class="@(Model == 1 ? "is-active":"")"><a href="/manage">پست ها</a></li>
+                    @*<li class="@(Model == 1 ? "is-active":"")"><a href="/manage">پست ها</a></li>
                     <li class="@(Model == 2 ? "is-active":"")"><a href="/manage/changepassword">تغییر رمز</a></li>
                     <li class="@(Model == 3 ? "is-active":"")"><a href="/Manage/AddPhoneNumber">افزودن شماره تماس</a></li>
-                    <li class="@(Model == 4 ? "is-active":"")"><a href="/Manage/UserInfo">مشخصات</a></li>
+                    <li class="@(Model == 4 ? "is-active":"")"><a href="/Manage/UserInfo">مشخصات</a></li>*@
                 </ul>
             </div>
         </nav>

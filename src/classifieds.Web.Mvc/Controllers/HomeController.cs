@@ -39,6 +39,8 @@ namespace classifieds.Web.Controllers
 
             var model = new AdsIndexViewModel
             {
+                UserPostsCount = await _postService.UsersPostsCount(),
+                PostsCount = await _postService.CitiesPostsCount(),
                 Cities = cities,
                 Categories = categories,
                 Types = types,

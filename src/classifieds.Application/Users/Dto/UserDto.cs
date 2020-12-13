@@ -34,6 +34,10 @@ namespace classifieds.Users.Dto
         public DateTime? LastLoginTime { get; set; }
 
         public DateTime CreationTime { get; set; }
+        public string Avatar { get; set; }
+        [Phone]
+        public string PhoneNumber { get; set; }
+
 
         public string[] RoleNames { get; set; }
     }
