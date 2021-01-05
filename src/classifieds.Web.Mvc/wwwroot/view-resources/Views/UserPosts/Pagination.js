@@ -6,6 +6,7 @@
     var pageIndex = 1;
     var rowPerPage = 30;
     var totalPages = 0;
+
     var path = function (filter) {
         console.log('filter : ',filter)
 		if (filter) {
@@ -44,6 +45,8 @@
                                     </span>` : `<span class="fa-stack " >
                                     <i class="fas fa-camera fa-stack-1x has-text-info" style=" vertical-align: middle;"></i><span>${item.images.length}</span></span>`;
                     var featuredIcon = item.isFeatured === true ? `<span class="fa-stack  has-text-success"><i class="fas fa-stack-1x fa-check-square"></i></span>` : ``;
+                    var priceTag = item.category.name.includes("گروی") || item.category.name.includes("اجاره") ? `اجاره : ${item.rent}<br>پیش پرداخت : ${item.deposit} ` : `${item.price}`;
+                
                     $("#pager").append(`<div class=" column is-12-mobile is-half-tablet is-one-third-desktop  is-one-third-fullhd">
                                 <a class="fill-div has-text-grey" href="/ads/${item.id}">
                                     <div class="card card-hover-shadow" data-label="${item.category.name}">
@@ -59,8 +62,7 @@
                                         </div>
                                         <div class="card-content">
                                             <div class="content has-text-centered">
-                                                ${item.title}
-                                                <br>
+                                                ${priceTag}
                                             </div>
                                             <nav class="level is-mobile">
                                                 <div class="level-item has-text-centered">
@@ -105,20 +107,75 @@
                 console.log("complete");
             });
     }
+    var selectedCategory = $('#categories').find('option:selected').text();
+    if (selectedCategory.includes("اجاره") || selectedCategory.includes("گروی")) {
+        $("#sale").hide();
+        $("#rent").show();
+    } else {
+        $("#sale").show();
+        $("#rent").hide();
+    }
+    $('#categories').on('change', function () {
+        var label = $(this).find('option:selected').text();
+        if (label.includes("اجاره") || label.includes("گروی")) {
+            $("#sale").hide();
+            $("#rent").show();
+            $("#minPrice").val(null);
+            $("#maxPrice").val(null);
+		} else {
+            $("#sale").show();
+            $("#rent").hide();
+            $("#minRent").val(null);
+            $("#maxRent").val(null);
+            $("#minDeposit").val(null);
+            $("#maxDeposit").val(null);
+		}
+    }); 
     function FilterAds() {
         var query = {};
         var category = $('#categories').find(":selected").val();
-        var peopertTypes = $('.chosen-select').val();
-
+        var selectedCategory = $('#categories').find('option:selected').text();
+        var peopertTypes = $('#propertyTypes').val();
         var minArea = $("#minArea").val();
         var maxArea = $("#maxArea").val();
         var minPrice = $("#minPrice").val();
         var maxPrice = $("#maxPrice").val();
+        var minRent = $("#minRent").val();
+        var maxRent = $("#maxRent").val();
+        var minDeposit = $("#minDeposit").val();
+        var maxDeposit = $("#maxDeposit").val();
+        var beds = $("#minBedCount").val();
+
         if (!!category) {
             query.category = category;
+            if (selectedCategory.includes("اجاره") || selectedCategory.includes("گروی")) {
+                if (minRent & maxRent) {
+                    query.minRent = minRent;
+                    query.maxRent = maxRent;
+                } else {
+                    delete query.minRent;
+                    delete query.maxRent;
+                }
+                 if (minDeposit & maxDeposit) {
+                    query.minDeposit = minDeposit;
+                    query.maxDeposit = maxDeposit;
+                } else {
+                    delete query.minDeposit;
+                    delete query.maxDeposit;
+                }
+            } else {
+                if (minPrice & maxPrice) {
+                    query.minPrice = minPrice;
+                    query.maxPrice = maxPrice;
+                } else {
+                    delete query.minPrice;
+                    delete query.maxPrice;
+                }
+            }
         }
         if (!!peopertTypes) {
             query.types = peopertTypes;
+
         }
         if (minArea & maxArea) {
             query.minArea = minArea;
@@ -127,19 +184,18 @@
             delete query.minArea ;
             delete query.maxArea ;
 		}
-        if (minPrice & maxPrice) {
-            query.minPrice = minPrice;
-            query.maxPrice = maxPrice ;
-		} else {
-            delete query.minPrice ;
-            delete  query.maxPrice ;
-		}
+
         if ($("#featured").is(":checked")) {
             query.featured = true;
         } else {
             delete query.featured;
         }
-        loadAds(path($.param(query)),true);
+        if (!!beds) {
+            query.beds = beds;
+        } else {
+            delete query.beds;
+        }
+        loadAds(path($.param(query,true),true));
     }
     $("#apply").click(() => {
         FilterAds();

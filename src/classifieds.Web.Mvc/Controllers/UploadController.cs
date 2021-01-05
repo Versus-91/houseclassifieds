@@ -10,11 +10,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.WebUtilities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Microsoft.Net.Http.Headers;
 using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -55,8 +58,25 @@ namespace classifieds.Controllers
             _userManager = userManager;
         }
 
-
-
+        [HttpPost("[controller]/remove/{id}")]
+        [DisableFormValueModelBinding]
+        [DisableValidation]
+        [AbpMvcAuthorize]
+        public async Task<IActionResult> removeImage(int id)
+        {
+            var image =await  _imageService.GetAllIncluding(m=>m.Post).Where(m=>m.Id == id).FirstOrDefaultAsync();
+            if (image == null)
+            {
+                return NotFound();
+            }
+            if (AbpSession.UserId != image.Post.CreatorUserId)
+            {
+                return BadRequest();
+            }
+            await _imageService.DeleteAsync(image);
+            System.IO.File.Delete(Path.Combine(_env.WebRootPath,image.Path));
+            return Ok();
+        }
         #region snippet_UploadPhysical
         [HttpPost("[controller]/{id}")]
         [DisableFormValueModelBinding]
@@ -126,23 +146,27 @@ namespace classifieds.Controllers
                         {
                             return BadRequest(ModelState);
                         }
+         
+
                         Directory.CreateDirectory(Path.Combine(_env.WebRootPath, _postImagesFilePath));
-                        using (var targetStream = System.IO.File.Create(Path.Combine(_env.WebRootPath,_postImagesFilePath, trustedFileNameForFileStorage)))
-                        {
-                            await targetStream.WriteAsync(streamedFileContent);
-                            await _imageService.InsertAsync(new Image
+                        
+                            using (var targetStream = System.IO.File.Create(Path.Combine(_env.WebRootPath, _postImagesFilePath, trustedFileNameForFileStorage)))
                             {
-                                Name = trustedFileNameForDisplay,
-                                Size = contentDisposition.Size ?? 0,
-                                Path = Path.Combine(_postImagesFilePath, trustedFileNameForFileStorage),
-                                PostId = id
-                            });
-                            _logger.LogInformation(
-                                "Uploaded file '{TrustedFileNameForDisplay}' saved to " +
-                                "'{TargetFilePath}' as {TrustedFileNameForFileStorage}",
-                                trustedFileNameForDisplay, _postImagesFilePath,
-                                trustedFileNameForFileStorage);
-                        }
+                                await targetStream.WriteAsync(streamedFileContent);
+                                await _imageService.InsertAsync(new Image
+                                {
+                                    Name = trustedFileNameForDisplay,
+                                    Size = contentDisposition.Size ?? 0,
+                                    Path = Path.Combine(_postImagesFilePath, trustedFileNameForFileStorage),
+                                    PostId = id
+                                });
+                                _logger.LogInformation(
+                                    "Uploaded file '{TrustedFileNameForDisplay}' saved to " +
+                                    "'{TargetFilePath}' as {TrustedFileNameForFileStorage}",
+                                    trustedFileNameForDisplay, _postImagesFilePath,
+                                    trustedFileNameForFileStorage);
+                            }
+                        
                     }
                 }
 

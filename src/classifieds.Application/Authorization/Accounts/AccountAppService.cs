@@ -86,6 +86,10 @@ namespace classifieds.Authorization.Accounts
         [HttpPut]
         public async Task<bool> ChangePassword(ChangePasswordInput input)
         {
+            if (!new Regex(AccountAppService.PasswordRegex).IsMatch(input.NewPassword))
+            {
+                throw new UserFriendlyException("Passwords must be at least 8 characters, contain a lowercase, uppercase, and number.");
+            }
             if (_abpSession.UserId == null)
             {
                 throw new UserFriendlyException("Please log in before attemping to change password.");
@@ -97,10 +101,7 @@ namespace classifieds.Authorization.Accounts
             {
                 throw new UserFriendlyException("Your 'Existing Password' did not match the one on record.  Please try again or contact an administrator for assistance in resetting your password.");
             }
-            if (!new Regex(AccountAppService.PasswordRegex).IsMatch(input.NewPassword))
-            {
-                throw new UserFriendlyException("Passwords must be at least 8 characters, contain a lowercase, uppercase, and number.");
-            }
+         
             user.Password = _passwordHasher.HashPassword(user, input.NewPassword);
             CurrentUnitOfWork.SaveChanges();
             return true;

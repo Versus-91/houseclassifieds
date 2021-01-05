@@ -7,7 +7,8 @@
 @inject IWebResourceManager WebResourceManager
 @inject IAlertManager AlertManager
 @inject ILanguageManager LanguageManager
-@{ AbpAntiForgeryManager.SetCookie(Context);
+@{
+    AbpAntiForgeryManager.SetCookie(Context);
 
     var pageTitle = !string.IsNullOrWhiteSpace(ViewBag.Title) ? ViewBag.Title + " / " : "";
     var returnUrl = Context.Request.Path;
@@ -16,17 +17,17 @@
 }
 <!DOCTYPE html>
 <html dir="rtl">
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@pageTitle</title>
-    <link rel="icon"
-          type="image/png"
-          href="/favicon.png" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="~/lib/bulma/css/bulma-rtl.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/libs/font-awesome/css/all.min.css" asp-append-version="true" />
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v26.0.0/dist/font-face.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v26.0.0/dist/font-face.css" rel="stylesheet"
+        type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <environment names="Development">
         <link href="~/css/web.css" rel="stylesheet" asp-append-version="true" />
@@ -37,11 +38,12 @@
     @RenderSection("styles", required: false)
 
 </head>
+
 <body class="site">
     @await Html.PartialAsync("Layout/_UserNavbar", returnUrl)
     @RenderSection("hero", required: false)
-        @RenderBody()
-    <footer class="footer  has-background-light ">
+    @RenderBody()
+    <footer class="footer  has-background-dark has-text-white">
         <div class="content has-text-centered">
             <p>
                 ثبت اعلان ملک
@@ -73,10 +75,11 @@
 
                     });
                 });
-            } 
+            }
 
         });
     </script>
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

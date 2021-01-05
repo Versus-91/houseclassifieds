@@ -15,7 +15,7 @@
     </style>
 }
 
-<div class="section">
+<div class="section Site-content">
     <div class="container">
         <div class="columns">
             <div class=" column is-12  has-text-centered is-12-mobile">
@@ -24,92 +24,117 @@
                     <div class="notification is-primary">
                         @ViewData["StatusMessage"]
                     </div>
-                    }
-                @if (User.Identity.IsAuthenticated)
+                }
+                @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.User.UserName)
                 {
 
-               
-                <div class="columns is-multiline is-mobile is-centered">
-                    <div class="column is-3 ">رمزعبور</div>
-                    <div class="column is-3 ">
-                        @if (Model.HasPassword)
-                        {
-                            <a asp-controller="Users" asp-action="ChangePassword" class="btn-bracketed">تغییر</a> }
-                        else
-                        {
-                            <a asp-controller="Users" asp-action="SetPassword" class="btn-bracketed">ایجاد</a>}
-                    </div>
-                    <div class="column is-3 ">شماره موبایل</div>
-                    <div class="column is-3 ">
-                        <div class="buttons">
-                            @if (Model.PhoneNumber != null)
+
+                    <div class="columns is-multiline is-mobile is-centered">
+                        <div class="column is-3 ">رمزعبور</div>
+                        <div class="column is-3 ">
+                            @if (Model.HasPassword)
                             {
-                                <a asp-controller="Users" asp-action="AddPhoneNumber" class="button is-info is-small">تغییر</a>
-                                <form asp-controller="Users" asp-action="RemovePhoneNumber" method="post">
-                                    <button type="submit" class="button is-danger is-small">حذف</button>
-                                </form> }
+                                <a asp-controller="Users" asp-action="ChangePassword" class="btn-bracketed">تغییر</a> }
                             else
                             {
-                                <a asp-controller="Users" asp-action="AddPhoneNumber" class="button is-info is-small">افزودن</a>}
+                                <a asp-controller="Users" asp-action="SetPassword" class="btn-bracketed">ایجاد</a>}
                         </div>
-                    </div>
-                </div>
-                }
-                <hr class="my-5">
-                <div class="column is-12">
-                    <div class="table-container">
-
-                        <table class="table is-fullwidth" style="overflow-x:auto">
-                            <thead>
-                                <tr>
-                                    <th>شناسه</th>
-                                    <th>عنوان</th>
-                                    <th>شهر</th>
-                                    <th>منطقه</th>
-                                    <th>وضعیت</th>
-                                    <th>دسته بندی</th>
-                                    <th>منو</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @if (Model.Posts.Count > 0)
+                        <div class="column is-3 ">شماره موبایل</div>
+                        <div class="column is-3 ">
+                            <div class="buttons">
+                                @if (Model.PhoneNumber != null)
                                 {
-                                    @foreach (var item in Model.Posts)
-                                    {
-                                        <tr>
-                                            <th>@item.Id</th>
-                                            <td>
-                                                @item.Title
-                                            </td>
-                                            <td>@item.District.City.Name </td>
-                                            <td>@item.District.Name </td>
-                                            <td>
-                                                @if (item.IsVerified)
-                                                {
-                                                    <span class="tag is-success">تایید شده</span>
-                                                }
-                                                else
-                                                {
-                                                    <span class="tag is-danger">تایید نشده</span>
-                                                }
-                                            </td>
-                                            <td>@item.Category.Name</td>
-                                            <td><a href="/ads/@item.Id">مشاهده</a></td>
-                                        </tr>
-                                    }
-                                }
+                                    <a asp-controller="Users" asp-action="AddPhoneNumber" class="button is-info is-small">تغییر</a>
+                                    <form asp-controller="Users" asp-action="RemovePhoneNumber" method="post">
+                                        <button type="submit" class="button is-danger is-small">حذف</button>
+                                    </form> }
                                 else
                                 {
-                                    <tr>
-                                        <td>
-                                            @Html.Raw("موردی پیدا نشد.")
-                                        </td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
+                                    <a asp-controller="Users" asp-action="AddPhoneNumber" class="button is-info is-small">افزودن</a>}
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <hr class="my-5">
+
+                }
+                @if (Model.Posts.Count > 0)
+                {
+                    <div class="section">
+                        <div class="container mt-3">
+                            <div class="columns is-12 is-multiline">
+                                @foreach (var post in Model.Posts)
+                                {
+                                    <div class=" column is-3">
+                                        <a class="fill-div" href="/ads/@post.Id">
+                                            <div class="card card-hover-shadow" data-label="@post.Category.Name">
+                                                <div class="card-image">
+                                                    <figure class="image is-4by3">
+                                                        @if (post.Images.Count > 0)
+                                                        {
+                                                            <img src="/@post.Images[0].Path?width=600&height=480" alt="Placeholder image">
+
+                                                        }
+                                                        else
+                                                        {
+                                                            <img src="/img/placeholder.png" alt="Placeholder image">
+
+                                                        }
+                                                        <div class="overlay">@post.District.City.Name -  @post.District.Name</div>
+                                                        @*<div class="overlay-top-corner">
+                                                    @{featuredIcon}
+                                                    @{hasImageIcon}
+                                                </div>*@
+                                                    </figure>
+                                                </div>
+                                                <div class="card-content">
+                                                    <div class="content has-text-centered">
+                                                        @post.Title
+                                                        <br>
+                                                    </div>
+                                                    <nav class="level is-mobile">
+                                                        <div class="level-item has-text-centered">
+                                                            <div>
+                                                                <p><i class="fas fa-chart-area has-text-grey"></i></p>
+                                                                <p>@post.Area</p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="level-item has-text-centered">
+                                                            <div>
+                                                                <p><i class="fas  fa-clock has-text-grey"></i></p>
+                                                                <p>
+                                                                    @if (post.Age == 0)
+                                                                    {
+                                                                        Html.Raw("N/A");
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        Html.Raw(post.Age);
+                                                                    }
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="level-item has-text-centered">
+                                                            <div>
+                                                                <p><i class="fas fa-bed has-text-grey"></i></p>
+                                                                <p>@post.Bedroom</p>
+                                                            </div>
+                                                        </div>
+                                                    </nav>
+                                                </div>
+                                                <footer class="card-footer">
+                                                    <a href="#" class="card-footer-item">
+                                                        <p><i class="fas fa-phone has-text-success"></i>  اطلاعات تماس</p>
+                                                    </a>
+                                                </footer>
+                                            </div>
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                }
             </div>
         </div>
     </div>

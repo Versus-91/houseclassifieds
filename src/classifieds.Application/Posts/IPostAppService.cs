@@ -10,10 +10,9 @@ namespace classifieds.Posts
     public interface IPostAppService : IAsyncCrudAppService<PostDto, int, GetAllPostsInput, CreatePostInput, UpdatePostInput>
     {
         Task<PostDto> GetDetails(int id);
-        Task<PagedResultDto<PostDto>> GetUserPosts();
+        Task<PagedResultDto<PostDto>> GetUserPosts(GetAllPostsInput input);
         Task<PagedResultDto<PostDto>> Recommendations(PostDto post);
         Task<List<LlocationPostsCount>> CitiesPostsCount();
         Task<List<UserPostsCountDto>> UsersPostsCount();
-        Task<PagedResultDto<PostDto>> GetUserPostsByUserId(long id);
     }
 }

@@ -8,6 +8,7 @@ using classifieds.Authorization.Users;
 using classifieds.Identity;
 using classifieds.Models.ManageViewModels;
 using classifieds.Posts;
+using classifieds.Posts.Dto;
 using classifieds.Services;
 using classifieds.Users;
 using classifieds.Users.Dto;
@@ -53,7 +54,6 @@ namespace classifieds.Web.Controllers
         // GET: /Manage/Index
         [AbpAllowAnonymous]
         [HttpGet("/[controller]/{name}")]
-        [HttpGet("/[controller]")]
         public async Task<IActionResult> Index(string name,ManageMessageId? message = null)
         {
             ViewData["StatusMessage"] =
@@ -68,37 +68,37 @@ namespace classifieds.Web.Controllers
             IndexViewModel model;
             if (name == null)
             {
-                user = await GetCurrentUserAsync();
-                if (user == null)
-                {
-                    return NotFound();
-                }
-                model = new IndexViewModel
-                {
-                    User = ObjectMapper.Map<UserDto>(user),
-                    HasPassword = await _userManager.HasPasswordAsync(user),
-                    PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
-                    TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
-                    Logins = await _userManager.GetLoginsAsync(user),
-                    BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
-                    Posts = (await _postsService.GetUserPosts()).Items
-                };
+                return BadRequest();
             }
             else
             {
-                 user = await _userStore.UserRepository.GetAll().Where(m => m.UserName.Equals(name)).FirstOrDefaultAsync();
+                user = await _userStore.UserRepository.GetAll().Where(m => m.UserName.Equals(name)).FirstOrDefaultAsync();
                 if (user == null)
                 {
                     return NotFound();
                 }
-                model = new IndexViewModel
+                if (user.Id == AbpSession.UserId)
                 {
-                    User = ObjectMapper.Map<UserDto>(user),
-                    Posts = (await _postsService.GetUserPostsByUserId(user.Id)).Items
-                };
+                    model = new IndexViewModel
+                    {
+                        User = ObjectMapper.Map<UserDto>(user),
+                        HasPassword = await _userManager.HasPasswordAsync(user),
+                        PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
+                        TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
+                        Logins = await _userManager.GetLoginsAsync(user),
+                        BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
+                        Posts = (await _postsService.GetUserPosts(new GetAllPostsInput())).Items
+                    };
+                }
+                else
+                {
+                    model = new IndexViewModel
+                    {
+                        User = ObjectMapper.Map<UserDto>(user),          
+                        Posts = (await _postsService.GetAllAsync(new GetAllPostsInput() { UserId = user.Id})).Items
+                    };
+                }
             }
-
-
 
             return View(model);
         }

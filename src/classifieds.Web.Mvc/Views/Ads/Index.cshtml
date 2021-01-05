@@ -34,7 +34,8 @@
 <div class="section Site-content">
     <div class="container " id="mainContainer">
             <div class="columns">
-                <div class="column is-3 ">
+                <div class="column is-3  ">
+                    <div class="box">
                     <aside class="menu mt-2">
                         <p class="menu-label">
                             وضعیت آگهی
@@ -84,11 +85,12 @@
                                     </div>
                                   </div>  
                             </li>
-                            </ul>   
-                            <p class="menu-label">
+                            </ul> 
+                            <div id="sale">
+                          <p class="menu-label mt-1" >
                                 قیمت
-                            </p>
-                            <ul class="menu-list">
+                            </p>  
+                            <ul class="menu-list" >
                                 <li>
                                     <div class="field is-horizontal">
                                         <div class="field-body">
@@ -106,6 +108,51 @@
                                         </div>
                                 </li>
                             </ul>
+                            </div>
+                            <div id="rent">
+                            <p class="menu-label mt-1" >
+                                پیش پرداخت
+                            </p>  
+                            <ul class="menu-list" >
+                                <li>
+                                    <div class="field is-horizontal mb-2">
+                                        <div class="field-body">
+                                            <div class="field">
+                                                <p class="control is-expanded">
+                                                    <input class="input is-danger" id="minDeposit" type="number" placeholder="حداقل">
+                                                </p>
+                                            </div>
+                                            <div class="field">
+                                                <p class="control is-expanded ">
+                                                    <input class="input is-success" id="maxDeposit" type="number" placeholder="حداکثر">
+                                                </p>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </li>
+                                </ul>
+                               <ul class="menu-list" >
+                                   <p class="menu-label" >
+                               اجاره
+                            </p>
+                               <li>
+                                    <div class="field is-horizontal">
+                                        <div class="field-body">
+                                            <div class="field">
+                                                <p class="control is-expanded">
+                                                    <input class="input is-danger" id="minRent" type="number" placeholder="حداقل">
+                                                </p>
+                                            </div>
+                                            <div class="field">
+                                                <p class="control is-expanded ">
+                                                    <input class="input is-success" id="maxRent" type="number" placeholder="حداکثر">
+                                                </p>
+                                            </div>
+                                        </div>
+                                        </div>
+                                </li>
+                            </ul>
+                            </div>
                             <p class="menu-label">
                                 تعداد خواب
                             </p>
@@ -113,7 +160,7 @@
                                 <li>
                                     <div class="control">
                                         <div class="select">
-                                            <select>
+                                            <select id="minBedCount">
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
                                                 <option value="3">3</option>
@@ -144,6 +191,7 @@
                                 </li>
                             </ul>
                     </aside>
+                    </div>
                 </div>
                 <div class="column is-9" style="min-height:500px;">
                     <div class="tabs is-centered">
