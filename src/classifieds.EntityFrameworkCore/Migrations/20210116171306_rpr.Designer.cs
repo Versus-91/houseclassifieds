@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using classifieds.EntityFrameworkCore;
 
 namespace classifieds.Migrations
 {
     [DbContext(typeof(classifiedsDbContext))]
-    partial class classifiedsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210116171306_rpr")]
+    partial class rpr
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1766,9 +1768,6 @@ namespace classifieds.Migrations
                     b.Property<double>("Rent")
                         .HasColumnType("float");
 
-                    b.Property<int?>("ReportOptionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -1785,8 +1784,6 @@ namespace classifieds.Migrations
                     b.HasIndex("CreatorUserId");
 
                     b.HasIndex("DistrictId");
-
-                    b.HasIndex("ReportOptionId");
 
                     b.HasIndex("TypeId");
 
@@ -1840,49 +1837,6 @@ namespace classifieds.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PropertyTypes");
-                });
-
-            modelBuilder.Entity("classifieds.ReportOptions.ReportOption", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("HasDescription")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ReportOptions");
-                });
-
-            modelBuilder.Entity("classifieds.Reports.Report", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("PostId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("ReportOptionId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("PostId");
-
-                    b.HasIndex("ReportOptionId");
-
-                    b.ToTable("Reports");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
@@ -2136,10 +2090,6 @@ namespace classifieds.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("classifieds.ReportOptions.ReportOption", null)
-                        .WithMany("Posts")
-                        .HasForeignKey("ReportOptionId");
-
                     b.HasOne("classifieds.PropertyTypes.PropertyType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
@@ -2158,21 +2108,6 @@ namespace classifieds.Migrations
                     b.HasOne("classifieds.Posts.Post", "Post")
                         .WithMany("PostAmenities")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("classifieds.Reports.Report", b =>
-                {
-                    b.HasOne("classifieds.Posts.Post", "Post")
-                        .WithMany()
-                        .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("classifieds.ReportOptions.ReportOption", "ReportOption")
-                        .WithMany()
-                        .HasForeignKey("ReportOptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

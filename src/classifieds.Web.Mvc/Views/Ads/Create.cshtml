@@ -1,5 +1,8 @@
 ﻿@model classifieds.Web.Models.Ads.AdsViewModel
-@{ Layout = "layout/_front"; }
+@{ 
+        ViewBag.Title = "ایجاد پست جدید";
+    Layout = "layout/_front"; 
+}
 @section styles{
     <link href="~/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet" asp-append-version="true" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
@@ -13,23 +16,45 @@
                 <h1 class="title is-4">ارسال آگهی جدید</h1>
                 <hr />
                 <form asp-action="create" enctype="multipart/form-data" id="CreateAd">
-
-                    <div class="help is-danger my-2" asp-validation-summary="All">
-                    </div>
-                    
                     <div class="field is-horizontal">
                         <div class="field-body">
-                            <div class="field">
+                            <div class="field is-half">
+                                <label for="City" class="label">شهر</label>
+                                <div class="control has-icons-right">
+                                    <div class="select is-fullwidth">
+                                        <select class="select2" id="selectCity" asp-items="@(ViewData["Cities"] as SelectList)" >
+                                        </select>
+                               
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="field is-half">
                                 <label asp-for="DistrictId" class="label">محله</label>
                                 <div class="control has-icons-right">
                                     <div class="select is-fullwidth">
-                                        <select asp-for="DistrictId" name="DistrictId" asp-items="(IEnumerable<SelectListItem>)@ViewData["Districts"]">
+                                        <select class="select2" asp-for="DistrictId" name="DistrictId" id="selectDistrict" required>
+                                            <option>انتخاب محله</option>
                                         </select>
-                                        <span class="icon is-small is-left">
-                                            <i class="fas fa-city"></i>
+                                    </div>
+                                </div>
+                                <span class="help is-danger" asp-validation-for="DistrictId"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="field is-horizontal">
+                        <div class="field-body">
+                            <div class="field">
+                                <label asp-for="CategoryId" class="label">دسته بندی</label>
+                                <div class="control has-icons-right">
+                                    <div class="select is-fullwidth">
+                                        <select id="category" asp-for="CategoryId" asp-items="(IEnumerable<SelectListItem>)@ViewData["Categories"]">
+                                        </select>
+                                        <span class="icon is-small is-right">
+                                            <i class="fas fa-list"></i>
                                         </span>
                                     </div>
                                 </div>
+                                <span class="help is-danger" asp-validation-for="CategoryId"></span>
                             </div>
                             <div class="field">
                                 <label asp-for="TypeId" class="label">نوع ملک</label>
@@ -44,23 +69,7 @@
                                 </div>
                             </div>
                             <div class="field">
-                                <label asp-for="CategoryId" class="label">دسته بندی</label>
-                                <div class="control has-icons-right">
-                                    <div class="select is-fullwidth">
-                                        <select id="category" asp-for="CategoryId" asp-items="(IEnumerable<SelectListItem>)@ViewData["Categories"]">
-                                        </select>
-                                        <span class="icon is-small is-right">
-                                            <i class="fas fa-list"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="field is-horizontal">
-                        <div class="field-body">
-                            <div class="field">
+                                 <label for="Price" class="label">قیمت</label>
                                 <div class="control has-icons-left">
                                     <input class="input currency" dir="ltr" id="price" placeholder="قیمت" name="Price" />
                                     <span class="icon is-small is-left">
@@ -69,6 +78,7 @@
                                 </div>
                             </div>
                             <div class="field" id="depositField">
+                                <label for="Deposit" class="label">پیش پرداخت</label>
                                 <div class="control has-icons-left">
                                     <input class="input currency" dir="ltr" placeholder="پیش پرداخت" id="deposit" name="Deposit" />
                                     <span class="icon is-small is-left">
@@ -225,6 +235,60 @@
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
+        <script>
+          $(function () {
+              function matchCustom(params, data) {
+                 // If there are no search terms, return all of the data
+                 if ($.trim(params.term) === '') {
+                     return data;
+                 }
+
+                 // Do not display the item if there is no 'text' property
+                 if (typeof data.text === 'undefined') {
+                     return null;
+                 }
+
+                 // `params.term` should be the term that is used for searching
+                 // `data.text` is the text that is displayed for the data object
+                 if (data.text.indexOf(params.term) > -1) {
+                     var modifiedData = $.extend({}, data, true);
+                     // You can return modified objects from here
+                     // This includes matching the `children` how you want in nested data sets
+                     return modifiedData;
+                 }
+
+                 // Return `null` if the term should not be displayed
+                 return null;
+             }
+             $('.select2').select2({
+                matcher: matchCustom,
+                language: {
+                    "noResults": function () { return 'موردی پیدا نشد.'; }
+                }
+            });
+           $('#selectCity').on('select2:select', function (e) {
+          if (e.target.value != 0) {
+              $("#selectDistrict").prop("disabled", false);
+              $.get('/admin/districts/GetByCityId?id=' + e.target.value, function (res) {
+                  var items = res.result.map(m => {
+                      return {
+                          id: m.id,
+                          text: m.name
+                      }
+                  }
+                  );
+                  items.splice(0, 0, { id: 0, text: "انتخاب محله" })
+                  $("#selectDistrict").empty();
+                  $("#selectDistrict").select2({ data: items });
+              })
+          } else {
+              $("#selectDistrict").empty();
+              $("#selectDistrict").select2({ data: [{  text: "انتخاب محله" }] });
+              $("#selectDistrict").prop("disabled", true);
+          }
+        });
+        });
+        </script>
     <environment names="Development">
         <script src="~/view-resources/Views/UserPosts/Index.js" asp-append-version="true"></script>
     </environment>

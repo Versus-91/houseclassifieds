@@ -523,3 +523,25 @@ a.demo-gallery__img--main {
     -webkit-align-items: center;
     align-items: center;
 }
+.top-and-bottom, .left-and-right, .corner-border, .bottom-corner {
+    position: relative;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.corner-border::after {
+    content: '';
+    position: absolute;
+    background-color: pink;
+    width: 3px;
+    height: 60%;
+    top: 0;
+    right: -15px;
+}
+.btn-overlay {
+    position: absolute;
+
+    top: 50px;
+    left: 0;
+
+
+}

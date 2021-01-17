@@ -15,16 +15,11 @@
     </style>
 }
 
-<div class="section Site-content">
+<div class="section Site-content has-background-white-ter">
     <div class="container">
         <div class="columns">
             <div class=" column is-12  has-text-centered is-12-mobile">
-                @if (!string.IsNullOrEmpty(query))
-                {
-                    <div class="notification is-primary">
-                        @ViewData["StatusMessage"]
-                    </div>
-                }
+                <div class="notification is-info">
                 @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.User.UserName)
                 {
 
@@ -54,13 +49,20 @@
                             </div>
                         </div>
                     </div>
-                    <hr class="my-5">
 
                 }
+</div>
+                @if (!string.IsNullOrEmpty(query))
+                {
+                    <div class="notification is-primary">
+                        @ViewData["StatusMessage"]
+                    </div>
+                }
+
                 @if (Model.Posts.Count > 0)
                 {
-                    <div class="section">
-                        <div class="container mt-3">
+                        <div class="container">
+                        <div class="box mt-1">
                             <div class="columns is-12 is-multiline">
                                 @foreach (var post in Model.Posts)
                                 {
@@ -132,7 +134,21 @@
                                 }
                             </div>
                         </div>
-                    </div>
+                        <br />
+                        <nav class="pagination is-centered" role="navigation" aria-label="pagination">
+                              @if(Model.Page>1){
+        <a class="pagination-previous" href="?page=@(Model.Page - 1)">Previous page</a>
+  }else{
+              <a class="pagination-previous" disabled>Previous page</a>
+  }
+  @if(Model.HasNextPage){
+        <a class="pagination-next" href="?page=@(Model.Page + 1)">Next page</a>
+  }else{
+              <a class="pagination-next" disabled>Next page</a>
+  }
+
+</nav>
+</div>
 
                 }
             </div>
@@ -266,7 +282,7 @@
                 roundedCanvas.toBlob(function (blob) {
                     var formData = new FormData();
                     formData.append('upload', blob, 'imagetest.jpeg');
-                    fetch("/stream/avatar", {
+                    fetch("/upload/avatar", {
                         headers: {
                             //'Content-Type': 'multipart/form-data',
                             'X-XSRF-TOKEN': document.getElementsByName('__RequestVerificationToken')[0].value

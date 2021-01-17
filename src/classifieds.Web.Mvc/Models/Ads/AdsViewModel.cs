@@ -15,6 +15,7 @@ namespace classifieds.Web.Models.Ads
         [Required(ErrorMessage ="دسته بندی را مشخص کنید")]
         public int CategoryId { get; set; }
         [Required(ErrorMessage = "محل را انتخاب کنید")]
+        [Range(1, int.MaxValue, ErrorMessage = "محل را انتخاب کنید")]
         public int DistrictId { get; set; }
         [Required(ErrorMessage ="نوع ملک باید پر شود.")]
         public int TypeId { get; set; }

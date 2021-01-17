@@ -1,0 +1,25 @@
+﻿@using classifieds.Web.Models.Common.Modals
+@{ Layout = null; }
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditCity")))
+<form name="DistrictEditForm" role="form" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.District.Id" />
+    <div class="modal-body">
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="rolename">@L("Name")</label>
+            <div class="col-md-9">
+                <input id="rolename" class="form-control" type="text" name="Name" value="@Model.District.Name" required maxlength="32" minlength="2">
+            </div>
+        </div>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="CityId">@L("Name")</label>
+            <div class="col-md-9">
+                <select class="form-control" name="CityId" asp-items="Model.Cities">
+                </select>
+            </div>
+        </div>
+
+    </div>
+    @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/Districts/_EditModal.js" asp-append-version="true"></script>

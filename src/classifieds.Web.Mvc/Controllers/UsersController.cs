@@ -53,8 +53,8 @@ namespace classifieds.Web.Controllers
         //
         // GET: /Manage/Index
         [AbpAllowAnonymous]
-        [HttpGet("/[controller]/{name}")]
-        public async Task<IActionResult> Index(string name,ManageMessageId? message = null)
+        [HttpGet("[controller]/{name}")]
+        public async Task<IActionResult> Index(string name,[FromQuery]int page = 1,ManageMessageId? message = null)
         {
             ViewData["StatusMessage"] =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
@@ -79,6 +79,13 @@ namespace classifieds.Web.Controllers
                 }
                 if (user.Id == AbpSession.UserId)
                 {
+                    var posts = await _postsService.GetAllAsync(new GetAllPostsInput()
+                    {
+                        UserId = user.Id,
+                        SkipCount = (page - 1) * 24,
+                        MaxResultCount = 24,
+                    }
+                        );
                     model = new IndexViewModel
                     {
                         User = ObjectMapper.Map<UserDto>(user),
@@ -87,15 +94,26 @@ namespace classifieds.Web.Controllers
                         TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
                         Logins = await _userManager.GetLoginsAsync(user),
                         BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
-                        Posts = (await _postsService.GetUserPosts(new GetAllPostsInput())).Items
+                        Posts = posts.Items,
+                        HasNextPage = posts.TotalCount > (24 * page),
+                        Page = page 
                     };
                 }
                 else
                 {
+                    var posts = await _postsService.GetAllAsync(new GetAllPostsInput()
+                    {
+                        UserId = user.Id,
+                        SkipCount = (page - 1) * 24,
+                        MaxResultCount = 24,
+                    }
+                     );
                     model = new IndexViewModel
                     {
                         User = ObjectMapper.Map<UserDto>(user),          
-                        Posts = (await _postsService.GetAllAsync(new GetAllPostsInput() { UserId = user.Id})).Items
+                        Posts = posts.Items,
+                        HasNextPage = posts.TotalCount > (24 * page),
+                        Page = page
                     };
                 }
             }

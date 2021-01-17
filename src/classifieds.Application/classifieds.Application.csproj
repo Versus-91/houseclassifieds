@@ -13,4 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\classifieds.Core\classifieds.Core.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Area\" />
+  </ItemGroup>
 </Project>

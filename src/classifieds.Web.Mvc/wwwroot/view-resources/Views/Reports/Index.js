@@ -1,11 +1,11 @@
 ﻿(function ($) {
-    var _amenityService = abp.services.app.amenity,
+    var _cityService = abp.services.app.report,
         l = abp.localization.getSource('classifieds'),
-        _$modal = $('#CreateModal'),
+        _$modal = $('#ReportCreateModal'),
         _$form = _$modal.find('form'),
-        _$table = $('#AmenitiesTable');
+        _$table = $('#ReportTable');
 
-    var _$amenitiesTable = _$table.DataTable({
+    var _$rolesTable = _$table.DataTable({
         paging: true,
         serverSide: true,
         ajax: function (data, callback, settings) {
@@ -14,7 +14,7 @@
             filter.skipCount = data.start;
 
             abp.ui.setBusy(_$table);
-            _amenityService.getAll(filter).done(function (result) {
+            _cityService.getAll(filter).done(function (result) {
                 callback({
                     recordsTotal: result.totalCount,
                     recordsFiltered: result.totalCount,
@@ -24,11 +24,17 @@
                 abp.ui.clearBusy(_$table);
             });
         },
+        language: {
+            "lengthMenu": "_MENU_ " + l("RecordPerPage"),
+            "zeroRecords": "Nothing found - sorry",
+            "infoEmpty": l("No records available"),
+            "infoFiltered": "(filtered from _MAX_ total records)"
+        },
         buttons: [
             {
                 name: 'refresh',
                 text: '<i class="fas fa-redo-alt"></i>',
-                action: () => _$amenitiesTable.draw(false)
+                action: () => _$rolesTable.draw(false)
             }
         ],
         responsive: {
@@ -49,30 +55,16 @@
             },
             {
                 targets: 2,
-                data: 'description',
-                sortable: false
-            },
-            {
-                targets: 3,
-                data: 'icon',
-                sortable: false,
-                render: (data, type, row, meta) => {
-                    return row.icon != null  ?
-                     `<image src="/${row.icon}"  style="width:3rem;height:2rem;"></image>`:"";
-	         }
-            },
-            {
-                targets: 4,
                 data: null,
                 sortable: false,
                 autoWidth: false,
                 defaultContent: '',
                 render: (data, type, row, meta) => {
                     return [
-                        `   <button type="button" class="btn btn-sm bg-secondary edit-amenity" data-id="${row.id}" data-toggle="modal" data-target="#AmenityEditModal">`,
+                        `   <button type="button" class="btn btn-sm bg-secondary edit-district" data-id="${row.id}" data-toggle="modal" data-target="#DistrictEditModal">`,
                         `       <i class="fas fa-pencil-alt"></i> ${l('Edit')}`,
                         '   </button>',
-                        `   <button type="button" class="btn btn-sm bg-danger delete-amenity" data-amenity-id="${row.id}" data-amenity-name="${row.name}">`,
+                        `   <button type="button" class="btn btn-sm bg-danger delete-district" data-district-id="${row.id}" data-district-name="${row.name}">`,
                         `       <i class="fas fa-trash"></i> ${l('Delete')}`,
                         '   </button>',
                     ].join('');
@@ -81,59 +73,53 @@
         ]
     });
 
-    //_$form.find('.save-button').on('click', (e) => {
-    //    e.preventDefault();
+    _$form.find('.save-button').on('click', (e) => {
+        e.preventDefault();
 
-    //    if (!_$form.valid()) {
-    //        return;
-    //    }
+        if (!_$form.valid()) {
+            return;
+        }
 
-    //    //var city = _$form.serializeFormToObject();
-    //    var form = $('form')[0]; // You need to use standard javascript object here
-    //    var city = new FormData(form);
+        var city = _$form.serializeFormToObject();
 
-    //    abp.ui.setBusy(_$modal);
-    //    $.ajax({
-    //        url: "/admin/amenities/create", method: "POST",data:city})
-    //        .done(function () {
-    //            _$modal.modal('hide');
-    //            _$form[0].reset();
-    //            abp.notify.info(l('SavedSuccessfully'));
-    //            _$amenitiesTable.ajax.reload();
-    //        })
-    //        .fail(function () {
-    //            alert("error");
-    //        })
-    //        .always(function () {
-    //            abp.ui.clearBusy(_$modal);
-    //     });
-
-    //});
-
-    $(document).on('click', '.delete-amenity', function () {
-        var cityId = $(this).attr("data-amenity-id");
-        var cityName = $(this).attr('data-amenity-name');
-
-        deleteRole(cityId, cityName);
+        abp.ui.setBusy(_$modal);
+        _cityService
+            .create(city)
+            .done(function () {
+                _$modal.modal('hide');
+                _$form[0].reset();
+                abp.notify.info(l('SavedSuccessfully'));
+                _$rolesTable.ajax.reload();
+            })
+            .always(function () {
+                abp.ui.clearBusy(_$modal);
+            });
     });
 
-    $(document).on('click', '.edit-amenity', function (e) {
+    $(document).on('click', '.delete-district', function () {
+        var Id = $(this).attr("data-district-id");
+        var Name = $(this).attr('data-district-name');
+
+        deleteRole(Id, Name);
+    });
+
+    $(document).on('click', '.edit-district', function (e) {
         var Id = $(this).attr("data-id");
 
         e.preventDefault();
         abp.ajax({
-            url: abp.appPath + 'admin/amenities/Edit/' + Id,
+            url: abp.appPath + 'admin/districts/Edit/' + Id,
             type: 'POST',
             dataType: 'html',
             success: function (content) {
-                $('#AmenityEditModal div.modal-content').html(content);
+                $('#DistrictEditModal div.modal-content').html(content);
             },
             error: function (e) { }
         })
     });
 
-    abp.event.on('amenity.edited', (data) => {
-        _$amenitiesTable.ajax.reload();
+    abp.event.on('district.edited', (data) => {
+        _$rolesTable.ajax.reload();
     });
 
     function deleteRole(cityId, cityName) {
@@ -144,11 +130,11 @@
             null,
             (isConfirmed) => {
                 if (isConfirmed) {
-                    _amenityService.delete({
+                    _cityService.delete({
                         id: cityId
                     }).done(() => {
                         abp.notify.info(l('SuccessfullyDeleted'));
-                        _$amenitiesTable.ajax.reload();
+                        _$rolesTable.ajax.reload();
                     });
                 }
             }
@@ -162,12 +148,12 @@
     });
 
     $('.btn-search').on('click', (e) => {
-        _$amenitiesTable.ajax.reload();
+        _$rolesTable.ajax.reload();
     });
 
     $('.txt-search').on('keypress', (e) => {
         if (e.which == 13) {
-            _$amenitiesTable.ajax.reload();
+            _$rolesTable.ajax.reload();
             return false;
         }
     });

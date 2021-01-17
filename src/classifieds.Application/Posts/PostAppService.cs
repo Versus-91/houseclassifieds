@@ -26,10 +26,12 @@ namespace classifieds.Posts
         private readonly IRepository<Post> _postRepository;
         private readonly IRepository<Category> _categoryRepository;
         private readonly IRepository<District> _districtRepository;
+        private readonly IRepository<City> _cityRepository;
 
         private readonly IRepository<User, long> _userRepository;
-        public PostAppService(IRepository<Post> repository, IRepository<Category> categoryRepository, IRepository<User, long> userRepository, IRepository<District> districtRepository) : base(repository)
+        public PostAppService(IRepository<City> cityRepository,IRepository<Post> repository, IRepository<Category> categoryRepository, IRepository<User, long> userRepository, IRepository<District> districtRepository) : base(repository)
         {
+            _cityRepository = cityRepository;
             _postRepository = repository;
             _categoryRepository = categoryRepository;
             CreatePermissionName = PermissionNames.Pages_Posts;
@@ -41,7 +43,6 @@ namespace classifieds.Posts
 
         protected override IQueryable<Post> CreateFilteredQuery(GetAllPostsInput input)
         {
-            
             return base.CreateFilteredQuery(input)
                 .Include(m=> m.District.City)
                 .Include(m => m.Images)
@@ -150,6 +151,7 @@ namespace classifieds.Posts
             var postsCountPerCategory = new List<LlocationPostsCount>();
             foreach (var category in categories)
             {
+                var cityId = _cityRepository.GetAll().Where(m => m.Name.Contains("کابل")).FirstOrDefault().Id;
 
                  var counts = await _postRepository.GetAll().Where(m => m.CategoryId == category.Id &&m.IsVerified == true && m.District.City.Name.Contains("کابل")).Include(m=>m.District).GroupBy(m => m.DistrictId )
                   .Select(n => new PostsCountDto
@@ -157,6 +159,7 @@ namespace classifieds.Posts
                    DistrictId = n.Key,
                    Count=n.Count(),
                    DistrictName = _districtRepository.GetAll().Where(m => m.Id == n.Key).FirstOrDefault().Name,
+                   CityId = cityId,
 
                   }
                ).OrderByDescending(m=>m.Count).Take(10).ToListAsync();

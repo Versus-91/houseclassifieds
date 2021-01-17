@@ -1,6 +1,6 @@
 ﻿@using classifieds.Web.Startup
 @model classifieds.Web.Models.Ads.ShowAdViewModel
-@{ ViewBag.Title = L("HomePage");
+@{ ViewBag.Title = Model.Post.Category.Name +" "+  Model.Post.Type.Name +" در "+ Model.Post.District.Name;
     ViewBag.CurrentPageName = PageNames.Home;
     Layout = "layout/_front"; }
 @section styles{
@@ -20,22 +20,21 @@
                 <li><a href="/ads?city=@Model.Post.District.City.Id">@Model.Post.District.City.Name</a></li>
                 <li><a href="/ads?district=@Model.Post.District.Id"> @Model.Post.District.Name </a></li>
                 <li><a href="/ads?district=@Model.Post.District.Id&category=@Model.Post.CategoryId"> @Model.Post.Category.Name </a></li>
-                <li ><a href="/ads?district=@Model.Post.District.Id&category=@Model.Post.CategoryId&types=@Model.Post.TypeId" aria-current="page">@Model.Post.Type.Name</a></li>
-            </ul>b n
+                <li ><a href="/ads?district=@Model.Post.District.Id&category=@Model.Post.CategoryId&types=@Model.Post.TypeId&city=@Model.Post.District.City.Id" aria-current="page">@Model.Post.Type.Name</a></li>
+            </ul>
         </nav>
         <div class="box">
             <div class="columns">
                 <div class="column is-5 has-text-centered">
-                    <h1 class="title is-4">@Model.Post.Title</h1>
-                    <h3 class="subtitle is-5 my-2">@Model.Post.Category.Name</h3>
+                    <h3 class="title is-4 my-2">@Model.Post.Category.Name</h3>
                     @if (Model.Post.Category.Name.Contains("گروی") || Model.Post.Category.Name.Contains("اجاره"))
                     {
-                        <h3 class="subtitle is-5 my-2">@Model.Post.Rent $</h3>
-                        <h3 class="subtitle is-5 my-2">@Model.Post.Deposit $</h3>
+                        <h3 class="subtitle is-5 my-2">@Model.Post.Rent $ اجاره</h3>
+                        <h3 class="subtitle is-5 my-2">@Model.Post.Deposit $ پیش پرداخت</h3>
                     }
                     else
                     {
-                        <h3 class="subtitle is-5 my-2">@Model.Post.Price $</h3>
+                        <h3 class="subtitle is-5 my-2">@Model.Post.Price $ قیمت</h3>
                     }
 
 
@@ -71,14 +70,28 @@
                             </div>
                         </div>
                     </section>
+                    <div class="field is-grouped btn-overlay">
+                      <p class="control">
+                         <button class="button is-danger is-small" id="btn">
+                            <span class="icon ">
+                                <i class="fas fa-flag"></i>
+                            </span>
+                          </button>
+                      </p>
+                    </div>
+       
+             
                     <h1 class="subtitle is-5">@Model.Post.Description</h1>
-
+                    <div class="level is-mobile">
                     <button class="button is-primary">
                         <span class="icon ">
                             <i class="fas fa-phone"></i>
                         </span>
                         <span>تماس</span>
                     </button>
+  
+                    <span class="text-muted">کد :78878755</span>
+                    </div>
                 </div>
                 <div class="column is-7">
                     <div class="row">
@@ -99,8 +112,11 @@
             {
                 <div class="columns my-4">
                     <div class="column is-7">
-                        <h3>امکانات</h3>
-                        <hr />
+
+                        <h1 class="title is-4 b">
+                            امکانات
+                       </h1>
+                       <br>
                         <div class="columns">
 
 
@@ -115,6 +131,7 @@
                         </div>
                     </div>
                     <div class="column is-5" id="map">
+                
                         <div style="height:300px"></div>
                     </div>
                 </div>
@@ -144,17 +161,10 @@
 
                                             }
                                             <div class="overlay">@post.District.City.Name -  @post.District.Name</div>
-                                            @*<div class="overlay-top-corner">
-            @{featuredIcon}
-            @{hasImageIcon}
-        </div>*@
                                         </figure>
                                     </div>
                                     <div class="card-content">
-                                        <div class="content has-text-centered">
-                                            @post.Title
-                                            <br>
-                                        </div>
+                                   
                                         <nav class="level is-mobile">
                                             <div class="level-item has-text-centered">
                                                 <div>
@@ -197,10 +207,24 @@
                 </div>
             </div>
         </div>
-
     }
 </div>
-
+<div class="modal " id="myModal">
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">گزارش اشکال</p>
+      <button class="delete" aria-label="close" data-bulma-modal="close"></button>
+    </header>
+    <section class="modal-card-body">
+      <p>There is something here</p>
+    </section>
+    <footer class="modal-card-foot">
+      <button class="button is-success">ثبت </button>
+      <button class="button" data-bulma-modal="close">انصراف</button>
+    </footer>
+  </div>
+</div>
 
 <div id="gallery" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="pswp__bg"></div>

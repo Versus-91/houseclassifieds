@@ -5,7 +5,22 @@
     var loading = false;
     var pageIndex = 1;
     var rowPerPage = 30;
-    var totalPages = 0;
+    var totalPages = 0
+    $('.tabs').each(function (index) {
+        var $tabParent = $(this);
+        var $tabs = $tabParent.find('li');
+        var $contents = $tabParent.next('.tabs-content').find('.tab-content');
+
+        $tabs.click(function () {
+            var curIndex = $(this).index();
+            // toggle tabs
+            $tabs.removeClass('is-active');
+            $tabs.eq(curIndex).addClass('is-active');
+            // toggle contents
+            $contents.removeClass('is-active');
+            $contents.eq(curIndex).addClass('is-active');
+        });
+    });
 
     var path = function (filter) {
         console.log('filter : ',filter)
@@ -100,6 +115,7 @@
                 }, 200);
             })
             .fail(function () {
+                loading = false;
                 console.log("error");
             })
             .always(function () {
@@ -131,10 +147,12 @@
             $("#maxDeposit").val(null);
 		}
     }); 
-    function FilterAds() {
+    function FilterAds(sorting = null) {
         var query = {};
         var category = $('#categories').find(":selected").val();
         var selectedCategory = $('#categories').find('option:selected').text();
+        var selectedDistrict = $('#selectDistrict').find('option:selected').val();
+        var selectedCity = $('#selectCity').find('option:selected').val();
         var peopertTypes = $('#propertyTypes').val();
         var minArea = $("#minArea").val();
         var maxArea = $("#maxArea").val();
@@ -145,7 +163,16 @@
         var minDeposit = $("#minDeposit").val();
         var maxDeposit = $("#maxDeposit").val();
         var beds = $("#minBedCount").val();
-
+        if (!!selectedDistrict) {
+            if (selectedDistrict != 0) {
+                query.district = selectedDistrict;
+			}
+        }
+        //if (!!selectedCity) {
+        //    if (selectedCity != 0) {
+        //        query.city = selectedCity;
+        //    }
+        //}
         if (!!category) {
             query.category = category;
             if (selectedCategory.includes("اجاره") || selectedCategory.includes("گروی")) {
@@ -174,7 +201,7 @@
             }
         }
         if (!!peopertTypes) {
-            query.types = peopertTypes;
+            if (peopertTypes != 0) { query.types = peopertTypes; }
 
         }
         if (minArea & maxArea) {
@@ -195,10 +222,44 @@
         } else {
             delete query.beds;
         }
+        if (sorting) {
+            query.sorting = sorting;
+		}
         loadAds(path($.param(query,true),true));
     }
     $("#apply").click(() => {
         FilterAds();
+    });
+    $("#send").click(() => {
+        FilterAds();
+    });
+    $("#cheapest").click(() => {
+        var category = $('#categories').find(":selected").val();
+        var query = "";
+        if (!!category) {
+            if (selectedCategory.includes("اجاره") || selectedCategory.includes("گروی")) {
+                query = "Rent,Deposit Asc"
+            } else {
+                query = "Price Asc"
+            }
+        }
+        FilterAds(query);
+    });
+    $("#newest").click(() => {
+        var query = "CreationTime Desc";
+        FilterAds(query);
+    });
+    $("#mostExpensive").click(() => {
+        var category = $('#categories').find(":selected").val();
+        var query = "";
+        if (!!category) {
+            if (selectedCategory.includes("اجاره") || selectedCategory.includes("گروی")) {
+                query = "Rent,Deposit Desc"
+            } else {
+                query = "Price Desc"
+            }
+        }
+        FilterAds(query);
     });
     $(".pagination-next").click(() => {
             pageIndex = pageIndex + 1;

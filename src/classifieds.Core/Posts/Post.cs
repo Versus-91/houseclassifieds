@@ -14,6 +14,8 @@ namespace classifieds.Posts
 {
     public class Post :AuditedEntity,IHasCreationTime
     {
+        public string Code { get; set; }
+
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsFeatured { get; set; } = false;

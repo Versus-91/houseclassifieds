@@ -11,6 +11,8 @@ using classifieds.Images;
 using classifieds.PropertyTypes;
 using classifieds.Amenities;
 using classifieds.PostsAmenities;
+using classifieds.Reports;
+using classifieds.ReportOptions;
 
 namespace classifieds.EntityFrameworkCore
 {
@@ -24,6 +26,10 @@ namespace classifieds.EntityFrameworkCore
         public DbSet<Category> Categories { get; set; }
         public DbSet<PropertyType> PropertyTypes { get; set; }
         public DbSet<Amenity> Amenities { get; set; }
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<ReportOption> ReportOptions { get; set; }
+
+
         public DbSet<PostAmenity> PostsAmenities{ get; set; }
         public classifiedsDbContext(DbContextOptions<classifiedsDbContext> options)
             : base(options)

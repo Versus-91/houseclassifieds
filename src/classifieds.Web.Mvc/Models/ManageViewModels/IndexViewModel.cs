@@ -11,8 +11,9 @@ namespace classifieds.Models.ManageViewModels
     public class IndexViewModel
     {
         public UserDto User { get; set; }
-
+        public int Page { get; set; }
         public bool HasPassword { get; set; }
+        public bool HasNextPage{ get; set; }
 
         public IList<UserLoginInfo> Logins { get; set; }
         public IReadOnlyList<PostDto> Posts { get; set; }

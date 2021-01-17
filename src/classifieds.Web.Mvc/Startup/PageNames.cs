@@ -14,6 +14,10 @@
         public const  string PropertyTypes = "Property Types";
         public const  string Authorization = "authorization";
         public const  string Amenities = "Amenities";
+        public const string Reports = "Reports";
+        public const string ReportOptions = "Report Options";
+
+
 
     }
 }
