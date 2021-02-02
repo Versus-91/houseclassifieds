@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using Microsoft.Extensions.Logging;
 using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Processing;
@@ -19,6 +21,9 @@ namespace classifieds.Web.helpers
         /// The command constant for the resize width.
         /// </summary>
         public const string Width = "width";
+        public static Size[] ValidResolutions =  { new Size() { Height = 96, Width = 96 },
+        new Size() { Height = 192, Width = 192 },new Size() { Height = 320, Width = 240 },new Size() { Height = 640, Width = 480 },
+        new Size() { Height = 1024, Width = 768 } };
 
         /// <summary>
         /// The command constant for the resize height.
@@ -79,7 +84,7 @@ namespace classifieds.Web.helpers
             {
                 image.Image.Mutate(x => x.Resize(options));
             }
-
+       
             return image;
         }
 
@@ -95,7 +100,12 @@ namespace classifieds.Web.helpers
 
             Size size = ParseSize(commands, parser, culture);
 
+
             if (size.Width <= 0 && size.Height <= 0)
+            {
+                return null;
+            }
+            if (!Array.Exists(ValidResolutions, item => item.Equals(size)))
             {
                 return null;
             }
@@ -123,7 +133,11 @@ namespace classifieds.Web.helpers
             // The command parser will reject negative numbers as it clamps values to ranges.
             uint width = parser.ParseValue<uint>(commands.GetValueOrDefault(Width), culture);
             uint height = parser.ParseValue<uint>(commands.GetValueOrDefault(Height), culture);
-
+            if (!Array.Exists(ValidResolutions, item => item.Height == height && item.Width == width))
+            {
+                width = 0;
+                height = 0;
+            }
             return new Size((int)width, (int)height);
         }
 

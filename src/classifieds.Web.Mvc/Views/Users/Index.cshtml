@@ -15,15 +15,13 @@
     </style>
 }
 
-<div class="section Site-content has-background-white-ter">
+<div class="section Site-content ">
     <div class="container">
         <div class="columns">
             <div class=" column is-12  has-text-centered is-12-mobile">
-                <div class="notification is-info">
                 @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.User.UserName)
                 {
-
-
+                  <div class="notification is-info">
                     <div class="columns is-multiline is-mobile is-centered">
                         <div class="column is-3 ">رمزعبور</div>
                         <div class="column is-3 ">
@@ -49,9 +47,8 @@
                             </div>
                         </div>
                     </div>
-
+                    </div>
                 }
-</div>
                 @if (!string.IsNullOrEmpty(query))
                 {
                     <div class="notification is-primary">
@@ -62,73 +59,32 @@
                 @if (Model.Posts.Count > 0)
                 {
                         <div class="container">
-                        <div class="box mt-1">
                             <div class="columns is-12 is-multiline">
                                 @foreach (var post in Model.Posts)
                                 {
-                                    <div class=" column is-3">
+                                    <div class=" column  is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
                                         <a class="fill-div" href="/ads/@post.Id">
-                                            <div class="card card-hover-shadow" data-label="@post.Category.Name">
-                                                <div class="card-image">
                                                     <figure class="image is-4by3">
                                                         @if (post.Images.Count > 0)
                                                         {
-                                                            <img src="/@post.Images[0].Path?width=600&height=480" alt="Placeholder image">
+                                                            <img src="/@post.Images[0].Path?width=600&height=480" alt="Placeholder image" style="border-radius:15px;">
 
                                                         }
                                                         else
                                                         {
-                                                            <img src="/img/placeholder.png" alt="Placeholder image">
+                                                            <img src="/img/placeholder.png" alt="Placeholder image" style="border-radius:15px;">
 
                                                         }
-                                                        <div class="overlay">@post.District.City.Name -  @post.District.Name</div>
                                                         @*<div class="overlay-top-corner">
                                                     @{featuredIcon}
                                                     @{hasImageIcon}
                                                 </div>*@
                                                     </figure>
-                                                </div>
-                                                <div class="card-content">
-                                                    <div class="content has-text-centered">
-                                                        @post.Title
-                                                        <br>
-                                                    </div>
-                                                    <nav class="level is-mobile">
-                                                        <div class="level-item has-text-centered">
-                                                            <div>
-                                                                <p><i class="fas fa-chart-area has-text-grey"></i></p>
-                                                                <p>@post.Area</p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="level-item has-text-centered">
-                                                            <div>
-                                                                <p><i class="fas  fa-clock has-text-grey"></i></p>
-                                                                <p>
-                                                                    @if (post.Age == 0)
-                                                                    {
-                                                                        Html.Raw("N/A");
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                        Html.Raw(post.Age);
-                                                                    }
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                        <div class="level-item has-text-centered">
-                                                            <div>
-                                                                <p><i class="fas fa-bed has-text-grey"></i></p>
-                                                                <p>@post.Bedroom</p>
-                                                            </div>
-                                                        </div>
-                                                    </nav>
-                                                </div>
-                                                <footer class="card-footer">
-                                                    <a href="#" class="card-footer-item">
-                                                        <p><i class="fas fa-phone has-text-success"></i>  اطلاعات تماس</p>
-                                                    </a>
-                                                </footer>
-                                            </div>
+                                                    <div class="content has-text-right">
+                                                       <p class="title is-size-6 mt-1"> @post.Category.Name @post.Type.Name @post.Area متری</p>
+                                                       <p class="subtitle is-size-6 mt-1">  @post.District.City.Name -  @post.District.Name</p>
+                                                       <p class="subtitle is-size-6 mt-1">قیمت :  @post.Price</p>
+                                                    </div>                                
                                         </a>
                                     </div>
                                 }
@@ -137,19 +93,20 @@
                         <br />
                         <nav class="pagination is-centered" role="navigation" aria-label="pagination">
                               @if(Model.Page>1){
-        <a class="pagination-previous" href="?page=@(Model.Page - 1)">Previous page</a>
+        <a class="pagination-previous" href="?page=@(Model.Page - 1)">صفحه قبل</a>
   }else{
-              <a class="pagination-previous" disabled>Previous page</a>
+              <a class="pagination-previous" disabled>صفحه قبل</a>
   }
   @if(Model.HasNextPage){
-        <a class="pagination-next" href="?page=@(Model.Page + 1)">Next page</a>
+        <a class="pagination-next" href="?page=@(Model.Page + 1)">صفحه بعد</a>
   }else{
-              <a class="pagination-next" disabled>Next page</a>
+              <a class="pagination-next" disabled>صفحه بعد</a>
   }
 
 </nav>
-</div>
 
+                }else{
+                    <p>پستی برای نمایش وجود ندارد</p>
                 }
             </div>
         </div>
@@ -325,4 +282,4 @@
         });
     </script>
 }
-}
+

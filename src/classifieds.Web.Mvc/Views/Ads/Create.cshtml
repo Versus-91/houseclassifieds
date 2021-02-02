@@ -19,7 +19,7 @@
                     <div class="field is-horizontal">
                         <div class="field-body">
                             <div class="field is-half">
-                                <label for="City" class="label">شهر</label>
+                                <label for="City" class="label">شهر  <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
                                 <div class="control has-icons-right">
                                     <div class="select is-fullwidth">
                                         <select class="select2" id="selectCity" asp-items="@(ViewData["Cities"] as SelectList)" >
@@ -29,7 +29,7 @@
                                 </div>
                             </div>
                             <div class="field is-half">
-                                <label asp-for="DistrictId" class="label">محله</label>
+                                <label asp-for="DistrictId" class="label">محله <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
                                 <div class="control has-icons-right">
                                     <div class="select is-fullwidth">
                                         <select class="select2" asp-for="DistrictId" name="DistrictId" id="selectDistrict" required>
@@ -44,7 +44,7 @@
                     <div class="field is-horizontal">
                         <div class="field-body">
                             <div class="field">
-                                <label asp-for="CategoryId" class="label">دسته بندی</label>
+                                <label asp-for="CategoryId" class="label">نوع معامله <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
                                 <div class="control has-icons-right">
                                     <div class="select is-fullwidth">
                                         <select id="category" asp-for="CategoryId" asp-items="(IEnumerable<SelectListItem>)@ViewData["Categories"]">
@@ -57,7 +57,7 @@
                                 <span class="help is-danger" asp-validation-for="CategoryId"></span>
                             </div>
                             <div class="field">
-                                <label asp-for="TypeId" class="label">نوع ملک</label>
+                                <label asp-for="TypeId" class="label">نوع ملک <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
                                 <div class="control has-icons-right">
                                     <div class="select is-fullwidth">
                                         <select asp-for="TypeId" id="type" asp-items="(IEnumerable<SelectListItem>)@ViewData["PropertyTypes"]">
@@ -93,17 +93,7 @@
                     <div class="field is-horizontal">
                         <div class="field-body">
                             <div class="field">
-                                <label asp-for="Title" class="label">عنوان</label>
-                                <div class="control has-icons-right">
-                                    <input asp-for="Title" class="input" type="text" placeholder="عنوان">
-                                    <span class="icon is-small is-right">
-                                        <i class="fas fa-arrow-left"></i>
-                                    </span>
-                                    <span class="help is-danger" asp-validation-for="Title"></span>
-                                </div>
-                            </div>
-                            <div class="field">
-                                <label asp-for="Area" class="label">متراژ</label>
+                                <label asp-for="Area" class="label">متراژ <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
                                 <div class="control has-icons-left ">
                                     <input class="input " asp-for="Area" placeholder="مساحت" />
                                     <span class="icon is-small is-left">
@@ -158,6 +148,7 @@
                     </div>
                     <div class="columns">
                         <div class="column is-4">
+                            <p class="title is-4">تجهیزات و امکانات</p>
                             <div class="columns is-multiline">
                                 @foreach (var amenity in ViewData["amenities"] as IList<classifieds.Amenities.Dto.AmenityDto>)
                                 {
@@ -171,6 +162,7 @@
                             </div>
                         </div>
                         <div class="column is-8">
+                            <p class="title is-4">مکان روی نقشه </p>
                             <div id="map" style="height:250px">
                             </div>
                         </div>

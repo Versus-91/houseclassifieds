@@ -4,8 +4,10 @@
     Layout = null;
 }
 @await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Edit")))
-<form name="AmenityEditForm" role="form" class="form-horizontal">
+<form  role="form" class="form-horizontal" asp-action="update"  enctype="multipart/form-data">
     <input type="hidden" name="Id" value="@Model.Id" />
+    <input type="hidden" name="Icon" value="@Model.Icon" />
+
     <div class="modal-body">
         <div class="modal-body">
             <div class="form-group row required">
@@ -20,14 +22,15 @@
                     <input type="text" name="Description" class="form-control" required maxlength="32" minlength="2" value="@Model.Description">
                 </div>
             </div>
-            <div class="form-group row ">
-                <label class="col-md-3 col-form-label" for="rolename">@L("Icon")</label>
-                <div class="col-md-9">
-                    <input type="text" name="icon" class="icon-class-input form-control" style="display:none" value="@Model.Icon" />
-                    <button type="button" class="btn btn-primary picker-button">Pick an Icon</button>
-                    <span class="demo-icon"></span>
-                </div>
-            </div>
+            @if(Model.Icon != null){
+                <img src="/@Model.Icon" style="height:50px;width:50px;" />
+            }
+            <div class="form-group rows">
+               <div class="custom-file">
+                 <input type="file" class="custom-file-input" id="customFile" name="File">
+                 <label class="custom-file-label" for="customFile">Choose file</label>
+               </div>
+            </div> 
         </div>
     </div>
     @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")

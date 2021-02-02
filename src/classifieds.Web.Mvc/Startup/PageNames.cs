@@ -16,6 +16,8 @@
         public const  string Amenities = "Amenities";
         public const string Reports = "Reports";
         public const string ReportOptions = "Report Options";
+        public const string Areas = "Areas";
+
 
 
 

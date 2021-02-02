@@ -23,7 +23,24 @@ namespace classifieds.Web.Startup
                         icon: "fas fa-home"
                     )
                 )
-                                .AddItem(
+                .AddItem(
+                    new MenuItemDefinition(
+                        PageNames.Reports,
+                        L("Reports"),
+                        url: "admin/reports",
+                        order: 1,
+                        icon: "fas fa-home"
+                    )
+                ).AddItem(
+                    new MenuItemDefinition(
+                        PageNames.ReportOptions,
+                        L("ReportOptions"),
+                        url: "admin/reportoptions",
+                        order: 1,
+                        icon: "fas fa-home"
+                    )
+                )
+                .AddItem(
                     new MenuItemDefinition(
                         PageNames.Amenities,
                         L("Amenities"),
@@ -123,6 +140,13 @@ namespace classifieds.Web.Startup
                         PageNames.Districts,
                         L("Districts"),
                         url: "admin/Districts",
+                        icon: "fas fa-home",
+                        requiresAuthentication: true)
+                ).AddItem(
+                new MenuItemDefinition(
+                        PageNames.Areas,
+                        L("Areas"),
+                        url: "admin/Areas",
                         icon: "fas fa-home",
                         requiresAuthentication: true)
                 )

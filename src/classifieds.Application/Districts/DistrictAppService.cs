@@ -1,4 +1,5 @@
 ﻿using Abp.Application.Services;
+using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.ObjectMapping;
 using classifieds.Authorization;
@@ -24,6 +25,13 @@ namespace classifieds.Districts
             CreatePermissionName = PermissionNames.Pages_District;
             UpdatePermissionName = PermissionNames.Pages_District;
             DeletePermissionName = PermissionNames.Pages_District;
+        }
+        protected override IQueryable<District> CreateFilteredQuery(PagedAndSortedResultRequestDto input)
+        {
+            return base.CreateFilteredQuery(input)
+                .Include(m => m.City)
+                .Include(m => m.Area)
+                .OrderByDescending(m => m.CreationTime);
         }
         public async Task<List<DistrictDto>> GetByCityId(int id)
         {

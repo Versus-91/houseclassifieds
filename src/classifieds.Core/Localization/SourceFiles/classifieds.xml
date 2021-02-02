@@ -117,6 +117,7 @@
     <text name="ResetPasswordStepOneInfo">1. Enter your administrator password</text>
     <text name="ResetPasswordStepTwoInfo">2. Copy this random password so you can send it to the user</text>
     <text name="Cities">Cities</text>
+    <text name="City">City</text>
     <text name="Categories">Categories</text>
     <text name="Districts">Districts</text>
     <text name="Posts">Posts</text>
@@ -135,7 +136,14 @@
     <text name="Amenities">Amenities</text>
     <text name="Description">Description</text>
     <text name="Icon">Icon</text>
-    <text name="Authorization">Authorization</text>
+    <text name="ReportOptions">Report Options</text>
+    <text name="Reports">Reports</text>
+    <text name="CreatePosts">Create Posts</text>
+    <text name="Create Post">Create Post</text>
+    <text name="AdminPosts">User Posts Management</text>
+    <text name="Areas">Areas</text>
+    <text name="Area">Area</text>
+    <text name="Id" value="Id" />
 
   </texts>
 </localizationDictionary>

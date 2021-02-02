@@ -3,6 +3,7 @@
         l = abp.localization.getSource('classifieds'),
         _$modal = $('#DistrictCreateModal'),
         _$form = _$modal.find('form'),
+        _$areaSelect = $("#selectArea");
         _$table = $('#DistrictTable');
 
     var _$rolesTable = _$table.DataTable({
@@ -55,6 +56,22 @@
             },
             {
                 targets: 2,
+                data: 'city.name',
+                sortable: false
+            },
+            {
+                targets: 3,
+                sortable: false,
+                render: (data, type, row, meta) => {
+                    if (row.area != null ){
+                        return row.area.name;
+                    }
+                    return "";
+                }
+
+            },
+            {
+                targets: 4,
                 data: null,
                 sortable: false,
                 autoWidth: false,
@@ -88,6 +105,8 @@
             .done(function () {
                 _$modal.modal('hide');
                 _$form[0].reset();
+                _$areaSelect.empty();
+                _$areaSelect.select2('val', 'All');
                 abp.notify.info(l('SavedSuccessfully'));
                 _$rolesTable.ajax.reload();
             })
@@ -157,4 +176,31 @@
             return false;
         }
     });
+    $('.select2').select2({ theme: 'bootstrap4' });
+    var defaultCity = $('#selectCity').find(":selected").val();
+    console.log(defaultCity);
+    getAreas(Number(defaultCity));
+    $('#selectCity').on('change', function (e) {
+            getAreas(e.target.value);
+    });
+
+    function getAreas(id) {
+        if (id != 0) {
+            _$areaSelect.prop("disabled", false);
+            $.get('/api/services/app/Area/GetAreaByCityId?cityId=' + id, function (res) {
+                var items = res.result.items.map(m => {
+                    return {
+                        id: m.id,
+                        text: m.name
+                    }
+                }
+                );
+                _$areaSelect.empty();
+                _$areaSelect.select2({ data: items, theme: 'bootstrap4' });
+            })
+        } else {
+            _$areaSelect.prop("disabled", true);
+        }
+	}
+
 })(jQuery);

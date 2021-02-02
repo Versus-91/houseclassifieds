@@ -2,10 +2,18 @@
     $('.select2').select2();
     var url = document.location.href;
     var params = url.split("?");
-    var loading = false;
+    var openFilterButton = $("#filterPage");
+    var closeFilterButton = $("#closeFilterPage");
     var pageIndex = 1;
     var rowPerPage = 30;
     var totalPages = 0
+    var selectCity = $('#selectCity');
+    openFilterButton.click((e) => {
+        $("#myNav").width("100%");
+    });
+    closeFilterButton.click((e) => {
+        $("#myNav").width("0%");
+    });
     $('.tabs').each(function (index) {
         var $tabParent = $(this);
         var $tabs = $tabParent.find('li');
@@ -31,6 +39,16 @@
     }
     function loadAds(path, reloading = false) {
         loading = true;
+        $.blockUI.defaults.css = {
+            padding: 0,
+            margin: 0,
+            width: '30%',
+            top: '40%',
+            left: '35%',
+            textAlign: 'center',
+            cursor: 'wait'
+        };
+        $.blockUI({ message: $('#throbber') });
         $.getJSON(path, function () {
         })
             .done(function (res) {
@@ -113,6 +131,7 @@
                 $('html, body').animate({
                     scrollTop: $("#mainContainer").offset().top - 20
                 }, 200);
+                $.unblockUI();
             })
             .fail(function () {
                 loading = false;
@@ -121,6 +140,7 @@
             .always(function () {
                 loading = false;
                 console.log("complete");
+                $.unblockUI();
             });
     }
     var selectedCategory = $('#categories').find('option:selected').text();
@@ -152,7 +172,7 @@
         var category = $('#categories').find(":selected").val();
         var selectedCategory = $('#categories').find('option:selected').text();
         var selectedDistrict = $('#selectDistrict').find('option:selected').val();
-        var selectedCity = $('#selectCity').find('option:selected').val();
+        var selectedCity = selectCity.find('option:selected').val();
         var peopertTypes = $('#propertyTypes').val();
         var minArea = $("#minArea").val();
         var maxArea = $("#maxArea").val();
@@ -246,7 +266,7 @@
         FilterAds(query);
     });
     $("#newest").click(() => {
-        var query = "CreationTime Desc";
+        var query = "CreationTime Asc";
         FilterAds(query);
     });
     $("#mostExpensive").click(() => {

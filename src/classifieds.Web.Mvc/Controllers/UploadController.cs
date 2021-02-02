@@ -59,8 +59,7 @@ namespace classifieds.Controllers
         }
 
         [HttpPost("[controller]/remove/{id}")]
-        [DisableFormValueModelBinding]
-        [DisableValidation]
+    
         [AbpMvcAuthorize]
         public async Task<IActionResult> removeImage(int id)
         {

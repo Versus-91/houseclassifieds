@@ -16,7 +16,7 @@
     pageTitle += "classifieds";
 }
 <!DOCTYPE html>
-<html dir="rtl">
+<html dir="rtl" >
 
 <head>
     <meta charset="utf-8">
@@ -43,12 +43,14 @@
     @await Html.PartialAsync("Layout/_UserNavbar", returnUrl)
     @RenderSection("hero", required: false)
     @RenderBody()
-    <footer class="footer  has-background-dark has-text-white">
-        <div class="content has-text-centered">
-            <p>
-                ثبت اعلان ملک
-            </p>
-        </div>
+    <footer class="footer ">
+       <div class="container">
+           <div class="columns">
+               <div class="column is-4">دانلود اپلیکیشن</div>
+               <div class="column is-4">شبکه های اجتماعی</div>
+               <div class="column is-4">تماس با ما</div>
+           </div>
+       </div>
     </footer>
     <script src="~/libs/jquery/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>

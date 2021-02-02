@@ -1,0 +1,33 @@
+﻿@using classifieds.Web.Models.Common.Modals
+@model classifieds.Areas.Dto.AreaDto
+@{
+    Layout = null;
+}
+@await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("Edit")))
+<form name="AreaEditForm" role="form" class="form-horizontal">
+    <input type="hidden" name="Id" value="@Model.Id" />
+    <div class="modal-body">
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="rolename">@L("Name")</label>
+            <div class="col-md-9">
+                <input id="rolename" class="form-control" type="text" name="Name" value="@Model.Name"  required maxlength="32" minlength="2">
+            </div>
+        </div>
+          <div class="form-group row required">
+                     <label class="col-md-3 col-form-label" for="rolename">@L("Description")</label>
+                     <div class="col-md-9">
+                         <input  type="text" name="Description" value="@Model.Description" class="form-control" required maxlength="32" minlength="2">
+                     </div>
+                 </div>
+                 <div class="form-group row required">
+                     <label class="col-md-3 col-form-label" for="CityId">@L("CityName")</label>
+                     <div class="col-md-9">
+                         <select name="CityId" class="form-control" asp-items="@ViewData["cities"] as SelectList">
+                            </select>
+                        </div>
+         </div>
+    </div>
+    @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
+</form>
+
+<script src="~/view-resources/Views/Areas/_EditModal.js" asp-append-version="true"></script>

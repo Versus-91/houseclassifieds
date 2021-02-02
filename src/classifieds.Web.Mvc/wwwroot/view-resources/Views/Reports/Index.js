@@ -43,28 +43,34 @@
             }
         },
         columnDefs: [
+            
             {
                 targets: 0,
-                className: 'control',
-                defaultContent: '',
-            },
-            {
-                targets: 1,
-                data: 'name',
+                data: 'id',
                 sortable: false
             },
             {
                 targets: 2,
+                data: 'postId',
+                sortable: false
+            },
+            {
+                targets: 1,
+                data: 'description',
+                sortable: false
+            },
+            {
+                targets: 3,
                 data: null,
                 sortable: false,
                 autoWidth: false,
                 defaultContent: '',
                 render: (data, type, row, meta) => {
                     return [
-                        `   <button type="button" class="btn btn-sm bg-secondary edit-district" data-id="${row.id}" data-toggle="modal" data-target="#DistrictEditModal">`,
+                        `   <button type="button" class="btn btn-sm bg-secondary edit-district" data-id="${row.id}" data-toggle="modal" >`,
                         `       <i class="fas fa-pencil-alt"></i> ${l('Edit')}`,
                         '   </button>',
-                        `   <button type="button" class="btn btn-sm bg-danger delete-district" data-district-id="${row.id}" data-district-name="${row.name}">`,
+                        `   <button type="button" class="btn btn-sm bg-danger delete-district" data-district-id="${row.id}" data-report-name="${row.id}">`,
                         `       <i class="fas fa-trash"></i> ${l('Delete')}`,
                         '   </button>',
                     ].join('');

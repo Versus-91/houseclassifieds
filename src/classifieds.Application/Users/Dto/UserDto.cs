@@ -37,8 +37,8 @@ namespace classifieds.Users.Dto
         public string Avatar { get; set; }
         [Phone]
         public string PhoneNumber { get; set; }
-
-
+        public bool IsEmailConfirmed { get; set; }
+        public bool IsPhoneNumberConfirmed { get; set; }
         public string[] RoleNames { get; set; }
     }
 }

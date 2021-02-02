@@ -31,11 +31,50 @@
         box-shadow: 4px 4px 15px rgba(26, 35, 126, 0.2);
     }
 </style>
+<div id="throbber" style="display:none;">
+<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
+</div>
 <div class="section Site-content has-background-white-ter">
-@section hero{
-    <section class="hero is-small" style="background-color: #0093E9; background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%); ">
-        <div class="hero-body">
-            <div class="container">
+<div id="myNav" class="overlay-page">
+
+  <!-- Button to close the overlay navigation -->
+  <a href="javascript:void(0)" class="closebtn" id="closeFilterPage">&times;</a>
+
+  <!-- Overlay content -->
+  <div class="overlay-page-content">
+      <div class="section">
+         <div class="columns is-centered is-vcentered has-text-centered py-2">
+                        <div class="column">
+                            <div class="select is-fullwidth py-1">
+                                <select class="select2" id="selectCity" asp-items="@(ViewData["Cities"] as SelectList)">
+                              
+                                </select>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="select is-fullwidth py-1">
+                                <select class="select2"  id="selectDistrict" asp-items="@(ViewData["Districts"] as SelectList)">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <div class="select is-fullwidth py-1">
+                                <select class="select2" asp-items="@(ViewData["PropertyTypes"] as SelectList)" id="propertyTypes">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="column">
+                            <button class="button is-info is-rounded is-fullwidth-mobile" id="send">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+         </div>
+       </div>
+  </div>
+</div>
+
+<!-- Use any element to open/show the overlay navigation menu -->
+            <div class="container is-hidden-mobile">
                 <div class="box has-text-link">
                     <div class="columns is-centered is-vcentered has-text-centered py-2">
                         <div class="column">
@@ -65,14 +104,11 @@
                     </div>
 
                 </div>
+                <br />
             </div>
-        </div>
-    </section>
-
-}
     <div class="container " id="mainContainer">
             <div class="columns">
-                <div class="column is-3  ">
+                <div class="column is-3 is-hidden-mobile ">
                     <div class="box">
                     <aside class="menu mt-2">
                         <p class="menu-label">
@@ -219,7 +255,8 @@
                     </aside>
                     </div>
                 </div>
-                <div class="column is-9" style="min-height:500px;">
+                <div class="column is-9">
+                    <button class="button" id="filterPage">filter</button>
                     <div class="tabs is-centered">
                         <ul>
                             <li class="is-active"><a id="newest">جدیدترین</a></li>
@@ -234,11 +271,13 @@
                         <button class="pagination-previous">قبلی</button>
                         <button class="pagination-next">بعدی </button>
                     </nav>
+
                 </div>
             </div>
         </div>
     </div>
 @section scripts{
+        <script src="~/libs/block-ui/jquery.blockUI.js" asp-append-version="true"></script>
     <script asp-append-version="true" src="~/lib/PersianDate-1.1.0/dist/persian-date.min.js"></script>
         
     </script>

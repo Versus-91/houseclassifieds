@@ -1,4 +1,8 @@
 ﻿(function ($) {
+    $(".custom-file-input").on("change", function () {
+        var fileName = $(this).val().split("\\").pop();
+        $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+    });
     var _cityService = abp.services.app.amenity,
         l = abp.localization.getSource('classifieds'),
         _$modal = $('#AmenityEditModal'),
@@ -20,10 +24,10 @@
         });
     }
 
-    _$form.closest('div.modal-content').find(".save-button").click(function (e) {
-        e.preventDefault();
-        save();
-    });
+    //_$form.closest('div.modal-content').find(".save-button").click(function (e) {
+    //    e.preventDefault();
+    //    save();
+    //});
 
     _$form.find('input').on('keypress', function (e) {
         if (e.which === 13) {

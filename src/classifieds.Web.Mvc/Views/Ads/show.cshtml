@@ -90,7 +90,7 @@
                         <span>تماس</span>
                     </button>
   
-                    <span class="text-muted">کد :78878755</span>
+                    <span class="text-muted">کد :@Model.Post.Id</span>
                     </div>
                 </div>
                 <div class="column is-7">
@@ -108,11 +108,10 @@
                     </div>
                 </div>
             </div>
-            @if (Model.Post.Amenities.Count > 0)
-            {
                 <div class="columns my-4">
                     <div class="column is-7">
-
+                               @if (Model.Post.Amenities.Count > 0)
+            {
                         <h1 class="title is-4 b">
                             امکانات
                        </h1>
@@ -129,23 +128,25 @@
                             }
 
                         </div>
+                        }
                     </div>
+                    
                     <div class="column is-5" id="map">
                 
                         <div style="height:300px"></div>
                     </div>
                 </div>
-            }
         </div>
     </div>
     @if (Model.Recommendations.Count > 0)
     {
-        <div class="section " >
             <div class="container mt-3">
-                <div class="columns is-12 is-multiline">
+                      <div class="swiper-container">
+                           <div class="swiper-wrapper">
                     @foreach (var post in Model.Recommendations)
                     {
-                    <div class=" column is-3">
+                        <div class="swiper-slide">
+                    <div class=" column" >
                             <a class="fill-div" href="/ads/@post.Id">
                                 <div class="card card-hover-shadow" data-label="@post.Category.Name">
                                     <div class="card-image">
@@ -156,14 +157,13 @@
 
                                             }
                                             else
-                    {
-                                                <img src="/img/placeholder.png" alt="Placeholder image">
-
-                                            }
-                                            <div class="overlay">@post.District.City.Name -  @post.District.Name</div>
+                      {
+                       <img src="/img/placeholder.png" alt="Placeholder image">
+                      }
+                         <div class="overlay">@post.District.City.Name -  @post.District.Name</div>
                                         </figure>
                                     </div>
-                                    <div class="card-content">
+                                 <div class="card-content">
                                    
                                         <nav class="level is-mobile">
                                             <div class="level-item has-text-centered">
@@ -202,11 +202,16 @@
                                     </footer>
                                 </div>
                             </a>
-                        </div>
+                     </div>
+                     </div>
                     }
                 </div>
+                    <div class="swiper-pagination">
+                        
+                    </div>
+
+                </div>
             </div>
-        </div>
     }
 </div>
 <div class="modal " id="myModal">

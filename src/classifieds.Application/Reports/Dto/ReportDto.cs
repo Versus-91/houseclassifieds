@@ -8,6 +8,8 @@ namespace classifieds.Reports.Dto
     public class ReportDto:EntityDto
     {
         public string Description { get; set; }
+        public int PostId { get; set; }
+
         public ReportOptionDto ReportOption { get; set; }
     }
 }

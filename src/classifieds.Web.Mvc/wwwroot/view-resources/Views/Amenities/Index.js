@@ -1,4 +1,5 @@
 ﻿(function ($) {
+
     var _amenityService = abp.services.app.amenity,
         l = abp.localization.getSource('classifieds'),
         _$modal = $('#CreateModal'),

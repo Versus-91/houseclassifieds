@@ -9,6 +9,7 @@ using classifieds.Authentication.JwtBearer;
 using classifieds.Configuration;
 using classifieds.Identity;
 using classifieds.Services;
+using classifieds.Web.helpers;
 using classifieds.Web.Resources;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -82,7 +83,8 @@ namespace classifieds.Web.Startup
                 })
                 .SetCacheHash<CacheHash>()
                 .AddProvider<PhysicalFileSystemProvider>()
-                .AddProcessor<ResizeWebProcessor>()
+                .AddProcessor<helpers.ResizeWebProcessor>()
+                .RemoveProcessor<SixLabors.ImageSharp.Web.Processors.ResizeWebProcessor>()
                 .RemoveProcessor<FormatWebProcessor>()
                 .RemoveProcessor<BackgroundColorWebProcessor>();
             // Configure Abp and Dependency Injection

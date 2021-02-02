@@ -1332,6 +1332,29 @@ namespace classifieds.Migrations
                     b.ToTable("Amenities");
                 });
 
+            modelBuilder.Entity("classifieds.Areas.Area", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CityId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CityId");
+
+                    b.ToTable("Areas");
+                });
+
             modelBuilder.Entity("classifieds.Authorization.Roles.Role", b =>
                 {
                     b.Property<int>("Id")
@@ -1588,6 +1611,9 @@ namespace classifieds.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("AreaId")
+                        .HasColumnType("int");
+
                     b.Property<int>("CityId")
                         .HasColumnType("int");
 
@@ -1607,6 +1633,8 @@ namespace classifieds.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AreaId");
 
                     b.HasIndex("CityId");
 
@@ -1885,6 +1913,29 @@ namespace classifieds.Migrations
                     b.ToTable("Reports");
                 });
 
+            modelBuilder.Entity("classifieds.UserNotificationIds.UserNotificationId", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FirebaseId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.Property<long?>("UserId1")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId1");
+
+                    b.ToTable("UserNotificationIds");
+                });
+
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>
                 {
                     b.HasBaseType("Abp.Application.Features.FeatureSetting");
@@ -2051,6 +2102,15 @@ namespace classifieds.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("classifieds.Areas.Area", b =>
+                {
+                    b.HasOne("classifieds.Cities.City", "City")
+                        .WithMany()
+                        .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("classifieds.Authorization.Roles.Role", b =>
                 {
                     b.HasOne("classifieds.Authorization.Users.User", "CreatorUser")
@@ -2083,6 +2143,10 @@ namespace classifieds.Migrations
 
             modelBuilder.Entity("classifieds.Districts.District", b =>
                 {
+                    b.HasOne("classifieds.Areas.Area", "Area")
+                        .WithMany()
+                        .HasForeignKey("AreaId");
+
                     b.HasOne("classifieds.Cities.City", "City")
                         .WithMany("Districts")
                         .HasForeignKey("CityId")
@@ -2175,6 +2239,13 @@ namespace classifieds.Migrations
                         .HasForeignKey("ReportOptionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("classifieds.UserNotificationIds.UserNotificationId", b =>
+                {
+                    b.HasOne("classifieds.Authorization.Users.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId1");
                 });
 
             modelBuilder.Entity("Abp.Application.Features.EditionFeatureSetting", b =>

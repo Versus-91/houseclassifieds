@@ -4,12 +4,14 @@ using Abp.AspNetCore.Mvc.Controllers;
 using Abp.Web.Models;
 using classifieds.Authorization;
 using classifieds.Cities;
+using classifieds.Cities.Dto;
 using classifieds.Districts;
 using classifieds.Districts.Dto;
 using classifieds.Web.Models.Districts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace classifieds.Web.Areas.Admin.Controllers
@@ -29,10 +31,10 @@ namespace classifieds.Web.Areas.Admin.Controllers
 
         public async Task<ActionResult> Index()
         {
-            var cities = await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto() { MaxResultCount = Int32.MaxValue });
+            var cities = (await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto() { MaxResultCount = Int32.MaxValue })).Items.ToList();
             var model = new DistrictViewModel
             {
-                Cities = new SelectList(cities.Items, "Id", "Name")
+                Cities =cities
             };
             return View(model);
         }
@@ -41,11 +43,11 @@ namespace classifieds.Web.Areas.Admin.Controllers
         public async Task<ActionResult> Edit(int id)
         {
             var district = await _districtService.GetAsync(new EntityDto(id));
-            var cities = await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto() { MaxResultCount = Int32.MaxValue });
+            var cities = (await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto() { MaxResultCount = Int32.MaxValue })).Items.ToList();
             var model = new DistrictViewModel
             {
                 District = district,
-                Cities = new SelectList(cities.Items, nameof(DistrictDto.Id), nameof(DistrictDto.Name), district.CityId)
+                Cities = cities
             };
             return PartialView("_EditModal", model);
         }

@@ -62,8 +62,30 @@
         console.log("closed")
     })
 
-
-    if ($('#postLatitude').val() != 0 && $('#postLongitude').val() != 0) {
+    var swiper = new Swiper('.swiper-container', {
+        slidesPerView: 1,
+        spaceBetween: 10,
+        // init: false,
+        pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+        },
+        breakpoints: {
+            640: {
+                slidesPerView: 1,
+                spaceBetween: 20,
+            },
+            768: {
+                slidesPerView: 4,
+                spaceBetween: 40,
+            },
+            1024: {
+                slidesPerView: 4,
+                spaceBetween: 50,
+            },
+        }
+    });
+    if (!!$('#postLatitude').val() && !!$('#postLongitude').val() ) {
         var map = L.map('map').setView(L.latLng($('#postLatitude').val(), $('#postLongitude').val()), 13);
 
         L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -72,9 +94,7 @@
 
         L.marker([$('#postLatitude').val(), $('#postLongitude').val()]).addTo(map)
             .bindPopup('محل انتخاب شده .');
-    } else {
-        $("#map").hide();
-    }
+    } 
     (function () {
 
         var initPhotoSwipeFromDOM = function (gallerySelector) {

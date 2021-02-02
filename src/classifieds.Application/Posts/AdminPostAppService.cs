@@ -6,14 +6,19 @@ using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using classifieds.Authorization;
 using classifieds.Images;
+using classifieds.Notification;
 using classifieds.Posts.Admin.Dto;
 using classifieds.Posts.Dto;
+using classifieds.UserNotificationIds;
+using FirebaseAdmin.Messaging;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace classifieds.Posts
 {
@@ -21,11 +26,51 @@ namespace classifieds.Posts
     public class AdminPostAppService : AsyncCrudAppService<Post, PostDto, int, GetAllPostsInput, CreatePostInput, AdminUpdatePostInput>, IAdminPostAppService
     {
         private readonly IRepository<Post> _postRepository;
-        public AdminPostAppService(IRepository<Post> repository) : base(repository)
+        private readonly IFirebaseAppService _notificationManager;
+        private readonly IRepository<UserNotificationId>  _userFirebaseService;
+        public AdminPostAppService(IRepository<Post> repository, IFirebaseAppService notificationManager
+            , IRepository<UserNotificationId> userFirebaseService) : base(repository)
         {
+            _notificationManager = notificationManager;
             _postRepository = repository;
+            _userFirebaseService = userFirebaseService;
         }
+        public override async Task<PostDto> UpdateAsync(AdminUpdatePostInput input)
+        {
+            Post post = _postRepository.Get(input.Id);
+            if (post == null)
+            {
+                throw new ArgumentException();
+            }
+            else
+            {
+                if (post.IsVerified == false && input.IsVerified == true)
+                {
+                    var userFirebaseToken =await _userFirebaseService.GetAll().FirstOrDefaultAsync(x => x.UserId == post.CreatorUserId);
+                    if (userFirebaseToken != null)
+                    {
+                        var message = new Message() { Data = new Dictionary<string, string>()
+                                                   {
+                                                       { "score", "850" },
+                                                       { "time", "2:45" },
+                                                   },
+                            Token= userFirebaseToken .FirebaseId};
+                        try
+                        {
+                            await _notificationManager.SendMessage(message);
+                        }
+                        catch (Exception)
+                        {
+                        }
+                    }
 
+                }
+                post.IsVerified = input.IsVerified;
+                post.IsFeatured = input.IsFeatured;
+                await _postRepository.UpdateAsync(post);
+            }
+            return MapToEntityDto(post);
+        }
         protected override IQueryable<Post> CreateFilteredQuery(GetAllPostsInput input)
         {
             return base.CreateFilteredQuery(input)
@@ -40,7 +85,7 @@ namespace classifieds.Posts
                 .WhereIf(input.Age.HasValue, t => t.Age == input.Age.Value)
                 .WhereIf(input.Beds.HasValue, t => t.Bedroom == input.Beds.Value)
                 .WhereIf(input.MinArea.HasValue && input.MaxArea.HasValue, t => t.Area > input.MinArea.Value && t.Area < input.MaxArea.Value)
-                .WhereIf(input.Types != null && input.Types.Count > 0, t => input.Types.Contains(t.TypeId));
+                .WhereIf(input.Types != null && input.Types.Count > 0, t => input.Types.Contains(t.TypeId)).OrderByDescending(m=>m.CreationTime);
         }
         public async Task<PostDto> GetDetails(int id)
         {

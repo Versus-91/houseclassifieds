@@ -14,6 +14,7 @@ using classifieds.Posts.Dto;
 using classifieds.PostsAmenities;
 using classifieds.PostsAmenities.Dto;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
@@ -34,11 +35,15 @@ namespace classifieds.Posts
             _cityRepository = cityRepository;
             _postRepository = repository;
             _categoryRepository = categoryRepository;
-            CreatePermissionName = PermissionNames.Pages_Posts;
+            CreatePermissionName = PermissionNames.Posts_Create;
             UpdatePermissionName = PermissionNames.Pages_Posts;
             DeletePermissionName = PermissionNames.Pages_Posts;
             _districtRepository = districtRepository;
             _userRepository = userRepository;
+        }
+        public override Task DeleteAsync(EntityDto<int> input)
+        {
+            throw new NotImplementedException();
         }
 
         protected override IQueryable<Post> CreateFilteredQuery(GetAllPostsInput input)
@@ -62,7 +67,8 @@ namespace classifieds.Posts
                 .WhereIf(input.MinDeposit.HasValue && input.MaxDeposit.HasValue, t => t.Deposit >= input.MinDeposit.Value && t.Deposit <= input.MaxDeposit.Value)
                 .WhereIf(input.Amenities != null && input.Amenities.Count > 0, t => t.PostAmenities.Any(m=>input.Amenities.Contains(m.AmenityId)))
                 .WhereIf(input.Types != null && input.Types.Count > 0, t => input.Types.Contains(t.TypeId))
-                .WhereIf(input.UserId != null, t => t.CreatorUserId == input.UserId);
+                .WhereIf(input.UserId != null, t => t.CreatorUserId == input.UserId)
+                .OrderByDescending(m => m.CreationTime);
 
         }
         public async Task<PostDto> GetDetails(int id)
@@ -106,7 +112,12 @@ namespace classifieds.Posts
         [AbpAuthorize]
         public async Task<PagedResultDto<PostDto>> GetUserPosts(GetAllPostsInput input)
         {
-            var posts = CreateFilteredQuery(input).Where(m=>m.CreatorUserId == AbpSession.UserId);
+            var posts = base.CreateFilteredQuery(input)
+                 .Include(m => m.District.City)
+                .Include(m => m.Images)
+                .Include(m => m.Type)
+                .Include(m => m.Category)
+                .Include(m => m.PostAmenities).ThenInclude(m => m.Amenity).Where(m=>m.CreatorUserId == AbpSession.UserId).OrderByDescending(m=>m.CreationTime);
             ApplyPaging(posts, input);
              return new PagedResultDto<PostDto>(posts.Count(), ObjectMapper.Map<List<PostDto>>(await posts.ToListAsync()));
         }
@@ -151,19 +162,21 @@ namespace classifieds.Posts
             var postsCountPerCategory = new List<LlocationPostsCount>();
             foreach (var category in categories)
             {
-                var cityId = _cityRepository.GetAll().Where(m => m.Name.Contains("کابل")).FirstOrDefault().Id;
+                var cityId = _cityRepository.GetAll().Where(m => m.Name.Contains("کابل")).FirstOrDefault()?.Id;
+                if (cityId != null)
+                {
+                    var counts = await _postRepository.GetAll().Where(m => m.CategoryId == category.Id && m.IsVerified == true && m.District.City.Name.Contains("کابل")).Include(m => m.District).GroupBy(m => m.DistrictId)
+                     .Select(n => new PostsCountDto
+                     {
+                         DistrictId = n.Key,
+                         Count = n.Count(),
+                         DistrictName = _districtRepository.GetAll().Where(m => m.Id == n.Key).FirstOrDefault().Name,
+                         CityId = cityId.Value,
+                     }
+                  ).OrderByDescending(m => m.Count).Take(10).ToListAsync();
+                    postsCountPerCategory.Add(new LlocationPostsCount { CategoryName = category.Name, CategoryId = category.Id, Count = counts, CityName = "کابل" });
+                }
 
-                 var counts = await _postRepository.GetAll().Where(m => m.CategoryId == category.Id &&m.IsVerified == true && m.District.City.Name.Contains("کابل")).Include(m=>m.District).GroupBy(m => m.DistrictId )
-                  .Select(n => new PostsCountDto
-                 {
-                   DistrictId = n.Key,
-                   Count=n.Count(),
-                   DistrictName = _districtRepository.GetAll().Where(m => m.Id == n.Key).FirstOrDefault().Name,
-                   CityId = cityId,
-
-                  }
-               ).OrderByDescending(m=>m.Count).Take(10).ToListAsync();
-                postsCountPerCategory.Add(new LlocationPostsCount { CategoryName= category.Name,CategoryId=category.Id,Count= counts,CityName="کابل"});
             }
             return postsCountPerCategory;
         }

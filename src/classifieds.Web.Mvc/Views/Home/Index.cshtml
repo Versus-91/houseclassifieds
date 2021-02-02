@@ -57,7 +57,7 @@
     </section>
 
 }
-<div class="section">
+<div class="section Site-content">
     <div class="container">
         <h4 class="has-text-centered title is-4">محله های محبوب</h4>
         <p class="has-text-centered subtitle is-6">
@@ -81,7 +81,7 @@
                             <li>
                                 <a href="/ads?category=@category.CategoryId&district=@district.DistrictId&city=@district.CityId">
 
-                                    <div class="level is-mobile my-2 box card-hover-shadow">
+                                    <div class="level is-mobile my-2 box card-hover-shadow has-background-primary-light	">
                                         <div class="level-right">
                                             <div class="level-item">@district.DistrictName</div>
                                         </div>
@@ -97,92 +97,14 @@
                 </div>
             }
 
-            <div class="column is-4 ">
-                <h2 class="has-text-centered">
-                    <strong>
-                        خرید و فروش و رهن و اجاره در دیگر شهرها
-                    </strong>
-                </h2>
-                <br />
-                <ul>
-                    <li>
-                        <a href="#">
-                            <div class="level is-mobile my-2 box card-hover-shadow">
-                                <div class="level-right">
-                                    <div class="level-item">تهران</div>
-                                </div>
-                                <div class="level-left">
-                                    <div class="level-item has-text-info">44545</div>
-                                </div>
 
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="level is-mobile my-2 box card-hover-shadow">
-                                <div class="level-right">
-                                    <div class="level-item">تهران</div>
-                                </div>
-                                <div class="level-left">
-                                    <div class="level-item has-text-info">44545</div>
-                                </div>
-
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <div class="level is-mobile my-2 box card-hover-shadow">
-                            <div class="level-right">
-                                <div class="level-item">تهران</div>
-                            </div>
-                            <div class="level-left">
-                                <div class="level-item has-text-info">44545</div>
-                            </div>
-
-                        </div>
-                    </li>
-                </ul>
-            </div>
         </div>
         <h5 class="has-text-centered title is-5">
             آژانس های املاک برتر
         </h5>
+        @if(Model.UserPostsCount.Count()> 0){
         <p class="has-text-centered subtitle is-6">
-            آیهوم به عنوان یار قدیمی املاک افتخار همکاری با آژانس های املاک معتبر کشور را دارد
+            کاربران برتر
         </p>
         <div class="columns is-multiline my-5 is-mobile ">
             <div class="swiper-container ">
@@ -193,6 +115,8 @@
                             <div class="column">
                                 <a class="has-text-black" href="/users/@user.UserName">
                                     <div class="box">
+                                      <div class="level">
+                                              <div class="level-item">
                                         @if(user.Avatar != null){
                                         <figure class="image is-64x64">
                                             <img class="is-rounded" src="/@user.Avatar">
@@ -202,6 +126,11 @@
                                             <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
                                         </figure>
                                         }
+                                         </div>
+                                          <div class="level-item has-text-centered" >
+                                           <p>@user.Name</p>
+                                          </div>
+                                        </div>
                                     </div>
                                 </a>
                             </div>
@@ -209,7 +138,8 @@
                     }
                 </div>
                     </div>
-                    </div>
+         </div>
+         }
                     <h5 class="has-text-centered title is-5">
                         تازه ترین مطالب بلاگ
                     </h5>
@@ -300,7 +230,6 @@
 
             @section Scripts{
                 <script src="~/libs/swiper/swiper-bundle.min.js"></script>
-
                 <script>
                     "use strict";
                     $(function () {

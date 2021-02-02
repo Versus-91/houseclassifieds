@@ -55,7 +55,37 @@ namespace classifieds.Web.Areas.Admin.Controllers
 
                 inputs.Icon = Path.Combine(_path, trustedFileNameForFileStorage);
             }
-            var model = await _amenityService.CreateAsync(inputs);
+            await _amenityService.CreateAsync(inputs);
+            return Redirect("/admin/amenities");
+        }
+        [HttpPost]
+        public async Task<ActionResult> Update(AmenityDto inputs)
+        {
+            var amenity = await _amenityService.GetAsync(new EntityDto(inputs.Id));
+            if (amenity == null)
+            {
+                return NotFound();
+            }
+            amenity = ObjectMapper.Map( inputs, amenity);
+            if (inputs.File != null)
+            {
+                if (!String.IsNullOrEmpty(amenity.Icon))
+                {
+                    System.IO.File.Delete(Path.Combine(_env.WebRootPath, amenity.Icon));
+                }
+                var trustedFileNameForDisplay = WebUtility.HtmlEncode(
+                    inputs.File.FileName);
+                var trustedFileNameForFileStorage = Path.Combine($"{Guid.NewGuid().ToString("N")}{Path.GetExtension(trustedFileNameForDisplay).ToLower()}");
+                Directory.CreateDirectory(Path.Combine(_env.WebRootPath, _path));
+                using (var stream = System.IO.File.Create(Path.Combine(_env.WebRootPath, _path, trustedFileNameForFileStorage)))
+                {
+                    await inputs.File.CopyToAsync(stream);
+                }
+
+                amenity.Icon = Path.Combine(_path, trustedFileNameForFileStorage);
+            }
+
+            await _amenityService.UpdateAsync(amenity);
             return Redirect("/admin/amenities");
         }
     }
