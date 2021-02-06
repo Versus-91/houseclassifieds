@@ -31,15 +31,8 @@
         box-shadow: 4px 4px 15px rgba(26, 35, 126, 0.2);
     }
 </style>
-<div id="throbber" style="display:none;">
-<div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
-</div>
-<div class="section Site-content has-background-white-ter">
+<div class="section Site-content">
 <div id="myNav" class="overlay-page">
-
-  <!-- Button to close the overlay navigation -->
-  <a href="javascript:void(0)" class="closebtn" id="closeFilterPage">&times;</a>
-
   <!-- Overlay content -->
   <div class="overlay-page-content">
       <div class="section">
@@ -95,11 +88,6 @@
                                 <select class="select2" asp-items="@(ViewData["PropertyTypes"] as SelectList)" id="propertyTypes">
                                 </select>
                             </div>
-                        </div>
-                        <div class="column">
-                            <button class="button is-info is-rounded is-fullwidth-mobile" id="send">
-                                <i class="fas fa-search"></i>
-                            </button>
                         </div>
                     </div>
 
@@ -256,12 +244,12 @@
                     </div>
                 </div>
                 <div class="column is-9">
-                    <button class="button" id="filterPage">filter</button>
-                    <div class="tabs is-centered">
+                    <div class="tabs is-toggle">
                         <ul>
                             <li class="is-active"><a id="newest">جدیدترین</a></li>
                             <li><a id="cheapest">ارزانترین</a></li>
                             <li><a id="mostExpensive">گرانترین</a></li>
+                            <li><a id="mostExpensive">فیلتر</a></li>
                         </ul>
                     </div>
                     <div class="columns is-multiline" id="pager" >
@@ -277,12 +265,13 @@
         </div>
     </div>
 @section scripts{
-        <script src="~/libs/block-ui/jquery.blockUI.js" asp-append-version="true"></script>
-    <script asp-append-version="true" src="~/lib/PersianDate-1.1.0/dist/persian-date.min.js"></script>
-        
+        <script src="~/lib/vue/vue.js" asp-append-version="true"></script>
+        <script src="~/lib/vue/vue.js" asp-append-version="true"></script>
+        <script src="~/lib/view-resources/Views/USerPosts/card.js" asp-append-version="true"></script>
+        <script src="~/lib/view-resources/Views/USerPosts/blockui.js" asp-append-version="true"></script>
+        <script src="~/lib/view-resources/Views/USerPosts/main.js" asp-append-version="true"></script>
     </script>
     <environment names="Development">
-        <script asp-append-version="true" src="~/view-resources/Views/UserPosts/pagination.js"></script>
         <script>
           $(function () {
            $('#selectCity').on('select2:select', function (e) {

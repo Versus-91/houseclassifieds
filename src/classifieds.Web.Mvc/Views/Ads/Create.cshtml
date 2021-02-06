@@ -5,35 +5,59 @@
 }
 @section styles{
     <link href="~/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet" asp-append-version="true" />
+     <link href="~/lib/LeafletSearch/dist/leaflet-search.min.css" rel="stylesheet" asp-append-version="true" />
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin="" />
 }
-<div class="hero is-fullheight is-light is-bold">
-    <div class="hero-body">
+<div class="section Site-content">
         <div class="container persian">
             <div class="box">
                 <h1 class="title is-4">ارسال آگهی جدید</h1>
                 <hr />
+                <div class="tabs is-toggle is-centered">
+  <ul>
+         <li v-for="ctg in categories"  v-on:click="category = ctg" 
+          v-bind:class="{ 'is-active': category?.id == ctg.id}">
+             <a>
+              <span class="icon is-small"><i class="fas fa-building" aria-hidden="true"></i></span>
+             <span>{{ctg.name}}</span>
+           </a>
+        </li>
+
+  </ul>
+</div>
+  <div class="columns">
+
+      <div class="column">
+          <p class="title is-5">نوع ملک <span class="is-danger is-size-7 has-text-danger">اجباری</span></p> 
+         <div class="buttons">
+      @foreach(var prop in (IEnumerable<SelectListItem>)@ViewData["PropertyTypes"]){
+            <div v-on:click="tradeType = @prop.Value" 
+          v-bind:class="{ 'is-success': tradeType == @prop.Value}" class="button ">@prop.Text</div>
+      }
+  </div>
+      </div>
+  </div>
                 <form asp-action="create" enctype="multipart/form-data" id="CreateAd">
                     <div class="field is-horizontal">
                         <div class="field-body">
-                            <div class="field is-half">
+                            <div class="field column is-6 p-0">
                                 <label for="City" class="label">شهر  <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
                                 <div class="control has-icons-right">
-                                    <div class="select is-fullwidth">
-                                        <select class="select2" id="selectCity" asp-items="@(ViewData["Cities"] as SelectList)" >
+                                    <div class="select is-fullwidth hide-arrow">
+                                        <select class="select2   " id="selectCity" asp-items="@(ViewData["Cities"] as SelectList)" >
                                         </select>
                                
                                     </div>
                                 </div>
                             </div>
-                            <div class="field is-half">
+                            <div class="field column is-6 p-0">
                                 <label asp-for="DistrictId" class="label">محله <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
                                 <div class="control has-icons-right">
-                                    <div class="select is-fullwidth">
-                                        <select class="select2" asp-for="DistrictId" name="DistrictId" id="selectDistrict" required>
-                                            <option>انتخاب محله</option>
+                                    <div class="select is-fullwidth hide-arrow">
+                                        <select class="select2 " v-select2 v-model="district" name="DistrictId" id="selectDistrict" required>
+                                            <option value="0">انتخاب محله</option>
                                         </select>
                                     </div>
                                 </div>
@@ -41,34 +65,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="field is-horizontal">
-                        <div class="field-body">
-                            <div class="field">
-                                <label asp-for="CategoryId" class="label">نوع معامله <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
-                                <div class="control has-icons-right">
-                                    <div class="select is-fullwidth">
-                                        <select id="category" asp-for="CategoryId" asp-items="(IEnumerable<SelectListItem>)@ViewData["Categories"]">
-                                        </select>
-                                        <span class="icon is-small is-right">
-                                            <i class="fas fa-list"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <span class="help is-danger" asp-validation-for="CategoryId"></span>
-                            </div>
-                            <div class="field">
-                                <label asp-for="TypeId" class="label">نوع ملک <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
-                                <div class="control has-icons-right">
-                                    <div class="select is-fullwidth">
-                                        <select asp-for="TypeId" id="type" asp-items="(IEnumerable<SelectListItem>)@ViewData["PropertyTypes"]">
-                                        </select>
-                                        <span class="icon is-small is-right">
-                                            <i class="fas fa-list"></i>
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field">
+                    <div class="field is-horizontal"  v-if="category?.name.includes('فروش')">
+                        <div class="field-body column is-6 p-0">
+                            <div class="field ">
                                  <label for="Price" class="label">قیمت</label>
                                 <div class="control has-icons-left">
                                     <input class="input currency" dir="ltr" id="price" placeholder="قیمت" name="Price" />
@@ -77,25 +76,37 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="field" id="depositField">
-                                <label for="Deposit" class="label">پیش پرداخت</label>
+                            </div>
+                    </div>
+                     <div class="field is-horizontal"  v-if="category?.name.includes('گروی')">
+                           <div class="field-body">
+                            <div class="field column is-6 p-0">
+                                <label for="Deposit" class="label">کرای</label>
                                 <div class="control has-icons-left">
-                                    <input class="input currency" dir="ltr" placeholder="پیش پرداخت" id="deposit" name="Deposit" />
+                                    <input class="input currency" dir="ltr" placeholder="اجاره"  name="Rent" />
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
                                 </div>
                             </div>
-
+                            <div class="field column is-6 p-0" >
+                                <label for="Deposit" class="label">پیش پرداخت</label>
+                                <div class="control has-icons-left">
+                                    <input class="input currency" dir="ltr" placeholder="پیش پرداخت"  name="Deposit" />
+                                    <span class="icon is-small is-left">
+                                        <i class="fas fa-dollar-sign"></i>
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="field is-horizontal">
                         <div class="field-body">
-                            <div class="field">
+                            <div class="field column is-6 p-0">
                                 <label asp-for="Area" class="label">متراژ <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
                                 <div class="control has-icons-left ">
-                                    <input class="input " asp-for="Area" placeholder="مساحت" />
+                                    <input v-model="area" class="input " asp-for="Area" placeholder="مساحت" />
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-globe"></i>
                                     </span>
@@ -103,7 +114,7 @@
                                 <span class="help is-danger" asp-validation-for="Area"></span>
 
                             </div>
-                            <div class="field" id="bedroom">
+                            <div class="field column is-6 p-0" id="bedroom">
                                 <label asp-for="Bedroom" class="label">تعداد خواب</label>
                                 <div class="control  has-icons-left has-icons-right">
                                     <div class="select is-fullwidth">
@@ -128,8 +139,7 @@
                     <div class="field">
                         <label asp-for="Description" class="label">توضیحات</label>
                         <div class="control">
-                            <textarea asp-for="Description" class="textarea"></textarea>
-                            <span class="help is-danger" asp-validation-for="Description"></span>
+                            <textarea v-model="description"  class="textarea"></textarea>
                         </div>
 
                     </div>
@@ -153,10 +163,9 @@
                                 @foreach (var amenity in ViewData["amenities"] as IList<classifieds.Amenities.Dto.AmenityDto>)
                                 {
                         <div class="column is-4">
-                            <button class="button is-fullwidth is-amenity" data-id="@amenity.Id">
-                                <i class="@amenity.Icon"></i>
+                            <button class="button is-fullwidth" :class="{'is-success':amenities.includes(@amenity.Id)}"
+                                 v-on:click="setAmenity($event,@amenity.Id)">
                                 @amenity.Name
-
                             </button>
                         </div>}
                             </div>
@@ -171,7 +180,7 @@
 
                     <div class="field is-grouped">
                         <div class="control">
-                            <button class="button is-link is-success" id="submitButton">
+                            <button class="button is-link is-success" v-on:click="postSubmit($event)">
                                 <i class="fas fa-paper-plane pl-1"> </i>
                                 ارسال
                             </button>
@@ -186,8 +195,7 @@
                 </form>
             </div>
         </div>
-    </div>
-</div>
+        </div>
 <div id="tpl" style="display:none">
     <div class="dz-preview dz-file-preview">
         <div class="dz-image">
@@ -219,14 +227,137 @@
     </div>
 </div>
 @section scripts{
-    <script src="~/lib/dropzone/dist/min/dropzone.min.js" asp-append-version="true"></script>
-    <script src="~/libs/jquery-validate/jquery.validate.js" asp-append-version="true"></script>
-    <script src="~/libs/jquery-validate/jquery.validate.unobtrusive.js" asp-append-version="true"></script>
-    <script src="~/lib/persiandigits/persianNum.jquery-2.min.js" asp-append-version="true"></script>
-    <script src="https://cdn.jsdelivr.net/npm/autonumeric@4.5.4"></script>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    <script src="~/lib/dropzone/dist/min/dropzone.min.js" asp-append-version="true">
+    </script>
+    <script asp-append-version="true" src="~/lib/vue/vue.js"></script>
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
             integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
             crossorigin=""></script>
+        <script src="~/lib/LeafletSearch/dist/leaflet-search.min.js"
+            asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>
+    <script>
+        Dropzone.autoDiscover = false;
+        Vue.directive('select2', {
+    inserted(el) {
+        $(el).on('select2:select', () => {
+            const event = new Event('change', { bubbles: true, cancelable: true });
+            el.dispatchEvent(event);
+        });
+
+        $(el).on('select2:unselect', () => {
+            const event = new Event('change', {bubbles: true, cancelable: true})
+            el.dispatchEvent(event)
+        })
+    },
+});
+        var app = new Vue({
+          el : "#app",
+          data:{
+              category:null,
+              tradeType:null,
+              dropZone:{},
+              marker:{},
+              district:0,
+              description:'',
+              amenities:[],
+              categories:[],
+              area:null,
+          },
+          methods:{
+              setAmenity:function(e,amenity){
+                  e.preventDefault()
+                  var index = this.amenities.findIndex(m=> m == amenity);
+                  if(index >-1){
+                      this.amenities.splice(index,1);
+                  }else{
+                      this.amenities.push(amenity);
+                  }
+              },
+              postSubmit:function(e){
+                  e.preventDefault();
+                  var request = {amenities:this.amenities,typeId:this.tradeType
+              ,categoryId:this.category.id,description:this.description,area:this.area,districtId:this.district};
+                  axios.post('/ads/create',request).then((res)=>{
+                      if(this.dropZone?.files?.length > 0){
+                      this.dropZone.options.url = '/upload/' + res?.data?.result
+				      this.dropZone.processQueue();
+                      }else{
+			             window.location.href = "../";
+                      }
+
+                  }).catch((err)=>console.log(err));
+              },
+          },
+          created(){
+              	
+           axios.get('/api/services/app/category/getall').then((res)=>{
+                   this.categories = res.data.result.items;
+                   this.category = this.categories[0];
+                });
+          },
+          mounted(){
+               this.dropZone = new Dropzone('#dropzone', {
+		autoProcessQueue: false,
+		maxFiles: 8,
+		preventDuplicates: true,
+		acceptedFiles: 'image/*',
+		maxFilesize: 4,
+		previewTemplate: document.querySelector('#tpl').innerHTML,
+		//addRemoveLinks: true,
+		init: function () {
+			this.on('error', function (file, errorMessage) {
+				if (errorMessage.indexOf('big') !== -1) {
+					var errorDisplay = document.querySelectorAll('[data-dz-errormessage]');
+					errorDisplay[errorDisplay.length - 2].innerHTML = 'حجم فایل زیاد است.' + '<br/>حداکثر حجم فایل مجاز :' + this.options.maxFilesize + 'مگابایت ';
+				}
+			});
+		},
+		url: "/ads/create",
+		headers: {
+			'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value
+		},
+		success: function (file, response) {
+			window.location.href = "../";
+		}
+	});
+	//remove duplcate files
+	this.dropZone.on("addedfile", function (file) {
+		if (this.files.length) {
+			var _i, _len;
+			for (_i = 0, _len = this.files.length; _i < _len - 1; _i++) // -1 to exclude current file
+			{
+				if (this.files[_i].name === file.name && this.files[_i].size === file.size && this.files[_i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+					this.removeFile(file);
+				}
+			}
+		}
+	});
+    var map = L.map('map').setView([34.543896, 69.160652], 13);
+    var searchLayer = L.layerGroup().addTo(map);
+	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+	}).addTo(map);
+    map.addControl( new L.Control.Search({layer: searchLayer}) );
+	map.on('click', onMapClick);
+	function showPosition(position) {
+		map.setView([position.coords.latitude, position.coords.longitude])
+		this.marker = L.marker({ lat: position.coords.latitude, lng: position.coords.longitude }).addTo(map)
+			.bindPopup('محل انتخاب شده .')
+			.openPopup();
+	}
+	function onMapClick(e) {
+		if (this.marker != undefined) {
+			map.removeLayer(this.marker);
+		}
+		this.marker = L.marker(e.latlng).addTo(map)
+			.bindPopup('محل انتخاب شده .')
+			.openPopup();
+	}
+          },
+        });
+    </script>
+
         <script>
           $(function () {
               function matchCustom(params, data) {
@@ -275,16 +406,14 @@
               })
           } else {
               $("#selectDistrict").empty();
-              $("#selectDistrict").select2({ data: [{  text: "انتخاب محله" }] });
+              $("#selectDistrict").select2({ data: [{  id: 0,text: "انتخاب محله" }] });
               $("#selectDistrict").prop("disabled", true);
           }
         });
         });
         </script>
     <environment names="Development">
-        <script src="~/view-resources/Views/UserPosts/Index.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
-        <script src="~/view-resources/Views/UserPosts/Index.min.js" asp-append-version="true"></script>
     </environment>
 }

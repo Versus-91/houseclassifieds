@@ -54,6 +54,7 @@
     <Folder Include="Areas\Admin\Views\ReportOptions\" />
     <Folder Include="Areas\Admin\Views\Reports\" />
     <Folder Include="Images\" />
+    <Folder Include="wwwroot\lib\LeafletSearch\images\" />
     <Folder Include="wwwroot\view-resources\Views\ReportOptions\" />
     <Folder Include="wwwroot\view-resources\Views\Reports\" />
     <Folder Include="wwwroot\view-resources\Views\_Bundles\" />

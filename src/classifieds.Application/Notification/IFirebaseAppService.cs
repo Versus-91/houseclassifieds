@@ -9,6 +9,6 @@ namespace classifieds.Notification
 {
     public interface IFirebaseAppService 
     {
-        Task SendMessage(Message message);
+        Task<string> SendMessage(Message message);
     }
 }

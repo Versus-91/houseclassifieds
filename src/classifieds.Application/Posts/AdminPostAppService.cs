@@ -5,20 +5,18 @@ using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using classifieds.Authorization;
-using classifieds.Images;
 using classifieds.Notification;
 using classifieds.Posts.Admin.Dto;
 using classifieds.Posts.Dto;
 using classifieds.UserNotificationIds;
 using FirebaseAdmin.Messaging;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
+
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
 
 namespace classifieds.Posts
 {
@@ -49,15 +47,18 @@ namespace classifieds.Posts
                     var userFirebaseToken =await _userFirebaseService.GetAll().FirstOrDefaultAsync(x => x.UserId == post.CreatorUserId);
                     if (userFirebaseToken != null)
                     {
-                        var message = new Message() { Data = new Dictionary<string, string>()
-                                                   {
-                                                       { "score", "850" },
-                                                       { "time", "2:45" },
-                                                   },
-                            Token= userFirebaseToken .FirebaseId};
+                        var notif = new FirebaseAdmin.Messaging.Notification();
+                        notif.Body = "اعلان شما با موفقیت تایید شد.";
+                        notif.Title = "تایید اعلان";
+                        var message = new Message()
+                        {
+                            Token = userFirebaseToken.FirebaseId,
+                            Notification = notif
+                        };
                         try
                         {
-                            await _notificationManager.SendMessage(message);
+                            var result = await _notificationManager.SendMessage(message);
+                            Logger.Info("notif result:" + result);
                         }
                         catch (Exception)
                         {

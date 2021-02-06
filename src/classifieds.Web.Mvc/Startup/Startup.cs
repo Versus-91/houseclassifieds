@@ -67,6 +67,7 @@ namespace classifieds.Web.Startup
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.Configure<SMSoptions>(_appConfiguration.GetSection("twillo"));
             services.AddSignalR();
+            services.AddResponseCompression();
             services.AddImageSharp()
                 .SetRequestParser<QueryCollectionRequestParser>()
                 .Configure<PhysicalFileSystemCacheOptions>(options =>
@@ -99,6 +100,7 @@ namespace classifieds.Web.Startup
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseResponseCompression();
             app.UseAbp(); // Initializes ABP framework.
 
             if (env.IsDevelopment())

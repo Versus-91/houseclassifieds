@@ -18,9 +18,7 @@ namespace classifieds.Posts.Dto
     [AutoMap(typeof(Post))]
     public class PostDto : AuditedEntityDto, IHasCreationTime
     {
-        [Required]
         public string Title { get; set; }
-        [Required]
         public string Description { get; set; }
         public int CategoryId { get; set; }
         public int DistrictId { get; set; }

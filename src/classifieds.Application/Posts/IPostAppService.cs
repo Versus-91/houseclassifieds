@@ -12,7 +12,7 @@ namespace classifieds.Posts
         Task<PostDto> GetDetails(int id);
         Task<PagedResultDto<PostDto>> GetUserPosts(GetAllPostsInput input);
         Task<PagedResultDto<PostDto>> Recommendations(PostDto post);
-        Task<List<LlocationPostsCount>> CitiesPostsCount();
+        Task<List<PostsCountDto>> CitiesPostsCount();
         Task<List<UserPostsCountDto>> UsersPostsCount();
     }
 }

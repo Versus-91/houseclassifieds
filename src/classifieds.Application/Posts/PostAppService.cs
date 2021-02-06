@@ -124,7 +124,8 @@ namespace classifieds.Posts
 
         public async Task<PagedResultDto<PostDto>> Recommendations(PostDto post)
         {
-            var items = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category).Where(m =>m.IsVerified && m.Id != post.Id && m.CategoryId == post.CategoryId && m.DistrictId == post.DistrictId && m.TypeId == post.TypeId)
+            var items = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category)
+                .Where(m => m.IsVerified && m.Id != post.Id && m.CategoryId == post.CategoryId && m.DistrictId == post.DistrictId && m.TypeId == post.TypeId)
                 .Select(m => new PostDto
                 {
                     Id = m.Id,
@@ -153,32 +154,24 @@ namespace classifieds.Posts
                         Name = m.Name
                     }).ToList(),
                 }).Take(4).ToListAsync();
-            return new PagedResultDto<PostDto>(items.Count, ObjectMapper.Map<List<PostDto>>(items));
+            return new PagedResultDto<PostDto>(10, ObjectMapper.Map<List<PostDto>>(items));
         }
         [RemoteService(false)]
-        public async Task<List<LlocationPostsCount>> CitiesPostsCount()
+        public async Task<List<PostsCountDto>> CitiesPostsCount()
         {
             var categories = await _categoryRepository.GetAllListAsync();
-            var postsCountPerCategory = new List<LlocationPostsCount>();
-            foreach (var category in categories)
-            {
-                var cityId = _cityRepository.GetAll().Where(m => m.Name.Contains("کابل")).FirstOrDefault()?.Id;
-                if (cityId != null)
+            var postsCountPerCategory = new List<CitiesPostsCount>();
+  
+             var counts = await _postRepository.GetAll().Where(m=> m.IsVerified == true).GroupBy(m => m.District.CityId)
+                .Select(n => new PostsCountDto
                 {
-                    var counts = await _postRepository.GetAll().Where(m => m.CategoryId == category.Id && m.IsVerified == true && m.District.City.Name.Contains("کابل")).Include(m => m.District).GroupBy(m => m.DistrictId)
-                     .Select(n => new PostsCountDto
-                     {
-                         DistrictId = n.Key,
-                         Count = n.Count(),
-                         DistrictName = _districtRepository.GetAll().Where(m => m.Id == n.Key).FirstOrDefault().Name,
-                         CityId = cityId.Value,
-                     }
-                  ).OrderByDescending(m => m.Count).Take(10).ToListAsync();
-                    postsCountPerCategory.Add(new LlocationPostsCount { CategoryName = category.Name, CategoryId = category.Id, Count = counts, CityName = "کابل" });
+                    CityId = n.Key,
+                    CityName = _cityRepository.GetAll().Where(m => m.Id == n.Key).FirstOrDefault().Name,
+                    Count = n.Count(),
                 }
+             ).OrderByDescending(m => m.Count).Take(20).ToListAsync();
 
-            }
-            return postsCountPerCategory;
+            return counts;
         }
         [RemoteService(false)]
         public async Task<List<UserPostsCountDto>> UsersPostsCount()
@@ -197,10 +190,14 @@ namespace classifieds.Posts
         public override async Task<PostDto> CreateAsync(CreatePostInput input)
         {
             List<PostAmenity> amenities=new List<PostAmenity>();
-            foreach (var amenity in input.Amenities)
+            if (input.Amenities != null && input.Amenities.Count > 0)
             {
-                amenities.Add(new PostAmenity(){AmenityId= amenity });
+                foreach (var amenity in input.Amenities)
+                {
+                    amenities.Add(new PostAmenity() { AmenityId = amenity });
+                }
             }
+
             var post = ObjectMapper.Map<Post>(input);
             post.PostAmenities = amenities;   
             await _postRepository.InsertAndGetIdAsync(post);

@@ -52,19 +52,10 @@ namespace classifieds.Web.Controllers
         public async Task<IActionResult> Index(GetAllPostsInput inputs)
         {
             var types = (await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items.ToList();
-            var cities = (await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = int.MaxValue })).Items.ToList();
-            var districts = new List<DistrictDto>();
-            if (inputs.City != null)
-            {
-                 districts.AddRange((await _districtService.GetByCityId(inputs.City.Value)).ToList());
-            }
-            cities.Insert(0, new CityDto { Id = 0, Name = "شهر را انتخاب کنید" });
-            types.Insert(0, new PropertyTypeDto { Id = 0, Name = "نوع ملک را انتخاب کنید" });
-            districts.Insert(0, new DistrictDto { Id = 0, Name = " ناحیه را انتخاب کنید" });
-
-            ViewData["Categories"] = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, nameof(CategoryDto.Id), nameof(CategoryDto.Name),inputs.Category);
-            ViewData["Districts"] = new SelectList(districts, "Id", "Name",inputs.District);
-            ViewData["Cities"] = new SelectList(cities,nameof(CityDto.Id), nameof(CityDto.Name),inputs.City);
+            types.Insert(0, new PropertyTypeDto { Id = 0, Name = "مهم نیست" });
+            var categories = (await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items.ToList();
+            categories.Insert(0, new CategoryDto { Id = 0, Name = "مهم نیست" });
+            ViewData["Categories"] = new SelectList(categories, nameof(CategoryDto.Id), nameof(CategoryDto.Name),inputs.Category);
             //ViewData["Amenitites"] = (await _amenityService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
 
             if (inputs.Types == null)

@@ -14,6 +14,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using AccountUserDto = classifieds.Authorization.Accounts.Dto.AccountUserDto;
 
 namespace classifieds.Authorization.Accounts
 {
@@ -64,7 +65,7 @@ namespace classifieds.Authorization.Accounts
                 input.EmailAddress,
                 input.UserName,
                 input.Password,
-                true, // Assumed email address is always confirmed. Change this if you want to implement email confirmation.
+                false, // Assumed email address is always confirmed. Change this if you want to implement email confirmation.
                 input.PhoneNumber
             );
 
@@ -77,11 +78,11 @@ namespace classifieds.Authorization.Accounts
         }
         [HttpGet]
         [AbpAuthorize]
-        public UserDto User()
+        public AccountUserDto User()
         {
             var user =  _userManager.GetUserById(AbpSession.UserId.Value);
     
-            return ObjectMapper.Map<UserDto>(user);
+            return ObjectMapper.Map<AccountUserDto>(user);
         }
         [HttpPut]
         public async Task<bool> ChangePassword(ChangePasswordInput input)
@@ -108,7 +109,7 @@ namespace classifieds.Authorization.Accounts
 
         }
 
-        protected  void MapToEntity(UserDto input, User user)
+        protected  void MapToEntity(AccountUserDto input, User user)
         {
             ObjectMapper.Map(input, user);
             user.SetNormalizedNames();
@@ -148,6 +149,24 @@ namespace classifieds.Authorization.Accounts
             }
             return "unavailable";
 
+        }
+        [HttpPut]
+        public async Task<AccountUserDto> UpdateAsync(AccountUserDto input)
+        {
+
+            var user = await _userManager.GetUserByIdAsync(input.Id);
+            if (user.Id != AbpSession.UserId)
+            {
+                throw new UserFriendlyException("You cannot change this user info.");
+            }
+
+            user.Name = input.Name;
+            user.Surname = input.Surname;
+            user.EmailAddress = input.EmailAddress;
+            user.SetNormalizedNames();
+            CheckErrors(await _userManager.UpdateAsync(user));
+
+            return ObjectMapper.Map<AccountUserDto>(await _userManager.GetUserByIdAsync(input.Id)) ;
         }
     }
 }

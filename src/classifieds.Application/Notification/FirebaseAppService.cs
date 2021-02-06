@@ -27,11 +27,10 @@ namespace classifieds.Notification
 
 
         [RemoteService(false)]
-        public async Task SendMessage(Message message)
+        public async Task<String> SendMessage(Message message)
         {
             var messaging = FirebaseMessaging.DefaultInstance;
-            var result = await messaging.SendAsync(message);
-
+            return await messaging.SendAsync(message).ConfigureAwait(false);
         }
     }
 }

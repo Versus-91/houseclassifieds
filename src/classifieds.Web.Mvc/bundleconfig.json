@@ -178,15 +178,15 @@
     ]
   },
   {
-    "outputFileName": "wwwroot/view-resources/Views/UserPosts/Index.min.js",
+    "outputFileName": "wwwroot/view-resources/Views/UserPosts/main.min.js",
     "inputFiles": [
-      "wwwroot/view-resources/Views/UserPosts/Index.js"
+      "wwwroot/view-resources/Views/UserPosts/main.js"
     ]
   },
   {
-    "outputFileName": "wwwroot/view-resources/Views/UserPosts/Pagination.min.js",
+    "outputFileName": "wwwroot/view-resources/Views/UserPosts/card.min.js",
     "inputFiles": [
-      "wwwroot/view-resources/Views/UserPosts/Pagination.js"
+      "wwwroot/view-resources/Views/UserPosts/card.js"
     ]
   },
   {

@@ -39,19 +39,108 @@
 
 </head>
 
-<body class="site">
+<body class="site" >
     @await Html.PartialAsync("Layout/_UserNavbar", returnUrl)
-    @RenderSection("hero", required: false)
+    <div id="app">
+            @RenderSection("hero", required: false)
     @RenderBody()
-    <footer class="footer ">
-       <div class="container">
-           <div class="columns">
-               <div class="column is-4">دانلود اپلیکیشن</div>
-               <div class="column is-4">شبکه های اجتماعی</div>
-               <div class="column is-4">تماس با ما</div>
-           </div>
-       </div>
-    </footer>
+    </div>
+<footer class="footer">
+  <div class="container">
+<div class="bd-footer-links">
+  <div class="columns">
+    <div class="column is-4">
+      <p class="bd-footer-link-title">
+        <a href="/">خانه</a>
+      </p>
+
+      <p class="bd-footer-link-title">
+        <a href="https://bulma.io/blog">وبلاگ</a>
+      </p>
+
+      
+        <p class="bd-footer-link">
+          <a href="/2021/01/23/the-block-probably-bulmas-most-important-feature/">
+            The Bulma block
+          </a>
+        </p>
+      
+        <p class="bd-footer-link">
+          <a href="/2021/01/12/new-feature-icon-text/">
+            New feature: Icon Text
+          </a>
+        </p>
+      
+        <p class="bd-footer-link">
+          <a href="/2019/10/15/light-dark-colors/">
+            Light/Dark colors, better look, larger controls
+          </a>
+        </p>
+      
+        <p class="bd-footer-link">
+          <a href="/2018/06/20/automatic-variables-documentation/">
+            Automatic variables docs
+          </a>
+        </p>
+      
+
+      <p class="bd-footer-link bd-is-more">
+        <a href="/">
+          View all posts
+        </a>
+      </p>
+    </div>
+
+    <div class="column is-4">
+      <p class="bd-footer-link-title">
+        <a href="/">آگهی های پربازدید</a>
+      </p>
+        <p class="bd-footer-link">
+          <a href="/">
+            Overview
+          </a>
+        </p>
+        <p class="bd-footer-link">
+          <a href="/">
+            Customize
+          </a>
+        </p>
+        <p class="bd-footer-link">
+          <a href="/">
+            Helpers
+          </a>
+        </p>
+        <p class="bd-footer-link">
+          <a href="/">
+            Columns
+          </a>
+        </p>
+      
+        
+        
+
+        <p class="bd-footer-link">
+          <a href="/">
+            Layout
+          </a>
+        </p>
+    </div>
+
+    <div class="column is-4">
+      <p class="bd-footer-link-title">
+        <a href="/">سایر موارد</a>
+      </p>
+         <p class="bd-footer-link">
+          <a href="/">
+            دریافت اپ
+          </a>
+        </p>
+    </div>
+  </div>
+</div>
+
+  </div>
+</footer>
     <script src="~/libs/jquery/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script>
