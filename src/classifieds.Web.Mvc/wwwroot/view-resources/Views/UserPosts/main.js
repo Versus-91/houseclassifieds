@@ -14,7 +14,7 @@
 		districtText: null,
 		cities: [],
 		districts: [],
-		roomsCount: 1,
+		roomsCount: 0,
 		featured: false,
 		type: null,
 		typeText: null,
@@ -48,7 +48,6 @@
 			this.loadingDistricts = true;
 			axios.get("/admin/districts/GetByCityId?id="+this.city)
 				.then((res) => {
-					console.log(res);
 					var items = res.data.result;
 					items.unshift({ name: 'مهم نیست', id: 0 });
 					this.districts = items;
@@ -60,7 +59,6 @@
 				});
 		},
 		search: function (sort) {
-			console.log(sort);
 			this.page = 1;
 			var data = {
 				category: this.category, district: this.district, city: this.city, minArea: null,
@@ -69,7 +67,8 @@
 				maxPrice: this.maxPrice,
 				minRent: this.minRent,
 				maxRent: this.maxRent,
-				types:this.type,
+				types: this.type,
+				featured:this.featured,
 				minDeposit: this.minDeposit,
 				maxDeposit: this.maxDeposit, };
 			var uri = '?' + this.serialize(data);
@@ -97,13 +96,11 @@
 					}
 					break;
 			}
-			console.log(this.uri);
 			if (!!query) {
 				this.uri = uri + '&' + query;
 			} else {
 				this.uri = uri;
 			}
-			console.log(this.uri);
 			this.loading = true;
 			axios.get("/api/services/app/post/getall" + this.uri + "&SkipCount=0&MaxResultCount=30")
 				.then((res) => {
@@ -111,7 +108,6 @@
 					this.loading = false;
 					this.totalItems = res.data.result.totalCount;
 					this.posts = res.data.result.items;
-					console.log(sort);
 					if (!!sort) {
 						this.sort = sort;
 					}
@@ -144,9 +140,7 @@
 				}
 			return str.join("&");
 		},
-		showFiltersModal: function (e) {
-			console.log(e);
-		}
+
 	},
 	created: function () {
 		var categoryOptions = document.getElementsByClassName("categories")[0].options;
@@ -172,20 +166,18 @@
 		if (!!city) {
 			axios.get("/admin/districts/GetByCityId?id=" + city)
 				.then((res) => {
-					console.log(res);
 					var items = res.data.result;
 					items.unshift({ name: 'مهم نیست', id: 0 });
+					this.districts = items;
 					if (!!district) {
 						this.district = district;
 					} else {
-						this.district = items.id;
+						this.district = this.districts[0].id;
 					}
-					this.districts = items;
 				}).catch((err) => {
 					this.errors = err;
 				});
 		}
-		var disrict = url.searchParams.get("district");
 		this.uri = query == null || query.length == 0 ? '?' : (query + '&');
 
 		axios.get("/api/services/app/post/getall" + this.uri + "SkipCount=0&MaxResultCount=30")
