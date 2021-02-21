@@ -12,15 +12,17 @@
           crossorigin="" />
 }
 <div class="section has-background-white-ter Site-content">
+     @Html.AntiForgeryToken()
     <div class="container " id="mainContainer">
+         <input hidden name="id" id="id" value="@Model.Post.Id" />
         <input hidden name="Latitude" id="postLatitude" value="@Model.Post.Latitude" />
         <input hidden name="Longitude" id="postLongitude" value="@Model.Post.Longitude" />
         <nav class="breadcrumb " aria-label="breadcrumbs">
             <ul>
                 <li><a href="/ads?city=@Model.Post.District.City.Id">@Model.Post.District.City.Name</a></li>
-                <li><a href="/ads?district=@Model.Post.District.Id"> @Model.Post.District.Name </a></li>
-                <li><a href="/ads?district=@Model.Post.District.Id&category=@Model.Post.CategoryId"> @Model.Post.Category.Name </a></li>
-                <li ><a href="/ads?district=@Model.Post.District.Id&category=@Model.Post.CategoryId&types=@Model.Post.TypeId&city=@Model.Post.District.City.Id" aria-current="page">@Model.Post.Type.Name</a></li>
+                <li><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.City.Id"> @Model.Post.District.Name </a></li>
+                <li><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.City.Id&category=@Model.Post.CategoryId"> @Model.Post.Category.Name </a></li>
+                <li ><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.City.Id&category=@Model.Post.CategoryId&types=@Model.Post.TypeId&city=@Model.Post.District.City.Id" aria-current="page">@Model.Post.Type.Name</a></li>
             </ul>
         </nav>
         <div class="box">
@@ -72,7 +74,7 @@
                     </section>
                     <div class="field is-grouped btn-overlay">
                       <p class="control">
-                         <button class="button is-danger is-small" id="btn">
+                         <button class="button is-danger is-small" v-on:click="showModal = true">
                             <span class="icon ">
                                 <i class="fas fa-flag"></i>
                             </span>
@@ -83,13 +85,26 @@
              
                     <h1 class="subtitle is-5">@Model.Post.Description</h1>
                     <div class="level is-mobile">
-                    <button class="button is-primary">
-                        <span class="icon ">
-                            <i class="fas fa-phone"></i>
-                        </span>
-                        <span>تماس</span>
-                    </button>
-  
+                        <div class="buttons has-addons">
+                          <button class="button is-small is-primary mx-1">
+                              <span class="icon ">
+                                  <i class="fas fa-phone"></i>
+                              </span>
+                              <span>تماس</span>
+                          </button>
+                            <button class="button is-small is-success mx-1">
+                              <span class="icon ">
+                                  <i class="fas fa-share-alt"></i>
+                              </span>
+                              <span>اشتراک</span>
+                          </button>
+                          <button class="button is-small mx-1 is-link">
+                              <span class="icon ">
+                                  <i class="fas fa-bookmark"></i>
+                              </span>
+                              <span>ذخیره</span>
+                          </button>
+                        </div>
                     <span class="text-muted">کد :@Model.Post.Id</span>
                     </div>
                 </div>
@@ -214,19 +229,30 @@
             </div>
     }
 </div>
-<div class="modal " id="myModal">
+<div class="modal " :class="{'is-active':showModal}">
   <div class="modal-background"></div>
   <div class="modal-card">
     <header class="modal-card-head">
       <p class="modal-card-title">گزارش اشکال</p>
-      <button class="delete" aria-label="close" data-bulma-modal="close"></button>
+      <button class="delete" aria-label="close" data-bulma-modal="close" v-on:click="showModal = false"></button>
     </header>
     <section class="modal-card-body">
-      <p>There is something here</p>
+          <div class="column is-12">
+              <p class="title is-5">دلیل</p>
+              <div class="select">
+                  <select v-model="option">
+                      <option v-for="opt in options" :value="opt.id">{{opt.name}}</option>
+                  </select>
+              </div>
+          </div>
+          <div class="column is-12">
+               <p class="title is-5">توضیحات</p>
+               <textarea class="textarea"  v-model="description"></textarea>
+          </div>
     </section>
     <footer class="modal-card-foot">
-      <button class="button is-success">ثبت </button>
-      <button class="button" data-bulma-modal="close">انصراف</button>
+      <button class="button is-success" v-on:click="submitForm" >ثبت </button>
+      <button class="button" v-on:click="showModal = false">انصراف</button>
     </footer>
   </div>
 </div>
@@ -293,9 +319,49 @@
 @section scripts{
     <script src="~/libs/swiper/swiper-bundle.min.js" asp-append-version="true"></script>
     <script src="~/libs/photoswipe/dist/photoswipe.min.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>
+    <script src="~/lib/vue/vue.js" asp-append-version="true"></script>
     <environment names="Development">
+        <script>
+            new Vue({
+                el:'#app',
+                data : {
+                    showModal:false,
+                    options:[],
+                    option:null,
+                    description:'',
+                    id:null,
+                },
+
+                methods :{
+                    submitForm(){
+                        axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
+                        axios.post('/api/services/app/report/create',{
+                           postId:this.id,
+                           description:this.description,
+                           ReportOptionId:this.option,
+                        }).then((res)=>{
+                           this.description = '',
+                           this.option = this.options[0]?.id,
+                           this.showModal = false
+                        });
+                    }
+                },
+                created(){
+                    axios.get('/api/services/app/reportoption/getall').then((res)=>{
+                        this.options = res.data.result.items;
+                        if(!!this.options){
+                           this.option = this.options[0].id;
+                        }
+                    });
+                    this.id = document.getElementById('id').value;
+                    console.log(this.id);
+                }
+            });
+        </script>
         <script src="~/lib/photoswipe/photoswipe-ui-default.js" asp-append-version="true"></script>
         <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>
+
     </environment>
     <environment names="Staging,Production">
         <script src="~/lib/photoswipe/photoswipe-ui-default.min.js" asp-append-version="true"></script>

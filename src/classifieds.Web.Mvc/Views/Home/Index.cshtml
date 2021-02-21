@@ -11,14 +11,14 @@
     <section class="hero is-medium" style="background-color: #0093E9; background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%); ">
         <div class="hero-body">
             <div class="container">
-                <nav class="columns is-centered is-mobile has-text-centered mb-2">
-                    @foreach (var item in Model.Categories)
-                    {
-                        <div class="column is-6-mobile is-2-desktop cat-tab " data-id="@item.Id">
-                            <span class="title is-5 cat-tabs-link">@item.Name</span>
-                        </div>
-                    }
-                </nav>
+                <div class="tabs is-toggle is-success">
+                     <ul>
+                       @foreach (var item in Model.Categories)
+                           {
+                               <li data-id="@item.Id" class="cat-tab"><a>@item.Name</a></li>
+                           }
+                     </ul>
+                </div>
                 <div class="box has-text-link">
                     <div class="columns is-centered is-vcentered has-text-centered py-2">
                         <div class="column">
@@ -298,8 +298,8 @@
                             return null;
                         }
                         var categoryId = 0;
-                        $(".cat-tab").first().find("span").addClass("has-text-grey-dark ");
-                        categoryId = $(".cat-tab").first("span").attr("data-id");
+                        $(".cat-tab").first().addClass("is-active");
+                        categoryId = $(".cat-tab").attr("data-id");
                         $('#selectCity').on('select2:select', function (e) {
                             if (e.target.value != 0) {
                                 $("#selectDistrict").prop("disabled", false);
@@ -323,8 +323,8 @@
                             }
                         });
                         $(".cat-tab").click(function () {
-                            $(".cat-tab").find("span").removeClass("has-text-grey-dark  ");
-                            $(this).find("span").addClass("has-text-grey-dark   ");
+                            $(".cat-tab").removeClass("is-active");
+                            $(this).addClass("is-active");
                             categoryId = $(this).attr("data-id")
                         });
                         $("#send").click(function () {

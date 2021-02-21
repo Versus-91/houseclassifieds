@@ -8,6 +8,7 @@ namespace classifieds.Posts.Dto
     {
         public long? UserId { get; set; }
         public bool? Featured { get; set; }
+        public int? Zone { get; set; }
         public int? MinPrice { get; set; }
         public int? MaxPrice { get; set; }
         public int? MinRent { get; set; }

@@ -13,9 +13,7 @@ namespace classifieds.Posts.Dto
     {
         [Required]
         public int Id { get; set; }
-        [Required]
         public string Title { get; set; }
-        [Required]
         public string Description { get; set; }
         public int CategoryId { get; set; }
         public string Category { get; set; }
@@ -30,6 +28,7 @@ namespace classifieds.Posts.Dto
         public int TypeId { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
-        public IList<Image> Images { get; set; }
+        public IList<int> Amenities { get; set; } = new List<int>();
+
     }
 }

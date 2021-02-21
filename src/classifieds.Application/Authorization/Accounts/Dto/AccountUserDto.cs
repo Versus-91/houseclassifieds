@@ -17,8 +17,11 @@ namespace classifieds.Authorization.Accounts.Dto
 
         public string Surname { get; set; }
 
+        public string PhoneNumber { get; set; }
 
         public string EmailAddress { get; set; }
+        public bool IsEmailConfirmed { get; set; }
+        public bool IsPhoneNumberConfirmed { get; set; }
 
 
 

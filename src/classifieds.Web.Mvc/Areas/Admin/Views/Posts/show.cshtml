@@ -10,12 +10,6 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
           integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
           crossorigin="" />
-    <environment names="Development">
-        <link href="~/css/web.css" rel="stylesheet" asp-append-version="true" />
-    </environment>
-    <environment names="Staging,Production">
-        <link href="~/css/web.min.css" rel="stylesheet" asp-append-version="true" />
-    </environment>
 }
 <form action="/admin/posts/update" method="post" style="display:none" id="veriftPost">
     @Html.AntiForgeryToken()

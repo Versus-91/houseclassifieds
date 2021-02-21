@@ -2,6 +2,7 @@
 using Abp.Application.Services.Dto;
 using Abp.Domain.Repositories;
 using Abp.ObjectMapping;
+using classifieds.Areas;
 using classifieds.Authorization;
 using classifieds.Cities;
 using classifieds.Districts.Dto;
@@ -16,9 +17,12 @@ namespace classifieds.Districts
     {
         private readonly IRepository<District> _districtService;
         private readonly IRepository<City> _cityService;
+        private readonly IRepository<Area> _areaService;
+
         private readonly IObjectMapper _objectMapper;
-        public DistrictAppService(IRepository<District> districtSrvice, IRepository<City> cityService, IObjectMapper objectMapper) : base(districtSrvice)
+        public DistrictAppService(IRepository<Area> areaService,IRepository<District> districtSrvice, IRepository<City> cityService, IObjectMapper objectMapper) : base(districtSrvice)
         {
+            _areaService = areaService;
             _districtService = districtSrvice;
             _objectMapper = objectMapper;
             _cityService = cityService;
@@ -36,6 +40,11 @@ namespace classifieds.Districts
         public async Task<List<DistrictDto>> GetByCityId(int id)
         {
             var districts = await _districtService.GetAllListAsync(m => m.CityId == id);
+            return _objectMapper.Map<List<DistrictDto>>(districts);
+        }
+        public async Task<List<DistrictDto>> GetByAreaId(int id)
+        {
+            var districts = await _districtService.GetAllListAsync(m => m.AreaId == id);
             return _objectMapper.Map<List<DistrictDto>>(districts);
         }
         public async Task<List<LocationSearchDto>> Find(string query)

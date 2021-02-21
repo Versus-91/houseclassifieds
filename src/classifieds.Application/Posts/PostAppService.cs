@@ -36,7 +36,7 @@ namespace classifieds.Posts
             _postRepository = repository;
             _categoryRepository = categoryRepository;
             CreatePermissionName = PermissionNames.Posts_Create;
-            UpdatePermissionName = PermissionNames.Pages_Posts;
+           // UpdatePermissionName = PermissionNames.Pages_Posts;
             DeletePermissionName = PermissionNames.Pages_Posts;
             _districtRepository = districtRepository;
             _userRepository = userRepository;
@@ -55,6 +55,7 @@ namespace classifieds.Posts
                 .Include(m => m.Category)
                 .Include(m=>m.PostAmenities).ThenInclude(m=>m.Amenity)
                 .Where(m=>m.IsVerified ==true)
+                .WhereIf(input.Zone.HasValue, t => t.District.AreaId == input.Zone.Value)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
                 .WhereIf(input.Category.HasValue, t => t.CategoryId == input.Category.Value)
                 .WhereIf(input.District.HasValue, t => t.DistrictId == input.District.Value)
@@ -84,6 +85,7 @@ namespace classifieds.Posts
                     Price = m.Price,
                     Deposit = m.Deposit,
                     Rent = m.Rent,
+                    Age = m.Age,
                     CategoryId =m.CategoryId,
                     TypeId=m.TypeId,
                     IsFeatured = m.IsFeatured,
@@ -202,6 +204,23 @@ namespace classifieds.Posts
             post.PostAmenities = amenities;   
             await _postRepository.InsertAndGetIdAsync(post);
             return ObjectMapper.Map<PostDto>(post);
+        }
+        public override async Task<PostDto> UpdateAsync(UpdatePostInput input)
+        {
+            List<PostAmenity> amenities = new List<PostAmenity>();
+            if (input.Amenities != null && input.Amenities.Count > 0)
+            {
+                foreach (var amenity in input.Amenities)
+                {
+                    amenities.Add(new PostAmenity() { AmenityId = amenity,PostId = input.Id });
+                }
+            }
+            var post =await _postRepository
+                .GetAllIncluding(m => m.PostAmenities)
+                .FirstOrDefaultAsync(m=>m.Id == input.Id);
+            post.PostAmenities = amenities;
+            await _postRepository.UpdateAsync(post);
+            return MapToEntityDto(post);
         }
     }
 }

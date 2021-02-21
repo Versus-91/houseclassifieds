@@ -28,7 +28,7 @@ namespace classifieds.Controllers
     {
         private readonly long _fileSizeLimit;
         private readonly ILogger<UploadController> _logger;
-        private readonly string[] _permittedExtensions = { ".jpg", ".jpeg" };
+        private readonly string[] _permittedExtensions = { ".jpg", ".jpeg",".png" };
         private readonly string _postImagesFilePath;
         private readonly string _avatarsFilePath;
         private readonly UserManager _userManager;

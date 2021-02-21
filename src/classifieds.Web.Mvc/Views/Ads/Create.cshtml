@@ -33,8 +33,9 @@
           <p class="title is-5">نوع ملک <span class="is-danger is-size-7 has-text-danger">اجباری</span></p> 
          <div class="buttons">
       @foreach(var prop in (IEnumerable<SelectListItem>)@ViewData["PropertyTypes"]){
-            <div v-on:click="tradeType = @prop.Value" 
-          v-bind:class="{ 'is-success': tradeType == @prop.Value}" class="button ">@prop.Text</div>
+            <button value="@prop.Value" class="button types" v-on:click="tradeType = @prop.Value" 
+          v-bind:class="{ 'is-success': tradeType == @prop.Value}" >@prop.Text
+      </button>
       }
   </div>
       </div>
@@ -70,7 +71,7 @@
                             <div class="field ">
                                  <label for="Price" class="label">قیمت</label>
                                 <div class="control has-icons-left">
-                                    <input class="input currency" dir="ltr" id="price" placeholder="قیمت" name="Price" />
+                                    <input class="input currency" dir="ltr" id="price" placeholder="قیمت" name="Price" v-model="price"/>
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
@@ -83,7 +84,7 @@
                             <div class="field column is-6 p-0">
                                 <label for="Deposit" class="label">کرای</label>
                                 <div class="control has-icons-left">
-                                    <input class="input currency" dir="ltr" placeholder="اجاره"  name="Rent" />
+                                    <input class="input currency" dir="ltr" placeholder="اجاره"  name="Rent" v-model="rent"/>
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
@@ -92,7 +93,7 @@
                             <div class="field column is-6 p-0" >
                                 <label for="Deposit" class="label">پیش پرداخت</label>
                                 <div class="control has-icons-left">
-                                    <input class="input currency" dir="ltr" placeholder="پیش پرداخت"  name="Deposit" />
+                                    <input class="input currency" dir="ltr" placeholder="پیش پرداخت"  v-model="deposit" />
                                     <span class="icon is-small is-left">
                                         <i class="fas fa-dollar-sign"></i>
                                     </span>
@@ -118,7 +119,7 @@
                                 <label asp-for="Bedroom" class="label">تعداد خواب</label>
                                 <div class="control  has-icons-left has-icons-right">
                                     <div class="select is-fullwidth">
-                                        <select asp-for="Bedroom">
+                                        <select asp-for="Bedroom" v-model="room">
                                             <option value="1">1</option>
                                             <option value="2">2</option>
                                             <option value="3">3</option>
@@ -126,22 +127,35 @@
                                             <option value="5">5</option>
                                             <option value="6">6</option>
                                         </select>
-                                        <span class="icon is-small is-left">
+                                        <span class="icon is-small is-right">
                                             <i class="fas fa-bed"></i>
                                         </span>
                                     </div>
                                     <span class="help is-danger" asp-validation-for="Bedroom"></span>
                                 </div>
                             </div>
-
                         </div>
                     </div>
+                     <div class="field column is-6 p-0" >
+                                <label asp-for="Bedroom" class="label">عمر بنا</label>
+                                <div class="control ">
+                                    <div class="buttons" >
+                                            <div v-on:click="age = 1" class="button" :class="{'is-success': age == 1}">نوساز</div>
+                                            <div v-on:click="age = 2" class="button" :class="{'is-success': age == 2}">2 سال </div>
+                                            <div v-on:click="age = 3" class="button" :class="{'is-success': age == 3}">3 سال</div>
+                                            <div v-on:click="age = 4" class="button" :class="{'is-success': age == 4}">4 سال</div>
+                                            <div v-on:click="age = 5" class="button" :class="{'is-success': age == 5}">5 سال</div>
+                                            <div v-on:click="age = 6" class="button" :class="{'is-success': age == 6}">6 سال</div>
+                                            <div v-on:click="age = 7" class="button" :class="{'is-success': age == 7}">7 سال</div>
+
+                                    </div>
+                                </div>
+                            </div>
                     <div class="field">
                         <label asp-for="Description" class="label">توضیحات</label>
                         <div class="control">
                             <textarea v-model="description"  class="textarea"></textarea>
                         </div>
-
                     </div>
                     <div class="field">
                         <div class=" dz-clickable dropzone" id="dropzone">
@@ -173,6 +187,10 @@
                         <div class="column is-8">
                             <p class="title is-4">مکان روی نقشه </p>
                             <div id="map" style="height:250px">
+                                <l-map :center="center" :zoom="zoom" @@click="addMarker" ref="map"/>
+                                      <l-tile-layer
+                                        :url="url"
+                                      />
                             </div>
                         </div>
 
@@ -180,7 +198,7 @@
 
                     <div class="field is-grouped">
                         <div class="control">
-                            <button class="button is-link is-success" v-on:click="postSubmit($event)">
+                            <button :disabled='!validateForm' class="button is-link is-success" v-on:click="postSubmit($event)" >
                                 <i class="fas fa-paper-plane pl-1"> </i>
                                 ارسال
                             </button>
@@ -227,136 +245,6 @@
     </div>
 </div>
 @section scripts{
-    <script src="~/lib/dropzone/dist/min/dropzone.min.js" asp-append-version="true">
-    </script>
-    <script asp-append-version="true" src="~/lib/vue/vue.js"></script>
-        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-            crossorigin=""></script>
-        <script src="~/lib/LeafletSearch/dist/leaflet-search.min.js"
-            asp-append-version="true"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>
-    <script>
-        Dropzone.autoDiscover = false;
-        Vue.directive('select2', {
-    inserted(el) {
-        $(el).on('select2:select', () => {
-            const event = new Event('change', { bubbles: true, cancelable: true });
-            el.dispatchEvent(event);
-        });
-
-        $(el).on('select2:unselect', () => {
-            const event = new Event('change', {bubbles: true, cancelable: true})
-            el.dispatchEvent(event)
-        })
-    },
-});
-        var app = new Vue({
-          el : "#app",
-          data:{
-              category:null,
-              tradeType:null,
-              dropZone:{},
-              marker:{},
-              district:0,
-              description:'',
-              amenities:[],
-              categories:[],
-              area:null,
-          },
-          methods:{
-              setAmenity:function(e,amenity){
-                  e.preventDefault()
-                  var index = this.amenities.findIndex(m=> m == amenity);
-                  if(index >-1){
-                      this.amenities.splice(index,1);
-                  }else{
-                      this.amenities.push(amenity);
-                  }
-              },
-              postSubmit:function(e){
-                  e.preventDefault();
-                  var request = {amenities:this.amenities,typeId:this.tradeType
-              ,categoryId:this.category.id,description:this.description,area:this.area,districtId:this.district};
-                  axios.post('/ads/create',request).then((res)=>{
-                      if(this.dropZone?.files?.length > 0){
-                      this.dropZone.options.url = '/upload/' + res?.data?.result
-				      this.dropZone.processQueue();
-                      }else{
-			             window.location.href = "../";
-                      }
-
-                  }).catch((err)=>console.log(err));
-              },
-          },
-          created(){
-              	
-           axios.get('/api/services/app/category/getall').then((res)=>{
-                   this.categories = res.data.result.items;
-                   this.category = this.categories[0];
-                });
-          },
-          mounted(){
-               this.dropZone = new Dropzone('#dropzone', {
-		autoProcessQueue: false,
-		maxFiles: 8,
-		preventDuplicates: true,
-		acceptedFiles: 'image/*',
-		maxFilesize: 4,
-		previewTemplate: document.querySelector('#tpl').innerHTML,
-		//addRemoveLinks: true,
-		init: function () {
-			this.on('error', function (file, errorMessage) {
-				if (errorMessage.indexOf('big') !== -1) {
-					var errorDisplay = document.querySelectorAll('[data-dz-errormessage]');
-					errorDisplay[errorDisplay.length - 2].innerHTML = 'حجم فایل زیاد است.' + '<br/>حداکثر حجم فایل مجاز :' + this.options.maxFilesize + 'مگابایت ';
-				}
-			});
-		},
-		url: "/ads/create",
-		headers: {
-			'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value
-		},
-		success: function (file, response) {
-			window.location.href = "../";
-		}
-	});
-	//remove duplcate files
-	this.dropZone.on("addedfile", function (file) {
-		if (this.files.length) {
-			var _i, _len;
-			for (_i = 0, _len = this.files.length; _i < _len - 1; _i++) // -1 to exclude current file
-			{
-				if (this.files[_i].name === file.name && this.files[_i].size === file.size && this.files[_i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
-					this.removeFile(file);
-				}
-			}
-		}
-	});
-    var map = L.map('map').setView([34.543896, 69.160652], 13);
-    var searchLayer = L.layerGroup().addTo(map);
-	L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-		attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-	}).addTo(map);
-    map.addControl( new L.Control.Search({layer: searchLayer}) );
-	map.on('click', onMapClick);
-	function showPosition(position) {
-		map.setView([position.coords.latitude, position.coords.longitude])
-		this.marker = L.marker({ lat: position.coords.latitude, lng: position.coords.longitude }).addTo(map)
-			.bindPopup('محل انتخاب شده .')
-			.openPopup();
-	}
-	function onMapClick(e) {
-		if (this.marker != undefined) {
-			map.removeLayer(this.marker);
-		}
-		this.marker = L.marker(e.latlng).addTo(map)
-			.bindPopup('محل انتخاب شده .')
-			.openPopup();
-	}
-          },
-        });
-    </script>
 
         <script>
           $(function () {
@@ -412,8 +300,11 @@
         });
         });
         </script>
-    <environment names="Development">
-    </environment>
-    <environment names="Staging,Production">
-    </environment>
+    <script src="~/lib/dropzone/dist/min/dropzone.min.js" asp-append-version="true">
+    </script>
+    <script asp-append-version="true" src="~/lib/vue/vue.min.js"></script>
+    <script src="//unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="//unpkg.com/vue2-leaflet"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>   
+    <script asp-append-version="true" src="~/view-resources/Views/UserPosts/create.js"></script>
 }

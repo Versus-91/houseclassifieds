@@ -5,16 +5,21 @@
 		sort: 1,
 		loading: true,
 		loadingDistricts: false,
+		loadingAreas: false,
 		msg: 'در حال دریافت اطلاعات....',
 		url: '/img/icon.png',
 		categoryText: ' ',
 		city: null,
 		cityText: null,
+		areas: [],
+		selectedArea: null,
+		selectedAreaName: null,
 		district: null,
 		districtText: null,
 		cities: [],
 		districts: [],
 		roomsCount: 0,
+		hasMedia:null,
 		featured: false,
 		type: null,
 		typeText: null,
@@ -39,6 +44,21 @@
 				this.categoryText = e.target.options[e.target.options.selectedIndex].text;
 			}
 		},
+		onAreaSelect: function (area) {
+			this.selectedArea = area.id;
+			this.selectedAreaText = area.name;
+			this.district = null;
+			axios.get("/api/services/app/district/GetByAreaId?id=" + this.selectedArea )
+				.then((res) => {
+					var items = res.data.result;
+					items.unshift({ name: 'انتخاب محله', id: 0 });
+					this.districts = items;
+					this.district = this.districts[0]?.id;
+				}).catch((err) => {
+					this.errors = err;
+				});
+			this.search();
+		},
 		onDistrictChange: function (e) {
 			if (e.target.options.selectedIndex > -1) {
 				this.districtText = e.target.options[e.target.options.selectedIndex].text;
@@ -46,6 +66,8 @@
 		},
 		onCityChange: function (e) {
 			this.loadingDistricts = true;
+			this.selectedArea = null;
+			this.selectedAreaText = null;
 			axios.get("/admin/districts/GetByCityId?id="+this.city)
 				.then((res) => {
 					var items = res.data.result;
@@ -57,20 +79,33 @@
 					this.errors = err;
 					this.loadingDistricts = false;
 				});
+			axios.get("/api/services/app/area/GetAreaByCityId?cityid=" + this.city)
+				.then((res) => {
+					this.areas = res.data.result.items;
+				}).catch((err) => {
+					this.errors = err;
+				});
 		},
 		search: function (sort) {
 			this.page = 1;
 			var data = {
-				category: this.category, district: this.district, city: this.city, minArea: null,
+				category: this.category,
+				district: this.district,
+				city: this.city,
+				zone:this.selectedArea,
+				minArea: this.minArea,
 				maxArea: this.maxArea,
 				minPrice: this.minPrice,
 				maxPrice: this.maxPrice,
 				minRent: this.minRent,
 				maxRent: this.maxRent,
 				types: this.type,
-				featured:this.featured,
+				featured: this.featured,
+				hasMedia: this.hasMedia,
+				beds: this.roomsCount,
 				minDeposit: this.minDeposit,
-				maxDeposit: this.maxDeposit, };
+				maxDeposit: this.maxDeposit,
+			};
 			var uri = '?' + this.serialize(data);
 			var query = '';
 			switch (sort) {
@@ -174,6 +209,12 @@
 					} else {
 						this.district = this.districts[0].id;
 					}
+				}).catch((err) => {
+					this.errors = err;
+				});
+			axios.get("/api/services/app/area/GetAreaByCityId?cityid=" + city)
+				.then((res) => {
+					this.areas = res.data.result.items;
 				}).catch((err) => {
 					this.errors = err;
 				});

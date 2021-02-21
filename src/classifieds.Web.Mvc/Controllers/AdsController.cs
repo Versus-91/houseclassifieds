@@ -3,6 +3,7 @@ using Abp.Runtime.Validation;
 using Abp.Web.Models;
 using classifieds.Amenities;
 using classifieds.Amenities.Dto;
+using classifieds.Areas;
 using classifieds.Categories;
 using classifieds.Categories.Dto;
 using classifieds.Cities;
@@ -33,14 +34,15 @@ namespace classifieds.Web.Controllers
         private readonly ICategoryAppService _categoryService;
         private readonly AmenityAppService _amenityService;
         private readonly ICityAppService _cityService;
-
+        private readonly IAreaAppService _areaService;
         public AdsController(
             IPostAppService postService,
             ICategoryAppService categoryService,
             IDistrictAppService districtService,
             ITypeAppService typeService,
-             AmenityAppService amenityService
-            , ICityAppService cityService)
+             AmenityAppService amenityService,
+             ICityAppService cityService,
+             IAreaAppService areaService)
         {
             _postService = postService;
             _categoryService = categoryService;
@@ -48,6 +50,7 @@ namespace classifieds.Web.Controllers
             _typeService = typeService;
             _amenityService = amenityService;
             _cityService = cityService;
+            _areaService = areaService;
         }
         public async Task<IActionResult> Index(GetAllPostsInput inputs)
         {
@@ -56,8 +59,7 @@ namespace classifieds.Web.Controllers
             var categories = (await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items.ToList();
             categories.Insert(0, new CategoryDto { Id = 0, Name = "مهم نیست" });
             ViewData["Categories"] = new SelectList(categories, nameof(CategoryDto.Id), nameof(CategoryDto.Name),inputs.Category);
-            //ViewData["Amenitites"] = (await _amenityService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
-
+        
             if (inputs.Types == null)
             {
                 ViewData["PropertyTypes"] = new SelectList(types, nameof(PropertyTypeDto.Id), nameof(PropertyTypeDto.Name));
@@ -95,26 +97,17 @@ namespace classifieds.Web.Controllers
 
             return View();
         }
-        [HttpPost]
-        [DisableValidation]
-
-        public async Task<IActionResult> Create([FromBody] AdsViewModel inputs)
+        public async Task<IActionResult> Edit(int id)
         {
-            if (ModelState.IsValid)
-            {
-                var inputsPost = inputs.ToPost();
-    
-                var post = await _postService.CreateAsync(inputsPost);
-                return Json(post.Id);
-            }
-            else
-            {
-
-                ViewData["Categories"] = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
-                ViewData["Districts"] = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
-                ViewData["PropertyTypes"] = new SelectList((await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
-                return BadRequest(ModelState);
-            }
+            var cities = (await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = int.MaxValue })).Items.ToList();
+            cities.Insert(0, new CityDto { Id = 0, Name = "شهر را انتخاب کنید" });
+            ViewData["Cities"] = new SelectList(cities, nameof(CityDto.Id), nameof(CityDto.Name));
+            ViewData["Amenities"] = (await _amenityService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
+            ViewData["Categories"] = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
+            ViewData["Districts"] = new SelectList((await _districtService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
+            ViewData["PropertyTypes"] = new SelectList((await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
+            var post = await _postService.GetAsync(new EntityDto<int> { Id = id});
+            return View(post);
         }
     }
 }

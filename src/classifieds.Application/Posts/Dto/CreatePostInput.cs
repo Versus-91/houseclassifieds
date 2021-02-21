@@ -11,7 +11,6 @@ namespace classifieds.Posts.Dto
     public  class CreatePostInput
     {
 
-        [Required(AllowEmptyStrings = false, ErrorMessage = "توضیحات را پر کنید")]
         public string Description { get; set; }
         [Required(ErrorMessage = "دسته بندی را مشخص کنید")]
         [Range(1, int.MaxValue, ErrorMessage = "دسته بندی را انتخاب کنید")]

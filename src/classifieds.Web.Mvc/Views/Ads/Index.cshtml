@@ -1,1 +1,432 @@
-﻿@using classifieds.Web.Startup@model classifieds.Posts.Dto.GetAllPostsInput@{ ViewBag.Title = "جستجو";	ViewBag.CurrentPageName = PageNames.Home;	Layout = "layout/_front";}<div class="section Site-content">			<div class="container is-hidden-mobile">					<div class="columns is-centered is-vcentered has-text-centered py-2">						<div class="column">							<div class="select is-fullwidth ">								<select class="select2 districts" v-model="city"  v-on:change="onCityChange">									<option v-for="cty in cities" :key="cty.id" :value="cty.id">{{cty.name}}</option>								</select>							</div>						</div>						<div class="column">							<div class="select is-fullwidth " :class="{'is-loading':loadingDistricts}">								  <select class=" districts" v-model="district">									<option v-for="dst in districts" :key="dst.id" :value="dst.id">{{dst.name}}</option>								</select>							</div>						</div>						<div class="column">							<div class="select is-fullwidth ">								<select class="select2 types" v-model="type" asp-items="@(ViewData["PropertyTypes"] as SelectList)" id="propertyTypes">								</select>							</div>						</div>					</div>			</div>	<div class="container " id="mainContainer">			<div class="columns is-centered">				<div class="column is-3 is-hidden-touch ">					<div class="box">					<aside class="menu mt-2">						<p class="menu-label">							وضعیت آگهی						</p>						<ul class="menu-list">							<li>								<div class="field">									<div class="control">										فوری 										<label class="switch">											<input type="checkbox" v-model="featured">											<span class="slider"></span>										</label>									</div>								</div>							</li>						</ul>						<p class="menu-label">							دسته بندی						</p>						<ul class="menu-list">							<li>								<div class="control">									<div class="select is-fullwidth">										<select class="categories" v-on:change="onCategoryChange" v-model="category" asp-items="@(ViewData["Categories"] as SelectList)" asp-for="Category">										</select>									</div>								</div>							</li>						</ul>						<p class="menu-label">							متراژ						</p>						<ul class="menu-list">							<li>								<div class="field is-horizontal">									<div class="field-body">										<div class="field">											<p class="control is-expanded">												<input class="input is-danger" v-model="minArea" type="number" placeholder="حداقل">											</p>										</div>										<div class="field">											<p class="control is-expanded ">												<input class="input is-success" v-model="maxArea" type="number" placeholder="حداکثر">											</p>										</div>									</div>								  </div>  							</li>							</ul> 							<div v-if="categoryText.includes('خرید') || categoryText.includes('فروش')">						   <p class="menu-label mt-1" >								قیمت							</p>  							<ul class="menu-list" >								<li>									<div class="field is-horizontal">										<div class="field-body">											<div class="field">												<p class="control is-expanded">													<input class="input is-danger" v-model="minPrice" type="number" placeholder="حداقل">												</p>											</div>											<div class="field">												<p class="control is-expanded ">													<input class="input is-success" v-model="maxPrice" type="number" placeholder="حداکثر">												</p>											</div>										</div>										</div>								</li>							</ul>							</div>							<div v-if="categoryText.includes('کرای') || categoryText.includes('رهن')">							<p class="menu-label mt-1" >								پیش پرداخت							</p>  							<ul class="menu-list" >								<li>									<div class="field is-horizontal mb-2">										<div class="field-body">											<div class="field">												<p class="control is-expanded">													<input class="input is-danger" v-model="minDeposit" type="number" placeholder="حداقل">												</p>											</div>											<div class="field">												<p class="control is-expanded ">													<input class="input is-success" v-model="maxDeposit" type="number" placeholder="حداکثر">												</p>											</div>										</div>										</div>								</li>								</ul>							   <ul class="menu-list" >								   <p class="menu-label" >							   اجاره							</p>							   <li>									<div class="field is-horizontal">										<div class="field-body">											<div class="field">												<p class="control is-expanded">													<input class="input is-danger" v-model="minRent" type="number" placeholder="حداقل">												</p>											</div>											<div class="field">												<p class="control is-expanded ">													<input class="input is-success" v-model="maxRent" type="number" placeholder="حداکثر">												</p>											</div>										</div>										</div>								</li>							</ul>							</div>							<p class="menu-label">								تعداد خواب							</p>							<ul class="menu-list">								<li>									<div class="control">										<div class="select">											<select v-model="roomsCount" >												<option value="0">مهم نیست</option> 												<option value="1">1</option>												<option value="2">4</option>												<option value="3">8</option>												<option value="4">12</option>												<option value="5">بیشتر از20</option>											</select>										</div>									</div>								</li>							</ul>		   						<br />							<ul class="menu-list mt-2">								<li>								<button class="button is-success is-light" v-on:click="search()">																	<span class="icon">									  <i class="fas fa-search"></i>									  </span>									  <span>جستجو</span>								</button>								</li>							</ul>					</aside>					</div>				</div>				<div class="column is-9 is-12-touch">					<div class="tabs is-toggle">						<ul>							<li :class="{'is-active':sort == 1}" v-on:click="search(1)"><a >جدیدترین</a></li>							<li :class="{'is-active':sort == 2}" v-on:click="search(2)"><a >ارزانترین</a></li>							<li :class="{'is-active':sort == 3}" v-on:click="search(3)"><a >گرانترین</a></li>							<li  v-on:click="showFilters = true" class="is-hidden-desktop">								<a>								<span class="icon is-small"><i aria-hidden="true" class="fas fa-filter has-text-success"></i></span>								<span>فیلتر</span>								</a>							</li>						</ul>					</div>					<div class="columns is-multiline" id="pager" >						<div v-if="posts?.length == 0" style="height:80vh;"></div>						<app-posts-card v-for="item in posts" :post="item" :key="item.id"/>					</div>					<nav class="pagination mt-3 pt-3" role="navigation" aria-label="pagination">						<button class="pagination-previous" v-on:click="paginate(page - 1 )" :disabled="page <= 1">قبلی</button>						<button class="pagination-next" v-on:click="paginate(page + 1 )" :disabled="((page *30) / totalItems)>1">بعدی </button>					</nav>				</div>				<app-block-ui v-if="loading" url="/img/icon.png" message="در حال دریافت اطلاعات ...."/>			</div>		</div>	</div>	<div id="myNav" class="overlay-page " :class="{'is-width-100':showFilters}">  <!-- Overlay content -->  <div class="overlay-page-content">	  <div class="section">		 <div class="columns columns py-2 is-multiline is-mobile py-2">						<div class="column is-6">							<p class="title is-6">شهر</p>							<div class="select is-fullwidth py-1">								<select v-model="city" v-on:change="onCityChange" class="select2 cities">								{{city}}									<option v-for="cty in cities" :key="cty.id" :value="cty.id">{{cty.name}}</option>								</select>							</div>						</div>						<div class="column is-6">							<p class="title is-6">محله</p>							<div class="select is-fullwidth py-1">								<select class="select2 districts" v-model="district">									<option v-for="dst in districts" :key="dst.id" :value="dst.id">{{dst.name}}</option>								</select>							</div>						</div>						<div class="column is-6">							<p class="title is-6">نوع ملک</p>							<div class="select is-fullwidth py-1">								<select class="select2 types" v-model="type" asp-items="@(ViewData["PropertyTypes"] as SelectList)" id="propertyTypes">								</select>							</div>						</div>						<div class="column is-6">								<p class="title is-6">نوع معامله</p>									<div class="select is-fullwidth">										<select class="categories" v-on:change="onCategoryChange" v-model="category" asp-items="@(ViewData["Categories"] as SelectList)" asp-for="Category">										</select>									</div>						</div>						<div class="column is-12">						  <p class="title is-6">مساحت</p>						</div>						<div class="column is-6">							 <div class="field">							   <div class="control is-expanded">								 <input type="number" v-model="minArea" placeholder="حداقل" class="input is-danger">							  </div>							</div>						</div>						<div class="column is-6">							<div class="field">								<p class="control is-expanded ">									<input type="number" v-model="maxArea" placeholder="حداکثر" class="input is-success">								</p>								</div>							</div>						<div class="column is-12"  v-if="categoryText.includes('خرید') || categoryText.includes('فروش')">							<div class="column is-12">							  <p class="title is-6">قیمت</p>							 </div> 			<div class="columns is-mobile">						<div class="column is-6">							<div class="field">							  <p class="control is-expanded">								<input type="number" v-model="minPrice" placeholder="حداقل" class="input is-danger" autocomplete="off">							  </p>						 </div>						</div> 				<div class="column is-6">					 <div class="field"><p class="control is-expanded ">						 <input type="number" placeholder="حداکثر" v-model="maxPrice" class="input is-success"></p>					</div>				</div>			</div>	</div>						<div class="column is-12"  v-if="categoryText.includes('رهن') || categoryText.includes('گروی')">							<div class="column is-12">							  <p class="title is-6">پیش پرداخت</p>							 </div> 			<div class="columns is-mobile">						<div class="column is-6">							<div class="field">							  <p class="control is-expanded">								<input type="number" v-model="minDeposit" placeholder="حداقل" class="input is-danger" autocomplete="off">							  </p>						 </div>						</div> 				<div class="column is-6">					 <div class="field"><p class="control is-expanded ">						 <input type="number" placeholder="حداکثر" v-model="maxDeposit" class="input is-success"></p>					</div>				</div>			</div>										<div class="column is-12">							  <p class="title is-6">اجاره</p>							 </div> 			<div class="columns is-mobile">						<div class="column is-6">							<div class="field">							  <p class="control is-expanded">								<input type="number" v-model="minRent" placeholder="حداقل" class="input is-danger" autocomplete="off">							  </p>						 </div>						</div> 				<div class="column is-6">					 <div class="field"><p class="control is-expanded ">						 <input type="number" placeholder="حداکثر" v-model="maxRent" class="input is-success"></p>					</div>				</div>			</div>	</div>		<div class="column is-12"><p class="title is-6">تعداد اتاق</p></div>		<div class="column is-6">			<div class="control">				<div class="select is-fullwidth is-primary">					<select v-model="roomsCount">					 <option value="0">مهم نیست</option> 					 <option value="1">1</option> 					 <option value="2">4</option> 					 <option value="3">8</option>					 <option value="4">12</option> 					 <option value="5">بیشتر از 12</option>			   </select>			   </div>		   </div>		   </div>			<div class="column is-12">				<div class="columns has-text-centered">					   <div class="column is-6">							<button class="button is-success is-light is-fullwidth" v-on:click="search()">								<span class="icon">								<i class="fas fa-search"></i>								</span>								<span>جستجو</span>							</button>						</div>												<div class="column is-6">							<button class="button is-danger is-light is-fullwidth" v-on:click="showFilters= false">							   <span class="icon">								 <i class="fab fa-times"></i>								   </span>							   <span>انصراف</span>							</button>						</div>				</div>			</div>		 </div>	   </div>  </div></div>@section scripts{		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>		<script src="~/lib/vue/vue.js" asp-append-version="true"></script>		<script src="~/view-resources/Views/UserPosts/card.js" asp-append-version="true"></script>		<script src="~/view-resources/Views/UserPosts/blockui.js" asp-append-version="true"></script>		<script src="~/view-resources/Views/UserPosts/main.js" asp-append-version="true"></script>	</script>	<environment names="Development">	</environment>	<environment names="Staging,Production">		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>		<script src="~/lib/vue/vue.min.js" asp-append-version="true"></script>		<script src="~/view-resources/Views/UserPosts/card.min.js" asp-append-version="true"></script>		<script src="~/view-resources/Views/UserPosts/blockui.js" asp-append-version="true"></script>		<script src="~/view-resources/Views/UserPosts/main.min.js" asp-append-version="true"></script>	</environment>}
+﻿@using classifieds.Web.Startup
+@model classifieds.Posts.Dto.GetAllPostsInput
+@{ ViewBag.Title = "جستجو";
+	ViewBag.CurrentPageName = PageNames.Home;
+	Layout = "layout/_front";
+}
+
+<div class="section Site-content">
+			<div class="container is-hidden-mobile">
+					<div class="columns is-multiline is-centered is-vcentered py-2">
+						<div class="column">
+							<p class="title is-6">شهر : </p>
+							<div class="select is-fullwidth ">
+								<select class="select2 districts" v-model="city"  v-on:change="onCityChange">
+									<option v-for="cty in cities" :key="cty.id" :value="cty.id">{{cty.name}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="column">
+							<p class="title is-6">محله :  {{selectedAreaName}}</p>
+							<div class="select is-fullwidth " :class="{'is-loading':loadingDistricts}">
+								  <select class=" districts" v-model="district">
+									<option v-for="dst in districts" :key="dst.id" :value="dst.id">{{dst.name}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="column">
+							<p class="title is-6">نوع ملک : </p>
+							<div class="select is-fullwidth ">
+								<select class="select2 types" v-model="type" asp-items="@(ViewData["PropertyTypes"] as SelectList)" id="propertyTypes">
+								</select>
+							</div>
+						</div>
+						<div class="column is-12">
+                            <a v-for="area of areas" class="tag is-link  p-1 m-2" :class="{'is-success':selectedArea == area.id}" v-on:click="onAreaSelect(area)">{{area.name}}</a>
+                        </div>
+					</div>
+			</div>
+	<div class="container " id="mainContainer">
+			<div class="columns is-centered">
+				<div class="column is-3 is-hidden-touch ">
+					<div class="box">
+					<aside class="menu mt-2">
+						<p class="menu-label">
+							وضعیت آگهی
+						</p>
+						<ul class="menu-list">
+							<li>
+								<div class="field">
+									<div class="control">
+										<label class="switch">
+											<input type="checkbox" v-model="featured">
+											<span class="slider"></span>
+										</label>
+										فوری
+									</div>
+								</div>
+								<div class="field">
+									<div class="control">
+										<label class="switch">
+											<input type="checkbox" v-model="hasMedia">
+											<span class="slider"></span>
+										</label>
+								  اعلان عکس دار 
+									</div>
+								</div>
+							</li>
+						</ul>
+						<p class="menu-label">
+							دسته بندی
+						</p>
+						<ul class="menu-list">
+							<li>
+								<div class="control">
+									<div class="select is-fullwidth">
+										<select class="categories" v-on:change="onCategoryChange" v-model="category" asp-items="@(ViewData["Categories"] as SelectList)" asp-for="Category">
+										</select>
+									</div>
+								</div>
+							</li>
+						</ul>
+						<p class="menu-label">
+							متراژ
+						</p>
+						<ul class="menu-list">
+							<li>
+								<div class="field is-horizontal">
+									<div class="field-body">
+										<div class="field">
+											<p class="control is-expanded">
+												<input class="input is-danger" v-model="minArea" type="number" placeholder="حداقل">
+											</p>
+										</div>
+										<div class="field">
+											<p class="control is-expanded ">
+												<input class="input is-success" v-model="maxArea" type="number" placeholder="حداکثر">
+											</p>
+										</div>
+									</div>
+								  </div>  
+							</li>
+							</ul> 
+							<div v-if="categoryText.includes('خرید') || categoryText.includes('فروش')">
+						   <p class="menu-label mt-1" >
+								قیمت
+							</p>  
+							<ul class="menu-list" >
+								<li>
+									<div class="field is-horizontal">
+										<div class="field-body">
+											<div class="field">
+												<p class="control is-expanded">
+													<input class="input is-danger" v-model="minPrice" type="number" placeholder="حداقل">
+												</p>
+											</div>
+											<div class="field">
+												<p class="control is-expanded ">
+													<input class="input is-success" v-model="maxPrice" type="number" placeholder="حداکثر">
+												</p>
+											</div>
+										</div>
+										</div>
+								</li>
+							</ul>
+							</div>
+							<div v-if="categoryText.includes('کرای') || categoryText.includes('رهن')">
+							<p class="menu-label mt-1" >
+								پیش پرداخت
+							</p>  
+							<ul class="menu-list" >
+								<li>
+									<div class="field is-horizontal mb-2">
+										<div class="field-body">
+											<div class="field">
+												<p class="control is-expanded">
+													<input class="input is-danger" v-model="minDeposit" type="number" placeholder="حداقل">
+												</p>
+											</div>
+											<div class="field">
+												<p class="control is-expanded ">
+													<input class="input is-success" v-model="maxDeposit" type="number" placeholder="حداکثر">
+												</p>
+											</div>
+										</div>
+										</div>
+								</li>
+								</ul>
+							   <ul class="menu-list" >
+								   <p class="menu-label" >
+							   اجاره
+							</p>
+							   <li>
+									<div class="field is-horizontal">
+										<div class="field-body">
+											<div class="field">
+												<p class="control is-expanded">
+													<input class="input is-danger" v-model="minRent" type="number" placeholder="حداقل">
+												</p>
+											</div>
+											<div class="field">
+												<p class="control is-expanded ">
+													<input class="input is-success" v-model="maxRent" type="number" placeholder="حداکثر">
+												</p>
+											</div>
+										</div>
+										</div>
+								</li>
+							</ul>
+							</div>
+							<p class="menu-label">
+								تعداد خواب
+							</p>
+							<ul class="menu-list">
+								<li>
+									<div class="control">
+										<div class="select">
+											<select v-model="roomsCount" >
+												<option value="0">مهم نیست</option> 
+												<option value="1">1</option>
+												<option value="4">4</option>
+												<option value="8">8</option>
+												<option value="12">12</option>
+												<option value="20">بیشتر از20</option>
+											</select>
+										</div>
+									</div>
+								</li>
+							</ul>
+		   
+						<br />
+							<ul class="menu-list mt-2">
+								<li>
+								<button class="button is-success is-light" v-on:click="search()">																	<span class="icon">
+									  <i class="fas fa-search"></i>
+									  </span>
+									  <span>جستجو</span>
+								</button>
+								</li>
+							</ul>
+					</aside>
+					</div>
+				</div>
+				<div class="column is-9 is-12-touch">
+					<div class="tabs is-toggle" v-if="category != 0">
+						<ul>
+							<li :class="{'is-active':sort == 1}" v-on:click="search(1)"><a >جدیدترین</a></li>
+							<li :class="{'is-active':sort == 2}" v-on:click="search(2)"><a >ارزانترین</a></li>
+							<li :class="{'is-active':sort == 3}" v-on:click="search(3)"><a >گرانترین</a></li>
+							<li  v-on:click="showFilters = true" class="is-hidden-desktop">
+								<a>
+								<span class="icon is-small"><i aria-hidden="true" class="fas fa-filter has-text-success"></i></span>
+								<span>فیلتر</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="tabs is-toggle" v-else>
+						<ul>
+							<li  v-on:click="showFilters = true" class="is-hidden-desktop">
+								<a>
+								<span class="icon is-small"><i aria-hidden="true" class="fas fa-filter has-text-success"></i></span>
+								<span>فیلتر</span>
+								</a>
+							</li>
+						</ul>
+					</div>
+					<div class="columns is-multiline" id="pager" >
+						<div v-if="posts?.length == 0" style="height:80vh;"></div>
+						<app-posts-card v-for="item in posts" :post="item" :key="item.id"/>
+					</div>
+
+					<nav class="pagination mt-3 pt-3" role="navigation" aria-label="pagination">
+						<button class="pagination-previous" v-on:click="paginate(page - 1 )" :disabled="page <= 1">قبلی</button>
+						<button class="pagination-next" v-on:click="paginate(page + 1 )" :disabled="((page *30) / totalItems)>1">بعدی </button>
+					</nav>
+					<app-block-ui v-if="loading" url="/img/icon.png" message="در حال دریافت اطلاعات ...."/>
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<div id="myNav" class="overlay-page " :class="{'is-width-100':showFilters}">
+  <!-- Overlay content -->
+
+  <div class="overlay-page-content">
+	  <div class="section">
+		 <div class="columns columns py-2 is-multiline is-mobile py-2">
+			 <div class="column is-6">
+					<div class="field">
+						<div class="control">
+							<label class="switch">
+								<input type="checkbox" v-model="featured">
+								<span class="slider"></span>
+							</label>
+							فوری
+						</div>
+					</div> 
+			 </div>
+			 <div class="column is-6"> 
+						<div class="field">
+						<div class="control">
+							<label class="switch">
+								<input type="checkbox" v-model="hasMedia">
+								<span class="slider"></span>
+							</label>
+							آگهی عکس دار
+						</div>
+					</div> 
+				</div>
+
+						<div class="column is-6">
+							<p class="title is-6">شهر</p>
+							<div class="select is-fullwidth py-1">
+								<select v-model="city" v-on:change="onCityChange" class="select2 cities">
+								{{city}}
+									<option v-for="cty in cities" :key="cty.id" :value="cty.id">{{cty.name}}</option>
+								</select>
+							</div>
+						</div>
+						<div class="column is-6">
+							<p class="title is-6">محله</p>
+							<div class="select is-fullwidth py-1">
+								<select class="select2 districts" v-model="district">
+									<option v-for="dst in districts" :key="dst.id" :value="dst.id">{{dst.name}}</option>
+								</select>
+							</div>
+						</div>
+
+						<div class="column is-6">
+							<p class="title is-6">نوع ملک</p>
+							<div class="select is-fullwidth py-1">
+								<select class="select2 types" v-model="type" asp-items="@(ViewData["PropertyTypes"] as SelectList)" id="propertyTypes">
+								</select>
+							</div>
+						</div>
+						<div class="column is-6">
+								<p class="title is-6">نوع معامله</p>
+									<div class="select is-fullwidth">
+										<select class="categories" v-on:change="onCategoryChange" v-model="category" asp-items="@(ViewData["Categories"] as SelectList)" asp-for="Category">
+										</select>
+									</div>
+						</div>
+						<div class="column is-12">
+						  <p class="title is-6">مساحت</p>
+						</div>
+						<div class="column is-6">
+							 <div class="field">
+							   <div class="control is-expanded">
+								 <input type="number" v-model="minArea" placeholder="حداقل" class="input is-danger">
+							  </div>
+							</div>
+						</div>
+						<div class="column is-6">
+							<div class="field">
+								<p class="control is-expanded ">
+									<input type="number" v-model="maxArea" placeholder="حداکثر" class="input is-success">
+								</p>
+								</div>
+							</div>
+						<div class="column is-12"  v-if="categoryText.includes('خرید') || categoryText.includes('فروش')">
+							<div class="column is-12">
+							  <p class="title is-6">قیمت</p>
+							 </div> 
+			<div class="columns is-mobile">
+						<div class="column is-6">
+							<div class="field">
+							  <p class="control is-expanded">
+								<input type="number" v-model="minPrice" placeholder="حداقل" class="input is-danger" autocomplete="off">
+							  </p>
+						 </div>
+						</div> 
+				<div class="column is-6">
+					 <div class="field"><p class="control is-expanded ">
+						 <input type="number" placeholder="حداکثر" v-model="maxPrice" class="input is-success"></p>
+					</div>
+				</div>
+			</div>
+	</div>
+						<div class="column is-12"  v-if="categoryText.includes('رهن') || categoryText.includes('گروی')">
+							<div class="column is-12">
+							  <p class="title is-6">پیش پرداخت</p>
+							 </div> 
+			<div class="columns is-mobile">
+						<div class="column is-6">
+							<div class="field">
+							  <p class="control is-expanded">
+								<input type="number" v-model="minDeposit" placeholder="حداقل" class="input is-danger" autocomplete="off">
+							  </p>
+						 </div>
+						</div> 
+				<div class="column is-6">
+					 <div class="field"><p class="control is-expanded ">
+						 <input type="number" placeholder="حداکثر" v-model="maxDeposit" class="input is-success"></p>
+					</div>
+				</div>
+			</div>
+										<div class="column is-12">
+							  <p class="title is-6">اجاره</p>
+							 </div> 
+			<div class="columns is-mobile">
+						<div class="column is-6">
+							<div class="field">
+							  <p class="control is-expanded">
+								<input type="number" v-model="minRent" placeholder="حداقل" class="input is-danger" autocomplete="off">
+							  </p>
+						 </div>
+						</div> 
+				<div class="column is-6">
+					 <div class="field"><p class="control is-expanded ">
+						 <input type="number" placeholder="حداکثر" v-model="maxRent" class="input is-success"></p>
+					</div>
+				</div>
+			</div>
+	</div>
+		<div class="column is-12"><p class="title is-6">تعداد اتاق</p></div>
+		<div class="column is-6">
+			<div class="control">
+				<div class="select is-fullwidth is-primary">
+					<select v-model="roomsCount">
+					 <option value="0">مهم نیست</option> 
+					 <option value="1">1</option> 
+					 <option value="2">4</option> 
+					 <option value="3">8</option>
+					 <option value="4">12</option> 
+					 <option value="5">بیشتر از 12</option>
+			   </select>
+			   </div>
+		   </div>
+		   </div>
+			<div class="column is-12">
+				<div class="columns is-mobile has-text-centered">
+					   <div class="column is-6">
+							<button class="button is-success is-light is-fullwidth" v-on:click="search()">
+								<span class="icon">
+								<i class="fas fa-search"></i>
+								</span>
+								<span>جستجو</span>
+							</button>
+						</div>						
+						<div class="column is-6">
+							<button class="button is-danger is-light is-fullwidth" v-on:click="showFilters= false">
+							   <span class="icon">
+								 <i class="fab fa-times"></i>
+								   </span>
+							   <span>انصراف</span>
+							</button>
+						</div>
+				</div>
+			</div>
+		 </div>
+	   </div>
+  </div>
+</div>
+
+@section scripts{
+
+	<environment names="Development">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+		<script src="~/lib/vue/vue.js" asp-append-version="true"></script>
+		<script src="~/view-resources/Views/UserPosts/card.js" asp-append-version="true"></script>
+		<script src="~/view-resources/Views/UserPosts/blockui.js" asp-append-version="true"></script>
+		<script src="~/view-resources/Views/UserPosts/main.js" asp-append-version="true"></script>
+	</environment>
+	<environment names="Staging,Production">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>
+		<script src="~/lib/vue/vue.min.js" asp-append-version="true"></script>
+		<script src="~/view-resources/Views/UserPosts/card.min.js" asp-append-version="true"></script>
+		<script src="~/view-resources/Views/UserPosts/blockui.js" asp-append-version="true"></script>
+		<script src="~/view-resources/Views/UserPosts/main.js" asp-append-version="true"></script>
+	</environment>
+
+}

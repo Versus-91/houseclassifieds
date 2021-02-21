@@ -546,11 +546,8 @@ a.demo-gallery__img--main {
 }
 .btn-overlay {
     position: absolute;
-
-    top: 50px;
+    top: 48px;
     left: 0;
-
-
 }
 .lds-ellipsis {
     display: inline-block;

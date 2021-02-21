@@ -19,7 +19,7 @@ namespace classifieds.Notification
          
                 app = FirebaseApp.Create(new AppOptions()
                 {
-                    Credential = GoogleCredential.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "key.json")),
+                    Credential = GoogleCredential.FromFile(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "abcde-f76db-firebase-adminsdk-nq80z-66a71539e8.json")),
                 });
             
 
