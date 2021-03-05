@@ -51,8 +51,6 @@
     <PackageReference Include="UploadStream" Version="3.1.1" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Views\ReportOptions\" />
-    <Folder Include="Areas\Admin\Views\Reports\" />
     <Folder Include="Images\" />
     <Folder Include="wwwroot\lib\LeafletSearch\images\" />
     <Folder Include="wwwroot\view-resources\Views\ReportOptions\" />

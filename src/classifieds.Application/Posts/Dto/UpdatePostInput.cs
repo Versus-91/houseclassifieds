@@ -18,6 +18,7 @@ namespace classifieds.Posts.Dto
         public int CategoryId { get; set; }
         public string Category { get; set; }
         public ushort Area { get; set; }
+        public ushort Age { get; set; }
         public byte Bedroom { get; set; }
         public string City { get; set; }
         public string District { get; set; }

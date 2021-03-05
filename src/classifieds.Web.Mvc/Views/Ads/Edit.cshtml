@@ -1,310 +1,307 @@
 ﻿@model classifieds.Posts.Dto.PostDto
 @{ 
-        ViewBag.Title = "ویرایش پست";
-    Layout = "layout/_front"; 
+	ViewBag.Title = "ویرایش پست";
+	Layout = "layout/_front"; 
 }
 @section styles{
-    <link href="~/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet" asp-append-version="true" />
-     <link href="~/lib/LeafletSearch/dist/leaflet-search.min.css" rel="stylesheet" asp-append-version="true" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-          crossorigin="" />
+	<link href="~/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet" asp-append-version="true" />
+	 <link href="~/lib/LeafletSearch/dist/leaflet-search.min.css" rel="stylesheet" asp-append-version="true" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+		  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+		  crossorigin="" />
 }
-<div class="section Site-content">
-        <div class="container persian">
-            <div class="box">
-                <h1 class="title is-4">ویرایش</h1>
-                <hr />
-                <div class="tabs is-toggle is-centered">
-           <ul>
-         <li v-for="ctg in categories"  v-on:click="category = ctg" 
-          v-bind:class="{ 'is-active': category?.id == ctg.id}">
-             <a>
-              <span class="icon is-small"><i class="fas fa-building" aria-hidden="true"></i></span>
-             <span>{{ctg.name}}</span>
-           </a>
-        </li>
+               <div class="section Site-content">
+               		<div class="container persian">
+               			<div class="box">
+               				<h1 class="title is-4">ویرایش</h1>
+               				<hr />
+               				<div class="tabs is-toggle is-centered">
+               		   <ul>
+               		 <li v-for="ctg in categories"  v-on:click="category = ctg" 
+               		  v-bind:class="{ 'is-active': category?.id == ctg.id}">
+               			 <a>
+               			  <span class="icon is-small"><i class="fas fa-building" aria-hidden="true"></i></span>
+               			 <span>{{ctg.name}}</span>
+               		   </a>
+               		</li>
+                 </ul>
+               </div>
+			   <div class="columns">
+				   <div class="column">
+					   <p class="title is-5">نوع ملک <span class="is-danger is-size-7 has-text-danger">اجباری</span></p> 
+					  <div class="buttons">
+						   @foreach(var prop in (IEnumerable<SelectListItem>)@ViewData["PropertyTypes"]){
+								 <button value="@prop.Value" class="button types" v-on:click="tradeType = @prop.Value" 
+							   v-bind:class="{ 'is-success': tradeType == @prop.Value}" >@prop.Text
+						   </button>
+						   }
+					  </div>
+					  </div>
+			   </div>
+				<form asp-action="create" enctype="multipart/form-data" id="CreateAd">
+					<div class="field is-horizontal">
+						<div class="field-body">
+							<div class="field column is-6 p-0">
+								<label for="City" class="label">شهر  <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
+								<div class="control has-icons-right">
+									<div class="select is-fullwidth hide-arrow">
+										<select class="select2   " id="selectCity" asp-items="@(ViewData["Cities"] as SelectList)" >
+										</select>
+							   
+									</div>
+								</div>
+							</div>
+							<div class="field column is-6 p-0">
+								<label asp-for="DistrictId" class="label">محله <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
+								<div class="control has-icons-right">
+									<div class="select is-fullwidth hide-arrow">
+										<select class="select2 " v-select2 v-model="district" name="DistrictId" id="selectDistrict" required>
+											<option value="0">انتخاب محله</option>
+										</select>
+									</div>
+								</div>
+								<span class="help is-danger" asp-validation-for="DistrictId"></span>
+							</div>
+						</div>
+					</div>
+					<div class="field is-horizontal"  v-if="category?.name.includes('فروش')">
+						<div class="field-body column is-6 p-0">
+							<div class="field ">
+								 <label for="Price" class="label">قیمت</label>
+								<div class="control has-icons-left">
+									<input class="input currency" dir="ltr" id="price" placeholder="قیمت" name="Price" v-model="price"/>
+									<span class="icon is-small is-left">
+										<i class="fas fa-dollar-sign"></i>
+									</span>
+								</div>
+							</div>
+							</div>
+					</div>
+					 <div class="field is-horizontal"  v-if="category?.name.includes('گروی')">
+						   <div class="field-body">
+							<div class="field column is-6 p-0">
+								<label for="Deposit" class="label">کرای</label>
+								<div class="control has-icons-left">
+									<input class="input " dir="ltr" placeholder="اجاره"  name="Rent" v-model="rent"/>
+									<span class="icon is-small is-left">
+										<i class="fas fa-dollar-sign"></i>
+									</span>
+								</div>
+							</div>
+							<div class="field column is-6 p-0" >
+								<label for="Deposit" class="label">پیش پرداخت</label>
+								<div class="control has-icons-left">
+									<input class="input currency" dir="ltr" placeholder="پیش پرداخت"  v-model="deposit" />
+									<span class="icon is-small is-left">
+										<i class="fas fa-dollar-sign"></i>
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
 
-  </ul>
-</div>
-  <div class="columns">
+					<div class="field is-horizontal">
+						<div class="field-body">
+							<div class="field column is-6 p-0">
+								<label asp-for="Area" class="label">متراژ <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
+								<div class="control has-icons-left ">
+									<input v-model="area" class="input " asp-for="Area" placeholder="مساحت" />
+									<span class="icon is-small is-left">
+										<i class="fas fa-globe"></i>
+									</span>
+								</div>
+								<span class="help is-danger" asp-validation-for="Area"></span>
 
-      <div class="column">
-          <p class="title is-5">نوع ملک <span class="is-danger is-size-7 has-text-danger">اجباری</span></p> 
-         <div class="buttons">
-      @foreach(var prop in (IEnumerable<SelectListItem>)@ViewData["PropertyTypes"]){
-            <button value="@prop.Value" class="button types" v-on:click="tradeType = @prop.Value" 
-          v-bind:class="{ 'is-success': tradeType == @prop.Value}" >@prop.Text
-      </button>
-      }
-  </div>
-      </div>
-  </div>
-                <form asp-action="create" enctype="multipart/form-data" id="CreateAd">
-                    <div class="field is-horizontal">
-                        <div class="field-body">
-                            <div class="field column is-6 p-0">
-                                <label for="City" class="label">شهر  <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
-                                <div class="control has-icons-right">
-                                    <div class="select is-fullwidth hide-arrow">
-                                        <select class="select2   " id="selectCity" asp-items="@(ViewData["Cities"] as SelectList)" >
-                                        </select>
-                               
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="field column is-6 p-0">
-                                <label asp-for="DistrictId" class="label">محله <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
-                                <div class="control has-icons-right">
-                                    <div class="select is-fullwidth hide-arrow">
-                                        <select class="select2 " v-select2 v-model="district" name="DistrictId" id="selectDistrict" required>
-                                            <option value="0">انتخاب محله</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <span class="help is-danger" asp-validation-for="DistrictId"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="field is-horizontal"  v-if="category?.name.includes('فروش')">
-                        <div class="field-body column is-6 p-0">
-                            <div class="field ">
-                                 <label for="Price" class="label">قیمت</label>
-                                <div class="control has-icons-left">
-                                    <input class="input currency" dir="ltr" id="price" placeholder="قیمت" name="Price" v-model="price"/>
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-dollar-sign"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            </div>
-                    </div>
-                     <div class="field is-horizontal"  v-if="category?.name.includes('گروی')">
-                           <div class="field-body">
-                            <div class="field column is-6 p-0">
-                                <label for="Deposit" class="label">کرای</label>
-                                <div class="control has-icons-left">
-                                    <input class="input " dir="ltr" placeholder="اجاره"  name="Rent" v-model="rent"/>
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-dollar-sign"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="field column is-6 p-0" >
-                                <label for="Deposit" class="label">پیش پرداخت</label>
-                                <div class="control has-icons-left">
-                                    <input class="input currency" dir="ltr" placeholder="پیش پرداخت"  v-model="deposit" />
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-dollar-sign"></i>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+							</div>
+							<div class="field column is-6 p-0" id="bedroom">
+								<label asp-for="Bedroom" class="label">تعداد خواب</label>
+								<div class="control  has-icons-left has-icons-right">
+									<div class="select is-fullwidth">
+										<select asp-for="Bedroom" v-model="room">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+										</select>
+										<span class="icon is-small is-right">
+											<i class="fas fa-bed"></i>
+										</span>
+									</div>
+									<span class="help is-danger" asp-validation-for="Bedroom"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+					 <div class="field column is-6 p-0" >
+								<label asp-for="Bedroom" class="label">عمر بنا</label>
+								<div class="control ">
+									<div class="buttons" >
+											<div v-on:click="age = 1" class="button" :class="{'is-success': age == 1}">نوساز</div>
+											<div v-on:click="age = 2" class="button" :class="{'is-success': age == 2}">2 سال </div>
+											<div v-on:click="age = 3" class="button" :class="{'is-success': age == 3}">3 سال</div>
+											<div v-on:click="age = 4" class="button" :class="{'is-success': age == 4}">4 سال</div>
+											<div v-on:click="age = 5" class="button" :class="{'is-success': age == 5}">5 سال</div>
+											<div v-on:click="age = 6" class="button" :class="{'is-success': age == 6}">6 سال</div>
+											<div v-on:click="age = 7" class="button" :class="{'is-success': age == 7}">7 سال</div>
 
-                    <div class="field is-horizontal">
-                        <div class="field-body">
-                            <div class="field column is-6 p-0">
-                                <label asp-for="Area" class="label">متراژ <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
-                                <div class="control has-icons-left ">
-                                    <input v-model="area" class="input " asp-for="Area" placeholder="مساحت" />
-                                    <span class="icon is-small is-left">
-                                        <i class="fas fa-globe"></i>
-                                    </span>
-                                </div>
-                                <span class="help is-danger" asp-validation-for="Area"></span>
+									</div>
+								</div>
+							</div>
+					<div class="field">
+						<label asp-for="Description" class="label">توضیحات</label>
+						<div class="control">
+							<textarea v-model="description"  class="textarea"></textarea>
+						</div>
+					</div>
+					<div class="field">
+						<div class=" dz-clickable dropzone" id="dropzone">
+							<div class="dz-message ">
+								<i class="fas fa-2x fa-upload has-text-success"></i><br />
+								<br />
+								<span class="title is-5">
+									برای اپلود فایل کلیک کنید
+								</span>
+								<br />
+								<span class="subtitle is-6">حداکثر حجم هر عکس 4 مگابایت است .</span>
+							</div>
+						</div>
+					</div>
+					<div class="columns">
+						<div class="column is-4">
+							<p class="title is-4">تجهیزات و امکانات</p>
+							<div class="columns is-multiline">
+								@foreach (var amenity in ViewData["amenities"] as IList<classifieds.Amenities.Dto.AmenityDto>)
+								{
+						<div class="column is-4">
+							<button class="button is-fullwidth" :class="{'is-success':amenities.includes(@amenity.Id)}"
+								 v-on:click="setAmenity($event,@amenity.Id)">
+								@amenity.Name
+							</button>
+						</div>}
+							</div>
+						</div>
+						<div class="column is-8">
+							<p class="title is-4">مکان روی نقشه </p>
+							<div id="map" style="height:250px">
+								<l-map :center="center" :zoom="zoom" @@click="addMarker" ref="map"/>
+									  <l-tile-layer
+										:url="url"
+									  />
+							</div>
+						</div>
 
-                            </div>
-                            <div class="field column is-6 p-0" id="bedroom">
-                                <label asp-for="Bedroom" class="label">تعداد خواب</label>
-                                <div class="control  has-icons-left has-icons-right">
-                                    <div class="select is-fullwidth">
-                                        <select asp-for="Bedroom" v-model="room">
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                        </select>
-                                        <span class="icon is-small is-right">
-                                            <i class="fas fa-bed"></i>
-                                        </span>
-                                    </div>
-                                    <span class="help is-danger" asp-validation-for="Bedroom"></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="field column is-6 p-0" >
-                                <label asp-for="Bedroom" class="label">عمر بنا</label>
-                                <div class="control ">
-                                    <div class="buttons" >
-                                            <div v-on:click="age = 1" class="button" :class="{'is-success': age == 1}">نوساز</div>
-                                            <div v-on:click="age = 2" class="button" :class="{'is-success': age == 2}">2 سال </div>
-                                            <div v-on:click="age = 3" class="button" :class="{'is-success': age == 3}">3 سال</div>
-                                            <div v-on:click="age = 4" class="button" :class="{'is-success': age == 4}">4 سال</div>
-                                            <div v-on:click="age = 5" class="button" :class="{'is-success': age == 5}">5 سال</div>
-                                            <div v-on:click="age = 6" class="button" :class="{'is-success': age == 6}">6 سال</div>
-                                            <div v-on:click="age = 7" class="button" :class="{'is-success': age == 7}">7 سال</div>
+					</div>
 
-                                    </div>
-                                </div>
-                            </div>
-                    <div class="field">
-                        <label asp-for="Description" class="label">توضیحات</label>
-                        <div class="control">
-                            <textarea v-model="description"  class="textarea"></textarea>
-                        </div>
-                    </div>
-                    <div class="field">
-                        <div class=" dz-clickable dropzone" id="dropzone">
-                            <div class="dz-message ">
-                                <i class="fas fa-2x fa-upload has-text-success"></i><br />
-                                <br />
-                                <span class="title is-5">
-                                    برای اپلود فایل کلیک کنید
-                                </span>
-                                <br />
-                                <span class="subtitle is-6">حداکثر حجم هر عکس 4 مگابایت است .</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="columns">
-                        <div class="column is-4">
-                            <p class="title is-4">تجهیزات و امکانات</p>
-                            <div class="columns is-multiline">
-                                @foreach (var amenity in ViewData["amenities"] as IList<classifieds.Amenities.Dto.AmenityDto>)
-                                {
-                        <div class="column is-4">
-                            <button class="button is-fullwidth" :class="{'is-success':amenities.includes(@amenity.Id)}"
-                                 v-on:click="setAmenity($event,@amenity.Id)">
-                                @amenity.Name
-                            </button>
-                        </div>}
-                            </div>
-                        </div>
-                        <div class="column is-8">
-                            <p class="title is-4">مکان روی نقشه </p>
-                            <div id="map" style="height:250px">
-                                <l-map :center="center" :zoom="zoom" @@click="addMarker" ref="map"/>
-                                      <l-tile-layer
-                                        :url="url"
-                                      />
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <div class="field is-grouped">
-                        <div class="control">
-                            <button :disabled='!validateForm' class="button is-link is-success" v-on:click="postSubmit($event)" >
-                                <i class="fas fa-paper-plane pl-1"> </i>
-                                ارسال
-                            </button>
-                        </div>
-                        <div class="control">
-                            <a href="/" class="button is-link is-light">
-                                <i class="fas fa-trash pl-1 has-text-danger"> </i>
-                                انصراف
-                            </a>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        </div>
+					<div class="field is-grouped">
+						<div class="control">
+							<button :disabled='!validateForm' class="button is-link is-success" v-on:click="postSubmit($event)" >
+								<i class="fas fa-paper-plane pl-1"> </i>
+								ارسال
+							</button>
+						</div>
+						<div class="control">
+							<a href="/" class="button is-link is-light">
+								<i class="fas fa-trash pl-1 has-text-danger"> </i>
+								انصراف
+							</a>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+		</div>
 <div id="tpl" style="display:none">
-    <div class="dz-preview dz-file-preview">
-        <div class="dz-image">
-            <img data-dz-thumbnail />
+	<div class="dz-preview dz-file-preview">
+		<div class="dz-image">
+			<img data-dz-thumbnail />
 
-        </div>
-        <div class="dz-details">
-            <div class="dz-filename "><span data-dz-name></span></div>
-            <div class="dz-size my-2" data-dz-size></div>
-        </div>
-        <div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
-        <div class="dz-success-mark">
-            <span class="icon has-text-success">
-                <i class="fas fa-2x fa-check"></i>
-            </span>
-        </div>
-        <div class="dz-error-mark">
-            <span class="icon has-text-danger">
-                <i class="fas fa-2x fa-trash"></i>
-            </span>
-        </div>
-        <div class="dz-error-message"><span data-dz-errormessage></span></div>
-        <div data-dz-remove class="has-text-centered my-1">
-            <div class="icon has-text-danger">
-                <i class="fas fa-times "></i>
-            </div>
-            <span>حذف</span>
-        </div>
-    </div>
+		</div>
+		<div class="dz-details">
+			<div class="dz-filename "><span data-dz-name></span></div>
+			<div class="dz-size my-2" data-dz-size></div>
+		</div>
+		<div class="dz-progress"><span class="dz-upload" data-dz-uploadprogress></span></div>
+		<div class="dz-success-mark">
+			<span class="icon has-text-success">
+				<i class="fas fa-2x fa-check"></i>
+			</span>
+		</div>
+		<div class="dz-error-mark">
+			<span class="icon has-text-danger">
+				<i class="fas fa-2x fa-trash"></i>
+			</span>
+		</div>
+		<div class="dz-error-message"><span data-dz-errormessage></span></div>
+		<div data-dz-remove class="has-text-centered my-1">
+			<div class="icon has-text-danger">
+				<i class="fas fa-times "></i>
+			</div>
+			<span>حذف</span>
+		</div>
+	</div>
 </div>
 @section scripts{
+		<script>
+		  $(function () {
+			  function matchCustom(params, data) {
+				 // If there are no search terms, return all of the data
+				 if ($.trim(params.term) === '') {
+					 return data;
+				 }
 
-        <script>
-          $(function () {
-              function matchCustom(params, data) {
-                 // If there are no search terms, return all of the data
-                 if ($.trim(params.term) === '') {
-                     return data;
-                 }
+				 // Do not display the item if there is no 'text' property
+				 if (typeof data.text === 'undefined') {
+					 return null;
+				 }
 
-                 // Do not display the item if there is no 'text' property
-                 if (typeof data.text === 'undefined') {
-                     return null;
-                 }
+				 // `params.term` should be the term that is used for searching
+				 // `data.text` is the text that is displayed for the data object
+				 if (data.text.indexOf(params.term) > -1) {
+					 var modifiedData = $.extend({}, data, true);
+					 // You can return modified objects from here
+					 // This includes matching the `children` how you want in nested data sets
+					 return modifiedData;
+				 }
 
-                 // `params.term` should be the term that is used for searching
-                 // `data.text` is the text that is displayed for the data object
-                 if (data.text.indexOf(params.term) > -1) {
-                     var modifiedData = $.extend({}, data, true);
-                     // You can return modified objects from here
-                     // This includes matching the `children` how you want in nested data sets
-                     return modifiedData;
-                 }
-
-                 // Return `null` if the term should not be displayed
-                 return null;
-             }
-             $('.select2').select2({
-                matcher: matchCustom,
-                language: {
-                    "noResults": function () { return 'موردی پیدا نشد.'; }
-                }
-            });
-           $('#selectCity').on('select2:select', function (e) {
-          if (e.target.value != 0) {
-              $("#selectDistrict").prop("disabled", false);
-              $.get('/admin/districts/GetByCityId?id=' + e.target.value, function (res) {
-                  var items = res.result.map(m => {
-                      return {
-                          id: m.id,
-                          text: m.name
-                      }
-                  }
-                  );
-                  items.splice(0, 0, { id: 0, text: "انتخاب محله" })
-                  $("#selectDistrict").empty();
-                  $("#selectDistrict").select2({ data: items });
-              })
-          } else {
-              $("#selectDistrict").empty();
-              $("#selectDistrict").select2({ data: [{  id: 0,text: "انتخاب محله" }] });
-              $("#selectDistrict").prop("disabled", true);
-          }
-        });
-        });
-        </script>
-    <script src="~/lib/dropzone/dist/min/dropzone.min.js" asp-append-version="true">
-    </script>
-    <script asp-append-version="true" src="~/lib/vue/vue.min.js"></script>
-    <script src="//unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="//unpkg.com/vue2-leaflet"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>   
-    <script asp-append-version="true" src="~/view-resources/Views/UserPosts/edit.js"></script>
+				 // Return `null` if the term should not be displayed
+				 return null;
+			 }
+			 $('.select2').select2({
+				matcher: matchCustom,
+				language: {
+					"noResults": function () { return 'موردی پیدا نشد.'; }
+				}
+			});
+		   $('#selectCity').on('select2:select', function (e) {
+		  if (e.target.value != 0) {
+			  $("#selectDistrict").prop("disabled", false);
+			  $.get('/admin/districts/GetByCityId?id=' + e.target.value, function (res) {
+				  var items = res.result.map(m => {
+					  return {
+						  id: m.id,
+						  text: m.name
+					  }
+				  }
+				  );
+				  items.splice(0, 0, { id: 0, text: "انتخاب محله" })
+				  $("#selectDistrict").empty();
+				  $("#selectDistrict").select2({ data: items });
+			  })
+		  } else {
+			  $("#selectDistrict").empty();
+			  $("#selectDistrict").select2({ data: [{  id: 0,text: "انتخاب محله" }] });
+			  $("#selectDistrict").prop("disabled", true);
+		  }
+		});
+		});
+		</script>
+	<script src="~/lib/dropzone/dist/min/dropzone.min.js" asp-append-version="true">
+	</script>
+	<script asp-append-version="true" src="~/lib/vue/vue.min.js"></script>
+	<script src="//unpkg.com/leaflet/dist/leaflet.js"></script>
+	<script src="//unpkg.com/vue2-leaflet"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>   
+	<script asp-append-version="true" src="~/view-resources/Views/UserPosts/edit.js"></script>
 }

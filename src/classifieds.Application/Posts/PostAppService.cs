@@ -13,6 +13,7 @@ using classifieds.Districts;
 using classifieds.Posts.Dto;
 using classifieds.PostsAmenities;
 using classifieds.PostsAmenities.Dto;
+using classifieds.PropertyTypes;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -26,12 +27,14 @@ namespace classifieds.Posts
     {
         private readonly IRepository<Post> _postRepository;
         private readonly IRepository<Category> _categoryRepository;
+        private readonly IRepository<PropertyType> _typeRepository;
         private readonly IRepository<District> _districtRepository;
         private readonly IRepository<City> _cityRepository;
 
         private readonly IRepository<User, long> _userRepository;
-        public PostAppService(IRepository<City> cityRepository,IRepository<Post> repository, IRepository<Category> categoryRepository, IRepository<User, long> userRepository, IRepository<District> districtRepository) : base(repository)
+        public PostAppService(IRepository<PropertyType> typeRepository,IRepository<City> cityRepository,IRepository<Post> repository, IRepository<Category> categoryRepository, IRepository<User, long> userRepository, IRepository<District> districtRepository) : base(repository)
         {
+            _typeRepository = typeRepository;
             _cityRepository = cityRepository;
             _postRepository = repository;
             _categoryRepository = categoryRepository;
@@ -201,6 +204,14 @@ namespace classifieds.Posts
             }
 
             var post = ObjectMapper.Map<Post>(input);
+            var category = await _categoryRepository.GetAsync(input.CategoryId);
+            var type = await _typeRepository.GetAsync(input.TypeId);
+            var district = await _districtRepository.GetAsync(input.DistrictId);
+            var title = category?.Name + " " + type?.Name + input?.Area + "متری" + " " + district?.Name;
+            if (!String.IsNullOrEmpty(title))
+            {
+                post.Title = title;
+            }
             post.PostAmenities = amenities;   
             await _postRepository.InsertAndGetIdAsync(post);
             return ObjectMapper.Map<PostDto>(post);
@@ -218,6 +229,23 @@ namespace classifieds.Posts
             var post =await _postRepository
                 .GetAllIncluding(m => m.PostAmenities)
                 .FirstOrDefaultAsync(m=>m.Id == input.Id);
+            if (post == null || post.IsVerified == true)
+            {
+                throw new Exception();
+            }
+            post.Id = input.Id;
+            post.CategoryId = input.CategoryId;
+            post.DistrictId = input.DistrictId;
+            post.Age = input.Age;
+            post.Deposit = input.Deopsit;
+            post.Description = input.Description;
+            post.Area = input.Area;
+            post.Bedroom = input.Bedroom;
+            post.Latitude = input.Latitude;
+            post.Longitude = input.Longitude;
+            post.Price = input.Price;
+            post.Rent = input.Rent;
+            post.TypeId = input.TypeId;
             post.PostAmenities = amenities;
             await _postRepository.UpdateAsync(post);
             return MapToEntityDto(post);

@@ -88,6 +88,12 @@
                 role.grantedPermissions.push(_$permissionCheckbox.val());
             }
         }
+        role.IsDefault = null;
+        if (_$form[0].querySelectorAll("input[name='IsDefault']:checked").length>0) {
+            role.IsDefault = true;
+        } else {
+            role.IsDefault = false;
+		}
 
         abp.ui.setBusy(_$modal);
         _roleService

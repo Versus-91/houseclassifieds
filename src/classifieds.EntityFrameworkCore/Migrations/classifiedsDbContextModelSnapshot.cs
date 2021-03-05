@@ -1641,6 +1641,35 @@ namespace classifieds.Migrations
                     b.ToTable("Districts");
                 });
 
+            modelBuilder.Entity("classifieds.Favorites.Favorite", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("Favorites");
+                });
+
             modelBuilder.Entity("classifieds.Images.Image", b =>
                 {
                     b.Property<int>("Id")
@@ -2150,6 +2179,15 @@ namespace classifieds.Migrations
                     b.HasOne("classifieds.Cities.City", "City")
                         .WithMany("Districts")
                         .HasForeignKey("CityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("classifieds.Favorites.Favorite", b =>
+                {
+                    b.HasOne("classifieds.Posts.Post", "Post")
+                        .WithMany()
+                        .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

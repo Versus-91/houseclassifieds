@@ -67,9 +67,9 @@
                 defaultContent: '',
                 render: (data, type, row, meta) => {
                     return [
-                        `   <button type="button" class="btn btn-sm bg-secondary edit-district" data-id="${row.id}" data-toggle="modal" >`,
-                        `       <i class="fas fa-pencil-alt"></i> ${l('Edit')}`,
-                        '   </button>',
+                        `   <a type="button" class="btn btn-sm bg-secondary " href="/admin/reports/show/${row.id}"  >`,
+                        `       <i class="fas fa-pencil-alt"></i> ${l('Show')}`,
+                        '   </a>',
                         `   <button type="button" class="btn btn-sm bg-danger delete-district" data-district-id="${row.id}" data-report-name="${row.id}">`,
                         `       <i class="fas fa-trash"></i> ${l('Delete')}`,
                         '   </button>',
@@ -109,20 +109,7 @@
         deleteRole(Id, Name);
     });
 
-    $(document).on('click', '.edit-district', function (e) {
-        var Id = $(this).attr("data-id");
 
-        e.preventDefault();
-        abp.ajax({
-            url: abp.appPath + 'admin/districts/Edit/' + Id,
-            type: 'POST',
-            dataType: 'html',
-            success: function (content) {
-                $('#DistrictEditModal div.modal-content').html(content);
-            },
-            error: function (e) { }
-        })
-    });
 
     abp.event.on('district.edited', (data) => {
         _$rolesTable.ajax.reload();

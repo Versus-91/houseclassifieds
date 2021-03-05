@@ -1,4 +1,5 @@
 ﻿using Abp.AutoMapper;
+using classifieds.Areas;
 using classifieds.Districts;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace classifieds.Posts.Dto
 {
-    [AutoMap(typeof(District))]
+    [AutoMap(typeof(Area))]
     public class DistrictViewModel
     {
         public int Id { get; set; }

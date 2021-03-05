@@ -2,6 +2,7 @@
 using Abp.AspNetCore.Mvc.Authorization;
 using Abp.AspNetCore.Mvc.Controllers;
 using Abp.Web.Models;
+using classifieds.Areas;
 using classifieds.Authorization;
 using classifieds.Cities;
 using classifieds.Cities.Dto;
@@ -21,11 +22,14 @@ namespace classifieds.Web.Areas.Admin.Controllers
     {
         private readonly IDistrictAppService _districtService;
         private readonly ICityAppService _cityService;
+        private readonly IAreaAppService _areaService;
 
-        public DistrictsController(IDistrictAppService districtService, ICityAppService cityService)
+
+        public DistrictsController(IDistrictAppService districtService, ICityAppService cityService, IAreaAppService areaService)
         {
             _districtService = districtService;
             _cityService = cityService;
+            _areaService = areaService;
         }
         [AbpMvcAuthorize(PermissionNames.Pages_District)]
 
@@ -44,10 +48,12 @@ namespace classifieds.Web.Areas.Admin.Controllers
         {
             var district = await _districtService.GetAsync(new EntityDto(id));
             var cities = (await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto() { MaxResultCount = Int32.MaxValue })).Items.ToList();
+            var areas = (await _areaService.GetAllAsync(new PagedAndSortedResultRequestDto() { MaxResultCount = Int32.MaxValue })).Items.ToList();
             var model = new DistrictViewModel
             {
                 District = district,
-                Cities = cities
+                Cities = cities,
+                Areas = areas,
             };
             return PartialView("_EditModal", model);
         }

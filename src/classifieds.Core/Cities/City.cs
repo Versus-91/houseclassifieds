@@ -1,5 +1,6 @@
 ﻿using Abp.Domain.Entities;
 using Abp.Domain.Entities.Auditing;
+using classifieds.Areas;
 using classifieds.Districts;
 using Newtonsoft.Json;
 using System;
@@ -16,6 +17,6 @@ namespace classifieds.Cities
             CreationTime = DateTime.Now;
         }
         [JsonIgnore]
-        public List<District> Districts { get; set; } 
+        public List<Area> Districts { get; set; } 
     }
 }

@@ -4,7 +4,6 @@
         _$modal = $('#PostCreateModal'),
         _$form = _$modal.find('form'),
         _$table = $('#PostsTable');
-    console.log(abp.services.app);
     var _$rolesTable = _$table.DataTable({
         paging: true,
         serverSide: true,
@@ -39,8 +38,8 @@
         columnDefs: [
             {
                 targets: 0,
-                data: 'title',
-                sortable: false
+                className: 'control',
+                defaultContent: '',
             },
             {
                 targets: 1,

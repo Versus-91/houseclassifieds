@@ -1,7 +1,7 @@
 ﻿@using classifieds.Web.Startup
 @model classifieds.Posts.Dto.PostDto
-@{ ViewBag.Title = L("HomePage");
-    ViewBag.CurrentPageName = PageNames.Home;
+@{ ViewBag.Title = L("Posts");
+    ViewBag.CurrentPageName = PageNames.Posts;
 }
 @section styles{
     <link rel="stylesheet" href="~/libs/swiper/swiper-bundle.min.css" asp-append-version="true" type="text/css">
@@ -49,7 +49,7 @@
                     <div class="col-12">
                         <div class="swiper-container">
                             <!-- Additional required wrapper -->
-                            <ul class="swiper-wrapper my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                            <ul style="list-style: none" class="swiper-wrapper my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
                                 @if (Model.Images.Count > 0)
                                 {
                                     @foreach (var image in Model.Images)

@@ -177,12 +177,7 @@
       "wwwroot/view-resources/Views/Categories/Index.js"
     ]
   },
-  {
-    "outputFileName": "wwwroot/view-resources/Views/UserPosts/main.min.js",
-    "inputFiles": [
-      "wwwroot/view-resources/Views/UserPosts/main.js"
-    ]
-  },
+
   {
     "outputFileName": "wwwroot/view-resources/Views/UserPosts/card.min.js",
     "inputFiles": [

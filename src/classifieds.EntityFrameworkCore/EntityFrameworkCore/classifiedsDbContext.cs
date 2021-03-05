@@ -15,6 +15,7 @@ using classifieds.Reports;
 using classifieds.ReportOptions;
 using classifieds.UserNotificationIds;
 using classifieds.Areas;
+using classifieds.Favorites;
 
 namespace classifieds.EntityFrameworkCore
 {
@@ -27,6 +28,7 @@ namespace classifieds.EntityFrameworkCore
         public DbSet<Image> Images { get; set; }
         public DbSet<City> Citites { get; set; }
         public DbSet<Area> Areas { get; set; }
+        public DbSet<Favorite> Favorites { get; set; }
 
         public DbSet<District> Districts { get; set; }
         public DbSet<Category> Categories { get; set; }

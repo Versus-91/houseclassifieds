@@ -185,7 +185,7 @@ namespace classifieds.Controllers
 
         public async Task<IActionResult> UploadAvatar()
         {
-
+            String path=String.Empty;
             if (!MultipartRequestHelper.IsMultipartContentType(Request.ContentType))
             {
                 ModelState.AddModelError("File",
@@ -247,6 +247,7 @@ namespace classifieds.Controllers
                         {
                             return BadRequest(ModelState);
                         }
+                        path = Path.Combine(_avatarsFilePath, trustedFileNameForFileStorage);
                         Directory.CreateDirectory(Path.Combine(_env.WebRootPath, _avatarsFilePath));
                         using (var targetStream = System.IO.File.Create(Path.Combine(_env.WebRootPath, _avatarsFilePath, trustedFileNameForFileStorage)))
                         {
@@ -256,7 +257,7 @@ namespace classifieds.Controllers
                             {
                                 System.IO.File.Delete(Path.Combine(_env.WebRootPath, user.Avatar));
                             }
-                            user.Avatar = Path.Combine(_avatarsFilePath, trustedFileNameForFileStorage);
+                            user.Avatar = path;
                             await _userManager.UpdateAsync(user);
                         }
                     }
@@ -267,7 +268,7 @@ namespace classifieds.Controllers
                 section = await reader.ReadNextSectionAsync();
             }
 
-            return Ok("images saved successfully.");
+            return Ok(path);
         }
         private static Encoding GetEncoding(MultipartSection section)
         {

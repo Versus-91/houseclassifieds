@@ -144,6 +144,11 @@
     <text name="Areas">Areas</text>
     <text name="Area">Area</text>
     <text name="Id" value="Id" />
-
+    <text name="Authorization" value="Authorization" >
+      User Management
+    </text>
+    <text name="UserManagement" value="UserManagement" >
+      User Management
+    </text>
   </texts>
 </localizationDictionary>

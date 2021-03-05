@@ -21,7 +21,7 @@ namespace classifieds.Roles.Dto
         
         [StringLength(Role.MaxDescriptionLength)]
         public string Description { get; set; }
-
+        public bool IsDefault { get; set; }
         public List<string> GrantedPermissions { get; set; }
     }
 }

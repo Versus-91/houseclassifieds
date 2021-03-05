@@ -46,7 +46,7 @@
 		},
 		onAreaSelect: function (area) {
 			this.selectedArea = area.id;
-			this.selectedAreaText = area.name;
+			this.selectedAreaName = area.name;
 			this.district = null;
 			axios.get("/api/services/app/district/GetByAreaId?id=" + this.selectedArea )
 				.then((res) => {
@@ -67,7 +67,7 @@
 		onCityChange: function (e) {
 			this.loadingDistricts = true;
 			this.selectedArea = null;
-			this.selectedAreaText = null;
+			this.selectedAreaName = null;
 			axios.get("/admin/districts/GetByCityId?id="+this.city)
 				.then((res) => {
 					var items = res.data.result;

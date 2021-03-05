@@ -23,8 +23,6 @@ namespace classifieds.Posts.Dto
         public int CategoryId { get; set; }
         public int DistrictId { get; set; }
         public int TypeId { get; set; }
-        public long UserId { get; set; }
-
         public bool IsFeatured { get; set; }
         public bool IsVerified { get; set; }
         public CategoryViewModel Category { get; set; }

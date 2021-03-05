@@ -40,9 +40,9 @@ namespace classifieds.Web.Controllers
             ICategoryAppService categoryService,
             IDistrictAppService districtService,
             ITypeAppService typeService,
-             AmenityAppService amenityService,
-             ICityAppService cityService,
-             IAreaAppService areaService)
+            AmenityAppService amenityService,
+            ICityAppService cityService,
+            IAreaAppService areaService)
         {
             _postService = postService;
             _categoryService = categoryService;

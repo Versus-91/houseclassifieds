@@ -29,10 +29,10 @@ namespace classifieds.Web.Areas.Admin.Controllers
             ViewData["Options"] = new SelectList((await _reportOptionService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, nameof(ReportOptionDto.Id), nameof(ReportOptionDto.Name));
             return View();
         }
-        public async Task<ActionResult> Edit(int id)
+        public async Task<ActionResult> Show(int id)
         {
-            var model = await _reportService.GetAsync(new EntityDto(id));
-            return PartialView("_EditModal", model);
+            var model = await _reportService.GetReport(id);
+            return View( model);
         }
     }
 }

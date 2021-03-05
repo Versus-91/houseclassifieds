@@ -31,6 +31,7 @@ namespace classifieds.Web.Areas.Admin.Controllers
             var option =await _reportOptionService.GetAsync(new EntityDto(id));
             return PartialView("_EditModal", option);
         }
+
     }
 }
 
