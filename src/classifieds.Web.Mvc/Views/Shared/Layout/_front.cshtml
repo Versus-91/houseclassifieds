@@ -10,10 +10,9 @@
 @{
     AbpAntiForgeryManager.SetCookie(Context);
 
-    var pageTitle = !string.IsNullOrWhiteSpace(ViewBag.Title) ? ViewBag.Title + " / " : "";
+    var pageTitle = !string.IsNullOrWhiteSpace(ViewBag.Title) ? ViewBag.Title + " - " : "";
     var returnUrl = Context.Request.Path;
-
-    pageTitle += "classifieds";
+    pageTitle += "خرید ملک در افغانستان - گروی ملک در افغانستان";
 }
 <!DOCTYPE html>
 <html dir="rtl" >
@@ -21,8 +20,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @RenderSection("tags", required: false)
     <title>@pageTitle</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="stylesheet" href="~/lib/bulma/css/bulma-rtl.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/libs/font-awesome/css/all.min.css" asp-append-version="true" />
@@ -45,54 +45,7 @@
             @RenderSection("hero", required: false)
     @RenderBody()
     </div>
-<footer class="footer">
-  <div class="container">
-<div class="bd-footer-links">
-  <div class="columns">
-    <div class="column is-4">
-      <p class="bd-footer-link-title">
-        <a href="/">خانه</a>
-      </p>
-
-      <p class="bd-footer-link-title">
-        <a href="https://bulma.io/blog">وبلاگ</a>
-      </p>
-
-      
-        <p class="bd-footer-link">
-          <a href="/2021/01/23/the-block-probably-bulmas-most-important-feature/">
-            The Bulma block
-          </a>
-        </p>
-      
-    </div>
-
-    <div class="column is-4">
-      <p class="bd-footer-link-title">
-        <a href="/">آگهی های پربازدید</a>
-      </p>
-        <p class="bd-footer-link">
-          <a href="/">
-            Overview
-          </a>
-        </p>
-    </div>
-
-    <div class="column is-4">
-      <p class="bd-footer-link-title">
-        <a href="/">سایر موارد</a>
-      </p>
-         <p class="bd-footer-link">
-          <a href="/">
-            دریافت اپ
-          </a>
-        </p>
-    </div>
-  </div>
-</div>
-
-  </div>
-</footer>
+  @await Component.InvokeAsync("Footer")
     <script src="~/libs/jquery/jquery.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <script>

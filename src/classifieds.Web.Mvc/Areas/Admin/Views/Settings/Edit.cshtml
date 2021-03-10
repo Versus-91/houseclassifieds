@@ -1,0 +1,28 @@
+﻿@using classifieds.Web.Startup
+@using classifieds.Web.Models.Settings;
+@model SettingsInput
+@{
+    ViewBag.Title = "Edit Setting";
+    ViewBag.CurrentPageName = PageNames.Settings;
+}
+<div class="content">
+    <div class="container-fluid">
+        <br />
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">Settings</div>
+                    <div class="card-body"> 
+                        <p>@Model.Name.Replace("."," ")</p>
+                        <form asp-controller="Settings" asp-action="Edit" asp-area="Admin" method="post">
+                            <div class="form-group">
+                              <label asp-for="Value">Value:</label>
+                              <input asp-for="Value" type="password" class="form-control" >
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

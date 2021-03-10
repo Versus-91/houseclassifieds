@@ -4,6 +4,7 @@ using Abp.Runtime.Validation;
 using classifieds.Authorization.Users;
 using classifieds.Filters;
 using classifieds.Images;
+using classifieds.Posts;
 using classifieds.Web.helpers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -34,6 +35,8 @@ namespace classifieds.Controllers
         private readonly UserManager _userManager;
         private readonly IRepository<Image> _imageService;
         private readonly IWebHostEnvironment _env;
+        private readonly IPostAppService _postService;
+
 
         // Get the default form options so that we can use them to set the default 
         // limits for request body data.
@@ -43,9 +46,11 @@ namespace classifieds.Controllers
             IRepository<Image> imageService,
             IConfiguration config,
             UserManager userManager,
+            IPostAppService postService,
             IWebHostEnvironment env
             )
         {
+            _postService = postService;
             _fileSizeLimit = config.GetValue<long>("FileSizeLimit");
             _env = env;
             // To save physical files to a path provided by configuration:
@@ -84,6 +89,15 @@ namespace classifieds.Controllers
         [AbpMvcAuthorize]
         public async Task<IActionResult> UploadPhysical(int id)
         {
+            var post = await _postService.GetPost( id);
+            if (post == null)
+            {
+                return NotFound();
+            }
+            if (post.CreatorUserId != AbpSession.UserId)
+            {
+                return Unauthorized();
+            }
             if (!MultipartRequestHelper.IsMultipartContentType(Request.ContentType))
             {
                 ModelState.AddModelError("File",
@@ -159,6 +173,7 @@ namespace classifieds.Controllers
                                     Path = Path.Combine(_postImagesFilePath, trustedFileNameForFileStorage),
                                     PostId = id
                                 });
+                                await _postService.AddPostMedia(post,true);
                                 _logger.LogInformation(
                                     "Uploaded file '{TrustedFileNameForDisplay}' saved to " +
                                     "'{TargetFilePath}' as {TrustedFileNameForFileStorage}",

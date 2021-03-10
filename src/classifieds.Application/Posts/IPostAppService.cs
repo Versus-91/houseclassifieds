@@ -14,5 +14,9 @@ namespace classifieds.Posts
         Task<PagedResultDto<PostDto>> Recommendations(PostDto post);
         Task<List<PostsCountDto>> CitiesPostsCount();
         Task<List<UserPostsCountDto>> UsersPostsCount();
+        Task<List<PostsCountDto>> PopularPosts();
+        Task<Post> GetPost(int id);
+        Task AddPostMedia(Post post, bool state);
+
     }
 }

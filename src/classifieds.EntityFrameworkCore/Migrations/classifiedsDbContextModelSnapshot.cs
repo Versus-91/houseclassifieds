@@ -1439,6 +1439,9 @@ namespace classifieds.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
+                    b.Property<byte>("AdsCount")
+                        .HasColumnType("tinyint");
+
                     b.Property<string>("AuthenticationSource")
                         .HasColumnType("nvarchar(64)")
                         .HasMaxLength(64);
@@ -1799,6 +1802,9 @@ namespace classifieds.Migrations
                     b.Property<int>("DistrictId")
                         .HasColumnType("int");
 
+                    b.Property<bool>("HasMedia")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsFeatured")
                         .HasColumnType("bit");
 
@@ -1823,9 +1829,6 @@ namespace classifieds.Migrations
                     b.Property<double>("Rent")
                         .HasColumnType("float");
 
-                    b.Property<int?>("ReportOptionId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
@@ -1842,8 +1845,6 @@ namespace classifieds.Migrations
                     b.HasIndex("CreatorUserId");
 
                     b.HasIndex("DistrictId");
-
-                    b.HasIndex("ReportOptionId");
 
                     b.HasIndex("TypeId");
 
@@ -2134,7 +2135,7 @@ namespace classifieds.Migrations
             modelBuilder.Entity("classifieds.Areas.Area", b =>
                 {
                     b.HasOne("classifieds.Cities.City", "City")
-                        .WithMany()
+                        .WithMany("Districts")
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2177,7 +2178,7 @@ namespace classifieds.Migrations
                         .HasForeignKey("AreaId");
 
                     b.HasOne("classifieds.Cities.City", "City")
-                        .WithMany("Districts")
+                        .WithMany()
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2237,10 +2238,6 @@ namespace classifieds.Migrations
                         .HasForeignKey("DistrictId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.HasOne("classifieds.ReportOptions.ReportOption", null)
-                        .WithMany("Posts")
-                        .HasForeignKey("ReportOptionId");
 
                     b.HasOne("classifieds.PropertyTypes.PropertyType", "Type")
                         .WithMany()

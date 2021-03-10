@@ -2,6 +2,7 @@
 using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Collections.Extensions;
+using Abp.Configuration;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using classifieds.Amenities.Dto;
@@ -14,6 +15,7 @@ using classifieds.Posts.Dto;
 using classifieds.PostsAmenities;
 using classifieds.PostsAmenities.Dto;
 using classifieds.PropertyTypes;
+using classifieds.Settings.Constants;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -25,22 +27,25 @@ namespace classifieds.Posts
 {
     public class PostAppService : AsyncCrudAppService<Post, PostDto, int, GetAllPostsInput, CreatePostInput, UpdatePostInput>, IPostAppService
     {
+        private readonly ISettingManager _settingsManager;
         private readonly IRepository<Post> _postRepository;
         private readonly IRepository<Category> _categoryRepository;
         private readonly IRepository<PropertyType> _typeRepository;
         private readonly IRepository<District> _districtRepository;
         private readonly IRepository<City> _cityRepository;
-
+        private readonly IRepository<Post>  _repository;
         private readonly IRepository<User, long> _userRepository;
-        public PostAppService(IRepository<PropertyType> typeRepository,IRepository<City> cityRepository,IRepository<Post> repository, IRepository<Category> categoryRepository, IRepository<User, long> userRepository, IRepository<District> districtRepository) : base(repository)
+        public PostAppService(ISettingManager settingsManager, IRepository<PropertyType> typeRepository,IRepository<City> cityRepository,IRepository<Post> repository, IRepository<Category> categoryRepository, IRepository<User, long> userRepository, IRepository<District> districtRepository) : base(repository)
         {
+            _settingsManager = settingsManager;
             _typeRepository = typeRepository;
             _cityRepository = cityRepository;
             _postRepository = repository;
             _categoryRepository = categoryRepository;
             CreatePermissionName = PermissionNames.Posts_Create;
-           // UpdatePermissionName = PermissionNames.Pages_Posts;
-            DeletePermissionName = PermissionNames.Pages_Posts;
+            // UpdatePermissionName = PermissionNames.Pages_Posts;
+            _repository = repository;
+             DeletePermissionName = PermissionNames.Pages_Posts;
             _districtRepository = districtRepository;
             _userRepository = userRepository;
         }
@@ -48,9 +53,14 @@ namespace classifieds.Posts
         {
             throw new NotImplementedException();
         }
-
+        [RemoteService(false)]
+        public async Task<Post> GetPost(int id)
+        {
+            return await _repository.GetAsync(id);
+        }
         protected override IQueryable<Post> CreateFilteredQuery(GetAllPostsInput input)
         {
+
             return base.CreateFilteredQuery(input)
                 .Include(m=> m.District.City)
                 .Include(m => m.Images)
@@ -164,8 +174,6 @@ namespace classifieds.Posts
         [RemoteService(false)]
         public async Task<List<PostsCountDto>> CitiesPostsCount()
         {
-            var categories = await _categoryRepository.GetAllListAsync();
-            var postsCountPerCategory = new List<CitiesPostsCount>();
   
              var counts = await _postRepository.GetAll().Where(m=> m.IsVerified == true).GroupBy(m => m.District.CityId)
                 .Select(n => new PostsCountDto
@@ -175,6 +183,23 @@ namespace classifieds.Posts
                     Count = n.Count(),
                 }
              ).OrderByDescending(m => m.Count).Take(20).ToListAsync();
+
+            return counts;
+        }
+        [RemoteService(false)]
+        public async Task<List<PostsCountDto>> PopularPosts()
+        {
+            var categories = await _categoryRepository.GetAllListAsync();
+            var postsCountPerCategory = new List<CitiesPostsCount>();
+
+            var counts = await _postRepository.GetAll().Where(m => m.IsVerified == true).GroupBy(m => m.District.CityId)
+               .Select(n => new PostsCountDto
+               {
+                   CityId = n.Key,
+                   CityName = _cityRepository.GetAll().Where(m => m.Id == n.Key).FirstOrDefault().Name,
+                   Count = n.Count(),
+               }
+            ).OrderByDescending(m => m.Count).Take(10).ToListAsync();
 
             return counts;
         }
@@ -192,6 +217,12 @@ namespace classifieds.Posts
 
             return usersPostsCount;
        }
+        [RemoteService(false)]
+        public  async Task AddPostMedia(Post post,bool state)
+        {
+            post.HasMedia = state;
+            await _postRepository.UpdateAsync(post);
+        }
         public override async Task<PostDto> CreateAsync(CreatePostInput input)
         {
             List<PostAmenity> amenities=new List<PostAmenity>();
@@ -207,7 +238,7 @@ namespace classifieds.Posts
             var category = await _categoryRepository.GetAsync(input.CategoryId);
             var type = await _typeRepository.GetAsync(input.TypeId);
             var district = await _districtRepository.GetAsync(input.DistrictId);
-            var title = category?.Name + " " + type?.Name + input?.Area + "متری" + " " + district?.Name;
+            var title = category?.Name + " " + type?.Name+" "+ input?.Area + "متری" + " " + district?.Name;
             if (!String.IsNullOrEmpty(title))
             {
                 post.Title = title;

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace classifieds.Posts.Dto
 {
-    [AutoMap(typeof(Area))]
+    [AutoMap(typeof(District))]
     public class DistrictViewModel
     {
         public int Id { get; set; }

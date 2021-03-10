@@ -15,7 +15,6 @@ namespace classifieds.Posts
     public class Post :AuditedEntity,IHasCreationTime
     {
         public string Code { get; set; }
-
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsFeatured { get; set; } = false;
@@ -29,6 +28,7 @@ namespace classifieds.Posts
         public PropertyType Type { get; set; }
         public uint Area { get; set; }
         public ushort Age { get; set; }
+        public bool HasMedia { get; set; }
         public byte Bedroom { get; set; }
         public IList<PostAmenity> PostAmenities { get; set; }
         public uint View { get; set; }

@@ -3,7 +3,11 @@
 
 <div class="user-panel mt-3 pb-3 mb-3 d-flex">
     <div class="image">
-        <img src="~/libs/admin-lte/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+        @if(Model.LoginInformations.User.Avatar != null){
+            <img src="/@Model.LoginInformations.User.Avatar" class="img-circle elevation-2" alt="User Image">
+        }else{
+           <img src="~/libs/admin-lte/dist/img/avatar5.png" class="img-circle elevation-2" alt="User Image">
+        }
     </div>
     <div class="info">
         <a class="d-block" href="javascript:void(0);">@Html.Raw(Model.GetShownLoginName())</a>

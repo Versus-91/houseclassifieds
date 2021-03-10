@@ -1,20 +1,37 @@
 ﻿@using classifieds.Web.Startup
 @model classifieds.Web.Models.Ads.ShowAdViewModel
-@{ ViewBag.Title = Model.Post.Category.Name +" "+  Model.Post.Type.Name +" در "+ Model.Post.District.Name;
+@{
+    ViewBag.Title = Model.Post.Category.Name + " " + Model.Post.Type.Name + " در " + Model.Post.District.Name;
     ViewBag.CurrentPageName = PageNames.Home;
-    Layout = "layout/_front"; }
+    Layout = "layout/_front"; 
+}
 @section styles{
-    <link rel="stylesheet" href="~/libs/swiper/swiper-bundle.min.css" asp-append-version="true" type="text/css">
-    <link rel="stylesheet" href="~/libs/photoswipe/dist/photoswipe.min.css" asp-append-version="true" type="text/css">
-    <link rel="stylesheet" href="~/libs/photoswipe/dist/default-skin/default-skin.min.css" asp-append-version="true" type="text/css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-          crossorigin="" />
+<link rel="stylesheet" href="~/libs/swiper/swiper-bundle.min.css" asp-append-version="true" type="text/css">
+<link rel="stylesheet" href="~/libs/photoswipe/dist/photoswipe.min.css" asp-append-version="true" type="text/css">
+<link rel="stylesheet" href="~/libs/photoswipe/dist/default-skin/default-skin.min.css" asp-append-version="true" type="text/css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+      crossorigin="" />
+}
+@section tags{
+<meta property="og:type" content="website">
+<meta property="og:title" content="@ViewBag.Title">
+<meta property="og:type"  content="article" />
+<meta property="og:description"  content="مشاور املاک" />
+<meta property="fb:app_id"  content="815507745845174" />
+<meta property="og:url" content="http://kamyabhouse.com/ads/@Model.Post.Id">
+@if(Model.Post.Images.Count > 0){
+ <meta property="og:image" content="http://kamyabhouse.com/@Model.Post.Images[0].Path.Replace("\\","/")?height=640&width=480">
+}else{
+ <meta property="og:image" content="http://www.kamyabhouse.com/img/placeholder.png">
+}
+
+<meta property="og:site_name" content="kamyab house">
 }
 <div class="section has-background-white-ter Site-content">
-     @Html.AntiForgeryToken()
+    @Html.AntiForgeryToken()
     <div class="container " id="mainContainer">
-         <input hidden name="id" id="id" value="@Model.Post.Id" />
+        <input hidden name="id" id="id" value="@Model.Post.Id" />
         <input hidden name="Latitude" id="postLatitude" value="@Model.Post.Latitude" />
         <input hidden name="Longitude" id="postLongitude" value="@Model.Post.Longitude" />
         <nav class="breadcrumb " aria-label="breadcrumbs">
@@ -22,7 +39,7 @@
                 <li><a href="/ads?city=@Model.Post.District.City.Id">@Model.Post.District.City.Name</a></li>
                 <li><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.City.Id"> @Model.Post.District.Name </a></li>
                 <li><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.City.Id&category=@Model.Post.CategoryId"> @Model.Post.Category.Name </a></li>
-                <li ><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.City.Id&category=@Model.Post.CategoryId&types=@Model.Post.TypeId&city=@Model.Post.District.City.Id" aria-current="page">@Model.Post.Type.Name</a></li>
+                <li><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.City.Id&category=@Model.Post.CategoryId&types=@Model.Post.TypeId&city=@Model.Post.District.City.Id" aria-current="page">@Model.Post.Type.Name</a></li>
             </ul>
         </nav>
         <div class="box">
@@ -73,39 +90,39 @@
                         </div>
                     </section>
                     <div class="field is-grouped btn-overlay">
-                      <p class="control">
-                         <button class="button is-danger is-small" v-on:click="showModal = true">
-                            <span class="icon ">
-                                <i class="fas fa-flag"></i>
-                            </span>
-                          </button>
-                      </p>
+                        <p class="control">
+                            <button class="button is-danger is-small" v-on:click="showModal = true">
+                                <span class="icon ">
+                                    <i class="fas fa-flag"></i>
+                                </span>
+                            </button>
+                        </p>
                     </div>
-       
-             
+
+
                     <h1 class="subtitle is-5">@Model.Post.Description</h1>
                     <div class="level is-mobile">
                         <div class="buttons has-addons">
-                          <button class="button is-small is-primary mx-1">
-                              <span class="icon ">
-                                  <i class="fas fa-phone"></i>
-                              </span>
-                              <span>تماس</span>
-                          </button>
+                            <button class="button is-small is-primary mx-1">
+                                <span class="icon ">
+                                    <i class="fas fa-phone"></i>
+                                </span>
+                                <span>تماس</span>
+                            </button>
                             <button class="button is-small is-success mx-1" v-on:click="showShareModal = true">
-                              <span class="icon ">
-                                  <i class="fas fa-share-alt"></i>
-                              </span>
-                              <span>اشتراک</span>
-                          </button>
-                          <button class="button is-small mx-1 is-link" v-on:click="addFavorite">
-                              <span class="icon" v-bind:class="{'has-text-danger':liked}">
-                                  <i class="fas fa-bookmark"></i>
-                              </span>
-                              <span>ذخیره</span>
-                          </button>
+                                <span class="icon ">
+                                    <i class="fas fa-share-alt"></i>
+                                </span>
+                                <span>اشتراک</span>
+                            </button>
+                            <button class="button is-small mx-1 is-link" v-on:click="addFavorite">
+                                <span class="icon" v-bind:class="{'has-text-danger':liked}">
+                                    <i class="fas fa-bookmark"></i>
+                                </span>
+                                <span>ذخیره</span>
+                            </button>
                         </div>
-                    <span class="text-muted">کد :@Model.Post.Id</span>
+                        <span class="text-muted">کد :@Model.Post.Id</span>
                     </div>
                 </div>
                 <div class="column is-7">
@@ -114,23 +131,22 @@
                             @foreach (var image in Model.Post.Images)
                             {
                                 <a href="/@image.Path" data-size="1600x1600" data-med="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_b.jpg" data-med-size="1024x1024" data-author="Folkert Gorter" class="demo-gallery__img--main">
-                                    <img src="/@image.Path?height=240&width=240&rsampler=nearest&rmode=stretch" alt="" />
+                                    <img src="/@image.Path?height=192&width=192" alt="" />
                                     <figure>This is dummy caption.</figure>
                                 </a>
-
                             }
                         </div>
                     </div>
                 </div>
             </div>
-                <div class="columns my-4">
-                    <div class="column is-7">
-                               @if (Model.Post.Amenities.Count > 0)
-            {
+            <div class="columns my-4">
+                <div class="column is-7">
+                    @if (Model.Post.Amenities.Count > 0)
+                    {
                         <h1 class="title is-4 b">
                             امکانات
-                       </h1>
-                       <br>
+                        </h1>
+                        <br>
                         <div class="columns">
 
 
@@ -143,149 +159,147 @@
                             }
 
                         </div>
-                        }
-                    </div>
-                    
-                    <div class="column is-5" id="map">
-                
-                        <div style="height:300px"></div>
-                    </div>
+                    }
                 </div>
+
+                <div class="column is-5" id="map">
+
+                    <div style="height:300px"></div>
+                </div>
+            </div>
         </div>
     </div>
     @if (Model.Recommendations.Count > 0)
     {
-            <div class="container mt-3">
-                      <div class="swiper-container">
-                           <div class="swiper-wrapper">
+        <div class="container mt-3">
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
                     @foreach (var post in Model.Recommendations)
                     {
                         <div class="swiper-slide">
-                    <div class=" column" >
-                            <a class="fill-div" href="/ads/@post.Id">
-                                <div class="card card-hover-shadow" data-label="@post.Category.Name">
-                                    <div class="card-image">
-                                        <figure class="image is-4by3">
-                                            @if (post.Images.Count > 0)
-                                            {
-                                                <img src="/@post.Images[0].Path?width=600&height=480" alt="Placeholder image">
+                            <div class=" column">
+                                <a class="fill-div" href="/ads/@post.Id">
+                                    <div class="card card-hover-shadow" data-label="@post.Category.Name">
+                                        <div class="card-image">
+                                            <figure class="image is-4by3">
+                                                @if (post.Images.Count > 0)
+                                                {
+                                                    <img src="/@post.Images[0].Path?width=600&height=480" alt="Placeholder image">
+                                                }
+                                                else
+                                                {
+                                                    <img src="/img/placeholder.png" alt="Placeholder image">
+                                                }
+                                                <div class="overlay">@post.District.City.Name -  @post.District.Name</div>
+                                            </figure>
+                                        </div>
+                                        <div class="card-content">
 
-                                            }
-                                            else
-                      {
-                       <img src="/img/placeholder.png" alt="Placeholder image">
-                      }
-                         <div class="overlay">@post.District.City.Name -  @post.District.Name</div>
-                                        </figure>
+                                            <nav class="level is-mobile">
+                                                <div class="level-item has-text-centered">
+                                                    <div>
+                                                        <p><i class="fas fa-chart-area has-text-grey"></i></p>
+                                                        <p>@post.Area</p>
+                                                    </div>
+                                                </div>
+                                                <div class="level-item has-text-centered">
+                                                    <div>
+                                                        <p><i class="fas  fa-clock has-text-grey"></i></p>
+                                                        <p>
+                                                            @if (post.Age == 0)
+                                                            {
+                                                                Html.Raw("N/A");
+                                                            }
+                                                            else
+                                                            {
+                                                                Html.Raw(post.Age);
+                                                            }
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                                <div class="level-item has-text-centered">
+                                                    <div>
+                                                        <p><i class="fas fa-bed has-text-grey"></i></p>
+                                                        <p>@post.Bedroom</p>
+                                                    </div>
+                                                </div>
+                                            </nav>
+                                        </div>
+                                        <footer class="card-footer">
+                                            <a href="#" class="card-footer-item">
+                                                <p><i class="fas fa-phone has-text-success"></i>  اطلاعات تماس</p>
+                                            </a>
+                                        </footer>
                                     </div>
-                                 <div class="card-content">
-                                   
-                                        <nav class="level is-mobile">
-                                            <div class="level-item has-text-centered">
-                                                <div>
-                                                    <p><i class="fas fa-chart-area has-text-grey"></i></p>
-                                                    <p>@post.Area</p>
-                                                </div>
-                                            </div>
-                                            <div class="level-item has-text-centered">
-                                                <div>
-                                                    <p><i class="fas  fa-clock has-text-grey"></i></p>
-                                                    <p>
-                                                    @if (post.Age == 0)
-                                                    {
-                                                        Html.Raw("N/A");
-                                                    }
-                                                    else
-                                                    {
-                                                        Html.Raw(post.Age);
-                                                    }
-                                                    </p>
-                                                </div>
-                                            </div>
-                                            <div class="level-item has-text-centered">
-                                                <div>
-                                                    <p><i class="fas fa-bed has-text-grey"></i></p>
-                                                    <p>@post.Bedroom</p>
-                                                </div>
-                                            </div>
-                                        </nav>
-                                    </div>
-                                    <footer class="card-footer">
-                                        <a href="#" class="card-footer-item">
-                                            <p><i class="fas fa-phone has-text-success"></i>  اطلاعات تماس</p>
-                                        </a>
-                                    </footer>
-                                </div>
-                            </a>
-                     </div>
-                     </div>
+                                </a>
+                            </div>
+                        </div>
                     }
                 </div>
-                    <div class="swiper-pagination">
-                        
-                    </div>
-
+                <div class="swiper-pagination">
                 </div>
+
             </div>
+        </div>
     }
 </div>
 <div class="modal " :class="{'is-active':showModal}">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">گزارش اشکال</p>
-      <button class="delete" aria-label="close" data-bulma-modal="close" v-on:click="showModal = false"></button>
-    </header>
-    <section class="modal-card-body">
-          <div class="column is-12">
-              <p class="title is-5">دلیل</p>
-              <div class="select">
-                  <select v-model="option">
-                      <option v-for="opt in options" :value="opt.id">{{opt.name}}</option>
-                  </select>
-              </div>
-          </div>
-          <div class="column is-12">
-               <p class="title is-5">توضیحات</p>
-               <textarea class="textarea"  v-model="description"></textarea>
-          </div>
-    </section>
-    <footer class="modal-card-foot">
-      <button class="button is-success" v-on:click="submitForm" >ثبت </button>
-      <button class="button" v-on:click="showModal = false">انصراف</button>
-    </footer>
-  </div>
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">گزارش اشکال</p>
+            <button class="delete" aria-label="close" data-bulma-modal="close" v-on:click="showModal = false"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="column is-12">
+                <p class="title is-5">دلیل</p>
+                <div class="select">
+                    <select v-model="option">
+                        <option v-for="opt in options" :value="opt.id">{{opt.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="column is-12">
+                <p class="title is-5">توضیحات</p>
+                <textarea class="textarea" v-model="description"></textarea>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-success" v-on:click="submitForm">ثبت </button>
+            <button class="button" v-on:click="showModal = false">انصراف</button>
+        </footer>
+    </div>
 </div>
 <div class="modal " :class="{'is-active':showShareModal}">
-  <div class="modal-background"></div>
-  <div class="modal-card">
-    <header class="modal-card-head">
-      <p class="modal-card-title">اشتراک اعلان</p>
-      <button class="delete" aria-label="close" data-bulma-modal="close" v-on:click="showShareModal = false"></button>
-    </header>
-    <section class="modal-card-body">
-          <div class="column is-12">
-            <button class="button" v-on:click="socialShare('twitter')">    
-                <span class="icon">
-                 <i class="fab fa-twitter"></i>
-               </span>
-               <span>twitter</span>
-           </button>  
-           <button class="button" v-on:click="socialShare('facebook')">    
-                <span class="icon">
-                 <i class="fab fa-facebook"></i>
-               </span>
-               <span>Facebook</span>
-           </button>  
-           <button class="button" v-on:click="socialShare('linkedin')">    
-                <span class="icon">
-                 <i class="fab fa-linkedin"></i>
-               </span>
-               <span>LinkeIn</span>
-           </button>  
-          </div>
-    </section>
-  </div>
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">اشتراک اعلان</p>
+            <button class="delete" aria-label="close" data-bulma-modal="close" v-on:click="showShareModal = false"></button>
+        </header>
+        <section class="modal-card-body">
+            <div class="column is-12">
+                <button class="button" v-on:click="socialShare('twitter')">
+                    <span class="icon">
+                        <i class="fab fa-twitter"></i>
+                    </span>
+                    <span>twitter</span>
+                </button>
+                <button class="button" v-on:click="socialShare('facebook')">
+                    <span class="icon">
+                        <i class="fab fa-facebook"></i>
+                    </span>
+                    <span>Facebook</span>
+                </button>
+                <button class="button" v-on:click="socialShare('linkedin')">
+                    <span class="icon">
+                        <i class="fab fa-linkedin"></i>
+                    </span>
+                    <span>LinkeIn</span>
+                </button>
+            </div>
+        </section>
+    </div>
 </div>
 <div id="gallery" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="pswp__bg"></div>
@@ -347,11 +361,11 @@
 </div>
 
 @section scripts{
-    <script src="~/libs/swiper/swiper-bundle.min.js" asp-append-version="true"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>
-    <environment names="Development">
-        <script src="~/lib/vue/vue.js" asp-append-version="true"></script>
-        <script>
+<script src="~/libs/swiper/swiper-bundle.min.js" asp-append-version="true"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<environment names="Development">
+    <script src="~/lib/vue/vue.js" asp-append-version="true"></script>
+    <script>
             new Vue({
                 el:'#app',
                 data : {
@@ -366,28 +380,28 @@
                 },
 
                 methods :{
-                    		socialWindow: function () {
-			var left = (screen.width - 570) / 2;
-			var top = (screen.height - 570) / 2;
-			var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
-			window.open(url, "NewWindow", params);
-		},
-		socialShare: function (media) {
+                            socialWindow: function () {
+            var left = (screen.width - 570) / 2;
+            var top = (screen.height - 570) / 2;
+            var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
+            window.open(url, "NewWindow", params);
+        },
+        socialShare: function (media) {
             console.log(media);
-			var pageUrl = encodeURIComponent(document.URL);
-			switch (media) {
-				case 'twitter':
-					url = "https://twitter.com/intent/tweet?url=" + pageUrl ;
-					this.socialWindow(url);
+            var pageUrl = encodeURIComponent(document.URL);
+            switch (media) {
+                case 'twitter':
+                    url = "https://twitter.com/intent/tweet?url=" + pageUrl ;
+                    this.socialWindow(url);
                     break;
-				case 'facebook':
-					url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
-					this.socialWindow(url);
+                case 'facebook':
+                    url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
+                    this.socialWindow(url);
                     break;
-				default:
-					break;
-			}	
-		},
+                default:
+                    break;
+            }
+        },
                     addFavorite(){
                         if(!!this.liked){
                             this.removeFavorite();
@@ -439,16 +453,18 @@
                     });
                 }
             });
-        </script>
-        <script src="~/lib/photoswipe/photoswipe-ui-default.js" asp-append-version="true"></script>
-        <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>
+    </script>
+    <script src="~/lib/photoswipe/photoswipe.min.js" asp-append-version="true"></script>
+    <script src="~/lib/photoswipe/photoswipe-ui-default.min.js" asp-append-version="true"></script>
+    <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>
 
-    </environment>
-    <environment names="Staging,Production">
-        <script src="~/lib/photoswipe/photoswipe-ui-default.min.js" asp-append-version="true"></script>
-        <script src="~/lib/vue/vue.min.js" asp-append-version="true"></script>
-        <script src="~/view-resources/Views/UserPosts/show.min.js" asp-append-version="true"></script>
-                <script>
+</environment>
+<environment names="Staging,Production">
+    <script src="~/lib/photoswipe/photoswipe.min.js" asp-append-version="true"></script>
+    <script src="~/lib/photoswipe/photoswipe-ui-default.min.js" asp-append-version="true"></script>
+    <script src="~/lib/vue/vue.min.js" asp-append-version="true"></script>
+    <script src="~/view-resources/Views/UserPosts/show.min.js" asp-append-version="true"></script>
+    <script>
             new Vue({
                 el:'#app',
                 data : {
@@ -463,28 +479,28 @@
                 },
 
                 methods :{
-                    		socialWindow: function () {
-			var left = (screen.width - 570) / 2;
-			var top = (screen.height - 570) / 2;
-			var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
-			window.open(url, "NewWindow", params);
-		},
-		socialShare: function (media) {
+                            socialWindow: function () {
+            var left = (screen.width - 570) / 2;
+            var top = (screen.height - 570) / 2;
+            var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
+            window.open(url, "NewWindow", params);
+        },
+        socialShare: function (media) {
             console.log(media);
-			var pageUrl = encodeURIComponent(document.URL);
-			switch (media) {
-				case 'twitter':
-					url = "https://twitter.com/intent/tweet?url=" + pageUrl ;
-					this.socialWindow(url);
+            var pageUrl = encodeURIComponent(document.URL);
+            switch (media) {
+                case 'twitter':
+                    url = "https://twitter.com/intent/tweet?url=" + pageUrl ;
+                    this.socialWindow(url);
                     break;
-				case 'facebook':
-					url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
-					this.socialWindow(url);
+                case 'facebook':
+                    url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
+                    this.socialWindow(url);
                     break;
-				default:
-					break;
-			}	
-		},
+                default:
+                    break;
+            }
+        },
                     addFavorite(){
                         if(!!this.liked){
                             this.removeFavorite();
@@ -536,10 +552,10 @@
                     });
                 }
             });
-        </script>
+    </script>
 
-    </environment>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-            crossorigin=""></script>
+</environment>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
 }

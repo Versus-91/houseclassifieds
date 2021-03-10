@@ -1,0 +1,45 @@
+﻿@model List<classifieds.Posts.Dto.PostsCountDto>;
+<footer class="footer">
+  <div class="container">
+<div class="bd-footer-links">
+  <div class="columns">
+    <div class="column is-4">
+      <p class="bd-footer-link-title">
+        <a href="/">خانه</a>
+      </p>
+
+      <p class="bd-footer-link-title">
+        <a href="https://bulma.io/blog">وبلاگ</a>
+      </p>
+
+    </div>
+
+    <div class="column is-4">
+      <p class="bd-footer-link-title">
+        <a href="/">آگهی های پربازدید</a>
+      </p>
+      @foreach(var item in Model){
+        <p class="bd-footer-link">
+          <a href="/ads?city=@item.CityId">
+            @item.CityName 
+          </a>
+        </p>
+      }
+
+    </div>
+
+    <div class="column is-4">
+      <p class="bd-footer-link-title">
+        <a href="/">سایر موارد</a>
+      </p>
+         <p class="bd-footer-link">
+          <a href="/">
+            دریافت اپ
+          </a>
+        </p>
+    </div>
+  </div>
+</div>
+
+  </div>
+</footer>

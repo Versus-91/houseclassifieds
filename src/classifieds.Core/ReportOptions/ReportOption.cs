@@ -10,7 +10,6 @@ namespace classifieds.ReportOptions
     {
         public string Name { get; set; }
         public bool HasDescription { get; set; }
-        public List<Post> Posts { get; set; }
 
     }
 }

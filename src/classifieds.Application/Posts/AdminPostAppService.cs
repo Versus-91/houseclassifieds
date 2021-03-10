@@ -48,7 +48,15 @@ namespace classifieds.Posts
                     if (userFirebaseToken != null)
                     {
                         var notif = new FirebaseAdmin.Messaging.Notification();
-                        notif.Body = "اعلان شما با موفقیت تایید شد.";
+                        if (string.IsNullOrEmpty(post.Title))
+                        {
+                            notif.Body = "اعلان شما با موفقیت تایید شد.";
+                        }
+                        else
+                        {
+                            notif.Body =post.Title +  "  با موفقیت تایید شد.";
+
+                        }
                         notif.Title = "تایید اعلان";
                         var message = new Message()
                         {

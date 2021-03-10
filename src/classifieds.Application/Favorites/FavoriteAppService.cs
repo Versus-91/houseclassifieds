@@ -25,6 +25,7 @@ namespace classifieds.Favorites
             return base.CreateFilteredQuery(input)
                 .Include(m => m.Post)
                 .Include(m => m.Post.Category)
+                .Include(m => m.Post.Images)
                 .Include(m => m.Post.Type)
                 .Include(m => m.Post.District.City)
                 .Include(m => m.Post.District)

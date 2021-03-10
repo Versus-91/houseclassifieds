@@ -29,7 +29,7 @@ namespace classifieds.Web.Startup
 						L("Reports"),
 						url: "admin/reports",
 						order: 2,
-						icon: "fas fa-home"
+						icon: "fas fa-flag"
 					)
 					.AddItem(
 					new MenuItemDefinition(
@@ -37,7 +37,7 @@ namespace classifieds.Web.Startup
 						L("Reports"),
 						url: "admin/reports",
 						order: 2,
-						icon: "fas fa-home"
+						icon: "fas fa-flag"
 					))
 				.AddItem(
 					new MenuItemDefinition(
@@ -45,7 +45,7 @@ namespace classifieds.Web.Startup
 						L("ReportOptions"),
 						url: "admin/reportoptions",
 						order: 2,
-						icon: "fas fa-home"
+						icon: "fas fa-list-alt"
 					)
 				))
 		   .AddItem(
@@ -56,7 +56,17 @@ namespace classifieds.Web.Startup
 						order: 6,
 						icon: "fas fa-info-circle"
 					)
-				).AddItem(
+				)
+			 .AddItem(
+					new MenuItemDefinition(
+						PageNames.Settings,
+						L("Settings"),
+						url: "admin/Settings",
+						order: 6,
+						icon: "fas fa-cogs"
+					)
+				)
+		   .AddItem(
 				new MenuItemDefinition(
 						PageNames.Posts,
 						L("Posts"),
@@ -69,14 +79,14 @@ namespace classifieds.Web.Startup
 				new MenuItemDefinition(
 						PageNames.Categories,
 						L("Categories"),
-						icon: "fas fa-home",
+						icon: "fas fa-list",
 						order: 3,
 						requiresAuthentication: true).AddItem(
 				new MenuItemDefinition(
 						PageNames.PropertyTypes,
 						L("PropertyTypes"),
 						url: "admin/PropertyTypes",
-						icon: "fas fa-home",
+						icon: "fas fa-list-ol",
 						requiresAuthentication: true)
 				).AddItem(
 					new MenuItemDefinition(
@@ -84,7 +94,7 @@ namespace classifieds.Web.Startup
 						L("Amenities"),
 						url: "admin/amenities",
 						order: 2,
-						icon: "fas fa-home"
+						icon: "fas fa-list-ol"
 					)
 				)
 				.AddItem(

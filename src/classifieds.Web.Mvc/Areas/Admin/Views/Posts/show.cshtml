@@ -43,20 +43,21 @@
             <div class="row">
                 <div class="col-5">
                     <h3 class="title">@Model.Title</h3>
+                    <br />
                     <h5 class="subtitle">@Model.Description</h5>
                 </div>
                 <div class="col-7">
                     <div class="col-12">
                         <div class="swiper-container">
                             <!-- Additional required wrapper -->
-                            <ul style="list-style: none" class="swiper-wrapper my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
+                            <ul  id="demo-test-gallery" style="list-style: none" class="swiper-wrapper my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
                                 @if (Model.Images.Count > 0)
                                 {
                                     @foreach (var image in Model.Images)
                                     {
                                         <li class="swiper-slide" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
                                             <a title="click to zoom-in" href="/@image.Path" itemprop="contentUrl" data-size="1200x600">
-                                                <img src="/@image.Path?height=300&width=600" itemprop="thumbnail" alt="Image description" />
+                                                <img src="/@image.Path?height=320&width=240" itemprop="thumbnail" alt="Image description" />
                                             </a>
                                         </li>
                                     }
@@ -198,11 +199,13 @@
     <script src="~/libs/swiper/swiper-bundle.min.js" asp-append-version="true"></script>
     <script src="~/libs/photoswipe/dist/photoswipe.min.js" asp-append-version="true"></script>
     <environment names="Development">
+        <script src="~/lib/photoswipe/photoswipe.js" asp-append-version="true"></script>
         <script src="~/lib/photoswipe/photoswipe-ui-default.js" asp-append-version="true"></script>
         <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>
 
     </environment>
     <environment names="Staging,Production">
+        <script src="~/lib/photoswipe/photoswipe.min.js" asp-append-version="true"></script>
         <script src="~/lib/photoswipe/photoswipe-ui-default.min.js" asp-append-version="true"></script>
         <script src="~/view-resources/Views/UserPosts/show.min.js" asp-append-version="true"></script>
 

@@ -119,7 +119,7 @@
     <text name="Cities">Cities</text>
     <text name="City">City</text>
     <text name="Categories">Categories</text>
-    <text name="Districts">Districts</text>
+    <text name="Districts">Areas</text>
     <text name="Posts">Posts</text>
     <text name="CityName">City Name</text>
     <text name="CategoryName">Category Name</text>
@@ -141,7 +141,7 @@
     <text name="CreatePosts">Create Posts</text>
     <text name="Create Post">Create Post</text>
     <text name="AdminPosts">User Posts Management</text>
-    <text name="Areas">Areas</text>
+    <text name="Areas">Districts</text>
     <text name="Area">Area</text>
     <text name="Id" value="Id" />
     <text name="Authorization" value="Authorization" >
@@ -150,5 +150,6 @@
     <text name="UserManagement" value="UserManagement" >
       User Management
     </text>
+
   </texts>
 </localizationDictionary>

@@ -11,6 +11,7 @@ namespace classifieds.Authorization.Users
 
         public const string DefaultPassword = "123qwe";
         public string Avatar { get; set; }
+        public byte AdsCount { get; set; }
         public IList<Post> Posts { get; set; }
         public static string CreateRandomPassword()
         {

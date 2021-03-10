@@ -2,7 +2,7 @@
 @{ ViewData["Title"] = "Add Phone Number";
     Layout = "layout/_front"; }
 
-<div class="section Site-content">
+<div class="section Site-content" style="height:70vh;">
     <section class="container">
         <div class="columns is-centered">
             <div class="column is-8">
@@ -17,7 +17,7 @@
                     <div class="field">
                         <p class="control">
                             <button type="submit" class="button is-primary">ارسال کد تایید</button>
-                            <a href="/users" class="button is-link">بازگشت</a>
+                            <a href="/users/@User.Identity.Name" class="button is-link">بازگشت</a>
                         </p>
                     </div>
                 </form>
