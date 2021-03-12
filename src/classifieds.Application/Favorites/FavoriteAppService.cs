@@ -27,8 +27,8 @@ namespace classifieds.Favorites
                 .Include(m => m.Post.Category)
                 .Include(m => m.Post.Images)
                 .Include(m => m.Post.Type)
-                .Include(m => m.Post.District.City)
                 .Include(m => m.Post.District)
+                .Include(m => m.Post.District.Area.City)
                 .OrderByDescending(m => m.CreationTime);
 
         }

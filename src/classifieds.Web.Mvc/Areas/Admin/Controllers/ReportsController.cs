@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 namespace classifieds.Web.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AbpMvcAuthorize(PermissionNames.Pages_Amenities)]
+    [AbpMvcAuthorize(PermissionNames.Pages_Reports)]
     public class ReportsController : AbpController
     {
         private readonly ReportAppService _reportService;

@@ -11,6 +11,7 @@ using classifieds.Authorization.Users;
 using classifieds.Categories;
 using classifieds.Cities;
 using classifieds.Districts;
+using classifieds.Districts.Dto;
 using classifieds.Posts.Dto;
 using classifieds.PostsAmenities;
 using classifieds.PostsAmenities.Dto;
@@ -58,21 +59,25 @@ namespace classifieds.Posts
         {
             return await _repository.GetAsync(id);
         }
+
         protected override IQueryable<Post> CreateFilteredQuery(GetAllPostsInput input)
         {
 
             return base.CreateFilteredQuery(input)
-                .Include(m=> m.District.City)
+                .Include(m=> m.District)
+                   .ThenInclude(m=>m.Area)
+                   .ThenInclude(m => m.City)
                 .Include(m => m.Images)
                 .Include(m => m.Type)
                 .Include(m => m.Category)
                 .Include(m=>m.PostAmenities).ThenInclude(m=>m.Amenity)
                 .Where(m=>m.IsVerified ==true)
                 .WhereIf(input.Zone.HasValue, t => t.District.AreaId == input.Zone.Value)
+                .WhereIf(input.HasMedia.HasValue, t => t.HasMedia == input.HasMedia.Value)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
                 .WhereIf(input.Category.HasValue, t => t.CategoryId == input.Category.Value)
                 .WhereIf(input.District.HasValue, t => t.DistrictId == input.District.Value)
-                .WhereIf(input.City.HasValue, t => t.District.City.Id == input.City.Value)
+                .WhereIf(input.City.HasValue, t => t.District.Area.City.Id == input.City.Value)
                 .WhereIf(input.Age.HasValue, t => t.Age >= input.Age.Value)
                 .WhereIf(input.Beds.HasValue, t => t.Bedroom >= input.Beds.Value)
                 .WhereIf(input.MinArea.HasValue && input.MaxArea.HasValue, t => t.Area >= input.MinArea.Value && t.Area <= input.MaxArea.Value)
@@ -87,7 +92,7 @@ namespace classifieds.Posts
         }
         public async Task<PostDto> GetDetails(int id)
         {
-            var item = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category).Where(m => m.Id == id)
+            var item = await _postRepository.GetAllIncluding(m => m.District, m => m.Category, m => m.District.Area, m => m.District.Area.City).Where(m => m.Id == id)
                 .Select(m => new PostDto
                 {
                     Id = m.Id,
@@ -107,7 +112,7 @@ namespace classifieds.Posts
                     Category = ObjectMapper.Map<CategoryViewModel>(m.Category),
                     Latitude = m.Latitude,
                     Longitude = m.Longitude,
-                    District = ObjectMapper.Map<DistrictViewModel>(m.District),
+                    District = ObjectMapper.Map<DistrictDto>(m.District),
                     Title = m.Title,
                     CreationTime = m.CreationTime,
                     Amenities = m.PostAmenities.Select(m=>new AmenityDto {
@@ -128,18 +133,36 @@ namespace classifieds.Posts
         public async Task<PagedResultDto<PostDto>> GetUserPosts(GetAllPostsInput input)
         {
             var posts = base.CreateFilteredQuery(input)
-                 .Include(m => m.District.City)
+                .Include(m => m.District)
+                .Include(m => m.District.Area)
+                .Include(m => m.District.Area.City)
                 .Include(m => m.Images)
                 .Include(m => m.Type)
                 .Include(m => m.Category)
                 .Include(m => m.PostAmenities).ThenInclude(m => m.Amenity).Where(m=>m.CreatorUserId == AbpSession.UserId).OrderByDescending(m=>m.CreationTime);
-            ApplyPaging(posts, input);
-             return new PagedResultDto<PostDto>(posts.Count(), ObjectMapper.Map<List<PostDto>>(await posts.ToListAsync()));
+            var pagedPosts = ApplyPaging(posts, input);
+             return new PagedResultDto<PostDto>(posts.Count(), ObjectMapper.Map<List<PostDto>>(await pagedPosts.ToListAsync()));
         }
-
+        [RemoteService(false)]
+        public async Task<PagedResultDto<PostDto>> GetPostsByUser(GetAllPostsInput input)
+        {
+            if (!input.UserId.HasValue)
+            {
+                throw new ArgumentException();
+            }
+            var posts = base.CreateFilteredQuery(input)
+                .Include(m => m.District)
+                .Include(m => m.District.Area.City)
+                .Include(m => m.Images)
+                .Include(m => m.Type)
+                .Include(m => m.Category)
+                .Include(m => m.PostAmenities).ThenInclude(m => m.Amenity).Where(m => m.CreatorUserId == input.UserId).OrderByDescending(m => m.CreationTime);
+            var pagedPosts = ApplyPaging(posts, input);
+            return new PagedResultDto<PostDto>(posts.Count(), ObjectMapper.Map<List<PostDto>>(await pagedPosts.ToListAsync()));
+        }
         public async Task<PagedResultDto<PostDto>> Recommendations(PostDto post)
         {
-            var items = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category)
+            var items = await _postRepository.GetAllIncluding(m => m.District.Area.City, m => m.Category)
                 .Where(m => m.IsVerified && m.Id != post.Id && m.CategoryId == post.CategoryId && m.DistrictId == post.DistrictId && m.TypeId == post.TypeId)
                 .Select(m => new PostDto
                 {
@@ -157,7 +180,7 @@ namespace classifieds.Posts
                     Category = ObjectMapper.Map<CategoryViewModel>(m.Category),
                     Latitude = m.Latitude,
                     Longitude = m.Longitude,
-                    District = ObjectMapper.Map<DistrictViewModel>(m.District),
+                    District = ObjectMapper.Map<DistrictDto>(m.District),
                     Title = m.Title,
                     IsFeatured = m.IsFeatured,
                     IsVerified = m.IsVerified,
@@ -175,7 +198,7 @@ namespace classifieds.Posts
         public async Task<List<PostsCountDto>> CitiesPostsCount()
         {
   
-             var counts = await _postRepository.GetAll().Where(m=> m.IsVerified == true).GroupBy(m => m.District.CityId)
+             var counts = await _postRepository.GetAll().Where(m=> m.IsVerified == true).GroupBy(m => m.District.Area.CityId)
                 .Select(n => new PostsCountDto
                 {
                     CityId = n.Key,
@@ -192,7 +215,7 @@ namespace classifieds.Posts
             var categories = await _categoryRepository.GetAllListAsync();
             var postsCountPerCategory = new List<CitiesPostsCount>();
 
-            var counts = await _postRepository.GetAll().Where(m => m.IsVerified == true).GroupBy(m => m.District.CityId)
+            var counts = await _postRepository.GetAll().Where(m => m.IsVerified == true).GroupBy(m => m.District.Area.CityId)
                .Select(n => new PostsCountDto
                {
                    CityId = n.Key,
@@ -238,7 +261,7 @@ namespace classifieds.Posts
             var category = await _categoryRepository.GetAsync(input.CategoryId);
             var type = await _typeRepository.GetAsync(input.TypeId);
             var district = await _districtRepository.GetAsync(input.DistrictId);
-            var title = category?.Name + " " + type?.Name+" "+ input?.Area + "متری" + " " + district?.Name;
+            var title = category?.Name + " " + type?.Name+" "+ input?.Area + " متری " + " " + district?.Name;
             if (!String.IsNullOrEmpty(title))
             {
                 post.Title = title;
@@ -264,7 +287,6 @@ namespace classifieds.Posts
             {
                 throw new Exception();
             }
-            post.Id = input.Id;
             post.CategoryId = input.CategoryId;
             post.DistrictId = input.DistrictId;
             post.Age = input.Age;

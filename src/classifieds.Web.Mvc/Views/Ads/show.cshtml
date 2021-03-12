@@ -36,16 +36,16 @@
         <input hidden name="Longitude" id="postLongitude" value="@Model.Post.Longitude" />
         <nav class="breadcrumb " aria-label="breadcrumbs">
             <ul>
-                <li><a href="/ads?city=@Model.Post.District.City.Id">@Model.Post.District.City.Name</a></li>
-                <li><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.City.Id"> @Model.Post.District.Name </a></li>
-                <li><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.City.Id&category=@Model.Post.CategoryId"> @Model.Post.Category.Name </a></li>
-                <li><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.City.Id&category=@Model.Post.CategoryId&types=@Model.Post.TypeId&city=@Model.Post.District.City.Id" aria-current="page">@Model.Post.Type.Name</a></li>
+                <li><a href="/ads?city=@Model.Post.District.Area.City.Id">@Model.Post.District.Area.City.Name</a></li>
+                <li><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.Area.City.Id"> @Model.Post.District.Name </a></li>
+                <li><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.Area.City.Id&category=@Model.Post.CategoryId"> @Model.Post.Category.Name </a></li>
+                <li><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.Area.City.Id&category=@Model.Post.CategoryId&types=@Model.Post.TypeId&city=@Model.Post.District.Area.City.Id" aria-current="page">@Model.Post.Type.Name</a></li>
             </ul>
         </nav>
         <div class="box">
             <div class="columns">
                 <div class="column is-5 has-text-centered">
-                    <h3 class="title is-4 my-2">@Model.Post.Category.Name</h3>
+                    <h3 class="title is-4 my-2">@Model.Post.Category.Name @Model.Post.Type.Name ,شهر @Model.Post.District.Area.City.Name , @Model.Post.District.Name </h3>
                     @if (Model.Post.Category.Name.Contains("گروی") || Model.Post.Category.Name.Contains("اجاره"))
                     {
                         <h3 class="subtitle is-5 my-2">@Model.Post.Rent $ اجاره</h3>
@@ -53,18 +53,23 @@
                     }
                     else
                     {
-                        <h3 class="subtitle is-5 my-2">@Model.Post.Price $ قیمت</h3>
+                        @if(Model.Post.Price > 0){
+                          <h3 class="subtitle is-5 my-2"> قیمت : @Model.Post.Price $ </h3>
+                        }
                     }
 
 
                     <section class="level is-mobile mt-1">
+                         @if (Model.Post.Bedroom > 0)
+                          {
                         <div class="level-item has-text-centered">
                             <div>
                                 <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
-                                <p class="title is-6 has-text-grey">تعداد خواب</p>
+                                <p class="title is-6 has-text-grey">تعداد اتاق</p>
                                 <p class="title is-6 my-2">@Model.Post.Bedroom</p>
                             </div>
                         </div>
+                        }
                         <div class="level-item has-text-centered my-5">
                             <div>
                                 <p class="heading"><i class="fas fa-2x fa-clock has-text-grey"></i></p>
@@ -101,45 +106,45 @@
 
 
                     <h1 class="subtitle is-5">@Model.Post.Description</h1>
-                    <div class="level is-mobile">
-                        <div class="buttons has-addons">
-                            <button class="button is-small is-primary mx-1">
+                        <div class="buttons are-small">
+                            <button class="button  is-primary">
                                 <span class="icon ">
                                     <i class="fas fa-phone"></i>
                                 </span>
                                 <span>تماس</span>
                             </button>
-                            <button class="button is-small is-success mx-1" v-on:click="showShareModal = true">
+                            <button class="button  is-success " v-on:click="showShareModal = true">
                                 <span class="icon ">
                                     <i class="fas fa-share-alt"></i>
                                 </span>
                                 <span>اشتراک</span>
                             </button>
-                            <button class="button is-small mx-1 is-link" v-on:click="addFavorite">
+                            <button class="button  is-link" v-on:click="addFavorite">
                                 <span class="icon" v-bind:class="{'has-text-danger':liked}">
                                     <i class="fas fa-bookmark"></i>
                                 </span>
                                 <span>ذخیره</span>
                             </button>
                         </div>
-                        <span class="text-muted">کد :@Model.Post.Id</span>
-                    </div>
+                        @*<span class="text-muted">کد :@Model.Post.Id</span>*@
                 </div>
                 <div class="column is-7">
                     <div class="row">
-                        <div id="demo-test-gallery" class="demo-gallery">
-                            @foreach (var image in Model.Post.Images)
-                            {
-                                <a href="/@image.Path" data-size="1600x1600" data-med="https://farm4.staticflickr.com/3894/15008518202_b016d7d289_b.jpg" data-med-size="1024x1024" data-author="Folkert Gorter" class="demo-gallery__img--main">
-                                    <img src="/@image.Path?height=192&width=192" alt="" />
-                                    <figure>This is dummy caption.</figure>
-                                </a>
-                            }
-                        </div>
+                        @if (Model.Post.Images.Count > 0)
+                        {
+                            <div id="demo-test-gallery" class="demo-gallery">
+                                @foreach (var image in Model.Post.Images)
+                                {
+                                    <a href="/@image.Path" data-size="1600x1600" data-med="/@image.Path" data-med-size="1024x1024" data-author="Folkert Gorter" class="demo-gallery__img--main">
+                                        <img src="/@image.Path?height=192&width=192" alt="" />
+                                    </a>
+                                }
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
-            <div class="columns my-4">
+            <div class="columns my-4 ">
                 <div class="column is-7">
                     @if (Model.Post.Amenities.Count > 0)
                     {
@@ -147,21 +152,22 @@
                             امکانات
                         </h1>
                         <br>
-                        <div class="columns">
-
-
+                        <div class="columns is-multiline is-mobile">
                             @foreach (var item in Model.Post.Amenities)
                             {
                                 <div class="column is-6">
-                                    <i class="@item.Icon"></i>
+
+                                    <span class="tag is-link is-large ">
+                                        @if(!String.IsNullOrWhiteSpace(item.Icon)){
+                                          <img class="fas is-64x64 mx-1" src="/@item.Icon"/>
+                                        }
                                     @item.Name
+                                </span>
                                 </div>
                             }
-
                         </div>
                     }
                 </div>
-
                 <div class="column is-5" id="map">
 
                     <div style="height:300px"></div>
@@ -190,7 +196,7 @@
                                                 {
                                                     <img src="/img/placeholder.png" alt="Placeholder image">
                                                 }
-                                                <div class="overlay">@post.District.City.Name -  @post.District.Name</div>
+                                                <div class="overlay">@post.District.Area.City.Name -  @post.District.Name</div>
                                             </figure>
                                         </div>
                                         <div class="card-content">

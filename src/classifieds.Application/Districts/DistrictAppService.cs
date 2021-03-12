@@ -33,14 +33,19 @@ namespace classifieds.Districts
         protected override IQueryable<District> CreateFilteredQuery(PagedAndSortedResultRequestDto input)
         {
             return base.CreateFilteredQuery(input)
-                .Include(m => m.City)
                 .Include(m => m.Area)
+                .ThenInclude(m => m.City)
                 .OrderByDescending(m => m.CreationTime);
         }
         public async Task<List<DistrictDto>> GetByCityId(int id)
         {
-            var districts = await _districtService.GetAllListAsync(m => m.CityId == id);
+            var districts = await _districtService.GetAllListAsync(m => m.Area.CityId == id);
             return _objectMapper.Map<List<DistrictDto>>(districts);
+        }
+        public async Task<DistrictDto> GetById(int id)
+        {
+            var districts = await _districtService.GetAllIncluding(m => m.Area).FirstOrDefaultAsync();
+            return _objectMapper.Map<DistrictDto>(districts);
         }
         public async Task<List<DistrictDto>> GetByAreaId(int id)
         {

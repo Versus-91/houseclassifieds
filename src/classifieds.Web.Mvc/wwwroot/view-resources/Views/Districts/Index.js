@@ -56,7 +56,7 @@
             },
             {
                 targets: 2,
-                data: 'city.name',
+                data: 'area.city.name',
                 sortable: false
             },
             {

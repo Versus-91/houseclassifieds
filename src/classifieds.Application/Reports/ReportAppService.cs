@@ -20,12 +20,21 @@ namespace classifieds.Reports
             GetAllPermissionName = PermissionNames.Pages_Reports;
             GetPermissionName = PermissionNames.Pages_Reports;
         }
+        protected override IQueryable<Report> CreateFilteredQuery(GetReportsInput input)
+        {
+
+            return base.CreateFilteredQuery(input)
+                .Include(m => m.Post);
+        }
         [RemoteService(false)]
         public  async Task<ReportDto> GetReport(int id)
         {
             var report = await _repository
                 .GetAllIncluding(m => m.Post, m => m.ReportOption,
-                 m => m.Post.Category, m => m.Post.District, m => m.Post.District.City, m => m.Post.Type)
+                 m => m.Post.Category, m => m.Post.District, 
+                 m => m.Post.District.Area,
+                 m => m.Post.District.Area.City,
+                 m => m.Post.Type)
                 .Where(m => m.Id == id).FirstOrDefaultAsync();
             if (report == null)
             {

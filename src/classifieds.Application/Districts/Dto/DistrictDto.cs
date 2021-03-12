@@ -1,7 +1,9 @@
 ﻿using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
 using classifieds.Areas;
+using classifieds.Areas.Dto;
 using classifieds.Cities;
+using classifieds.Cities.Dto;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -14,12 +16,9 @@ namespace classifieds.Districts.Dto
     {
         [Required]
         public string Name { get; set; }
-        [Required]
-        public int CityId { get; set; }
-        public City City { get; set; }
         [Range(1,int.MaxValue)]
         public int? AreaId { get; set; }
-        public Area Area { get; set; }
+        public AreaDto Area { get; set; }
 
     }
 }

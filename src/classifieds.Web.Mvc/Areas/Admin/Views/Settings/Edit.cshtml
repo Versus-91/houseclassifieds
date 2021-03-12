@@ -15,10 +15,12 @@
                     <div class="card-body"> 
                         <p>@Model.Name.Replace("."," ")</p>
                         <form asp-controller="Settings" asp-action="Edit" asp-area="Admin" method="post">
+                            <input asp-for="Name" type="hidden" class="form-control" >
                             <div class="form-group">
                               <label asp-for="Value">Value:</label>
-                              <input asp-for="Value" type="password" class="form-control" >
+                              <input asp-for="Value" type="text" class="form-control" >
                             </div>
+                            <button class="btn btn-primary" type="submit">Save</button>
                         </form>
                     </div>
                 </div>

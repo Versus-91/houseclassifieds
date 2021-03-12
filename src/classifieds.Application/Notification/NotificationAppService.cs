@@ -33,22 +33,7 @@ namespace classifieds.Notification
             {
                 await Repository.InsertAsync(MapToEntity(input));
             }
-            var notif = new FirebaseAdmin.Messaging.Notification();
-            notif.Body = "اعلان شما با موفقیت تایید شد.";
-            notif.Title = "تایید اعلان";
-            var message = new Message()
-            {
-                Token = input.FirebaseId,
-                Notification = notif
-            };
-            try
-            {
-                var result = await _notificationManager.SendMessage(message);
-                Logger.Info("notif result:" + result);
-            }
-            catch (Exception)
-            {
-            }
+
             return MapToEntityDto(userConnection);
 
         }

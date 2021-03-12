@@ -79,7 +79,7 @@ namespace classifieds.Web.Controllers
                 }
                 if (user.Id == AbpSession.UserId)
                 {
-                    var posts = await _postsService.GetAllAsync(new GetAllPostsInput()
+                    var posts = await _postsService.GetPostsByUser(new GetAllPostsInput()
                     {
                         UserId = user.Id,
                         SkipCount = (page - 1) * 24,
@@ -101,7 +101,7 @@ namespace classifieds.Web.Controllers
                 }
                 else
                 {
-                    var posts = await _postsService.GetAllAsync(new GetAllPostsInput()
+                    var posts = await _postsService.GetPostsByUser(new GetAllPostsInput()
                     {
                         UserId = user.Id,
                         SkipCount = (page - 1) * 24,

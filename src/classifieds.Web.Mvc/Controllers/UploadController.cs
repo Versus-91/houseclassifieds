@@ -66,19 +66,33 @@ namespace classifieds.Controllers
         [HttpPost("[controller]/remove/{id}")]
     
         [AbpMvcAuthorize]
-        public async Task<IActionResult> removeImage(int id)
+        public async Task<IActionResult> RemoveImage(int id)
         {
-            var image =await  _imageService.GetAllIncluding(m=>m.Post).Where(m=>m.Id == id).FirstOrDefaultAsync();
+            var image =await  _imageService.GetAllIncluding().Where(m=>m.Id == id).FirstOrDefaultAsync();
             if (image == null)
             {
                 return NotFound();
             }
-            if (AbpSession.UserId != image.Post.CreatorUserId)
+            var post = await _postService.GetPost(image.PostId);
+            if (post == null || post.IsVerified)
+            {
+                return BadRequest();
+            }
+            var count = _imageService.GetAll().Where(m => m.PostId == post.Id).Count();
+
+            if (AbpSession.UserId != post.CreatorUserId)
             {
                 return BadRequest();
             }
             await _imageService.DeleteAsync(image);
-            System.IO.File.Delete(Path.Combine(_env.WebRootPath,image.Path));
+            
+            System.IO.File.Delete(Path.Combine(_env.WebRootPath, image.Path));
+
+            if (count <= 1)
+            {
+                await _postService.AddPostMedia(post, false);
+            }
+
             return Ok();
         }
         #region snippet_UploadPhysical
@@ -89,6 +103,7 @@ namespace classifieds.Controllers
         [AbpMvcAuthorize]
         public async Task<IActionResult> UploadPhysical(int id)
         {
+            Image image = new Image();
             var post = await _postService.GetPost( id);
             if (post == null)
             {
@@ -97,6 +112,10 @@ namespace classifieds.Controllers
             if (post.CreatorUserId != AbpSession.UserId)
             {
                 return Unauthorized();
+            }
+            if (post.IsVerified)
+            {
+                return BadRequest();
             }
             if (!MultipartRequestHelper.IsMultipartContentType(Request.ContentType))
             {
@@ -166,15 +185,19 @@ namespace classifieds.Controllers
                             using (var targetStream = System.IO.File.Create(Path.Combine(_env.WebRootPath, _postImagesFilePath, trustedFileNameForFileStorage)))
                             {
                                 await targetStream.WriteAsync(streamedFileContent);
-                                await _imageService.InsertAsync(new Image
+                                image =  await _imageService.InsertAsync(new Image
                                 {
                                     Name = trustedFileNameForDisplay,
                                     Size = contentDisposition.Size ?? 0,
                                     Path = Path.Combine(_postImagesFilePath, trustedFileNameForFileStorage),
                                     PostId = id
                                 });
-                                await _postService.AddPostMedia(post,true);
-                                _logger.LogInformation(
+                            if (post.HasMedia == false)
+                            {
+                                await _postService.AddPostMedia(post, true);
+
+                            }
+                            _logger.LogInformation(
                                     "Uploaded file '{TrustedFileNameForDisplay}' saved to " +
                                     "'{TargetFilePath}' as {TrustedFileNameForFileStorage}",
                                     trustedFileNameForDisplay, _postImagesFilePath,
@@ -189,7 +212,7 @@ namespace classifieds.Controllers
                 section = await reader.ReadNextSectionAsync();
             }
 
-            return Ok("images saved successfully.");
+            return Ok(image.Id.ToString());
         }
         #endregion
         [HttpPost("[controller]/avatar")]

@@ -1,217 +1,1 @@
-﻿@using classifieds.Web.Startup
-@model classifieds.Reports.Dto.ReportDto
-@{ ViewBag.Title = L("Reports");
-    ViewBag.CurrentPageName = PageNames.Reports;
-}
-@section styles{
-    <link rel="stylesheet" href="~/libs/swiper/swiper-bundle.min.css" asp-append-version="true" type="text/css">
-    <link rel="stylesheet" href="~/libs/photoswipe/dist/photoswipe.min.css" asp-append-version="true" type="text/css">
-    <link rel="stylesheet" href="~/libs/photoswipe/dist/default-skin/default-skin.min.css" asp-append-version="true" type="text/css">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-          crossorigin="" />
-}
-<form action="/admin/posts/update" method="post" style="display:none" id="veriftPost">
-    @Html.AntiForgeryToken()
-    <input name="Id" value="@Model.Post.Id"/>
-    @if (Model.Post.IsVerified == true)
-    {
-        <input name="IsVerified" value="false" />
-
-    }
-    else
-    {
-        <input name="IsVerified" value="true" />
-    }
-</form>
-
-<input hidden name="Latitude" id="postLatitude" value="@Model.Post.Latitude" />
-<input hidden name="Longitude" id="postLongitude" value="@Model.Post.Longitude" />
-<div class="container py-3">
-<div class="alert alert-success">
-  <strong>@Model.ReportOption.Name</strong> 
-  <strong>@Model.Description</strong> 
-</div>
-    <div class="card">
-        <nav aria-label="breadcrumbs">
-            <ol class="breadcrumb ">
-                <li class="breadcrumb-item">@Model.Post.District.City.Name</li>
-                <li class="breadcrumb-item"> @Model.Post.District.Name </li>
-                <li class="breadcrumb-item"> @Model.Post.Category.Name </li>
-                <li class="breadcrumb-item">@Model.Post.Type.Name</li>
-            </ol>
-        </nav>
-        <div class="help is-danger" asp-validation-summary="All">
-        </div>
-        <div class="card-body">
-            <div class="row">
-                <div class="col-5">
-                    <h3 class="title">@Model.Post.Title</h3>
-                    <h5 class="subtitle">@Model.Description</h5>
-                </div>
-                <div class="col-7">
-                    <div class="col-12">
-                        <div class="swiper-container">
-                            <!-- Additional required wrapper -->
-                            <ul style="list-style: none" class="swiper-wrapper my-gallery" itemscope itemtype="http://schema.org/ImageGallery">
-                                @if (Model.Post.Images.Count > 0)
-                                {
-                                    @foreach (var image in Model.Post.Images)
-                                    {
-                                        <li class="swiper-slide" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                            <a title="click to zoom-in" href="/@image.Path" itemprop="contentUrl" data-size="1200x600">
-                                                <img src="/@image.Path?height=300&width=600" itemprop="thumbnail" alt="Image description" />
-                                            </a>
-                                        </li>
-                                    }
-                                }
-                                else
-                                {
-                                    <li class="swiper-slide" itemprop="associatedMedia" itemscope itemtype="http://schema.org/ImageObject">
-                                        <a title="click to zoom-in" href="http://placehold.it/1200x600/00897B/ffffff?text=:(" itemprop="contentUrl" data-size="1200x600">
-                                            <img src="http://placehold.it/600x300/00897B/ffffff?text=:(" itemprop="thumbnail" alt="Image description" />
-                                        </a>
-                                    </li>
-                                }
-                            </ul>
-                            <!-- If we need navigation buttons -->
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-            <section class="row text-center">
-                <div class="col-3">
-                    <div>
-                        <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
-                        <p class="title is-6">@Model.Post.Bedroom</p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div>
-                        <p class="heading"><i class="fas fa-2x fa-clock"></i></p>
-                        <p class="title is-6">
-                            @if (Model.Post.Age > 0)
-                            {
-                                @Model.Post.Age
-                            }
-                            else
-                            {
-                                @Html.Raw("N/A")
-                            }
-                        </p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div>
-                        <p class="heading"><i class="fas fa-2x fa-parking"></i></p>
-                        <p class="title is-6">دارد</p>
-                    </div>
-                </div>
-                <div class="col-3">
-                    <div>
-                        <p class="heading"><i class="fas fa-2x fa-water has-text-info"></i></p>
-                        <p class="title is-6">دارد</p>
-                    </div>
-                </div>
-            </section>
-            <div class="col-12" id="map">
-                <div style="height:300px"></div>
-            </div>
-        </div>
-        <div class="card-footer text-center">
-            <a class="button mx-3" href="/admin/posts">بازگشت</a>
-            @if (Model.Post.IsVerified != true)
-            {
-                <button class="btn btn-success mx-3" href="/admin/posts" onclick="document.getElementById('veriftPost').submit();">تایید</button>
-            }
-            else
-            {
-                <button class="btn btn-danger mx-3" href="/admin/posts" onclick="document.getElementById('veriftPost').submit();">غیر فعال</button>
-            }
-        </div>
-    </div>
-
-</div>
-<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-
-    <!-- Background of PhotoSwipe.
-    It's a separate element, as animating opacity is faster than rgba(). -->
-    <div class="pswp__bg"></div>
-
-    <!-- Slides wrapper with overflow:hidden. -->
-    <div class="pswp__scroll-wrap">
-
-        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->
-        <!-- don't modify these 3 pswp__item elements, data is added later on. -->
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <!--  Controls are self-explanatory. Order can be changed. -->
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->
-                <!-- element will get class pswp__preloader--active when preloader is running -->
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip"></div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
-            </button>
-
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
-            </button>
-
-            <div class="pswp__caption">
-                <div class="pswp__caption__center"></div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-@section scripts{
-    <script src="~/libs/swiper/swiper-bundle.min.js" asp-append-version="true"></script>
-    <script src="~/libs/photoswipe/dist/photoswipe.min.js" asp-append-version="true"></script>
-    <environment names="Development">
-        <script src="~/lib/photoswipe/photoswipe-ui-default.js" asp-append-version="true"></script>
-        <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>
-
-    </environment>
-    <environment names="Staging,Production">
-        <script src="~/lib/photoswipe/photoswipe-ui-default.min.js" asp-append-version="true"></script>
-        <script src="~/view-resources/Views/UserPosts/show.min.js" asp-append-version="true"></script>
-
-    </environment>
-    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-            crossorigin=""></script>
-}
+﻿@using classifieds.Web.Startup@model classifieds.Reports.Dto.ReportDto@{ ViewBag.Title = L("Reports");    ViewBag.CurrentPageName = PageNames.Reports;}@section styles{    <link rel="stylesheet" href="~/libs/swiper/swiper-bundle.min.css" asp-append-version="true" type="text/css">    <link rel="stylesheet" href="~/libs/photoswipe/dist/photoswipe.min.css" asp-append-version="true" type="text/css">    <link rel="stylesheet" href="~/libs/photoswipe/dist/default-skin/default-skin.min.css" asp-append-version="true" type="text/css">    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="          crossorigin="" />}<form action="/admin/posts/update" method="post" style="display:none" id="veriftPost">    @Html.AntiForgeryToken()    <input name="Id" value="@Model.Post.Id"/>    @if (Model.Post.IsVerified == true)    {        <input name="IsVerified" value="false" />    }    else    {        <input name="IsVerified" value="true" />    }</form><input hidden name="Latitude" id="postLatitude" value="@Model.Post.Latitude" /><input hidden name="Longitude" id="postLongitude" value="@Model.Post.Longitude" /><div class="container py-3" ><div class="alert alert-success text-center" style="direction:rtl;">  دلیل :  <strong>@Model.ReportOption.Name</strong>  <br/>  توضیحات : <strong>@Model.Description</strong> </div>    <div class="card">        <nav aria-label="breadcrumbs">            <ol class="breadcrumb ">                <li class="breadcrumb-item">@Model.Post.District.Area.City.Name</li>                <li class="breadcrumb-item"> @Model.Post.District.Name </li>                <li class="breadcrumb-item"> @Model.Post.Category.Name </li>                <li class="breadcrumb-item">@Model.Post.Type.Name</li>            </ol>        </nav>        <div class="help is-danger" asp-validation-summary="All">        </div>        <div class="card-body">            <div class="row">                <div class="col-5">                    <h3 class="title">@Model.Post.Title</h3>                    <h5 class="subtitle">@Model.Description</h5>                </div>                <div class="col-7">                   @if (Model.Post.Images.Count > 0)                   {            <div class="swiper-container">                <div class="swiper-wrapper">                    @foreach (var image in Model.Post.Images)                     {                      <div class="swiper-slide">                                              <!-- Required swiper-lazy class and image source specified in data-src attribute -->                        <img src="/@image.Path?height=320&width=240" class="swiper-lazy">                        <!-- Preloader image -->                        <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>                      </div>                  }                              </div>                <!-- Add Pagination -->                <div class="swiper-pagination swiper-pagination-white"></div>                <!-- Navigation -->                <div class="swiper-button-next swiper-button-white"></div>                <div class="swiper-button-prev swiper-button-white"></div>              </div>                }                                </div>            </div>            <section class="row text-center">                <div class="col-3">                    <div>                        <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>                        <p class="title is-6">@Model.Post.Bedroom</p>                    </div>                </div>                <div class="col-3">                    <div>                        <p class="heading"><i class="fas fa-2x fa-clock"></i></p>                        <p class="title is-6">                            @if (Model.Post.Age > 0)                            {                                @Model.Post.Age                            }                            else                            {                                @Html.Raw("N/A")                            }                        </p>                    </div>                </div>            </section>           <div class="col-12 my-4 text-center" >                <div class="row">                @foreach(var amenity in Model.Post.Amenities){                    <div class="col-md-4">                        <h2><span class="badge badge-secondary">@amenity.Name</span></h2>                    </div>                }                </div>            </div>            <div class="col-12" id="map">                <div style="height:300px"></div>            </div>        </div>        <div class="card-footer text-center">            <a class="button mx-3" href="/admin/reports">بازگشت</a>            @if (Model.Post.IsVerified != true)            {                <button class="btn btn-success mx-3" href="/admin/posts" onclick="document.getElementById('veriftPost').submit();">تایید</button>            }            else            {                <button class="btn btn-danger mx-3" href="/admin/posts" onclick="document.getElementById('veriftPost').submit();">غیر فعال</button>            }        </div>    </div></div><div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">    <!-- Background of PhotoSwipe.    It's a separate element, as animating opacity is faster than rgba(). -->    <div class="pswp__bg"></div>    <!-- Slides wrapper with overflow:hidden. -->    <div class="pswp__scroll-wrap">        <!-- Container that holds slides. PhotoSwipe keeps only 3 slides in DOM to save memory. -->        <!-- don't modify these 3 pswp__item elements, data is added later on. -->        <div class="pswp__container">            <div class="pswp__item"></div>            <div class="pswp__item"></div>            <div class="pswp__item"></div>        </div>        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->        <div class="pswp__ui pswp__ui--hidden">            <div class="pswp__top-bar">                <!--  Controls are self-explanatory. Order can be changed. -->                <div class="pswp__counter"></div>                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>                <button class="pswp__button pswp__button--share" title="Share"></button>                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>                <!-- Preloader demo https://codepen.io/dimsemenov/pen/yyBWoR -->                <!-- element will get class pswp__preloader--active when preloader is running -->                <div class="pswp__preloader">                    <div class="pswp__preloader__icn">                        <div class="pswp__preloader__cut">                            <div class="pswp__preloader__donut"></div>                        </div>                    </div>                </div>            </div>            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">                <div class="pswp__share-tooltip"></div>            </div>            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">            </button>            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">            </button>            <div class="pswp__caption">                <div class="pswp__caption__center"></div>            </div>        </div>    </div></div>@section scripts{    <script src="~/libs/swiper/swiper-bundle.min.js" asp-append-version="true"></script>    <script src="~/libs/photoswipe/dist/photoswipe.min.js" asp-append-version="true"></script>    <environment names="Development">        <script src="~/lib/photoswipe/photoswipe-ui-default.js" asp-append-version="true"></script>        <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>    </environment>    <environment names="Staging,Production">        <script src="~/lib/photoswipe/photoswipe-ui-default.min.js" asp-append-version="true"></script>        <script src="~/view-resources/Views/UserPosts/show.min.js" asp-append-version="true"></script>    </environment>    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"            integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="            crossorigin=""></script>}

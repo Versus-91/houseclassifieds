@@ -33,6 +33,7 @@ var app = new Vue({
         district: 0,
         description: '',
         amenities: [],
+        images:[],
         categories: [],
         area: null,
         isValid: true,
@@ -70,6 +71,7 @@ var app = new Vue({
             e.preventDefault();
             axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
             var request = {
+                Id:this.post.id,
                 typeId: this.tradeType,
                 categoryId: this.category.id,
                 description: this.description,
@@ -85,16 +87,9 @@ var app = new Vue({
                 request.longitude = this.marker.lng;
                 request.latitude = this.marker.lat;
             }
-            axios.post('/api/services/app/post/create', request).then((res) => {
-                console.log(res);
-                if (this.dropZone?.files?.length > 0) {
-                    this.dropZone.options.url = '/upload/' + res?.data?.result?.id
-                    this.dropZone.processQueue();
-                } else {
-                    window.location.href = "../";
-                }
-
-            }).catch((err) => console.log(err));
+            axios.put('/api/services/app/post/update', request).then((res) => {
+                location.reload();
+            }).catch((err) => err );
         },
     },
     watch: {
@@ -125,50 +120,88 @@ var app = new Vue({
             this.price = this.post.price;
             this.tradeType = this.post?.typeId;
             this.rent = this.post.rent;
+            this.images = this.post.images;
             this.deposit = this.post.deposit;
             this.amenities = this.post.amenities.map((item)=>item.id);
             this.description = this.post.description;
-            console.log(this.post);
             if (!!this.post.latitude) {
                 this.marker = L.latLng(this.post.latitude, this.post.longitude);
                 L.marker(this.marker).addTo(this.$refs.map.mapObject);
             }
-        });
-        this.dropZone = new Dropzone('#dropzone', {
-            autoProcessQueue: false,
-            maxFiles: 8,
-            preventDuplicates: true,
-            acceptedFiles: 'image/*',
-            maxFilesize: 4,
-            previewTemplate: document.querySelector('#tpl').innerHTML,
-            //addRemoveLinks: true,
-            init: function () {
-                this.on('error', function (file, errorMessage) {
-                    if (errorMessage.indexOf('big') !== -1) {
-                        var errorDisplay = document.querySelectorAll('[data-dz-errormessage]');
-                        errorDisplay[errorDisplay.length - 2].innerHTML = 'حجم فایل زیاد است.' + '<br/>حداکثر حجم فایل مجاز :' + this.options.maxFilesize + 'مگابایت ';
+            let img = this.images;
+            let id = this.post.id;
+            this.dropZone = new Dropzone('#dropzone', {
+                autoProcessQueue: true,
+                maxFiles: 8,
+                preventDuplicates: true,
+                acceptedFiles: 'image/*',
+                maxFilesize: 4,
+                previewTemplate: document.querySelector('#tpl').innerHTML,
+                //addRemoveLinks: true,
+                removeFile: function (item) {
+                    console.log(item);
+                    return null;
+				},
+                init: function () {
+                    var myDropzone = this;
+                    
+                    if (img.length > 0) {
+                        img.forEach((item) => {
+                            let mockFile = { name: item.name, size: item.size, serverID: item.id, dataURL:"/"+item.path };
+                            myDropzone.files.push(mockFile);
+                            myDropzone.emit("addedfile", mockFile);
+                            myDropzone.createThumbnailFromUrl(mockFile,
+                                myDropzone.options.thumbnailWidth,
+                                myDropzone.options.thumbnailHeight,
+                                myDropzone.options.thumbnailMethod, true, function (thumbnail) {
+                                myDropzone.emit('thumbnail', mockFile, thumbnail);
+                            });
+                            myDropzone.emit("complete", mockFile);
+                        });
+                    
+					}
+                    this.on('error', function (file, errorMessage) {
+                        if (errorMessage.indexOf('big') !== -1) {
+                            var errorDisplay = document.querySelectorAll('[data-dz-errormessage]');
+                            errorDisplay[errorDisplay.length - 2].innerHTML = 'حجم فایل زیاد است.' + '<br/>حداکثر حجم فایل مجاز :' + this.options.maxFilesize + 'مگابایت ';
+                        }
+                    });
+                },
+                url: "/upload/"+id,
+                headers: {
+                    'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value
+                },
+                removedfile: function (file) {
+                    if (!!file.serverID) {
+                        axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
+                        axios.post('/upload/remove/' + file.serverID).then((res) => {
+                            file.previewElement.remove();
+                            return true;
+                        }).catch((err) =>  false);
+                    } else {
+                        file.previewElement.remove();
+                        return true;
                     }
-                });
-            },
-            url: "/ads/create",
-            headers: {
-                'X-XSRF-TOKEN': document.getElementsByName("__RequestVerificationToken")[0].value
-            },
-            success: function (file, response) {
-                window.location.href = "../";
-            }
-        });
-        //remove duplcate files
-        this.dropZone.on("addedfile", function (file) {
-            if (this.files.length) {
-                var _i, _len;
-                for (_i = 0, _len = this.files.length; _i < _len - 1; _i++) // -1 to exclude current file
-                {
-                    if (this.files[_i].name === file.name && this.files[_i].size === file.size && this.files[_i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
-                        this.removeFile(file);
+                },
+                success: function (file, response) {
+                   // location.reload();
+
+                }
+            });
+            //remove duplcate files
+            this.dropZone.on("addedfile", function (file) {
+                if (this.files.length) {
+                    var _i, _len;
+                    for (_i = 0, _len = this.files.length; _i < _len - 1; _i++) // -1 to exclude current file
+                    {
+                        if (this.files[_i].name === file.name && this.files[_i].size === file.size && this.files[_i].lastModifiedDate.toString() === file.lastModifiedDate.toString()) {
+                            this.removeFile(file);
+                        }
                     }
                 }
-            }
+            });
         });
+
+
     },
 });

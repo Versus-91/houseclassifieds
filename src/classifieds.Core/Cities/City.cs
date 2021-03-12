@@ -17,6 +17,6 @@ namespace classifieds.Cities
             CreationTime = DateTime.Now;
         }
         [JsonIgnore]
-        public List<Area> Districts { get; set; } 
+        public List<District> Districts { get; set; } 
     }
 }

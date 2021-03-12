@@ -77,6 +77,7 @@ var app = new Vue({
                 rent: this.rent,
                 deposit: this.deposit,
                 age: this.age,
+                bedroom:this.room,
                 amenities: this.amenities,
                 districtId: this.district
             };

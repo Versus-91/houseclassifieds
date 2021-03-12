@@ -285,7 +285,15 @@ body {
     display: inline-block;
     vertical-align: middle;
 }
-
+.overlay-top-corner-right {
+    position: absolute;
+    top: 0;
+    left:0;
+    color: white;
+    padding: 10px;
+    display: inline-block;
+    vertical-align: middle;
+}
 .area {
     background: #4e54c8;
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
@@ -670,30 +678,7 @@ a.demo-gallery__img--main {
         right: 35px;
     }
 }
-.card::before {
-    position: absolute;
-    top: 2rem;
-    right: -0.5rem;
-    content: '';
-    background: #283593;
-    height: 28px;
-    width: 28px;
-    transform: rotate(45deg);
-}
 
-.card::after {
-    position: absolute;
-    content: attr(data-label);
-    top: 11px;
-    right: -14px;
-    padding: 0.5rem;
-    width: 10rem;
-    background: #3949ab;
-    color: white;
-    text-align: center;
-    font-family: Vazir;
-    box-shadow: 4px 4px 15px rgba(26, 35, 126, 0.2);
-}
 /* The switch - the box around the slider */
 .switch {
     position: relative;

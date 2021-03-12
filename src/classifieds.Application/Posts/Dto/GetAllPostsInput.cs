@@ -23,6 +23,8 @@ namespace classifieds.Posts.Dto
         public List<int> Types { get; set; }
         public List<int> Amenities { get; set; }
         public int? Age { get; set; }
+        public bool? HasMedia { get; set; }
+
         public int? Beds { get; set; }
         [Range(1,100)]
         public override int MaxResultCount { get => base.MaxResultCount; set => base.MaxResultCount = value; }

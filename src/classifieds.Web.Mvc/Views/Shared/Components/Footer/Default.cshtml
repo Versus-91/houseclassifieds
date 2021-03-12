@@ -16,12 +16,12 @@
 
     <div class="column is-4">
       <p class="bd-footer-link-title">
-        <a href="/">آگهی های پربازدید</a>
+        <a href="/">شهرهای پربازدید</a>
       </p>
       @foreach(var item in Model){
         <p class="bd-footer-link">
           <a href="/ads?city=@item.CityId">
-            @item.CityName 
+            شهر @item.CityName 
           </a>
         </p>
       }

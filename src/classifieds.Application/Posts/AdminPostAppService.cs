@@ -4,7 +4,9 @@ using Abp.Authorization;
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
+using classifieds.Amenities.Dto;
 using classifieds.Authorization;
+using classifieds.Districts.Dto;
 using classifieds.Notification;
 using classifieds.Posts.Admin.Dto;
 using classifieds.Posts.Dto;
@@ -83,7 +85,9 @@ namespace classifieds.Posts
         protected override IQueryable<Post> CreateFilteredQuery(GetAllPostsInput input)
         {
             return base.CreateFilteredQuery(input)
-                .Include(m=>m.District.City)
+                .Include(m=>m.District)
+                    .ThenInclude(m=>m.Area)
+                    .ThenInclude(m=>m.City)
                 .Include(m=>m.Category)
                 .Include(m => m.Category)
                 .Include(m=>m.Type)
@@ -98,22 +102,35 @@ namespace classifieds.Posts
         }
         public async Task<PostDto> GetDetails(int id)
         {
-            var item = await _postRepository.GetAllIncluding(m => m.District.City, m => m.Category).Where(m => m.Id == id)
+            var item = await _postRepository.GetAllIncluding(m => m.District, m => m.Category, m => m.District.Area, m => m.District.Area.City).Where(m => m.Id == id)
                 .Select(m => new PostDto
                 {
                     Id = m.Id,
                     Bedroom = m.Bedroom,
                     Area = m.Area,
-                    Description = m.Description,
+                    IsVerified = m.IsVerified,
+                    DistrictId = m.DistrictId,
+                    Price = m.Price,
+                    Deposit = m.Deposit,
+                    Rent = m.Rent,
+                    Age = m.Age,
+                    CategoryId = m.CategoryId,
+                    TypeId = m.TypeId,
+                    IsFeatured = m.IsFeatured,
                     Type = ObjectMapper.Map<TypeViewModel>(m.Type),
+                    Description = m.Description,
                     Category = ObjectMapper.Map<CategoryViewModel>(m.Category),
-                    District = ObjectMapper.Map<DistrictViewModel>(m.District),
                     Latitude = m.Latitude,
                     Longitude = m.Longitude,
+                    District = ObjectMapper.Map<DistrictDto>(m.District),
                     Title = m.Title,
                     CreationTime = m.CreationTime,
-                    IsVerified = m.IsVerified,
-                    IsFeatured = m.IsFeatured,
+                    Amenities = m.PostAmenities.Select(m => new AmenityDto
+                    {
+                        Name = m.Amenity.Name,
+                        Icon = m.Amenity.Icon,
+                        Id = m.Amenity.Id,
+                    }).ToList(),
                     Images = m.Images.Select(m => new ImageViewModel
                     {
                         Id = m.Id,

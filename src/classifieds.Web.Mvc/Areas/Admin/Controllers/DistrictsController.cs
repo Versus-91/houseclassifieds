@@ -46,7 +46,7 @@ namespace classifieds.Web.Areas.Admin.Controllers
 
         public async Task<ActionResult> Edit(int id)
         {
-            var district = await _districtService.GetAsync(new EntityDto(id));
+            var district = await _districtService.GetById(id);
             var cities = (await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto() { MaxResultCount = Int32.MaxValue })).Items.ToList();
             var areas = (await _areaService.GetAllAsync(new PagedAndSortedResultRequestDto() { MaxResultCount = Int32.MaxValue })).Items.ToList();
             var model = new DistrictViewModel

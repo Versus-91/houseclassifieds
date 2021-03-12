@@ -117,6 +117,7 @@
       "wwwroot/view-resources/Views/Users/Index.js"
     ]
   },
+
   {
     "outputFileName": "wwwroot/view-resources/Views/Reports/Index.min.js",
     "inputFiles": [
@@ -177,13 +178,6 @@
       "wwwroot/view-resources/Views/Categories/Index.js"
     ]
   },
-
-  {
-    "outputFileName": "wwwroot/view-resources/Views/UserPosts/card.min.js",
-    "inputFiles": [
-      "wwwroot/view-resources/Views/UserPosts/card.js"
-    ]
-  },
   {
     "outputFileName": "wwwroot/view-resources/Views/Account/Login.min.js",
     "inputFiles": [
@@ -220,4 +214,5 @@
       "wwwroot/view-resources/Views/UserPosts/show.js"
     ]
   }
+
 ]

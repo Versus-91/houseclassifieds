@@ -114,7 +114,7 @@
 
 							</div>
 							<div class="field column is-6 p-0" id="bedroom">
-								<label asp-for="Bedroom" class="label">تعداد خواب</label>
+								<label asp-for="Bedroom" class="label">تعداد اتاق</label>
 								<div class="control  has-icons-left has-icons-right">
 									<div class="select is-fullwidth">
 										<select asp-for="Bedroom" v-model="room">
@@ -177,6 +177,11 @@
 						<div class="column is-4">
 							<button class="button is-fullwidth" :class="{'is-success':amenities.includes(@amenity.Id)}"
 								 v-on:click="setAmenity($event,@amenity.Id)">
+								@if(!String.IsNullOrWhiteSpace(amenity.Icon)){
+								    <figure class="image is-32x32">
+                                      <img src="/@amenity.Icon">
+                                    </figure>
+								}
 								@amenity.Name
 							</button>
 						</div>}

@@ -1,1 +1,106 @@
-﻿Vue.component('app-posts-card', {	props: ['post'],	data: function () {		return {			data: {}		}	},	template: `<div class=" column is-12-mobile is-half-tablet is-one-third-desktop  is-one-third-fullhd">								<a class="fill-div has-text-grey" :href="'/ads/'+post.id">									<div class="card card-hover-shadow" :data-label="post?.category?.name">										<div class="card-image">											<figure class="image is-4by3">												<img :src="post?.images && post?.images[0] ? post.images[0].path +'?width=600&height=480' : '/img/placeholder.png'" alt="Placeholder image">												<div class="overlay p-1">{{'شهر ' + post.district?.city?.name + ', محله ' + post?.district?.name}}</div>												<div class="overlay-top-corner">												<span class="fa-stack  has-text-success" v-if="post.isFeatured"><i class="fas fa-stack-1x fa-check-square"></i></span>										<span class="fa-stack "v-if="post?.images && post?.images[0]" >									<i class="fas fa-camera fa-stack-1x has-text-info" style=" vertical-align: middle;"></i><span>{{post?.images.length}}</span></span>												</div>											</figure>										</div>										<div class="card-content">											<div class="content has-text-centered has-text-weight-semibold" v-if="post?.price >= 0">                                                 {{post.price > 0 ? post.price + ' $': 'N/A'  }} 											</div>											<nav class="level is-mobile">												<div class="level-item has-text-centered">													<div>														<p><i class="fas fa-chart-area has-text-grey"></i></p>														<p>{{post.area}}</p>													</div>												</div>												<div class="level-item has-text-centered">													<div>														<p><i class="fas  fa-clock has-text-grey"></i></p>														<p>{{post.age == 0 ? '--' : post.age}}</p>													</div>												</div>												<div class="level-item has-text-centered">													<div>														<p><i class="fas fa-bed has-text-grey"></i></p>														<p>{{post.bedroom}}</p>													</div>												</div>											</nav>										</div>										<footer class="card-footer">										  <a href="#" class="card-footer-item">											  <p><i class="fas fa-phone has-text-success"></i>  اطلاعات تماس</p>										  </a>										</footer>									</div>								</a>							</div>`})
+﻿Vue.component('app-posts-card', {
+	props: ['post'],
+	data: function () {
+		return {
+			data: {}
+		}
+    },
+    filters: {
+        persianDigit:function (value) {
+            const persian = {
+                0: '۰',
+                1: '۱',
+                2: '۲',
+                3: '۳',
+                4: '۴',
+                5: '۵',
+                6: '۶',
+                7: '۷',
+                8: '۸',
+                9: '۹'
+            }
+
+        let result = value.toString()
+        for(let i = 0; i <= 9; i++) {
+            result = result.replace(new RegExp(`${i}`, 'g'), persian[i])
+        }
+        value = result
+        return result
+        }
+	},
+	computed: {
+		diffrenceInDays: function () {
+			var t2 = new Date().getTime();
+            var t1 = new Date(this.post.creationTime).getTime();
+            var days = parseInt((t2 - t1) / (24 * 3600 * 1000));
+			if (days > 1 ) {
+                return days + " روز پیش"
+			}
+			return "امروز";
+		},
+	
+		imageSrc: function () {
+			return this.post?.images && this.post?.images[0] ? this.post.images[0].path + '?width=600&height=480'
+				: '/img/placeholder.png'
+        },
+        title: function () {
+            var title = [];
+            if (!!this.post.category) {
+                title.push(this.post?.category?.name + " " + this.post?.type?.name);
+            }
+            if (!!this.post.area && this.post.area >0) {
+                title.push(this.post.area + " متر ");
+            }
+            title.push(this.post.district?.area?.city?.name + ' , ' + this.post?.district?.name);
+
+            return title.join(" , ");
+        },
+        subtitle: function () {
+            var subtitle = [];
+            if (!!this.post.age && this.post.age > 0) {
+                subtitle.push(this.post.age + " سال ساخت  ")
+            }
+            if (!!this.post.bedroom && this.post.bedroom > 0) {
+                subtitle.push(this.post.bedroom + " اتاق")
+            }
+            return subtitle.join(" , ");
+        }
+	}
+	,
+	template: `<div class=" column is-12-mobile is-half-tablet is-one-third-desktop  is-one-third-fullhd">
+                                <a class="fill-div has-text-grey" :href="'/ads/'+post.id">
+                                    <div class="card card-hover-shadow" >
+                                        <div class="card-image">
+                                            <figure class="image is-4by3">
+                                                <img :src="imageSrc" alt="Placeholder image">
+                                                <div class="overlay p-1">
+                                                  <span class="mr-5">
+                                                    {{diffrenceInDays}}
+                                                </span>
+                                         
+                                                 </div>
+                                                <div class="overlay-top-corner-right">
+                                                 <span class="icon-text has-text-success" v-if="post.isVerified">
+                                                   <span class="icon">
+                                                     <i class="fas fa-check-square"></i>
+                                                   </span>
+                                                   <span></span>
+                                                 </span>
+                                                 <span class="icon-text has-text-grey" v-if="post.hasMedia">
+                                                   <span class="icon">
+                                                     <i class="fas fa-camera"></i>
+                                                   </span>
+                                                   <span class="py-1">{{post?.images.length}}</span>
+                                                 </span>
+                                                </div>
+                                            </figure>
+                                        </div>
+                                        <div class="card-content">
+                                                <h1 class="title is-6">{{title | persianDigit}}</h1>
+                                                <h2 class="subtitle is-6">{{subtitle| persianDigit}}</h2>
+                                        </div>
+										<footer class="card-footer">										  <a href="#" class="card-footer-item">											  <p><i class="fas fa-phone has-text-success"></i>  اطلاعات تماس</p>										  </a>										</footer>
+                                    </div>
+                                </a>
+                            </div>`
+})

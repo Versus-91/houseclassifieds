@@ -190,9 +190,15 @@
 						<div class="column is-4">
 							<button class="button is-fullwidth" :class="{'is-success':amenities.includes(@amenity.Id)}"
 								 v-on:click="setAmenity($event,@amenity.Id)">
-								@amenity.Name
+								 @if(!String.IsNullOrWhiteSpace(amenity.Icon)){
+								    <figure class="image is-32x32">
+                                      <img src="/@amenity.Icon">
+                                    </figure>
+								}
+								<span>@amenity.Name</span>
 							</button>
-						</div>}
+						</div>
+					}
 							</div>
 						</div>
 						<div class="column is-8">

@@ -1,8 +1,11 @@
 ﻿using Abp.Application.Services;
+using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Domain.Repositories;
 using classifieds.Authorization;
 using classifieds.Cities.Dto;
+using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace classifieds.Cities
 {
@@ -14,5 +17,6 @@ namespace classifieds.Cities
             UpdatePermissionName = PermissionNames.Pages_Cities;
             DeletePermissionName = PermissionNames.Pages_Cities;
         }
+
     }
 }

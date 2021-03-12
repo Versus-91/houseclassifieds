@@ -1,14 +1,9 @@
-﻿using Abp.Application.Services.Dto;
-using Abp.AspNetCore.Mvc.Authorization;
+﻿using Abp.AspNetCore.Mvc.Authorization;
 using Abp.AspNetCore.Mvc.Controllers;
 using Abp.Configuration;
 using classifieds.Authorization;
-using classifieds.Cities;
 using classifieds.Web.Models.Settings;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace classifieds.Web.Areas.Admin.Controllers

@@ -23,7 +23,7 @@ namespace classifieds.Web.helpers
         public const string Width = "width";
         public static Size[] ValidResolutions =  { new Size() { Height = 96, Width = 96 },
         new Size() { Height = 192, Width = 192 },new Size() { Height = 320, Width = 240 },new Size() { Height = 640, Width = 480 },
-        new Size() { Height = 1024, Width = 768 } };
+         };
 
         /// <summary>
         /// The command constant for the resize height.

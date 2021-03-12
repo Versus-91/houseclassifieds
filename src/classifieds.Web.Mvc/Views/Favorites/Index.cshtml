@@ -18,17 +18,17 @@
                             <figure class="image is-4by3">
                                 @if (favorite.Post.Images.Count > 0)
                                 {
-                                    <img src="/@favorite.Post.Images[0].Path?width=192&height=192" alt="Placeholder image" style="border-radius:15px;">
+                                    <img src="/@favorite.Post.Images[0].Path?width=192&height=192" alt="Placeholder image" style="border-radius:8px;">
                                 }
                                 else
                                 {
-                                    <img src="/img/placeholder.png" alt="Placeholder image" style="border-radius:15px;">
+                                    <img src="/img/placeholder.png" alt="Placeholder image" style="border-radius:8px;">
                                 }
                             </figure>
-                            <div class="content has-text-right">
-                                <p class="title is-size-6 mt-1"> @favorite.Post.Category.Name @favorite.Post.Type.Name @favorite.Post.Area متری</p>
-                                <p class="subtitle is-size-6 mt-1">  @favorite.Post.District.City.Name -  @favorite.Post.District.Name</p>
-                                <p class="subtitle is-size-6 mt-1">قیمت :  @favorite.Post.Price</p>
+                            <div class="content has-text-right ">
+                                <p class="title is-size-6 mt-1 persian"> @favorite.Post.Category.Name @favorite.Post.Type.Name @favorite.Post.Area متری</p>
+                                <p class="subtitle is-size-6 mt-1 persian">  @favorite.Post.District.Area.City.Name -  @favorite.Post.District.Name</p>
+                                <p class="subtitle is-size-6 mt-1 persian">قیمت :  @favorite.Post.Price</p>
                             </div>
                         </a>
                     </div>
@@ -37,3 +37,11 @@
         }
     </div>
 </div>
+@section scripts{
+    <script src="/lib/persiandigits/persianNum.jquery-2.min.js"></script>
+    <script>
+        $(document).ready(function(){  
+           $('.persian').persianNum();
+        });
+    </script>
+}

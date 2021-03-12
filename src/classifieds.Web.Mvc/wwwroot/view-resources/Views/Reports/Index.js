@@ -39,28 +39,36 @@
         ],
         responsive: {
             details: {
-                type: 'column'
+                type: 'column',
             }
         },
         columnDefs: [
-            
             {
-                targets: 0,
-                data: 'id',
-                sortable: false
-            },
-            {
-                targets: 2,
-                data: 'postId',
-                sortable: false
+                className: 'control',
+                defaultContent: '',
+                orderable: false,
+                targets: 0
             },
             {
                 targets: 1,
-                data: 'description',
+                data: 'post.isVerified',
+                sortable: false,
+                render: (data, type, row, meta) => {
+                    return row.post.isVerified === true ? `<span class="badge badge-success">فعال</span>` : `<span class="badge badge-danger">فیر فعال</span>`
+                }
+            },
+            {
+                targets: 2,
+                data: 'post.title',
                 sortable: false
             },
             {
                 targets: 3,
+                data: 'description',
+                sortable: false
+            },
+            {
+                targets: 4,
                 data: null,
                 sortable: false,
                 autoWidth: false,

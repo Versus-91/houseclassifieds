@@ -5,6 +5,7 @@ using classifieds.Amenities.Dto;
 using classifieds.Categories;
 using classifieds.Cities;
 using classifieds.Districts;
+using classifieds.Districts.Dto;
 using classifieds.Images;
 using classifieds.PostsAmenities;
 using classifieds.PostsAmenities.Dto;
@@ -21,6 +22,8 @@ namespace classifieds.Posts.Dto
         public string Title { get; set; }
         public string Description { get; set; }
         public int CategoryId { get; set; }
+        public bool HasMedia { get; set; }
+
         public int DistrictId { get; set; }
         public int TypeId { get; set; }
         public bool IsFeatured { get; set; }
@@ -29,7 +32,7 @@ namespace classifieds.Posts.Dto
         public uint Area { get; set; }
         public ushort Age { get; set; }
         public byte Bedroom { get; set; }
-        public DistrictViewModel District { get; set; }
+        public DistrictDto District { get; set; }
         public double Deposit { get; set; }
         public double Rent { get; set; }
         public double Price { get; set; }

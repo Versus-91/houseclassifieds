@@ -1614,10 +1614,10 @@ namespace classifieds.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("AreaId")
+                    b.Property<int>("AreaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CityId")
+                    b.Property<int?>("CityId")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("CreationTime")
@@ -2135,7 +2135,7 @@ namespace classifieds.Migrations
             modelBuilder.Entity("classifieds.Areas.Area", b =>
                 {
                     b.HasOne("classifieds.Cities.City", "City")
-                        .WithMany("Districts")
+                        .WithMany()
                         .HasForeignKey("CityId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -2175,13 +2175,13 @@ namespace classifieds.Migrations
                 {
                     b.HasOne("classifieds.Areas.Area", "Area")
                         .WithMany()
-                        .HasForeignKey("AreaId");
-
-                    b.HasOne("classifieds.Cities.City", "City")
-                        .WithMany()
-                        .HasForeignKey("CityId")
+                        .HasForeignKey("AreaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("classifieds.Cities.City", null)
+                        .WithMany("Districts")
+                        .HasForeignKey("CityId");
                 });
 
             modelBuilder.Entity("classifieds.Favorites.Favorite", b =>
