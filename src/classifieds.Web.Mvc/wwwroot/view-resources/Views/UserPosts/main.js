@@ -19,7 +19,7 @@
 		cities: [],
 		districts: [],
 		roomsCount: 0,
-		hasMedia:null,
+		hasMedia:false,
 		featured: false,
 		type: null,
 		typeText: null,
@@ -101,32 +101,34 @@
 				maxRent: this.maxRent,
 				types: this.type,
 				featured: this.featured,
-				hasMedia: this.hasMedia,
 				beds: this.roomsCount,
 				minDeposit: this.minDeposit,
 				maxDeposit: this.maxDeposit,
 			};
+			if (this.hasMedia == true) {
+				data.hasMedia = true;
+            }
 			var uri = '?' + this.serialize(data);
 			var query = '';
 			switch (sort) {
 				case 1:
-					query = "creationTime Desc"
+					query = "sorting=creationTime Desc"
 					break;
 				case 2:
 					if (!!this.categoryText) {
 						if (this.categoryText.includes("اجاره") || this.categoryText.includes("گروی")) {
-							query = "Rent,Deposit Asc"
+							query = "sorting =Rent,Deposit Asc"
 						} else {
-							query = "Price Asc"
+							query = "sorting=Price Asc"
 						}
 					}
 					break;
 				case 3: 
 					if (!!this.categoryText) {
 						if (this.categoryText.includes("اجاره") || this.categoryText.includes("گروی")) {
-							query = "Rent,Deposit Desc"
+							query = "sorting=Rent,Deposit Desc"
 						} else {
-							query = "Price Desc"
+							query = "sorting=Price Desc"
 						}
 					}
 					break;
@@ -143,9 +145,12 @@
 					this.loading = false;
 					this.totalItems = res.data.result.totalCount;
 					this.posts = res.data.result.items;
+					console.log(sort);
 					if (!!sort) {
 						this.sort = sort;
-					}
+					} else {
+						this.sort = 1;
+                    }
 					
 				}).catch((err) => {
 					this.loading = false;

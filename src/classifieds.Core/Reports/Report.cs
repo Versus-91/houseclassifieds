@@ -10,6 +10,8 @@ namespace classifieds.Reports
     public class Report : Entity
     {
         public string Description { get; set; }
+        public string IpAddress { get; set; }
+
         public int PostId { get; set; }
 
         public Post Post { get; set; }

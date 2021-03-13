@@ -7,7 +7,7 @@
 
 <div class="section Site-content">
             <div class="container is-hidden-mobile">
-                    <div class="columns is-multiline is-centered is-vcentered py-2">
+                    <div class="columns  is-multiline is-centered is-vcentered py-2">
                         <div class="column">
                             <p class="title is-6">شهر : </p>
                             <div class="select is-fullwidth ">
@@ -31,6 +31,7 @@
                                 </select>
                             </div>
                         </div>
+                        <button style="margin-top: 2.6rem !important;" class="button" v-on:click="search()"><i class="fas fa-search"></i></button>
                         <div class="column is-12">
                             <a v-for="area of areas" class="tag is-link  p-1 m-2" :class="{'is-success':selectedArea == area.id}" v-on:click="onAreaSelect(area)">{{area.name}}</a>
                         </div>

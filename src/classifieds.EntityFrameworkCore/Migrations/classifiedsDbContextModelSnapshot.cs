@@ -1928,6 +1928,9 @@ namespace classifieds.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("IpAddress")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("PostId")
                         .HasColumnType("int");
 

@@ -48,15 +48,32 @@
             if (!!this.post.category) {
                 title.push(this.post?.category?.name + " " + this.post?.type?.name);
             }
-            if (!!this.post.area && this.post.area >0) {
-                title.push(this.post.area + " متر ");
-            }
+
             title.push(this.post.district?.area?.city?.name + ' , ' + this.post?.district?.name);
 
             return title.join(" , ");
         },
+        price: function () {
+            if (this.post.category.name.includes("کرای") || this.post.category.name.includes("گروی") || this.post.category.name.includes("اجاره")) {
+                var priceLabel = "";
+                if (this.post.deposit > 0) {
+                    priceLabel += " پیش پرداخت :  " + this.post.deposit + "دالر";
+                }
+                if (this.post.rent > 0) {
+                    priceLabel += "  اجاره :  " + this.post.rent + "دالر";
+                }
+                return priceLabel;
+            }
+            else if (this.post.category.name.includes("فروش") ) {
+                return this.post.price + "دالر";
+            }
+            return "";
+        },
         subtitle: function () {
             var subtitle = [];
+            if (!!this.post.area && this.post.area > 0) {
+                subtitle.push(this.post.area + " متر ");
+            }
             if (!!this.post.age && this.post.age > 0) {
                 subtitle.push(this.post.age + " سال ساخت  ")
             }
@@ -97,7 +114,7 @@
                                         </div>
                                         <div class="card-content">
                                                 <h1 class="title is-6">{{title | persianDigit}}</h1>
-                                                <h2 class="subtitle is-6">{{subtitle| persianDigit}}</h2>
+                                                <h2 class="subtitle is-6">{{subtitle | persianDigit}} <br/>{{price | persianDigit}}</h2>
                                         </div>
 										<footer class="card-footer">										  <a href="#" class="card-footer-item">											  <p><i class="fas fa-phone has-text-success"></i>  اطلاعات تماس</p>										  </a>										</footer>
                                     </div>

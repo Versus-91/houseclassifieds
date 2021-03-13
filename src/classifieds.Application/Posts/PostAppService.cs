@@ -64,14 +64,14 @@ namespace classifieds.Posts
         {
 
             return base.CreateFilteredQuery(input)
-                .Include(m=> m.District)
-                   .ThenInclude(m=>m.Area)
+                .Include(m => m.District)
+                   .ThenInclude(m => m.Area)
                    .ThenInclude(m => m.City)
                 .Include(m => m.Images)
                 .Include(m => m.Type)
                 .Include(m => m.Category)
-                .Include(m=>m.PostAmenities).ThenInclude(m=>m.Amenity)
-                .Where(m=>m.IsVerified ==true)
+                .Include(m => m.PostAmenities).ThenInclude(m => m.Amenity)
+                .Where(m => m.IsVerified == true)
                 .WhereIf(input.Zone.HasValue, t => t.District.AreaId == input.Zone.Value)
                 .WhereIf(input.HasMedia.HasValue, t => t.HasMedia == input.HasMedia.Value)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
@@ -84,7 +84,7 @@ namespace classifieds.Posts
                 .WhereIf(input.MinPrice.HasValue && input.MaxPrice.HasValue, t => t.Price >= input.MinPrice.Value && t.Price <= input.MaxPrice.Value)
                 .WhereIf(input.MinRent.HasValue && input.MaxRent.HasValue, t => t.Rent >= input.MinRent.Value && t.Rent <= input.MaxRent.Value)
                 .WhereIf(input.MinDeposit.HasValue && input.MaxDeposit.HasValue, t => t.Deposit >= input.MinDeposit.Value && t.Deposit <= input.MaxDeposit.Value)
-                .WhereIf(input.Amenities != null && input.Amenities.Count > 0, t => t.PostAmenities.Any(m=>input.Amenities.Contains(m.AmenityId)))
+                .WhereIf(input.Amenities != null && input.Amenities.Count > 0, t => t.PostAmenities.Any(m => input.Amenities.Contains(m.AmenityId)))
                 .WhereIf(input.Types != null && input.Types.Count > 0, t => input.Types.Contains(t.TypeId))
                 .WhereIf(input.UserId != null, t => t.CreatorUserId == input.UserId)
                 .OrderByDescending(m => m.CreationTime);
@@ -290,7 +290,7 @@ namespace classifieds.Posts
             post.CategoryId = input.CategoryId;
             post.DistrictId = input.DistrictId;
             post.Age = input.Age;
-            post.Deposit = input.Deopsit;
+            post.Deposit = input.Deposit;
             post.Description = input.Description;
             post.Area = input.Area;
             post.Bedroom = input.Bedroom;

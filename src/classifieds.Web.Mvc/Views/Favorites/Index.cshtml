@@ -13,24 +13,51 @@
             <div class="columns is-multiline">
                 @foreach (var favorite in Model)
                 {
-                    <div class=" column  is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
-                        <a class="fill-div" href="/ads/@favorite.Post.Id">
+                    <div class=" column   is-two-thirds-tablet is-half-desktop is-one-third-widescreen is-one-quarter-fullhd">
+                        @*   <a class="fill-div" href="/ads/@favorite.Post.Id">
                             <figure class="image is-4by3">
-                                @if (favorite.Post.Images.Count > 0)
-                                {
-                                    <img src="/@favorite.Post.Images[0].Path?width=192&height=192" alt="Placeholder image" style="border-radius:8px;">
-                                }
-                                else
-                                {
-                                    <img src="/img/placeholder.png" alt="Placeholder image" style="border-radius:8px;">
-                                }
+                            @if (favorite.Post.Images.Count > 0)
+                            {
+                            <img src="/@favorite.Post.Images[0].Path?width=192&height=192" alt="Placeholder image" style="border-radius:8px;">
+                            }
+                            else
+                            {
+                            <img src="/img/placeholder.png" alt="Placeholder image" style="border-radius:8px;">
+                            }
                             </figure>
-                            <div class="content has-text-right ">
-                                <p class="title is-size-6 mt-1 persian"> @favorite.Post.Category.Name @favorite.Post.Type.Name @favorite.Post.Area متری</p>
-                                <p class="subtitle is-size-6 mt-1 persian">  @favorite.Post.District.Area.City.Name -  @favorite.Post.District.Name</p>
-                                <p class="subtitle is-size-6 mt-1 persian">قیمت :  @favorite.Post.Price</p>
+                            <div style="border-radius:8px;" class="content p-2 has-text-right has-background-light">
+                            <p class="title is-size-6 mt-1 persian"> @favorite.Post.Category.Name @favorite.Post.Type.Name @favorite.Post.Area متری</p>
+                            <p class="subtitle is-size-6 mt-1 persian">  @favorite.Post.District.Area.City.Name -  @favorite.Post.District.Name</p>
+                            <p class="subtitle is-size-6 mt-1 persian">قیمت :  @favorite.Post.Price</p>
                             </div>
-                        </a>
+                            </a>*@
+                        <div class="card">
+                           <div class="card-image">
+                            <figure class="image is-4by3">
+                                 @if (favorite.Post.Images.Count > 0)
+                            {
+                          <img src="/@favorite.Post.Images[0].Path?width=192&height=192" alt="Placeholder image" style="border-radius:8px;">
+                            }
+                            else
+                            {
+                            <img src="/img/placeholder.png" alt="Placeholder image" style="border-radius:8px;">
+                            }                            
+                        </figure>
+                          </div>
+                            <div class="card-content">
+                                <div class="content">
+                                    @favorite.Post.Category.Name @favorite.Post.Type.Name @favorite.Post.Area متری
+                                    <br>
+                                    @favorite.Post.District.Area.City.Name -  @favorite.Post.District.Name
+                                    <br />
+                                    <time datetime="2016-1-1">@favorite.Post.CreationTime.ToString()</time>
+                                </div>
+                            </div>
+                            <footer class="card-footer">
+                                <a href="/ads/@favorite.Post.Id" class="card-footer-item">نمایش</a>
+                                <a href="/favorites/delete/@favorite.Id" class="card-footer-item">حذف</a>
+                            </footer>
+                        </div>
                     </div>
                 }
             </div>
@@ -38,10 +65,10 @@
     </div>
 </div>
 @section scripts{
-    <script src="/lib/persiandigits/persianNum.jquery-2.min.js"></script>
-    <script>
-        $(document).ready(function(){  
-           $('.persian').persianNum();
-        });
-    </script>
+<script src="/lib/persiandigits/persianNum.jquery-2.min.js"></script>
+<script>
+    $(document).ready(function(){
+       $('.persian').persianNum();
+    });
+</script>
 }

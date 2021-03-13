@@ -23,7 +23,7 @@ namespace classifieds.Posts.Dto
         public string City { get; set; }
         public string District { get; set; }
         public int DistrictId { get; set; }
-        public double Deopsit { get; set; }
+        public double Deposit { get; set; }
         public double Rent { get; set; }
         public double Price { get; set; }
         public int TypeId { get; set; }

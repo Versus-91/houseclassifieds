@@ -10,22 +10,22 @@
 		  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
 		  crossorigin="" />
 }
-               <div class="section Site-content">
-               		<div class="container persian">
-               			<div class="box">
-               				<h1 class="title is-4">ویرایش</h1>
-               				<hr />
-               				<div class="tabs is-toggle is-centered">
-               		   <ul>
-               		 <li v-for="ctg in categories"  v-on:click="category = ctg" 
-               		  v-bind:class="{ 'is-active': category?.id == ctg.id}">
-               			 <a>
-               			  <span class="icon is-small"><i class="fas fa-building" aria-hidden="true"></i></span>
-               			 <span>{{ctg.name}}</span>
-               		   </a>
-               		</li>
-                 </ul>
-               </div>
+			   <div class="section Site-content">
+					<div class="container persian">
+						<div class="box">
+							<h1 class="title is-4">ویرایش</h1>
+							<hr />
+							<div class="tabs is-toggle is-centered">
+					   <ul>
+					 <li v-for="ctg in categories"  v-on:click="category = ctg" 
+					  v-bind:class="{ 'is-active': category?.id == ctg.id}">
+						 <a>
+						  <span class="icon is-small"><i class="fas fa-building" aria-hidden="true"></i></span>
+						 <span>{{ctg.name}}</span>
+					   </a>
+					</li>
+				 </ul>
+			   </div>
 			   <div class="columns">
 				   <div class="column">
 					   <p class="title is-5">نوع ملک <span class="is-danger is-size-7 has-text-danger">اجباری</span></p> 
@@ -39,30 +39,45 @@
 					  </div>
 			   </div>
 				<form asp-action="create" enctype="multipart/form-data" id="CreateAd">
+					<button type="button" class="button is-danger is-small is-light" v-show="editLocation == true" v-on:click="editLocation = false;district=post.districtId">انصراف</button>
 					<div class="field is-horizontal">
-						<div class="field-body">
-							<div class="field column is-6 p-0">
-								<label for="City" class="label">شهر  <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
+				    <div class="field-body" v-show="editLocation == true">
+							<br/>
+							<div class="field column is-4 p-0">
+								<label for="City" class="label">شهر  <span class="is-danger is-size-7 has-text-danger">اجباری</span></label>
 								<div class="control has-icons-right">
 									<div class="select is-fullwidth hide-arrow">
-										<select class="select2   " id="selectCity" asp-items="@(ViewData["Cities"] as SelectList)" >
+										<select class="select2" name="city" id="selectCity" asp-items="@(ViewData["Cities"] as SelectList)" >
 										</select>
-							   
 									</div>
 								</div>
 							</div>
-							<div class="field column is-6 p-0">
+							<div class="field column is-4 p-0">
+								<label asp-for="DistrictId" class="label">ناحیه <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
+								<div class="control has-icons-right">
+									<div class="select is-fullwidth hide-arrow">
+										<select class="select2" name="area" v-select2 v-model="district" id="selectArea" required>
+											<option value="0">انتخاب ناحیه</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="field column is-4 py-0">
 								<label asp-for="DistrictId" class="label">محله <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
 								<div class="control has-icons-right">
 									<div class="select is-fullwidth hide-arrow">
-										<select class="select2 " v-select2 v-model="district" name="DistrictId" id="selectDistrict" required>
+										<select class="select2 " v-select2 v-model="district" name="District" id="selectDistrict" required>
 											<option value="0">انتخاب محله</option>
 										</select>
 									</div>
 								</div>
-								<span class="help is-danger" asp-validation-for="DistrictId"></span>
 							</div>
 						</div>
+				    <div class="field-body has-text-center" v-show="!editLocation">
+						<p>{{this.post?.district.area.city.name + " " + this.post?.district.area.name + " "+this.post?.district.name}}
+							<button type="button" class="button is-info is-small is-light" v-on:click="editLocation = true">ویرایش</button>
+					    </p>
+					</div>
 					</div>
 					<div class="field is-horizontal"  v-if="category?.name.includes('فروش')">
 						<div class="field-body column is-6 p-0">
@@ -77,7 +92,7 @@
 							</div>
 							</div>
 					</div>
-					 <div class="field is-horizontal"  v-if="category?.name.includes('گروی')">
+					 <div class="field is-horizontal"  v-if="category?.name.includes('گروی') || category?.name.includes('کرای')|| category?.name.includes('اجاره')">
 						   <div class="field-body">
 							<div class="field column is-6 p-0">
 								<label for="Deposit" class="label">کرای</label>
@@ -178,9 +193,9 @@
 							<button class="button is-fullwidth" :class="{'is-success':amenities.includes(@amenity.Id)}"
 								 v-on:click="setAmenity($event,@amenity.Id)">
 								@if(!String.IsNullOrWhiteSpace(amenity.Icon)){
-								    <figure class="image is-32x32">
-                                      <img src="/@amenity.Icon">
-                                    </figure>
+									<figure class="image is-32x32">
+									  <img src="/@amenity.Icon">
+									</figure>
 								}
 								@amenity.Name
 							</button>
@@ -249,7 +264,7 @@
 </div>
 @section scripts{
 		<script>
-		  $(function () {
+$(function () {
 			  function matchCustom(params, data) {
 				 // If there are no search terms, return all of the data
 				 if ($.trim(params.term) === '') {
@@ -281,8 +296,29 @@
 			});
 		   $('#selectCity').on('select2:select', function (e) {
 		  if (e.target.value != 0) {
+			  $("#selectArea").prop("disabled", false);
+			  $.get('/api/services/app/area/GetAreaByCityId?cityid=' + e.target.value, function (res) {
+				  var items = res.result.items.map(m => {
+					  return {
+						  id: m.id,
+						  text: m.name
+					  }
+				  }
+				  );
+				  items.splice(0, 0, { id: 0, text: "انتخاب ناحیه" })
+				  $("#selectArea").empty();
+				  $("#selectArea").select2({ data: items });
+			  })
+		  } else {
+			  $("#selectArea").empty();
+			  $("#selectArea").select2({ data: [{  id: 0,text: "انتخاب ناحیه" }] });
+			  $("#selectArea").prop("disabled", true);
+		  }
+		});
+		$('#selectArea').on('select2:select', function (e) {
+		  if (e.target.value != 0) {
 			  $("#selectDistrict").prop("disabled", false);
-			  $.get('/admin/districts/GetByCityId?id=' + e.target.value, function (res) {
+			  $.get('/api/services/app/district/GetByAreaId?id=' + e.target.value, function (res) {
 				  var items = res.result.map(m => {
 					  return {
 						  id: m.id,

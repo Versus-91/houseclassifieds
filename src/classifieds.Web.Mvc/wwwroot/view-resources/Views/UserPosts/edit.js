@@ -20,6 +20,7 @@ var app = new Vue({
         category: null,
         tradeType: null,
         zoom: 13,
+        editLocation:false,
         url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         dropZone: {},
         post: null,
@@ -43,6 +44,7 @@ var app = new Vue({
             return !!this.district && this.district != 0 && !!this.area;
         },
     },
+
     methods: {
         addMarker: function (e) {
             if (!!this.marker) {
@@ -60,6 +62,7 @@ var app = new Vue({
         },
         setAmenity: function (e, amenity) {
             e.preventDefault()
+
             var index = this.amenities.findIndex(m => m == amenity);
             if (index > -1) {
                 this.amenities.splice(index, 1);
@@ -69,6 +72,13 @@ var app = new Vue({
         },
         postSubmit: function (e) {
             e.preventDefault();
+            if (this.category.name.includes("خرید") || this.category.name.includes("فروش")) {
+                this.deposit = 0;
+                this.rent = 0;
+            }
+            if (this.category.name.includes("گروی") || this.category.name.includes("اجاره") || this.category.name.includes("کرای")) {
+                this.price = 0;
+            }
             axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
             var request = {
                 Id:this.post.id,
@@ -88,17 +98,11 @@ var app = new Vue({
                 request.latitude = this.marker.lat;
             }
             axios.put('/api/services/app/post/update', request).then((res) => {
-                location.reload();
+                window.history.back();
             }).catch((err) => err );
         },
     },
-    watch: {
-        category: function () {
-            //this.price = null;
-            //this.deposit = null;
-            //this.rent = null;
-        }
-    },
+
     created() {
         var propertyOptions = document.getElementsByClassName("types")[0];
         if (!!propertyOptions) {
@@ -122,6 +126,7 @@ var app = new Vue({
             this.rent = this.post.rent;
             this.images = this.post.images;
             this.deposit = this.post.deposit;
+            this.district = this.post.districtId;
             this.amenities = this.post.amenities.map((item)=>item.id);
             this.description = this.post.description;
             if (!!this.post.latitude) {

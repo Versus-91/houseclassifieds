@@ -24,5 +24,10 @@ namespace classifieds.Web.Controllers
             var items = (await _favoritesService.GetAllAsync(new FavoritesInput(){MaxResultCount=100,UserId=AbpSession.UserId.Value })).Items;
             return View(items);
         }
+        public async Task<IActionResult> Delete(int id)
+        {
+             await _favoritesService.DeleteAsync(new FavoriteDto { Id = id });
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -45,7 +45,7 @@
         <div class="box">
             <div class="columns">
                 <div class="column is-5 has-text-centered">
-                    <h3 class="title is-4 my-2">@Model.Post.Category.Name @Model.Post.Type.Name ,شهر @Model.Post.District.Area.City.Name , @Model.Post.District.Name </h3>
+                    <h3 class="title is-4 my-3">@Model.Post.Category.Name @Model.Post.Type.Name ,شهر @Model.Post.District.Area.City.Name , @Model.Post.District.Name </h3>
                     @if (Model.Post.Category.Name.Contains("گروی") || Model.Post.Category.Name.Contains("اجاره"))
                     {
                         <h3 class="subtitle is-5 my-2">@Model.Post.Rent $ اجاره</h3>
@@ -148,18 +148,22 @@
                 <div class="column is-7">
                     @if (Model.Post.Amenities.Count > 0)
                     {
-                        <h1 class="title is-4 b">
-                            امکانات
-                        </h1>
-                        <br>
                         <div class="columns is-multiline is-mobile">
+                         <div class="column is-12">
+                        <h2 class="title is-4">
+                            امکانات
+                        </h2>
+                        <hr class="my-0"/>
+                        </div>
                             @foreach (var item in Model.Post.Amenities)
                             {
                                 <div class="column is-6">
 
-                                    <span class="tag is-link is-large ">
+                                    <span class="tag is-info is-light is-medium">
                                         @if(!String.IsNullOrWhiteSpace(item.Icon)){
-                                          <img class="fas is-64x64 mx-1" src="/@item.Icon"/>
+                                          <figure class="image is-24x24">
+                                            <img src="/@item.Icon"/>
+                                          </figure>
                                         }
                                     @item.Name
                                 </span>
@@ -371,95 +375,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <environment names="Development">
     <script src="~/lib/vue/vue.js" asp-append-version="true"></script>
-    <script>
-            new Vue({
-                el:'#app',
-                data : {
-                    showModal:false,
-                    showShareModal:false,
-                    options:[],
-                    option:null,
-                    liked:false,
-                    likeId:null,
-                    description:'',
-                    id:null,
-                },
 
-                methods :{
-                            socialWindow: function () {
-            var left = (screen.width - 570) / 2;
-            var top = (screen.height - 570) / 2;
-            var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
-            window.open(url, "NewWindow", params);
-        },
-        socialShare: function (media) {
-            console.log(media);
-            var pageUrl = encodeURIComponent(document.URL);
-            switch (media) {
-                case 'twitter':
-                    url = "https://twitter.com/intent/tweet?url=" + pageUrl ;
-                    this.socialWindow(url);
-                    break;
-                case 'facebook':
-                    url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
-                    this.socialWindow(url);
-                    break;
-                default:
-                    break;
-            }
-        },
-                    addFavorite(){
-                        if(!!this.liked){
-                            this.removeFavorite();
-                        }else{
-                          axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
-                          axios.post('/api/services/app/favorite/create',{
-                             postId:this.id,
-                          }).then((res)=>{
-                             this.liked = true;
-                             this.likeId= res.data.result.id;
-                          }).catch((err)=>{
-                          if(err.response.status === 401){
-                                location.href ='/account/register';
-                          }
-                         });
-                        }
-                    },
-                    removeFavorite(){
-                        axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
-                        axios.delete('/api/services/app/favorite/delete?id='+this.likeId).then((res)=>{
-                           this.liked = false;
-                           this.likeId= null;
-                        });
-                    },
-                    submitForm(){
-                        axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
-                        axios.post('/api/services/app/report/create',{
-                           postId:this.id,
-                           description:this.description,
-                           ReportOptionId:this.option,
-                        }).then((res)=>{
-                           this.description = '',
-                           this.option = this.options[0]?.id,
-                           this.showModal = false
-                        });
-                    }
-                },
-                created(){
-                    this.id = document.getElementById('id').value;
-                    axios.get('/api/services/app/reportoption/getall').then((res)=>{
-                        this.options = res.data.result.items;
-                        if(!!this.options){
-                           this.option = this.options[0].id;
-                        }
-                    });
-                    axios.get('/api/services/app/favorite/GetFavorite?postid='+this.id).then((res)=>{
-                        this.liked = res.data.result.isLiked;
-                        this.likeId = res.data.result.id;
-                    });
-                }
-            });
-    </script>
     <script src="~/lib/photoswipe/photoswipe.min.js" asp-append-version="true"></script>
     <script src="~/lib/photoswipe/photoswipe-ui-default.min.js" asp-append-version="true"></script>
     <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>
@@ -469,96 +385,7 @@
     <script src="~/lib/photoswipe/photoswipe.min.js" asp-append-version="true"></script>
     <script src="~/lib/photoswipe/photoswipe-ui-default.min.js" asp-append-version="true"></script>
     <script src="~/lib/vue/vue.min.js" asp-append-version="true"></script>
-    <script src="~/view-resources/Views/UserPosts/show.min.js" asp-append-version="true"></script>
-    <script>
-            new Vue({
-                el:'#app',
-                data : {
-                    showModal:false,
-                    showShareModal:false,
-                    options:[],
-                    option:null,
-                    liked:false,
-                    likeId:null,
-                    description:'',
-                    id:null,
-                },
-
-                methods :{
-                            socialWindow: function () {
-            var left = (screen.width - 570) / 2;
-            var top = (screen.height - 570) / 2;
-            var params = "menubar=no,toolbar=no,status=no,width=570,height=570,top=" + top + ",left=" + left;
-            window.open(url, "NewWindow", params);
-        },
-        socialShare: function (media) {
-            console.log(media);
-            var pageUrl = encodeURIComponent(document.URL);
-            switch (media) {
-                case 'twitter':
-                    url = "https://twitter.com/intent/tweet?url=" + pageUrl ;
-                    this.socialWindow(url);
-                    break;
-                case 'facebook':
-                    url = "https://www.facebook.com/sharer.php?u=" + pageUrl;
-                    this.socialWindow(url);
-                    break;
-                default:
-                    break;
-            }
-        },
-                    addFavorite(){
-                        if(!!this.liked){
-                            this.removeFavorite();
-                        }else{
-                          axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
-                          axios.post('/api/services/app/favorite/create',{
-                             postId:this.id,
-                          }).then((res)=>{
-                             this.liked = true;
-                             this.likeId= res.data.result.id;
-                          }).catch((err)=>{
-                          if(err.response.status === 401){
-                                location.href ='/account/register';
-                          }
-                         });
-                        }
-                    },
-                    removeFavorite(){
-                        axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
-                        axios.delete('/api/services/app/favorite/delete?id='+this.likeId).then((res)=>{
-                           this.liked = false;
-                           this.likeId= null;
-                        });
-                    },
-                    submitForm(){
-                        axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
-                        axios.post('/api/services/app/report/create',{
-                           postId:this.id,
-                           description:this.description,
-                           ReportOptionId:this.option,
-                        }).then((res)=>{
-                           this.description = '',
-                           this.option = this.options[0]?.id,
-                           this.showModal = false
-                        });
-                    }
-                },
-                created(){
-                    this.id = document.getElementById('id').value;
-                    axios.get('/api/services/app/reportoption/getall').then((res)=>{
-                        this.options = res.data.result.items;
-                        if(!!this.options){
-                           this.option = this.options[0].id;
-                        }
-                    });
-                    axios.get('/api/services/app/favorite/GetFavorite?postid='+this.id).then((res)=>{
-                        this.liked = res.data.result.isLiked;
-                        this.likeId = res.data.result.id;
-                    });
-                }
-            });
-    </script>
+    <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>
 
 </environment>
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"

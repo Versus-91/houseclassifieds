@@ -44,6 +44,18 @@ namespace classifieds.Favorites
                 throw new ArgumentException();
             }
         }
+        public override async Task DeleteAsync(EntityDto<int> input)
+        {
+            var favoriteItem = await _repository.GetAsync(input.Id);
+            if (favoriteItem.CreatorUserId !=  AbpSession.UserId || favoriteItem == null)
+            {
+                throw new ArgumentException();
+            }
+            else
+            {
+                await base.DeleteAsync(input);
+            }
+        }
         [AbpAllowAnonymous]
         public async Task<FavoriteResult> GetFavorite(int postId)
         {

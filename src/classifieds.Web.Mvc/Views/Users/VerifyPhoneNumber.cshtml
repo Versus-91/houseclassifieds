@@ -1,17 +1,12 @@
 ﻿@model classifieds.Models.ManageViewModels.VerifyPhoneNumberViewModel
 @{ ViewData["Title"] = "Verify Phone Number";
     Layout = "layout/_front"; }
-@section hero{
-    @await Html.PartialAsync("tabs.cshtml", model: 3);
 
-}
 <div class="section Site-content" style="height:100vh;">
-    <section class="container">
-        <h2>@ViewData["Title"].</h2>
-
-        <form asp-controller="Manage" asp-action="VerifyPhoneNumber" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
+    <div class="container">
+        <h2>وارد کردن کد تایید</h2>
+        <form asp-controller="Users" asp-action="VerifyPhoneNumber" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
             <input asp-for="PhoneNumber" type="hidden" />
-            <h4>Add a phone number.</h4>
             <h5>@ViewData["Status"]</h5>
             <hr />
             <div asp-validation-summary="All" class="help is-danger"></div>
@@ -24,7 +19,7 @@
                 <button type="submit" class="button is-info">Submit</button>
             </div>
         </form>
-    </section>
+    </div>
 </div>
 
 

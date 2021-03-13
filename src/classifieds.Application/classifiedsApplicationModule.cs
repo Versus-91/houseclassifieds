@@ -20,6 +20,7 @@ namespace classifieds
     {
         public override void PreInitialize()
         {
+            
             Configuration.Settings.Providers.Add<ClassifiedSettigsProvider>();
             Configuration.Authorization.Providers.Add<classifiedsAuthorizationProvider>();
             Configuration.MultiTenancy.IsEnabled = false;

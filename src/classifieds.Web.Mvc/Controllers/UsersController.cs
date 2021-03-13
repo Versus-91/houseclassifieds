@@ -146,9 +146,10 @@ namespace classifieds.Web.Controllers
         //
         // GET: /Manage/AddPhoneNumber
         [AbpAuthorize]
-        public IActionResult AddPhoneNumber()
+        public async Task<IActionResult> AddPhoneNumber()
         {
-            return View();
+            var user = await GetCurrentUserAsync();
+            return View(new AddPhoneNumberViewModel { PhoneNumber=user.PhoneNumber});
         }
 
         //
@@ -166,9 +167,9 @@ namespace classifieds.Web.Controllers
             }
             // Generate the token and send it
             var user = await GetCurrentUserAsync();
-            if (user == null)
+            if (user == null || model.PhoneNumber == user.PhoneNumber)
             {
-                return View("Error");
+                return BadRequest("phone number have not changed.");
             }
             var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.PhoneNumber);
             try
@@ -184,56 +185,20 @@ namespace classifieds.Web.Controllers
             return RedirectToAction(nameof(VerifyPhoneNumber), new { PhoneNumber = model.PhoneNumber });
         }
 
-        //
-        // POST: /Manage/EnableTwoFactorAuthentication
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [AbpAuthorize]
 
-        public async Task<IActionResult> EnableTwoFactorAuthentication()
-        {
-            var user = await GetCurrentUserAsync();
-            if (user != null)
-            {
-                await _userManager.SetTwoFactorEnabledAsync(user, true);
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                _logger.Info("User enabled two-factor authentication.");
-            }
-            return RedirectToAction(nameof(Index), "Manage");
-        }
-
-        //
-        // POST: /Manage/DisableTwoFactorAuthentication
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [AbpAuthorize]
-
-        public async Task<IActionResult> DisableTwoFactorAuthentication()
-        {
-            var user = await GetCurrentUserAsync();
-            if (user != null)
-            {
-                await _userManager.SetTwoFactorEnabledAsync(user, false);
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                _logger.Info("User disabled two-factor authentication.");
-            }
-            return RedirectToAction(nameof(Index), "Manage");
-        }
-
-        //
-        // GET: /Manage/VerifyPhoneNumber
         [HttpGet]
         [AbpAuthorize]
         public async Task<IActionResult> VerifyPhoneNumber(string phoneNumber)
         {
             var user = await GetCurrentUserAsync();
-            if (user == null)
+            if (user == null || phoneNumber == user.PhoneNumber)
             {
-                return View("Error");
+                return BadRequest();
             }
+
             var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, phoneNumber);
             // Send an SMS to verify the phone number
-            return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
+            return phoneNumber == null  ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
         }
 
         //
@@ -255,7 +220,7 @@ namespace classifieds.Web.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.AddPhoneSuccess });
+                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.AddPhoneSuccess,name = user.UserName });
                 }
             }
             // If we got this far, something failed, redisplay the form
@@ -279,10 +244,10 @@ namespace classifieds.Web.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.RemovePhoneSuccess });
+                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.RemovePhoneSuccess, name = user.UserName });
                 }
             }
-            return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
+            return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error, name = user.UserName });
         }
 
         //

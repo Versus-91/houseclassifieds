@@ -64,7 +64,7 @@
 								</div>
 								<span class="help is-danger" asp-validation-for="DistrictId"></span>
 							</div>
-							<div class="field column is-4 p-0">
+							<div class="field column is-4 py-0">
 								<label asp-for="DistrictId" class="label">محله <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
 								<div class="control has-icons-right">
 									<div class="select is-fullwidth hide-arrow">
@@ -90,7 +90,7 @@
 							</div>
 							</div>
 					</div>
-					 <div class="field is-horizontal"  v-if="category?.name.includes('گروی')">
+					 <div class="field is-horizontal"  v-if="category?.name.includes('گروی') || category?.name.includes('کرای')|| category?.name.includes('اجاره')">
 						   <div class="field-body">
 							<div class="field column is-6 p-0">
 								<label for="Deposit" class="label">کرای</label>
