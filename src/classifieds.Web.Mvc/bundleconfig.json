@@ -207,12 +207,6 @@
     "inputFiles": [
       "wwwroot/lib/photoswipe/photoswipe-ui-default.js"
     ]
-  },
-  {
-    "outputFileName": "wwwroot/view-resources/Views/UserPosts/show.min.js",
-    "inputFiles": [
-      "wwwroot/view-resources/Views/UserPosts/show.js"
-    ]
   }
 
 ]

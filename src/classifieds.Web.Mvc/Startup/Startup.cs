@@ -75,6 +75,7 @@ namespace classifieds.Web.Startup
                 .SetRequestParser<QueryCollectionRequestParser>()
                 .Configure<PhysicalFileSystemCacheOptions>(options =>
                 {
+                    
                     options.CacheFolder = "is-cache";
                 })
                 .SetCache(provider =>
