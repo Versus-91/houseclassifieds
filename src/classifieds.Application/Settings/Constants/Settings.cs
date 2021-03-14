@@ -9,9 +9,9 @@ namespace classifieds.Settings.Constants
         public const string NumberOfAds = "NumberOfAds";
         public const string ExpirationDays = "ExpirationDays";
         public const string SmsId = "Tiwllo.SMS.Id";
+        public const string About = "About.Text";
         public const string SmsNumber = "Tiwllo.SMS.Number";
         public const string SmsPassword = "Tiwllo.SMS.Password";
-
-
+        public const string DefaultNumber = "Phone.Number";
     }
 }

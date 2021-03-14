@@ -1,4 +1,5 @@
 ﻿using Abp.Authorization;
+using classifieds.Authorization.Accounts;
 using classifieds.Authorization.Users;
 using classifieds.Controllers;
 using classifieds.Models.ManageViewModels;
@@ -13,21 +14,34 @@ namespace classifieds.Web.Controllers.api
 {
     
     [ApiController]
-    [AbpAuthorize]
     [Route("api/[controller]/[action]")]
     [IgnoreAntiforgeryToken]
     public class AccountController: classifiedsControllerBase
     {
         private readonly UserManager _userManager;
         private readonly ISmsSender _smsSender;
-        public AccountController(UserManager userManager, ISmsSender smsSender)
+        private readonly IAccountAppService _accountService;
+        public AccountController(UserManager userManager, ISmsSender smsSender, IAccountAppService accountService)
         {
             _userManager = userManager;
+            _accountService = accountService;
             _smsSender = smsSender;
         }
-
         [HttpPost]
-
+        [ValidateAntiForgeryToken]
+        [AbpAllowAnonymous]
+        public async Task<ActionResult> GetPhoneNumber(long userId)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("enter user id");
+            }
+            var phoneNumber = await _accountService.UserPhoneNumber(userId);
+            return Ok(phoneNumber);
+           
+        }
+        [HttpPost]
+        [AbpAuthorize]
         public async Task<ActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
             if (!ModelState.IsValid)
@@ -54,6 +68,7 @@ namespace classifieds.Web.Controllers.api
             }
         }
         [HttpPost]
+        [AbpAuthorize]
         public async Task<IActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
         {
             if (!ModelState.IsValid)

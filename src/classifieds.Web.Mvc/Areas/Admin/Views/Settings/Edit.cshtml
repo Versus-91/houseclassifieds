@@ -16,10 +16,18 @@
                         <p>@Model.Name.Replace("."," ")</p>
                         <form asp-controller="Settings" asp-action="Edit" asp-area="Admin" method="post">
                             <input asp-for="Name" type="hidden" class="form-control" >
+                            @if(Model.Name.ToLower().Contains("text")){
+                              <div class="form-group">
+                              <label asp-for="Value">Value:</label>
+                              <textarea  asp-for="Value" class="form-control" rows="5"></textarea>
+                            </div>
+                            }else{
                             <div class="form-group">
                               <label asp-for="Value">Value:</label>
                               <input asp-for="Value" type="text" class="form-control" >
                             </div>
+                            }
+
                             <button class="btn btn-primary" type="submit">Save</button>
                         </form>
                     </div>

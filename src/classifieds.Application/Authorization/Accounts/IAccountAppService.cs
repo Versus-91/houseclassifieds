@@ -13,5 +13,6 @@ namespace classifieds.Authorization.Accounts
         AccountUserDto User();
         Task<AccountUserDto> UpdateAsync(AccountUserDto input);
         Task<bool> ChangePassword(ChangePasswordInput input);
+        Task<string> UserPhoneNumber(long userId);
     }
 }

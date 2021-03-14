@@ -28,6 +28,8 @@ namespace classifieds.Users.Dto
         public string EmailAddress { get; set; }
 
         public bool IsActive { get; set; }
+        public bool ShowDefaultNumber { get; set; }
+
 
         public string FullName { get; set; }
 

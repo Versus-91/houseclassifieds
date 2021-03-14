@@ -1,4 +1,5 @@
-﻿using Abp.Authorization;
+﻿using Abp.Application.Services;
+using Abp.Authorization;
 using Abp.Configuration;
 using Abp.Domain.Repositories;
 using Abp.Runtime.Session;
@@ -7,6 +8,7 @@ using Abp.UI;
 using Abp.Zero.Configuration;
 using classifieds.Authorization.Accounts.Dto;
 using classifieds.Authorization.Users;
+using classifieds.Settings.Constants;
 using classifieds.Users.Dto;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -27,15 +29,19 @@ namespace classifieds.Authorization.Accounts
         private readonly UserManager _userManager;
         private readonly UserStore _userStore;
         private readonly IAbpSession _abpSession;
+        private readonly ISettingManager _settingsManager;
         private readonly LogInManager _logInManager;
         private readonly IPasswordHasher<User> _passwordHasher;
 
         public AccountAppService(
-            UserRegistrationManager userRegistrationManager, UserManager userManager, UserStore userStore, IAbpSession abpSession, LogInManager logInManager, IPasswordHasher<User> passwordHasher)
+            UserRegistrationManager userRegistrationManager, UserManager userManager, UserStore userStore,
+            IAbpSession abpSession, LogInManager logInManager, IPasswordHasher<User> passwordHasher
+            ,ISettingManager settingsManager)
         {
             _userRegistrationManager = userRegistrationManager;
             _userManager = userManager;
             _userStore = userStore;
+            _settingsManager = settingsManager;
             _abpSession = abpSession;
             _logInManager = logInManager;
             _passwordHasher = passwordHasher;
@@ -83,6 +89,20 @@ namespace classifieds.Authorization.Accounts
             var user =  _userManager.GetUserById(AbpSession.UserId.Value);
     
             return ObjectMapper.Map<AccountUserDto>(user);
+        }
+        [HttpPost]
+        public async Task<string> UserPhoneNumber(long userId)
+        {
+            var user =await _userManager.GetUserByIdAsync(userId);
+            if (user.ShowDefaultNumber)
+            {
+                return user.PhoneNumber;
+            }
+            else
+            {
+                string defaultNumber = await _settingsManager.GetSettingValueAsync(SiteSettings.DefaultNumber);
+                return defaultNumber;
+            }
         }
         [HttpPut]
         public async Task<bool> ChangePassword(ChangePasswordInput input)

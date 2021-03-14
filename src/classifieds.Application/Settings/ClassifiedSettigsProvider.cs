@@ -10,7 +10,7 @@ namespace classifieds.Settings
     {
         public override IEnumerable<SettingDefinition> GetSettingDefinitions(SettingDefinitionProviderContext context) => new[]
                     {
-                               new SettingDefinition(
+                   new SettingDefinition(
                         SiteSettings.SmsId,
                         "AC86a79773a7497ca6cabafdc0b0f458b0"
                         ),
@@ -30,7 +30,14 @@ namespace classifieds.Settings
                         SiteSettings.ExpirationDays,
                         "30"
                         ),
-
+                   new SettingDefinition(
+                        SiteSettings.About,
+                        "website info"
+                        ),
+                   new SettingDefinition(
+                        SiteSettings.DefaultNumber,
+                        "+987654321"
+                        ),
                 };
     }
 }

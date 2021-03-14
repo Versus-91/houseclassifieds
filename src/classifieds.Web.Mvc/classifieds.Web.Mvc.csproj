@@ -43,6 +43,7 @@
     <PackageReference Include="Abp.HangFire" Version="5.10.1" />
     <PackageReference Include="Abp.RedisCache" Version="5.10.1" />
     <PackageReference Include="Abp.Castle.Log4Net" Version="5.10.1" />
+    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
     <PackageReference Include="ReflectionIT.Mvc.Paging" Version="4.0.0" />
     <PackageReference Include="shortid" Version="3.0.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.1" />

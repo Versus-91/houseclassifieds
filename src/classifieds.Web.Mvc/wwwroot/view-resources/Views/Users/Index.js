@@ -65,6 +65,12 @@
             },
             {
                 targets: 5,
+                data: 'showDefaultNumber',
+                sortable: false,
+                render: data => `<input type="checkbox" disabled ${data ? 'checked' : ''}>`
+            },
+            {
+                targets: 6,
                 data: null,
                 sortable: false,
                 autoWidth: false,

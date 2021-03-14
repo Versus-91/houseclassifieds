@@ -49,6 +49,12 @@
                         <input id="IsActive" type="checkbox" name="IsActive" value="true" @(Model.User.IsActive ? "checked" : "") />
                     </div>
                 </div>
+                <div class="form-group row">
+                    <label class="col-md-3 col-form-label" for="ShowDefaultNumber">Show Default Number</label>
+                    <div class="col-md-9">
+                        <input id="ShowDefaultNumber" type="checkbox" name="ShowDefaultNumber" value="true" @(Model.User.ShowDefaultNumber ? "checked" : "") />
+                    </div>
+                </div>
             </div>
             <div role="tabpanel" class="tab-pane container" id="edit-user-roles">
                 <div class="row">

@@ -97,6 +97,7 @@ namespace classifieds.Posts
                 {
                     Id = m.Id,
                     Bedroom = m.Bedroom,
+                    CreatorUserId=m.CreatorUserId,
                     Area = m.Area,
                     IsVerified = m.IsVerified,
                     DistrictId=m.DistrictId,

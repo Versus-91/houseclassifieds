@@ -2,7 +2,8 @@
 	props: ['post'],
 	data: function () {
 		return {
-			data: {}
+            phoneNumber: null,
+            loading:false
 		}
     },
     filters: {
@@ -24,10 +25,20 @@
         for(let i = 0; i <= 9; i++) {
             result = result.replace(new RegExp(`${i}`, 'g'), persian[i])
         }
-        value = result
+            value = result;
         return result
         }
-	},
+    },
+    methods: {
+        getNumber: function (e) {
+            e.preventDefault();
+            this.loading = true;
+            axios.post('/api/account/GetPhoneNumber?userId=' + this.post.creatorUserId).then((res) => {
+                this.phoneNumber = res.data.result;
+                this.loading = false;
+            }).catch((err) => this.loading=false);
+        }
+    },
 	computed: {
 		diffrenceInDays: function () {
 			var t2 = new Date().getTime();
@@ -116,7 +127,7 @@
                                                 <h1 class="title is-6">{{title | persianDigit}}</h1>
                                                 <h2 class="subtitle is-6">{{subtitle | persianDigit}} <br/>{{price | persianDigit}}</h2>
                                         </div>
-										<footer class="card-footer">										  <a href="#" class="card-footer-item">											  <p><i class="fas fa-phone has-text-success"></i>  اطلاعات تماس</p>										  </a>										</footer>
+										<footer class="card-footer">										  <a v-if="phoneNumber == null"  class="card-footer-item" v-on:click="getNumber">											  <p ><i class="fas has-text-success" :class="{'fa fa-phone':loading == false,'fa-spinner fa-spin':loading == true}"></i>  اطلاعات تماس</p>										  </a>										 <p class="card-footer-item" v-else><i class="fas fa-phone has-text-success"></i>{{phoneNumber}}</p>										</footer>
                                     </div>
                                 </a>
                             </div>`

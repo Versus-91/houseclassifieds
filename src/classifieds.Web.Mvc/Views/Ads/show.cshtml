@@ -28,13 +28,43 @@
 
 <meta property="og:site_name" content="kamyab house">
 }
-<div class="section has-background-white-ter Site-content">
+<nav class="navbar is-fixed-bottom mobile is-hidden-desktop	is-info" style="z-index:1001;">
+    <div class="navbar-start">
+     <div class="navbar-item">
+        <div class="buttons">
+           <button  class="button " v-on:click="getNumber" :disabled="loadingNumber">
+              <span class="icon">
+                  <i class="fas has-text-warning" :class="{'fa fa-phone':loadingNumber == false,'fa-spinner fa-spin':loadingNumber == true}"></i>
+              </span>
+              <span v-if="phoneNumber == null" >تماس</span>
+              <span v-else>{{phoneNumber}}</span>
+          </button>
+          <button class="button " v-on:click="addFavorite">
+                     <span class="icon" v-bind:class="{'has-text-danger':liked}">
+                         <i class="fas fa-bookmark"></i>
+                     </span>
+                     <span>ذخیره</span>
+          </button>
+
+          <button class="button is-danger" v-on:click="showModal = true">
+              <span class="icon ">
+                  <i class="fas fa-flag"></i>
+              </span>
+              <span>گزارش اشکال</span>
+          </button>
+        </div>
+      </div>
+    </div>  
+</nav>
+<div class="py-2 has-background-white-ter Site-content">
     @Html.AntiForgeryToken()
     <div class="container " id="mainContainer">
         <input hidden name="id" id="id" value="@Model.Post.Id" />
         <input hidden name="Latitude" id="postLatitude" value="@Model.Post.Latitude" />
         <input hidden name="Longitude" id="postLongitude" value="@Model.Post.Longitude" />
-        <nav class="breadcrumb " aria-label="breadcrumbs">
+        <input type="hidden" value="@Model.Post.CreatorUserId" id="userId"/>
+        <br />
+        <nav class="breadcrumb mx-1" aria-label="breadcrumbs">
             <ul>
                 <li><a href="/ads?city=@Model.Post.District.Area.City.Id">@Model.Post.District.Area.City.Name</a></li>
                 <li><a href="/ads?district=@Model.Post.District.Id&city=@Model.Post.District.Area.City.Id"> @Model.Post.District.Name </a></li>
@@ -43,8 +73,8 @@
             </ul>
         </nav>
         <div class="box">
-            <div class="columns">
-                <div class="column is-5 has-text-centered">
+            <div class="columns reverse-columns">
+                <div class="column is-6 has-text-centered">
                     <h3 class="title is-4 my-3">@Model.Post.Category.Name @Model.Post.Type.Name ,شهر @Model.Post.District.Area.City.Name , @Model.Post.District.Name </h3>
                     @if (Model.Post.Category.Name.Contains("گروی") || Model.Post.Category.Name.Contains("اجاره"))
                     {
@@ -59,7 +89,7 @@
                     }
 
 
-                    <section class="level is-mobile mt-1">
+                    <section class="level is-mobile mt-2">
                          @if (Model.Post.Bedroom > 0)
                           {
                         <div class="level-item has-text-centered">
@@ -94,54 +124,53 @@
                             </div>
                         </div>
                     </section>
-                    <div class="field is-grouped btn-overlay">
-                        <p class="control">
-                            <button class="button is-danger is-small" v-on:click="showModal = true">
-                                <span class="icon ">
-                                    <i class="fas fa-flag"></i>
-                                </span>
-                            </button>
-                        </p>
-                    </div>
-
 
                     <h1 class="subtitle is-5">@Model.Post.Description</h1>
                         <div class="buttons are-small">
-                            <button class="button  is-primary">
-                                <span class="icon ">
-                                    <i class="fas fa-phone"></i>
+                            <button  class="button" v-on:click="getNumber" :disabled="loadingNumber">
+                                <span class="icon">
+                                    <i class="fas has-text-warning" :class="{'fa fa-phone':loadingNumber == false,'fa-spinner fa-spin':loadingNumber == true}"></i>
                                 </span>
-                                <span>تماس</span>
+                                <span v-if="phoneNumber == null" >تماس</span>
+                                <span v-else>{{phoneNumber}}</span>
                             </button>
-                            <button class="button  is-success " v-on:click="showShareModal = true">
+                            <button class="button" v-on:click="showShareModal = true">
                                 <span class="icon ">
                                     <i class="fas fa-share-alt"></i>
                                 </span>
                                 <span>اشتراک</span>
                             </button>
-                            <button class="button  is-link" v-on:click="addFavorite">
+                            <button class="button" v-on:click="addFavorite">
                                 <span class="icon" v-bind:class="{'has-text-danger':liked}">
                                     <i class="fas fa-bookmark"></i>
                                 </span>
                                 <span>ذخیره</span>
                             </button>
+                            <button class="button is-danger" v-on:click="showModal = true">
+                                <span class="icon ">
+                                    <i class="fas fa-flag"></i>
+                                </span>
+                            </button>
                         </div>
                         @*<span class="text-muted">کد :@Model.Post.Id</span>*@
                 </div>
-                <div class="column is-7">
-                    <div class="row">
-                        @if (Model.Post.Images.Count > 0)
-                        {
-                            <div id="demo-test-gallery" class="demo-gallery">
-                                @foreach (var image in Model.Post.Images)
-                                {
-                                    <a href="/@image.Path" data-size="1600x1600" data-med="/@image.Path" data-med-size="1024x1024" data-author="Folkert Gorter" class="demo-gallery__img--main">
-                                        <img src="/@image.Path?height=192&width=192" alt="" />
-                                    </a>
-                                }
-                            </div>
-                        }
-                    </div>
+
+                 <div class="column is-6 p-0 m-0">
+                   <div class="swiper-container" id="imageSlider">
+                     <div class="swiper-wrapper">
+                             @foreach (var image in Model.Post.Images)
+                             {  
+                               <div class="swiper-slide">
+                                   <!-- Required swiper-lazy class and image source specified in data-src attribute -->
+                                   <img v-on:click="openGallery"  src="/@image.Path?height=320&width=240" class="swiper-lazy image-box">
+                                   <!-- Preloader image -->
+                                   <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                               </div>
+                            }
+                     </div>
+                     <!-- Add Pagination -->
+                     <div class="swiper-pagination swiper-pagination-white"></div>
+                   </div>
                 </div>
             </div>
             <div class="columns my-4 ">
@@ -182,7 +211,7 @@
     @if (Model.Recommendations.Count > 0)
     {
         <div class="container mt-3">
-            <div class="swiper-container">
+            <div class="swiper-container" id="recommendations">
                 <div class="swiper-wrapper">
                     @foreach (var post in Model.Recommendations)
                     {
@@ -280,7 +309,16 @@
         </footer>
     </div>
 </div>
-<div class="modal " :class="{'is-active':showShareModal}">
+<div class="modal" :class="{'is-active':showImageModal}">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <p class="image is-4by3">
+      <img :src="image" alt="">
+    </p>
+  </div>
+  <button class="modal-close is-large" aria-label="close" v-on:click="showImageModal = false"></button>
+</div>
+<div class="modal" :class="{'is-active':showShareModal}">
     <div class="modal-background"></div>
     <div class="modal-card">
         <header class="modal-card-head">
@@ -311,61 +349,6 @@
         </section>
     </div>
 </div>
-<div id="gallery" class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="pswp__bg"></div>
-
-    <div class="pswp__scroll-wrap">
-
-        <div class="pswp__container">
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-            <div class="pswp__item"></div>
-        </div>
-
-        <div class="pswp__ui pswp__ui--hidden">
-
-            <div class="pswp__top-bar">
-
-                <div class="pswp__counter"></div>
-
-                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
-
-                <button class="pswp__button pswp__button--share" title="Share"></button>
-
-                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
-
-                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
-
-                <div class="pswp__preloader">
-                    <div class="pswp__preloader__icn">
-                        <div class="pswp__preloader__cut">
-                            <div class="pswp__preloader__donut"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-
-            <!-- <div class="pswp__loading-indicator"><div class="pswp__loading-indicator__line"></div></div> -->
-
-            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
-                <div class="pswp__share-tooltip">
-                    <!-- <a href="#" class="pswp__share--facebook"></a>
-                              <a href="#" class="pswp__share--twitter"></a>
-                              <a href="#" class="pswp__share--pinterest"></a>
-                              <a href="#" download class="pswp__share--download"></a> -->
-                </div>
-            </div>
-
-            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)"></button>
-            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)"></button>
-            <div class="pswp__caption">
-                <div class="pswp__caption__center">
-                </div>
-            </div>
-        </div>
-
-    </div>
 
 
 </div>

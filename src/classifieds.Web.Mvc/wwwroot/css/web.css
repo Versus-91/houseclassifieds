@@ -3,7 +3,10 @@
 }
 
 
-
+.image-box {
+    padding: 5px;
+    border: 1px solid #ccc;
+}
 .card-hover-shadow {
     -webkit-transition: .3s ease;
     transition: .3s ease;
@@ -421,6 +424,12 @@ body {
         border-radius: 50%;
     }
 }
+@media(max-width: 767px) { /* <== You can change this break point as per your  needs */
+    .reverse-columns {
+        flex-direction: column-reverse;
+        display: flex;
+    }
+}
 .demo-gallery {
     width: 100%;
     height: auto;
@@ -520,7 +529,18 @@ a.demo-gallery__img--main {
     width: 100%;
     height: 100%;
 }
+.swiper-button-next.swiper-button-white, .swiper-button-prev.swiper-button-white {
+    --swiper-navigation-color: #6f3030 !important;
+}
 
+.swiper-pagination-bullet {
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    border-radius: 100%;
+    background: #17a2b8 !important;
+    opacity: .2;
+}
 .swiper-slide {
     text-align: center;
     font-size: 18px;
