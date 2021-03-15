@@ -104,11 +104,12 @@ namespace classifieds.Web.Startup
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
+            app.UseResponseCompression();
+
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
-            app.UseResponseCompression();
             app.UseAbp(); // Initializes ABP framework.
 
             if (env.IsDevelopment())

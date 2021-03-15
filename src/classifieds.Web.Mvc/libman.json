@@ -4,7 +4,7 @@
   "libraries": [
     //core libs start
     {
-      "library": "jquery@3.4.1",
+      "library": "jquery@3.6.0",
       "destination": "wwwroot/libs/jquery",
       "files": [
         "jquery.js",
