@@ -9,7 +9,6 @@ using classifieds.Authentication.JwtBearer;
 using classifieds.Configuration;
 using classifieds.Identity;
 using classifieds.Services;
-using classifieds.Web.helpers;
 using classifieds.Web.Resources;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -17,7 +16,6 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
@@ -45,8 +43,6 @@ namespace classifieds.Web.Startup
 
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
-
-
             services.AddControllersWithViews(
                        options =>
                        {
@@ -70,7 +66,6 @@ namespace classifieds.Web.Startup
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.Configure<SMSoptions>(_appConfiguration.GetSection("twillo"));
             services.AddSignalR();
-            services.AddResponseCompression();
             services.AddImageSharp()
                 .SetRequestParser<QueryCollectionRequestParser>()
                 .Configure<PhysicalFileSystemCacheOptions>(options =>
@@ -104,8 +99,6 @@ namespace classifieds.Web.Startup
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
-            app.UseResponseCompression();
-
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
@@ -121,6 +114,7 @@ namespace classifieds.Web.Startup
                 app.UseExceptionHandler("/Error");
             }
             app.UseImageSharp();
+
 
             app.UseStaticFiles();
 
