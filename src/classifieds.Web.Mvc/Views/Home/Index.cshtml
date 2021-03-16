@@ -7,6 +7,11 @@
 @section styles{
     <link href="~/libs/swiper/swiper-bundle.min.css" rel="stylesheet" />
 }
+@section tags{
+
+<meta property="og:description"  content="مشاور املاک" />
+<meta name="Description" content="Put your description here.">
+}
 @section hero{
     <section class="hero " >
         <div class="hero-body">
@@ -15,7 +20,7 @@
                      <ul>
                        @foreach (var item in Model.Categories)
                            {
-                               <li data-id="@item.Id" class="cat-tab"><a>@item.Name</a></li>
+                               <li data-id="@item.Id" class="cat-tab"><a href="#">@item.Name</a></li>
                            }
                      </ul>
                 </div>
@@ -143,7 +148,7 @@
 
                                     <div class="content">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Phasellus nec iaculis mauris. <a>@@bulmaio</a>.
+                                        Phasellus nec iaculis mauris. 
                                         <a href="#">#css</a> <a href="#">#responsive</a>
                                         <br>
                                         <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
@@ -162,7 +167,7 @@
 
                                     <div class="content">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Phasellus nec iaculis mauris. <a>@@bulmaio</a>.
+                                        Phasellus nec iaculis mauris. 
                                         <a href="#">#css</a> <a href="#">#responsive</a>
                                         <br>
                                         <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
@@ -181,7 +186,7 @@
 
                                     <div class="content">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Phasellus nec iaculis mauris. <a>@@bulmaio</a>.
+                                        Phasellus nec iaculis mauris. 
                                         <a href="#">#css</a> <a href="#">#responsive</a>
                                         <br>
                                         <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
@@ -201,7 +206,7 @@
 
                                     <div class="content">
                                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Phasellus nec iaculis mauris. <a>@@bulmaio</a>.
+                                        Phasellus nec iaculis mauris.
                                         <a href="#">#css</a> <a href="#">#responsive</a>
                                         <br>
                                         <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
