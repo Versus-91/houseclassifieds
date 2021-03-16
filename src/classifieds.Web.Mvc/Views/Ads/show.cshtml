@@ -6,12 +6,15 @@
     Layout = "layout/_front"; 
 }
 @section styles{
-<link rel="stylesheet" href="~/libs/swiper/swiper-bundle.min.css" asp-append-version="true" type="text/css">
-<link rel="stylesheet" href="~/libs/photoswipe/dist/photoswipe.min.css" asp-append-version="true" type="text/css">
-<link rel="stylesheet" href="~/libs/photoswipe/dist/default-skin/default-skin.min.css" asp-append-version="true" type="text/css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    <environment names="Development">
+      <link rel="stylesheet" href="~/libs/swiper/swiper-bundle.min.css" asp-append-version="true" type="text/css">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
       crossorigin="" />
+  </environment>
+     <environment names="Staging,Production">
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.css" integrity="sha256-YxtPTDAJPRVo6svcrCBjCbRzz7lsn8LuDunnxChwuns=" crossorigin="anonymous">
+    </environment>
 }
 @section tags{
 <meta property="og:type" content="website">
@@ -354,24 +357,20 @@
 </div>
 
 @section scripts{
-<script src="~/libs/swiper/swiper-bundle.min.js" asp-append-version="true"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
 <environment names="Development">
+    <script src="~/libs/swiper/swiper-bundle.min.js" asp-append-version="true"></script>
     <script src="~/lib/vue/vue.js" asp-append-version="true"></script>
-
-    <script src="~/lib/photoswipe/photoswipe.min.js" asp-append-version="true"></script>
-    <script src="~/lib/photoswipe/photoswipe-ui-default.min.js" asp-append-version="true"></script>
     <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>
 
 </environment>
 <environment names="Staging,Production">
-    <script src="~/lib/photoswipe/photoswipe.min.js" asp-append-version="true"></script>
-    <script src="~/lib/photoswipe/photoswipe-ui-default.min.js" asp-append-version="true"></script>
-    <script src="~/lib/vue/vue.min.js" asp-append-version="true"></script>
-    <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.js" integrity="sha256-73RhwAUbMlgFyIetxjV6Rk2uPvrTcgIUuReZpQGvtiw=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js" integrity="sha256-KSlsysqp7TXtFo/FHjb1T9b425x3hrvzjMWaJyKbpcI=" crossorigin="anonymous"></script>
+  <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>
 </environment>
-<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-        crossorigin=""></script>
+
 }

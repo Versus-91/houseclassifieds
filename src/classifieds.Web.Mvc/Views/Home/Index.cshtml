@@ -5,7 +5,12 @@
     ViewBag.CurrentPageName = PageNames.Home;
     Layout = "layout/_front"; }
 @section styles{
-    <link href="~/libs/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    <environment names="Development">
+        <link href="~/libs/swiper/swiper-bundle.min.css" rel="stylesheet" />
+    </environment>
+     <environment names="Staging,Production">
+         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.css" integrity="sha256-YxtPTDAJPRVo6svcrCBjCbRzz7lsn8LuDunnxChwuns=" crossorigin="anonymous">
+    </environment>
 }
 @section tags{
 
@@ -219,7 +224,12 @@
             </div>
 
             @section Scripts{
-                <script src="~/libs/swiper/swiper-bundle.min.js"></script>
+                <environment names="Development">
+                     <script src="~/libs/swiper/swiper-bundle.min.js"></script>
+                </environment>
+                <environment names="Staging,Production">
+                    <script src="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.js" integrity="sha256-73RhwAUbMlgFyIetxjV6Rk2uPvrTcgIUuReZpQGvtiw=" crossorigin="anonymous"></script>
+                </environment>
                 <script>
                     "use strict";
                     $(function () {
