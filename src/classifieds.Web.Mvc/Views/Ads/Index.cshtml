@@ -204,9 +204,9 @@
                 <div class="column is-9 is-12-touch">
                     <div class="tabs is-toggle" v-if="category != 0">
                         <ul>
-                            <li :class="{'is-active':sort == 1}" v-on:click="search(1)"><a >جدیدترین</a></li>
-                            <li :class="{'is-active':sort == 2}" v-on:click="search(2)"><a >ارزانترین</a></li>
-                            <li :class="{'is-active':sort == 3}" v-on:click="search(3)"><a >گرانترین</a></li>
+                            <li :class="{'is-active':sort == 1}" v-on:click="search(1)"><a href="#">جدیدترین</a></li>
+                            <li :class="{'is-active':sort == 2}" v-on:click="search(2)"><a href="#">ارزانترین</a></li>
+                            <li :class="{'is-active':sort == 3}" v-on:click="search(3)"><a href="#">گرانترین</a></li>
                             <li  v-on:click="showFilters = true" class="is-hidden-desktop">
                                 <a href="#">
                                 <span class="icon is-small"><i aria-hidden="true" class="fas fa-filter has-text-success"></i></span>

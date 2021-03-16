@@ -44,7 +44,7 @@ namespace classifieds.Districts
         }
         public async Task<DistrictDto> GetById(int id)
         {
-            var districts = await _districtService.GetAllIncluding(m => m.Area).FirstOrDefaultAsync();
+            var districts = await _districtService.GetAllIncluding(m => m.Area).Where(m=>m.Id == id).FirstOrDefaultAsync();
             return _objectMapper.Map<DistrictDto>(districts);
         }
         public async Task<List<DistrictDto>> GetByAreaId(int id)
