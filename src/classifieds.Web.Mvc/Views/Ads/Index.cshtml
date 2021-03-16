@@ -31,9 +31,9 @@
                                 </select>
                             </div>
                         </div>
-                        <button style="margin-top: 2.6rem !important;" class="button" v-on:click="search()"><i class="fas fa-search"></i></button>
+                        <button aria-label="search" style="margin-top: 2.6rem !important;" class="button" v-on:click="search()"><i class="fas fa-search"></i></button>
                         <div class="column is-12">
-                            <a v-for="area of areas" class="tag is-link  p-1 m-2" :class="{'is-success':selectedArea == area.id}" v-on:click="onAreaSelect(area)">{{area.name}}</a>
+                            <a href="#" v-for="area of areas" class="tag is-link  p-1 m-2" :class="{'is-success':selectedArea == area.id}" v-on:click="onAreaSelect(area)">{{area.name}}</a>
                         </div>
                     </div>
             </div>
@@ -191,7 +191,7 @@
                         <br />
                             <ul class="menu-list mt-2">
                                 <li>
-                                <button class="button is-success is-light" v-on:click="search()">																	<span class="icon">
+                                <button class="button is-success is-light" v-on:click="search()" aria-label="search">																	<span class="icon">
                                       <i class="fas fa-search"></i>
                                       </span>
                                       <span>جستجو</span>
@@ -208,7 +208,7 @@
                             <li :class="{'is-active':sort == 2}" v-on:click="search(2)"><a >ارزانترین</a></li>
                             <li :class="{'is-active':sort == 3}" v-on:click="search(3)"><a >گرانترین</a></li>
                             <li  v-on:click="showFilters = true" class="is-hidden-desktop">
-                                <a>
+                                <a href="#">
                                 <span class="icon is-small"><i aria-hidden="true" class="fas fa-filter has-text-success"></i></span>
                                 <span>فیلتر</span>
                                 </a>
@@ -218,7 +218,7 @@
                     <div class="tabs is-toggle" v-else>
                         <ul>
                             <li  v-on:click="showFilters = true" class="is-hidden-desktop">
-                                <a>
+                                <a href="#">
                                 <span class="icon is-small"><i aria-hidden="true" class="fas fa-filter has-text-success"></i></span>
                                 <span>فیلتر</span>
                                 </a>
@@ -231,8 +231,8 @@
                     </div>
 
                     <nav class="pagination mt-3 pt-3" role="navigation" aria-label="pagination">
-                        <button class="pagination-previous" v-on:click="paginate(page - 1 )" :disabled="page <= 1">قبلی</button>
-                        <button class="pagination-next" v-on:click="paginate(page + 1 )" :disabled="((page *30) / totalItems)>1">بعدی </button>
+                        <button aria-label="previous" class="pagination-previous" v-on:click="paginate(page - 1 )" :disabled="page <= 1">قبلی</button>
+                        <button aria-label="next" class="pagination-next" v-on:click="paginate(page + 1 )" :disabled="((page *30) / totalItems)>1">بعدی </button>
                     </nav>
                     <app-block-ui v-if="loading" url="/img/icon.png" message="در حال دریافت اطلاعات ...."/>
                 </div>
@@ -287,7 +287,7 @@
                             </div>
                         </div>
                           <div class="column is-12">
-                            <button v-for="area of areas" class="tag is-link  p-1 m-2" :class="{'is-success':selectedArea == area.id}" v-on:click="onAreaSelect(area)">{{area.name}}</button>
+                            <button aria-label="area" v-for="area of areas" class="tag is-link  p-1 m-2" :class="{'is-success':selectedArea == area.id}" v-on:click="onAreaSelect(area)">{{area.name}}</button>
                         </div>
                         <div class="column is-6">
                             <p class="title is-6">نوع ملک</p>
@@ -393,7 +393,7 @@
             <div class="column is-12">
                 <div class="columns is-mobile has-text-centered">
                        <div class="column is-6">
-                            <button class="button is-success is-light is-fullwidth" v-on:click="search()">
+                            <button aria-label="search" class="button is-success is-light is-fullwidth" v-on:click="search()">
                                 <span class="icon">
                                 <i class="fas fa-search"></i>
                                 </span>
@@ -401,7 +401,7 @@
                             </button>
                         </div>						
                         <div class="column is-6">
-                            <button class="button is-danger is-light is-fullwidth" v-on:click="showFilters= false">
+                            <button aria-label="cancel" class="button is-danger is-light is-fullwidth" v-on:click="showFilters= false">
                                <span class="icon">
                                  <i class="fab fa-times"></i>
                                    </span>
@@ -426,7 +426,7 @@
     </environment>
     <environment names="Staging,Production">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>
-        <script src="~/lib/vue/vue.min.js" asp-append-version="true"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js" integrity="sha256-KSlsysqp7TXtFo/FHjb1T9b425x3hrvzjMWaJyKbpcI=" crossorigin="anonymous"></script>
         <script src="~/view-resources/Views/UserPosts/card.js" asp-append-version="true"></script>
         <script src="~/view-resources/Views/UserPosts/blockui.js" asp-append-version="true"></script>
         <script src="~/view-resources/Views/UserPosts/main.js" asp-append-version="true"></script>
