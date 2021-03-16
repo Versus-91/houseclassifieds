@@ -194,7 +194,7 @@
                                     <span class="tag is-info is-light is-medium">
                                         @if(!String.IsNullOrWhiteSpace(item.Icon)){
                                           <figure class="image is-24x24">
-                                            <img src="/@item.Icon"/>
+                                            <img src="/@item.Icon" alt="amenity"/>
                                           </figure>
                                         }
                                     @item.Name
@@ -315,8 +315,8 @@
 <div class="modal" :class="{'is-active':showImageModal}">
   <div class="modal-background"></div>
   <div class="modal-content">
-    <p class="image is-4by3">
-      <img :src="image" alt="">
+    <p class="image ">
+      <img :src="image" alt="@ViewBag.Title">
     </p>
   </div>
   <button class="modal-close is-large" aria-label="close" v-on:click="showImageModal = false"></button>
