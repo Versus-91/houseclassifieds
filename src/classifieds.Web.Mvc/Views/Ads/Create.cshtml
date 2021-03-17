@@ -4,8 +4,7 @@
 	Layout = "layout/_front"; 
 }
 @section styles{
-	<link href="~/lib/dropzone/dist/min/dropzone.min.css" rel="stylesheet" asp-append-version="true" />
-	 <link href="~/lib/LeafletSearch/dist/leaflet-search.min.css" rel="stylesheet" asp-append-version="true" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/dropzone@5.8.1/dist/min/dropzone.min.css" integrity="sha256-n/Cuyrm+v15Nim0mJ2ZrElHlCk8raJs/57WeCsIzDr4=" crossorigin="anonymous">	 <link href="~/lib/LeafletSearch/dist/leaflet-search.min.css" rel="stylesheet" asp-append-version="true" />
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
 		  integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
 		  crossorigin="" />
@@ -64,7 +63,7 @@
 								</div>
 								<span class="help is-danger" asp-validation-for="DistrictId"></span>
 							</div>
-							<div class="field column is-4 py-0">
+							<div class="field column is-4 ">
 								<label asp-for="DistrictId" class="label">محله <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
 								<div class="control has-icons-right">
 									<div class="select is-fullwidth hide-arrow">
@@ -127,7 +126,7 @@
 
 							</div>
 							<div class="field column is-6 p-0" id="bedroom">
-								<label asp-for="Bedroom" class="label">تعداد خواب</label>
+								<label asp-for="Bedroom" class="label">تعداد اتاق</label>
 								<div class="control  has-icons-left has-icons-right">
 									<div class="select is-fullwidth">
 										<select asp-for="Bedroom" v-model="room">
@@ -338,9 +337,9 @@
 		});
 		});
 		</script>
-	<script src="~/lib/dropzone/dist/min/dropzone.min.js" asp-append-version="true">
-	</script>
-	<script asp-append-version="true" src="~/lib/vue/vue.min.js"></script>
+		   <script src="https://cdn.jsdelivr.net/npm/dropzone@5.8.1/dist/dropzone.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js" integrity="sha256-KSlsysqp7TXtFo/FHjb1T9b425x3hrvzjMWaJyKbpcI=" crossorigin="anonymous"></script>
 	<script src="//unpkg.com/leaflet/dist/leaflet.js"></script>
 	<script src="//unpkg.com/vue2-leaflet"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>   

@@ -147,7 +147,7 @@ new Vue({
         axios.get('/api/services/app/reportoption/getall').then((res) => {
             this.options = res.data.result.items;
             if (!!this.options) {
-                this.option = this.options[0].id;
+                this.option = this.options[0]?.id;
             }
         });
 

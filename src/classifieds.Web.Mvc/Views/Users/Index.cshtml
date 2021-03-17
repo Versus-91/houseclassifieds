@@ -16,7 +16,7 @@
 }
 
 <div class="section Site-content">
-    <div class="container">
+    <div class="container" style="min-height:50vh;">
         <div class="columns">
             <div class=" column is-12  has-text-centered is-12-mobile">
                 @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.User.UserName)
@@ -125,7 +125,7 @@
         $(document).ready(function(){  
            $('.persian').persianNum();
         });
-    </script>}
+    </script>
     <script>
 
         class BulmaModal {
