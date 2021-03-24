@@ -183,6 +183,11 @@ namespace classifieds.Authorization.Accounts
             user.Name = input.Name;
             user.Surname = input.Surname;
             user.EmailAddress = input.EmailAddress;
+            user.PhoneNumber = input.PhoneNumber;
+            if (user.PhoneNumber != input.PhoneNumber)
+            {
+                user.IsPhoneNumberConfirmed = false;
+            }
             user.SetNormalizedNames();
             CheckErrors(await _userManager.UpdateAsync(user));
 

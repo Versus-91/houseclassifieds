@@ -29,10 +29,6 @@
 		maxArea: null,
 		minPrice: null,
 		maxPrice: null,
-		minRent: null,
-		maxRent: null,
-		minDeposit: null,
-		maxDeposit: null,
 		totalItems: 0,
 		showFilters: false,
 		uri: '',
@@ -97,13 +93,9 @@
 				maxArea: this.maxArea,
 				minPrice: this.minPrice,
 				maxPrice: this.maxPrice,
-				minRent: this.minRent,
-				maxRent: this.maxRent,
 				types: this.type,
 				featured: this.featured,
 				beds: this.roomsCount,
-				minDeposit: this.minDeposit,
-				maxDeposit: this.maxDeposit,
 			};
 			if (this.hasMedia == true) {
 				data.hasMedia = true;
@@ -116,21 +108,11 @@
 					break;
 				case 2:
 					if (!!this.categoryText) {
-						if (this.categoryText.includes("اجاره") || this.categoryText.includes("گروی")) {
-							query = "sorting =Rent,Deposit Asc"
-						} else {
-							query = "sorting=Price Asc"
-						}
+					query = "sorting=Price Asc"
 					}
 					break;
 				case 3: 
-					if (!!this.categoryText) {
-						if (this.categoryText.includes("اجاره") || this.categoryText.includes("گروی")) {
-							query = "sorting=Rent,Deposit Desc"
-						} else {
-							query = "sorting=Price Desc"
-						}
-					}
+					query = "sorting=Price Desc"
 					break;
 			}
 			if (!!query) {

@@ -65,20 +65,7 @@
             return title.join(" , ");
         },
         price: function () {
-            if (this.post.category.name.includes("کرای") || this.post.category.name.includes("گروی") || this.post.category.name.includes("اجاره")) {
-                var priceLabel = "";
-                if (this.post.deposit > 0) {
-                    priceLabel += " پیش پرداخت :  " + this.post.deposit + "دالر";
-                }
-                if (this.post.rent > 0) {
-                    priceLabel += "  اجاره :  " + this.post.rent + "دالر";
-                }
-                return priceLabel;
-            }
-            else if (this.post.category.name.includes("فروش") ) {
                 return this.post.price + "دالر";
-            }
-            return "";
         },
         subtitle: function () {
             var subtitle = [];

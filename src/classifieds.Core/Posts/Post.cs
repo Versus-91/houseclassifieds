@@ -14,7 +14,6 @@ namespace classifieds.Posts
 {
     public class Post :AuditedEntity,IHasCreationTime
     {
-        public string Code { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public bool IsFeatured { get; set; } = false;
@@ -32,8 +31,6 @@ namespace classifieds.Posts
         public byte Bedroom { get; set; }
         public IList<PostAmenity> PostAmenities { get; set; }
         public uint View { get; set; }
-        public double Deposit { get; set; }
-        public double Rent { get; set; }
         public double Price { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }

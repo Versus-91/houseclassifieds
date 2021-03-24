@@ -82,11 +82,10 @@ namespace classifieds.Posts
                 .WhereIf(input.Beds.HasValue, t => t.Bedroom >= input.Beds.Value)
                 .WhereIf(input.MinArea.HasValue && input.MaxArea.HasValue, t => t.Area >= input.MinArea.Value && t.Area <= input.MaxArea.Value)
                 .WhereIf(input.MinPrice.HasValue && input.MaxPrice.HasValue, t => t.Price >= input.MinPrice.Value && t.Price <= input.MaxPrice.Value)
-                .WhereIf(input.MinRent.HasValue && input.MaxRent.HasValue, t => t.Rent >= input.MinRent.Value && t.Rent <= input.MaxRent.Value)
-                .WhereIf(input.MinDeposit.HasValue && input.MaxDeposit.HasValue, t => t.Deposit >= input.MinDeposit.Value && t.Deposit <= input.MaxDeposit.Value)
                 .WhereIf(input.Amenities != null && input.Amenities.Count > 0, t => t.PostAmenities.Any(m => input.Amenities.Contains(m.AmenityId)))
                 .WhereIf(input.Types != null && input.Types.Count > 0, t => input.Types.Contains(t.TypeId))
                 .WhereIf(input.UserId != null, t => t.CreatorUserId == input.UserId)
+                .WhereIf(input.Id != null, t => t.Id == input.Id)
                 .OrderByDescending(m => m.CreationTime);
 
         }
@@ -102,8 +101,6 @@ namespace classifieds.Posts
                     IsVerified = m.IsVerified,
                     DistrictId=m.DistrictId,
                     Price = m.Price,
-                    Deposit = m.Deposit,
-                    Rent = m.Rent,
                     Age = m.Age,
                     CategoryId =m.CategoryId,
                     TypeId=m.TypeId,
@@ -174,8 +171,6 @@ namespace classifieds.Posts
                     Description = m.Description,
                     DistrictId = m.DistrictId,
                     Price = m.Price,
-                    Deposit = m.Deposit,
-                    Rent = m.Rent,
                     CategoryId = m.CategoryId,
                     TypeId = m.TypeId,
                     Category = ObjectMapper.Map<CategoryViewModel>(m.Category),
@@ -291,14 +286,12 @@ namespace classifieds.Posts
             post.CategoryId = input.CategoryId;
             post.DistrictId = input.DistrictId;
             post.Age = input.Age;
-            post.Deposit = input.Deposit;
             post.Description = input.Description;
             post.Area = input.Area;
             post.Bedroom = input.Bedroom;
             post.Latitude = input.Latitude;
             post.Longitude = input.Longitude;
             post.Price = input.Price;
-            post.Rent = input.Rent;
             post.TypeId = input.TypeId;
             post.PostAmenities = amenities;
             await _postRepository.UpdateAsync(post);

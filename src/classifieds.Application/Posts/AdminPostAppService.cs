@@ -111,8 +111,6 @@ namespace classifieds.Posts
                     IsVerified = m.IsVerified,
                     DistrictId = m.DistrictId,
                     Price = m.Price,
-                    Deposit = m.Deposit,
-                    Rent = m.Rent,
                     Age = m.Age,
                     CategoryId = m.CategoryId,
                     TypeId = m.TypeId,

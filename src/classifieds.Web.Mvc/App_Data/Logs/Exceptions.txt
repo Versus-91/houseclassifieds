@@ -19296,3 +19296,381 @@ INFO  2021-03-17 20:43:42,371 [10   ] .Mvc.Infrastructure.ObjectResultExecutor -
 INFO  2021-03-17 20:43:42,375 [10   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Areas.Admin.Controllers.DistrictsController.GetByCityId (classifieds.Web.Mvc) in 145.9919ms
 INFO  2021-03-17 20:43:42,379 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Areas.Admin.Controllers.DistrictsController.GetByCityId (classifieds.Web.Mvc)'
 INFO  2021-03-17 20:43:42,383 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 223.5653ms 200 application/json; charset=utf-8
+DEBUG 2021-03-24 21:38:29,219 [1    ] Abp.Modules.AbpModuleManager             - Loading Abp modules...
+DEBUG 2021-03-24 21:38:29,406 [1    ] Abp.Modules.AbpModuleManager             - Found 15 ABP modules in total.
+DEBUG 2021-03-24 21:38:29,422 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.Web.Startup.classifiedsWebMvcModule, classifieds.Web.Mvc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,424 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsWebCoreModule, classifieds.Web.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,425 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsApplicationModule, classifieds.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,425 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.classifiedsCoreModule, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,425 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCoreModule, Abp.ZeroCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,426 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.AbpZeroCommonModule, Abp.Zero.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,426 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AbpKernelModule, Abp, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,427 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AutoMapper.AbpAutoMapperModule, Abp.AutoMapper, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,427 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: classifieds.EntityFrameworkCore.classifiedsEntityFrameworkModule, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,427 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Zero.EntityFrameworkCore.AbpZeroCoreEntityFrameworkCoreModule, Abp.ZeroCore.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,428 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFrameworkCore.AbpEntityFrameworkCoreModule, Abp.EntityFrameworkCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,428 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.EntityFramework.AbpEntityFrameworkCommonModule, Abp.EntityFramework.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,428 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.AbpAspNetCoreModule, Abp.AspNetCore, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,428 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.Web.AbpWebCommonModule, Abp.Web.Common, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,428 [1    ] Abp.Modules.AbpModuleManager             - Loaded module: Abp.AspNetCore.SignalR.AbpAspNetCoreSignalRModule, Abp.AspNetCore.SignalR, Version=5.10.1.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:29,431 [1    ] Abp.Modules.AbpModuleManager             - 15 modules loaded.
+DEBUG 2021-03-24 21:38:29,612 [1    ] o.Configuration.LanguageManagementConfig - Converted Abp (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2021-03-24 21:38:29,612 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpZero (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2021-03-24 21:38:29,612 [1    ] o.Configuration.LanguageManagementConfig - Converted classifieds (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2021-03-24 21:38:29,612 [1    ] o.Configuration.LanguageManagementConfig - Converted AbpWeb (Abp.Localization.Dictionaries.DictionaryBasedLocalizationSource) to MultiTenantLocalizationSource
+DEBUG 2021-03-24 21:38:30,320 [1    ] ameworkCore.AbpEntityFrameworkCoreModule - Registering DbContext: classifieds.EntityFrameworkCore.classifiedsDbContext, classifieds.EntityFrameworkCore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+DEBUG 2021-03-24 21:38:31,591 [1    ] Abp.Localization.LocalizationManager     - Initializing 4 localization sources.
+DEBUG 2021-03-24 21:38:31,624 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: Abp
+DEBUG 2021-03-24 21:38:31,638 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpZero
+DEBUG 2021-03-24 21:38:31,656 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: classifieds
+DEBUG 2021-03-24 21:38:31,674 [1    ] Abp.Localization.LocalizationManager     - Initialized localization source: AbpWeb
+DEBUG 2021-03-24 21:38:31,923 [1    ] Abp.BackgroundJobs.BackgroundJobManager  - Start background worker: Castle.Proxies.BackgroundJobManagerProxy
+DEBUG 2021-03-24 21:38:32,111 [1    ] , Culture=neutral, PublicKeyToken=null]] - Start background worker: Abp.Authorization.Users.UserTokenExpirationWorker`2[[classifieds.MultiTenancy.Tenant, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[classifieds.Authorization.Users.User, classifieds.Core, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]
+DEBUG 2021-03-24 21:38:32,191 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - Found 32 classes define auto mapping attributes
+DEBUG 2021-03-24 21:38:32,191 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Models.TokenAuth.ExternalLoginProviderInfoModel
+DEBUG 2021-03-24 21:38:32,197 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.CreateUserDto
+DEBUG 2021-03-24 21:38:32,197 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Users.Dto.UserDto
+DEBUG 2021-03-24 21:38:32,198 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.TenantLoginInfoDto
+DEBUG 2021-03-24 21:38:32,198 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Sessions.Dto.UserLoginInfoDto
+DEBUG 2021-03-24 21:38:32,198 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Roles.Dto.PermissionDto
+DEBUG 2021-03-24 21:38:32,198 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Reports.Dto.CreateReportInput
+DEBUG 2021-03-24 21:38:32,198 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Reports.Dto.ReportDto
+DEBUG 2021-03-24 21:38:32,199 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.ReportOptions.Dto.ReportOptionDto
+DEBUG 2021-03-24 21:38:32,199 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.PropertyTypes.Dto.PropertyTypeDto
+DEBUG 2021-03-24 21:38:32,199 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.CategoryViewModel
+DEBUG 2021-03-24 21:38:32,199 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.CityViewModel
+DEBUG 2021-03-24 21:38:32,199 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.CreatePostInput
+DEBUG 2021-03-24 21:38:32,199 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.DistrictViewModel
+DEBUG 2021-03-24 21:38:32,199 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.ImageViewModel
+DEBUG 2021-03-24 21:38:32,200 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.PostDto
+DEBUG 2021-03-24 21:38:32,200 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.TypeViewModel
+DEBUG 2021-03-24 21:38:32,200 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Dto.UpdatePostInput
+DEBUG 2021-03-24 21:38:32,200 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Posts.Admin.Dto.AdminUpdatePostInput
+DEBUG 2021-03-24 21:38:32,200 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.PostsAmenities.Dto.PostAmenityDto
+DEBUG 2021-03-24 21:38:32,200 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Notification.Dto.UserNotificationIdDto
+DEBUG 2021-03-24 21:38:32,200 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.CreateTenantDto
+DEBUG 2021-03-24 21:38:32,200 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.MultiTenancy.Dto.TenantDto
+DEBUG 2021-03-24 21:38:32,200 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Favorites.Dto.FavoriteDto
+DEBUG 2021-03-24 21:38:32,201 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Districts.Dto.DistrictDto
+DEBUG 2021-03-24 21:38:32,201 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Cities.Dto.CityDto
+DEBUG 2021-03-24 21:38:32,201 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Categories.Dto.CategoryDto
+DEBUG 2021-03-24 21:38:32,201 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Authorization.Accounts.Dto.AccountUserDto
+DEBUG 2021-03-24 21:38:32,201 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Areas.Dto.AreaDto
+DEBUG 2021-03-24 21:38:32,201 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Amenities.Dto.AmenityDto
+DEBUG 2021-03-24 21:38:32,201 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Web.Views.Shared.Components.TenantChange.TenantChangeViewModel
+DEBUG 2021-03-24 21:38:32,201 [1    ] Abp.AutoMapper.AbpAutoMapperModule       - classifieds.Web.Models.Roles.EditRoleModalViewModel
+DEBUG 2021-03-24 21:38:32,668 [1    ] classifieds.Jobs.PostsJob                - Start background worker: Castle.Proxies.PostsJobProxy
+INFO  2021-03-24 21:38:35,346 [1    ] tCore.Builder.RequestLocalizationOptions - Supported Request Localization Cultures: en,es-MX,fr,de,it,nl,pt-BR,tr,ru,ar,ja,zh-Hans
+INFO  2021-03-24 21:38:36,514 [1    ] taProtection.KeyManagement.XmlKeyManager - User profile is available. Using 'C:\Users\qq\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+INFO  2021-03-24 21:38:36,591 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/  
+INFO  2021-03-24 21:38:36,680 [4    ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:38:36,761 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:38:41,008 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Home", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] Index() on controller classifieds.Web.Controllers.HomeController (classifieds.Web.Mvc).
+INFO  2021-03-24 21:38:43,687 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2021-03-24 21:38:44,059 [8    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 436.0846ms.
+INFO  2021-03-24 21:38:44,065 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc) in 3053.4412ms
+INFO  2021-03-24 21:38:44,068 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.HomeController.Index (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:38:44,080 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 7491.5314ms 200 text/html; charset=utf-8
+INFO  2021-03-24 21:38:44,159 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/css/bulma-rtl.min.css?v=boZUF3xMqnX0rLIl0Am_DowLtNisP3uqvem4gHIUWms  
+INFO  2021-03-24 21:38:44,164 [17   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/css/web.css?v=dZUQr2-d-R0aa-q3JHJGr6hkjKCMCKH4h7XdpO7Oabw  
+INFO  2021-03-24 21:38:44,167 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/swiper/swiper-bundle.min.css  
+INFO  2021-03-24 21:38:44,170 [16   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/font-awesome/css/all.min.css?v=-N4_V_SbAFiW1MPBCXnfnP9QSN3-Keu-NlB-0ev_YKQ  
+INFO  2021-03-24 21:38:44,188 [17   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/css/web.css'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\css\web.css'
+INFO  2021-03-24 21:38:44,192 [13   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/swiper/swiper-bundle.min.css'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\swiper\swiper-bundle.min.css'
+INFO  2021-03-24 21:38:44,195 [17   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 31.3912ms 200 text/css
+INFO  2021-03-24 21:38:44,198 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 34.0663ms 200 text/css
+INFO  2021-03-24 21:38:44,212 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/lib/bulma/css/bulma-rtl.min.css'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\lib\bulma\css\bulma-rtl.min.css'
+INFO  2021-03-24 21:38:44,215 [12   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/font-awesome/css/all.min.css'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\font-awesome\css\all.min.css'
+INFO  2021-03-24 21:38:44,217 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 60.7129ms 200 text/css
+INFO  2021-03-24 21:38:44,220 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 56.339ms 200 text/css
+INFO  2021-03-24 21:38:44,797 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/swiper/swiper-bundle.min.js  
+INFO  2021-03-24 21:38:44,827 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/img/placeholder.png  
+INFO  2021-03-24 21:38:44,828 [17   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/img/icon.png  
+INFO  2021-03-24 21:38:44,840 [15   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/swiper/swiper-bundle.min.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\swiper\swiper-bundle.min.js'
+INFO  2021-03-24 21:38:44,855 [15   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 46.0994ms 200 application/javascript
+INFO  2021-03-24 21:38:44,873 [17   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/img/icon.png'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\img\icon.png'
+INFO  2021-03-24 21:38:44,877 [17   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 50.9406ms 200 image/png
+INFO  2021-03-24 21:38:44,885 [5    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/img/placeholder.png'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\img\placeholder.png'
+INFO  2021-03-24 21:38:44,888 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 62.782ms 200 image/png
+INFO  2021-03-24 21:38:44,941 [16   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/font-awesome/webfonts/fa-solid-900.woff2  
+INFO  2021-03-24 21:38:44,973 [13   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/font-awesome/webfonts/fa-solid-900.woff2'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\font-awesome\webfonts\fa-solid-900.woff2'
+INFO  2021-03-24 21:38:44,977 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 36.571ms 200 font/woff2
+INFO  2021-03-24 21:38:49,382 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=2  
+INFO  2021-03-24 21:38:49,393 [5    ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:38:49,397 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:38:49,429 [5    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2021-03-24 21:38:50,690 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2021-03-24 21:38:50,871 [5    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 209.0252ms.
+INFO  2021-03-24 21:38:50,873 [5    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 1442.2346ms
+INFO  2021-03-24 21:38:50,876 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:38:50,878 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 1498.5206ms 200 text/html; charset=utf-8
+INFO  2021-03-24 21:38:50,915 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/vue/vue.js?v=FZ8KwMj1F6qnNgA7bhPryVm19xKduH5OVr8u7I1tAtc  
+INFO  2021-03-24 21:38:50,918 [17   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/UserPosts/card.js?v=5bhi1x6tDot9Ymv3dGkuRSnx8TGqJN1umSkWi1vbgb4  
+INFO  2021-03-24 21:38:50,921 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/UserPosts/main.js?v=7OZszyDMVq_iS60ypygN-bjXcp7X5hzgFHEkP9ZwGHk  
+INFO  2021-03-24 21:38:50,923 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/UserPosts/blockui.js?v=mMPljLKDmMOgXjxmzAGi_d2Uwb_Hi0dGBJ0QCF6PoKY  
+INFO  2021-03-24 21:38:50,927 [17   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/UserPosts/card.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\UserPosts\card.js'
+INFO  2021-03-24 21:38:50,932 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/UserPosts/main.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\UserPosts\main.js'
+INFO  2021-03-24 21:38:50,936 [17   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 13.2042ms 200 application/javascript
+INFO  2021-03-24 21:38:50,939 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 18.5059ms 200 application/javascript
+INFO  2021-03-24 21:38:50,942 [18   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/UserPosts/blockui.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\UserPosts\blockui.js'
+INFO  2021-03-24 21:38:50,945 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 27.5682ms 200 application/javascript
+INFO  2021-03-24 21:38:50,950 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/lib/vue/vue.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\lib\vue\vue.js'
+INFO  2021-03-24 21:38:50,954 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 38.6308ms 200 application/javascript
+INFO  2021-03-24 21:38:50,960 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/font-awesome/webfonts/fa-brands-400.woff2  
+INFO  2021-03-24 21:38:50,992 [11   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/font-awesome/webfonts/fa-brands-400.woff2'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\font-awesome\webfonts\fa-brands-400.woff2'
+INFO  2021-03-24 21:38:50,994 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 34.5199ms 200 font/woff2
+INFO  2021-03-24 21:38:51,525 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/city/getall  
+INFO  2021-03-24 21:38:51,527 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/post/getall?category=2&SkipCount=0&MaxResultCount=30  
+INFO  2021-03-24 21:38:51,538 [11   ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:38:51,542 [5    ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:38:51,546 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Cities.CityAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:38:51,548 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:38:51,562 [11   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Posts.Dto.PostDto]] GetAllAsync(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Posts.PostAppService (classifieds.Application).
+INFO  2021-03-24 21:38:51,564 [5    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Cities.Dto.CityDto]] GetAllAsync(Abp.Application.Services.Dto.PagedAndSortedResultRequestDto) on controller classifieds.Cities.CityAppService (classifieds.Application).
+INFO  2021-03-24 21:38:51,612 [5    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2021-03-24 21:38:51,678 [5    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Cities.CityAppService.GetAllAsync (classifieds.Application) in 88.4707ms
+INFO  2021-03-24 21:38:51,681 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Cities.CityAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:38:51,684 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 158.9956ms 200 application/json; charset=utf-8
+INFO  2021-03-24 21:38:51,877 [4    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2021-03-24 21:38:51,907 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application) in 341.1744ms
+INFO  2021-03-24 21:38:51,909 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:38:51,912 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 387.4794ms 200 application/json; charset=utf-8
+INFO  2021-03-24 21:38:51,937 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/images/074b71ed1cba4f589fe0179966478639.png?width=600&height=480  
+INFO  2021-03-24 21:38:52,003 [8    ] harp.Web.Middleware.ImageSharpMiddleware - Sending image. Request uri: 'http://localhost:62114/images/074b71ed1cba4f589fe0179966478639.png?width=600&height=480'. Cached Key: '773372f8aa37'
+INFO  2021-03-24 21:38:52,030 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 92.263ms 200 image/png
+INFO  2021-03-24 21:38:54,811 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads/1  
+INFO  2021-03-24 21:38:54,816 [4    ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:38:54,820 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Show (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:38:54,830 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Show", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Show(Int32) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2021-03-24 21:38:55,041 [8    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Show.
+INFO  2021-03-24 21:38:55,146 [11   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Show executed in 131.4105ms.
+INFO  2021-03-24 21:38:55,149 [11   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Show (classifieds.Web.Mvc) in 315.912ms
+INFO  2021-03-24 21:38:55,152 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Show (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:38:55,156 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 344.9213ms 200 text/html; charset=utf-8
+INFO  2021-03-24 21:38:55,183 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/swiper/swiper-bundle.min.css?v=qjUDNDngv9r7smuMxfqEtFHfsj2iT07IutDz6eUtIY4  
+INFO  2021-03-24 21:38:55,190 [11   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/swiper/swiper-bundle.min.css'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\swiper\swiper-bundle.min.css'
+INFO  2021-03-24 21:38:55,193 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/UserPosts/show.js?v=CB5YL5s5FeCMlLbQQO8G-jAQ39RxPDVlSUbDAbcY2rE  
+INFO  2021-03-24 21:38:55,196 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/swiper/swiper-bundle.min.js?v=LMYjJTscNTzTq_Oc1om788pYXK6WhNX3Cx9Briuw1VM  
+INFO  2021-03-24 21:38:55,199 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/images/074b71ed1cba4f589fe0179966478639.png?height=320&width=240  
+INFO  2021-03-24 21:38:55,202 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 10.7277ms 200 text/css
+INFO  2021-03-24 21:38:55,206 [18   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/UserPosts/show.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\UserPosts\show.js'
+INFO  2021-03-24 21:38:55,209 [18   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 16.7912ms 200 application/javascript
+INFO  2021-03-24 21:38:55,216 [12   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/swiper/swiper-bundle.min.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\swiper\swiper-bundle.min.js'
+INFO  2021-03-24 21:38:55,220 [18   ] harp.Web.Middleware.ImageSharpMiddleware - Sending image. Request uri: 'http://localhost:62114/images/074b71ed1cba4f589fe0179966478639.png?height=320&width=240'. Cached Key: 'dc952f17b653'
+INFO  2021-03-24 21:38:55,223 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 27.8499ms 200 application/javascript
+INFO  2021-03-24 21:38:55,234 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 41.33ms 200 image/png
+INFO  2021-03-24 21:38:55,794 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/favorite/GetFavorite?postid=1  
+INFO  2021-03-24 21:38:55,797 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/reportoption/getall  
+INFO  2021-03-24 21:38:55,806 [11   ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:38:55,809 [13   ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:38:55,812 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.ReportOptions.ReportOptionAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:38:55,815 [13   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Favorites.FavoriteAppService.GetFavorite (classifieds.Application)'
+INFO  2021-03-24 21:38:55,828 [13   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetFavorite", controller = "Favorite"}. Executing controller action with signature System.Threading.Tasks.Task`1[classifieds.Favorites.Dto.FavoriteResult] GetFavorite(Int32) on controller classifieds.Favorites.FavoriteAppService (classifieds.Application).
+INFO  2021-03-24 21:38:55,830 [11   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "ReportOption"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.ReportOptions.Dto.ReportOptionDto]] GetAllAsync(Abp.Application.Services.Dto.PagedAndSortedResultRequestDto) on controller classifieds.ReportOptions.ReportOptionAppService (classifieds.Application).
+INFO  2021-03-24 21:38:56,835 [5    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2021-03-24 21:38:56,845 [5    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.ReportOptions.ReportOptionAppService.GetAllAsync (classifieds.Application) in 1009.4641ms
+INFO  2021-03-24 21:38:56,848 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.ReportOptions.ReportOptionAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:38:56,851 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 1056.8528ms 200 application/json; charset=utf-8
+INFO  2021-03-24 21:38:56,900 [6    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2021-03-24 21:38:56,905 [6    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Favorites.FavoriteAppService.GetFavorite (classifieds.Application) in 1072.7792ms
+INFO  2021-03-24 21:38:56,908 [6    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Favorites.FavoriteAppService.GetFavorite (classifieds.Application)'
+INFO  2021-03-24 21:38:56,910 [6    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 1116.1962ms 200 application/json; charset=utf-8
+INFO  2021-03-24 21:38:59,693 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/images/074b71ed1cba4f589fe0179966478639.png  
+INFO  2021-03-24 21:38:59,716 [13   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/images/074b71ed1cba4f589fe0179966478639.png'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\images\074b71ed1cba4f589fe0179966478639.png'
+INFO  2021-03-24 21:38:59,719 [13   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 26.3247ms 200 image/png
+INFO  2021-03-24 21:39:01,314 [11   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=2  
+INFO  2021-03-24 21:39:01,318 [11   ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:39:01,320 [11   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:39:01,327 [11   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2021-03-24 21:39:01,404 [15   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2021-03-24 21:39:01,441 [14   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 36.0573ms.
+INFO  2021-03-24 21:39:01,443 [14   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 113.4353ms
+INFO  2021-03-24 21:39:01,447 [14   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:39:01,450 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 135.9124ms 200 text/html; charset=utf-8
+INFO  2021-03-24 21:39:02,774 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=2  
+INFO  2021-03-24 21:39:02,779 [14   ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:39:02,781 [14   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:39:02,788 [14   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2021-03-24 21:39:02,883 [15   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2021-03-24 21:39:02,928 [8    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 44.8473ms.
+INFO  2021-03-24 21:39:02,930 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 139.6833ms
+INFO  2021-03-24 21:39:02,933 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:39:02,937 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 163.1297ms 200 text/html; charset=utf-8
+INFO  2021-03-24 21:39:02,965 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/UserPosts/main.js?v=7OZszyDMVq_iS60ypygN-bjXcp7X5hzgFHEkP9ZwGHk  
+INFO  2021-03-24 21:39:02,969 [8    ] NetCore.StaticFiles.StaticFileMiddleware - The file /view-resources/Views/UserPosts/main.js was not modified
+INFO  2021-03-24 21:39:02,973 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.6933ms 304 application/javascript
+INFO  2021-03-24 21:39:03,019 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/post/getall?category=2&SkipCount=0&MaxResultCount=30  
+INFO  2021-03-24 21:39:03,023 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/city/getall  
+INFO  2021-03-24 21:39:03,029 [8    ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:39:03,032 [4    ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:39:03,036 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Cities.CityAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:39:03,040 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:39:03,042 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/img/icon.png  
+INFO  2021-03-24 21:39:03,048 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/img/icon.png'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\img\icon.png'
+INFO  2021-03-24 21:39:03,052 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.7936ms 200 image/png
+INFO  2021-03-24 21:39:03,057 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Posts.Dto.PostDto]] GetAllAsync(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Posts.PostAppService (classifieds.Application).
+INFO  2021-03-24 21:39:03,059 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Cities.Dto.CityDto]] GetAllAsync(Abp.Application.Services.Dto.PagedAndSortedResultRequestDto) on controller classifieds.Cities.CityAppService (classifieds.Application).
+INFO  2021-03-24 21:39:03,109 [8    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2021-03-24 21:39:03,112 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Cities.CityAppService.GetAllAsync (classifieds.Application) in 50.6425ms
+INFO  2021-03-24 21:39:03,115 [12   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2021-03-24 21:39:03,118 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Cities.CityAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:39:03,121 [12   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application) in 60.6374ms
+INFO  2021-03-24 21:39:03,125 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 100.8613ms 200 application/json; charset=utf-8
+INFO  2021-03-24 21:39:03,129 [12   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:39:03,133 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 114.3071ms 200 application/json; charset=utf-8
+INFO  2021-03-24 21:39:27,696 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads?category=2  
+INFO  2021-03-24 21:39:27,700 [5    ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:39:27,704 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:39:27,710 [5    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2021-03-24 21:39:27,795 [5    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2021-03-24 21:39:27,829 [8    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 34.638ms.
+INFO  2021-03-24 21:39:27,832 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 119.908ms
+INFO  2021-03-24 21:39:27,834 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:39:27,837 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 141.7055ms 200 text/html; charset=utf-8
+INFO  2021-03-24 21:39:27,868 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/UserPosts/main.js?v=7OZszyDMVq_iS60ypygN-bjXcp7X5hzgFHEkP9ZwGHk  
+INFO  2021-03-24 21:39:27,873 [8    ] NetCore.StaticFiles.StaticFileMiddleware - The file /view-resources/Views/UserPosts/main.js was not modified
+INFO  2021-03-24 21:39:27,878 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 8.8649ms 304 application/javascript
+INFO  2021-03-24 21:39:27,929 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/post/getall?category=2&SkipCount=0&MaxResultCount=30  
+INFO  2021-03-24 21:39:27,932 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/city/getall  
+INFO  2021-03-24 21:39:27,937 [8    ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:39:27,940 [10   ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:39:27,943 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:39:27,946 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Cities.CityAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:39:27,954 [10   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Cities.Dto.CityDto]] GetAllAsync(Abp.Application.Services.Dto.PagedAndSortedResultRequestDto) on controller classifieds.Cities.CityAppService (classifieds.Application).
+INFO  2021-03-24 21:39:27,956 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Posts.Dto.PostDto]] GetAllAsync(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Posts.PostAppService (classifieds.Application).
+INFO  2021-03-24 21:39:28,006 [4    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2021-03-24 21:39:28,010 [8    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2021-03-24 21:39:28,015 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Cities.CityAppService.GetAllAsync (classifieds.Application) in 55.1525ms
+INFO  2021-03-24 21:39:28,021 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Cities.CityAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:39:28,024 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application) in 62.483ms
+INFO  2021-03-24 21:39:28,027 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 97.9605ms 200 application/json; charset=utf-8
+INFO  2021-03-24 21:39:28,033 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:39:28,037 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 107.5569ms 200 application/json; charset=utf-8
+INFO  2021-03-24 21:39:28,040 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/img/icon.png  
+INFO  2021-03-24 21:39:28,045 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/img/icon.png'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\img\icon.png'
+INFO  2021-03-24 21:39:28,048 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 11.2951ms 200 image/png
+INFO  2021-03-24 21:39:30,478 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/account/login?returnUrl=/ads  
+INFO  2021-03-24 21:39:30,482 [10   ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:39:30,485 [10   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:39:30,493 [10   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult Login(System.String, System.String, System.String) on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2021-03-24 21:39:34,255 [6    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Login.
+INFO  2021-03-24 21:39:35,049 [6    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Login executed in 807.2802ms.
+INFO  2021-03-24 21:39:35,052 [6    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc) in 4556.1901ms
+INFO  2021-03-24 21:39:35,054 [6    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:39:35,058 [6    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 4580.6978ms 200 text/html; charset=utf-8
+INFO  2021-03-24 21:39:35,085 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/lib/bulma/css/bulma-rtl.css?v=8c3iUwMTRp4NGIoybGwbQUO27Luo4DwwC27e-2IXGzM  
+INFO  2021-03-24 21:39:35,091 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/jquery/jquery.js?v=H-K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk  
+INFO  2021-03-24 21:39:35,098 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/bootstrap/dist/js/bootstrap.bundle.js?v=pVreZ67fRaATygHF6T-gQtF1NI700W9kzeAivu6au9U  
+INFO  2021-03-24 21:39:35,118 [5    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/lib/bulma/css/bulma-rtl.css'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\lib\bulma\css\bulma-rtl.css'
+INFO  2021-03-24 21:39:35,152 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/block-ui/jquery.blockUI.js?v=oQaw-JJuUcJQ9QVYMcFnPxICDT-hv8-kuxT2FNzTGhc  
+INFO  2021-03-24 21:39:35,155 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 38.5199ms 200 text/css
+INFO  2021-03-24 21:39:35,159 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs-ext/spin/jquery.spin.js?v=i7H7HL08ldqUANgfQInE7LlU2uWUdQMCJ-Q7-_zLutY  
+INFO  2021-03-24 21:39:35,172 [35   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/admin-lte/dist/js/adminlte.js?v=qXsDMEfG3xYx1TO9SCGpLfvQPdpKIo0nXVYYfcneIRk  
+INFO  2021-03-24 21:39:35,188 [38   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/jquery/jquery.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\jquery\jquery.js'
+INFO  2021-03-24 21:39:35,192 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/spin/spin.js?v=GySbz3oZXNlwoawo5PpYy0iM38B-q3jyi_HLw00uxy0  
+INFO  2021-03-24 21:39:35,196 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs-ext/spin/jquery.spin.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs-ext\spin\jquery.spin.js'
+INFO  2021-03-24 21:39:35,201 [38   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 103.0722ms 200 application/javascript
+INFO  2021-03-24 21:39:35,205 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 95.7423ms 200 application/javascript
+INFO  2021-03-24 21:39:35,208 [36   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/bootstrap/dist/js/bootstrap.bundle.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\bootstrap\dist\js\bootstrap.bundle.js'
+INFO  2021-03-24 21:39:35,213 [34   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/admin-lte/dist/js/adminlte.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\admin-lte\dist\js\adminlte.js'
+INFO  2021-03-24 21:39:35,218 [37   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/block-ui/jquery.blockUI.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\block-ui\jquery.blockUI.js'
+INFO  2021-03-24 21:39:35,224 [34   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 122.812ms 200 application/javascript
+INFO  2021-03-24 21:39:35,227 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/js/main.js?v=i618r7yfAh7DdwJZUf_HshnjP415-RWgZ3gebnxnc7M  
+INFO  2021-03-24 21:39:35,230 [5    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/spin/spin.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\spin\spin.js'
+INFO  2021-03-24 21:39:35,233 [34   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 127.2427ms 200 application/javascript
+INFO  2021-03-24 21:39:35,237 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 46.7897ms 200 application/javascript
+INFO  2021-03-24 21:39:35,241 [36   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 89.5131ms 200 application/javascript
+INFO  2021-03-24 21:39:35,245 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/js/main.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\js\main.js'
+INFO  2021-03-24 21:39:35,249 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpServiceProxies/GetAll?v=637522187121126024  
+INFO  2021-03-24 21:39:35,253 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 24.2919ms 200 application/javascript
+INFO  2021-03-24 21:39:35,259 [37   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/AbpScripts/GetScripts?v=637522187121126024  
+INFO  2021-03-24 21:39:35,263 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/Account/Login.js?v=QcQaP2tYhyMf9nF9oQ73Fek6Q4zGCxX2-VNI5iPnEaU  
+INFO  2021-03-24 21:39:35,269 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/sweetalert/sweetalert.min.js?v=KsRuvuRtUVvobe66OFtOQfjP8WA2SzYsmm4VPfMnxms  
+INFO  2021-03-24 21:39:35,273 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/moment/moment-with-locales.js?v=dgFbqbQVzjkZPQxWd8PBtzGiRBhChc4I2wO_q_s-Xeo  
+INFO  2021-03-24 21:39:35,277 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/abp-web-resources/Abp/Framework/scripts/abp.js?v=3lLIPNQoGBxv9DWxtKwnvHr7Wlov-D0jo-NtjAdTenA  
+INFO  2021-03-24 21:39:35,281 [14   ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:39:35,285 [5    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/view-resources/Views/Account/Login.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\view-resources\Views\Account\Login.js'
+INFO  2021-03-24 21:39:35,289 [37   ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:39:35,294 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 27.0212ms 200 application/javascript
+INFO  2021-03-24 21:39:35,298 [14   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2021-03-24 21:39:35,304 [37   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2021-03-24 21:39:35,309 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/sweetalert/sweetalert.min.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\sweetalert\sweetalert.min.js'
+INFO  2021-03-24 21:39:35,316 [36   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/moment/moment-with-locales.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\moment\moment-with-locales.js'
+INFO  2021-03-24 21:39:35,320 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/toastr/toastr.min.js?v=yNbKY1y6h2rbVcQtf0b8lq4a-xpktyFc3pSYoGAY1qQ  
+INFO  2021-03-24 21:39:35,324 [38   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 47.2559ms 200 application/javascript
+INFO  2021-03-24 21:39:35,327 [36   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 53.5774ms 200 application/javascript
+INFO  2021-03-24 21:39:35,330 [39   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/abp-web-resources/Abp/Framework/scripts/abp.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\abp-web-resources\Abp\Framework\scripts\abp.js'
+INFO  2021-03-24 21:39:35,335 [39   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 59.2643ms 200 application/javascript
+INFO  2021-03-24 21:39:35,339 [5    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/toastr/toastr.min.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\toastr\toastr.min.js'
+INFO  2021-03-24 21:39:35,342 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 28.9816ms 200 application/javascript
+INFO  2021-03-24 21:39:35,345 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js?v=MEOC0fqxBbFCeeJ6VHFuw8-2C710gCRqjbvYcHoBdHU  
+INFO  2021-03-24 21:39:35,352 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.jquery.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\abp-web-resources\Abp\Framework\scripts\libs\abp.jquery.js'
+INFO  2021-03-24 21:39:35,355 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 12.5874ms 200 application/javascript
+INFO  2021-03-24 21:39:35,358 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.toastr.js?v=i3fsIGh0z3DXDbSa7f6TwsWonuZ8-OwELSrtH1jHbDA  
+INFO  2021-03-24 21:39:35,361 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.blockUI.js?v=vMuHbqHh635SKL2RG2qsGGCDyHg1yFeGqhPKpS34g4k  
+INFO  2021-03-24 21:39:35,364 [37   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetScripts", controller = "AbpScripts", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetScripts(System.String, Boolean) on controller Abp.AspNetCore.Mvc.Controllers.AbpScriptsController (Abp.AspNetCore).
+INFO  2021-03-24 21:39:35,369 [10   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.toastr.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\abp-web-resources\Abp\Framework\scripts\libs\abp.toastr.js'
+INFO  2021-03-24 21:39:35,373 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 17.6034ms 200 application/javascript
+INFO  2021-03-24 21:39:35,377 [12   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.blockUI.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\abp-web-resources\Abp\Framework\scripts\libs\abp.blockUI.js'
+INFO  2021-03-24 21:39:35,381 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.spin.js?v=djoKib6ssm5DDzbXLe5pD7ayfFg3siaoEk-BFYzQlvI  
+INFO  2021-03-24 21:39:35,387 [12   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 21.767ms 200 application/javascript
+INFO  2021-03-24 21:39:35,393 [8    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.spin.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\abp-web-resources\Abp\Framework\scripts\libs\abp.spin.js'
+INFO  2021-03-24 21:39:35,396 [14   ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "GetAll", controller = "AbpServiceProxies", area = ""}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ContentResult GetAll(Abp.AspNetCore.Mvc.Proxying.ApiProxyGenerationModel) on controller Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController (Abp.AspNetCore).
+INFO  2021-03-24 21:39:35,399 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.sweet-alert.js?v=Ta7OYgm62iNXMvVrH3f4y3WqUbGsHGBNvt0Zu0eIKtk  
+INFO  2021-03-24 21:39:35,403 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/jquery-validate/jquery.validate.js?v=xLhce0FUawd11QSwrvXSwST0oHhOolNoH9cUXAcsIAg  
+INFO  2021-03-24 21:39:35,408 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 19.9353ms 200 application/javascript
+INFO  2021-03-24 21:39:35,416 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/abp-web-resources/Abp/Framework/scripts/libs/abp.sweet-alert.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\abp-web-resources\Abp\Framework\scripts\libs\abp.sweet-alert.js'
+INFO  2021-03-24 21:39:35,421 [36   ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/jquery-validate/jquery.validate.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\jquery-validate\jquery.validate.js'
+INFO  2021-03-24 21:39:35,424 [10   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/libs/jquery-validate/jquery.validate.unobtrusive.js?v=XNNC8ESw29iopRLukVRazlP44TxnjGmEQanHJ5kHmtk  
+INFO  2021-03-24 21:39:35,427 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 27.8533ms 200 application/javascript
+INFO  2021-03-24 21:39:35,430 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 31.3954ms 200 application/javascript
+INFO  2021-03-24 21:39:35,438 [5    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/libs/jquery-validate/jquery.validate.unobtrusive.js'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\libs\jquery-validate\jquery.validate.unobtrusive.js'
+INFO  2021-03-24 21:39:35,442 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 20.911ms 200 application/javascript
+INFO  2021-03-24 21:39:35,533 [14   ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript
+INFO  2021-03-24 21:39:35,537 [14   ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore) in 136.9601ms
+INFO  2021-03-24 21:39:35,540 [14   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Proxying.AbpServiceProxiesController.GetAll (Abp.AspNetCore)'
+INFO  2021-03-24 21:39:35,543 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 294.5483ms 200 application/x-javascript
+INFO  2021-03-24 21:39:35,572 [37   ] Mvc.Infrastructure.ContentResultExecutor - Executing ContentResult with HTTP Response ContentType of application/x-javascript; charset=utf-8
+INFO  2021-03-24 21:39:35,576 [37   ] c.Infrastructure.ControllerActionInvoker - Executed action Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore) in 208.835ms
+INFO  2021-03-24 21:39:35,579 [37   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'Abp.AspNetCore.Mvc.Controllers.AbpScriptsController.GetScripts (Abp.AspNetCore)'
+INFO  2021-03-24 21:39:35,582 [37   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 328.3463ms 200 application/x-javascript; charset=utf-8
+INFO  2021-03-24 21:39:35,611 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/favicon.png  
+INFO  2021-03-24 21:39:35,618 [4    ] NetCore.StaticFiles.StaticFileMiddleware - Sending file. Request path: '/favicon.png'. Physical path: 'D:\software dev\classifieds\hoseclassifieds\src\classifieds.Web.Mvc\wwwroot\favicon.png'
+INFO  2021-03-24 21:39:35,623 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 13.277ms 200 image/png
+INFO  2021-03-24 21:39:37,547 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 POST http://localhost:62114/Account/Login application/x-www-form-urlencoded 275
+INFO  2021-03-24 21:39:37,553 [8    ] tion.Cookies.CookieAuthenticationHandler - Identity.Application was not authenticated. Failure message: Unprotect ticket failed
+INFO  2021-03-24 21:39:37,558 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:39:37,571 [8    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Login", controller = "Account", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.JsonResult] Login(classifieds.Web.Models.Account.LoginViewModel, System.String, System.String) on controller classifieds.Web.Controllers.AccountController (classifieds.Web.Mvc).
+INFO  2021-03-24 21:39:38,048 [6    ] tion.Cookies.CookieAuthenticationHandler - AuthenticationScheme: Identity.Application signed in.
+INFO  2021-03-24 21:39:38,071 [5    ] tonsoftJson.NewtonsoftJsonResultExecutor - Executing JsonResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2021-03-24 21:39:38,075 [5    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc) in 501.6943ms
+INFO  2021-03-24 21:39:38,078 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AccountController.Login (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:39:38,081 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 535.1146ms 200 application/json; charset=utf-8
+INFO  2021-03-24 21:39:38,098 [5    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/ads  
+INFO  2021-03-24 21:39:38,156 [5    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:39:38,161 [5    ] c.Infrastructure.ControllerActionInvoker - Route matched with {action = "Index", controller = "Ads", area = ""}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Index(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Web.Controllers.AdsController (classifieds.Web.Mvc).
+INFO  2021-03-24 21:39:38,259 [12   ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executing ViewResult, running view Index.
+INFO  2021-03-24 21:39:38,306 [4    ] Core.Mvc.ViewFeatures.ViewResultExecutor - Executed ViewResult - view Index executed in 47.2545ms.
+INFO  2021-03-24 21:39:38,310 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc) in 146.0375ms
+INFO  2021-03-24 21:39:38,312 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Web.Controllers.AdsController.Index (classifieds.Web.Mvc)'
+INFO  2021-03-24 21:39:38,315 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 217.4112ms 200 text/html; charset=utf-8
+INFO  2021-03-24 21:39:38,357 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/UserPosts/card.js?v=5bhi1x6tDot9Ymv3dGkuRSnx8TGqJN1umSkWi1vbgb4  
+INFO  2021-03-24 21:39:38,362 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/view-resources/Views/UserPosts/main.js?v=7OZszyDMVq_iS60ypygN-bjXcp7X5hzgFHEkP9ZwGHk  
+INFO  2021-03-24 21:39:38,368 [4    ] NetCore.StaticFiles.StaticFileMiddleware - The file /view-resources/Views/UserPosts/card.js was not modified
+INFO  2021-03-24 21:39:38,372 [14   ] NetCore.StaticFiles.StaticFileMiddleware - The file /view-resources/Views/UserPosts/main.js was not modified
+INFO  2021-03-24 21:39:38,377 [14   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 15.106ms 304 application/javascript
+INFO  2021-03-24 21:39:38,382 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 21.5911ms 304 application/javascript
+INFO  2021-03-24 21:39:38,442 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/city/getall  
+INFO  2021-03-24 21:39:38,445 [43   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request starting HTTP/1.1 GET http://localhost:62114/api/services/app/post/getall?SkipCount=0&MaxResultCount=30  
+INFO  2021-03-24 21:39:38,454 [43   ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:39:38,458 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executing endpoint 'classifieds.Cities.CityAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:39:38,463 [43   ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "Post"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Posts.Dto.PostDto]] GetAllAsync(classifieds.Posts.Dto.GetAllPostsInput) on controller classifieds.Posts.PostAppService (classifieds.Application).
+INFO  2021-03-24 21:39:38,467 [4    ] c.Infrastructure.ControllerActionInvoker - Route matched with {area = "app", action = "GetAll", controller = "City"}. Executing controller action with signature System.Threading.Tasks.Task`1[Abp.Application.Services.Dto.PagedResultDto`1[classifieds.Cities.Dto.CityDto]] GetAllAsync(Abp.Application.Services.Dto.PagedAndSortedResultRequestDto) on controller classifieds.Cities.CityAppService (classifieds.Application).
+INFO  2021-03-24 21:39:38,508 [8    ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2021-03-24 21:39:38,512 [8    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Cities.CityAppService.GetAllAsync (classifieds.Application) in 41.6057ms
+INFO  2021-03-24 21:39:38,515 [8    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Cities.CityAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:39:38,518 [8    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 77.0251ms 200 application/json; charset=utf-8
+INFO  2021-03-24 21:39:38,569 [35   ] .Mvc.Infrastructure.ObjectResultExecutor - Executing ObjectResult, writing value of type 'Abp.Web.Models.AjaxResponse'.
+INFO  2021-03-24 21:39:38,573 [35   ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application) in 106.5219ms
+INFO  2021-03-24 21:39:38,577 [35   ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Posts.PostAppService.GetAllAsync (classifieds.Application)'
+INFO  2021-03-24 21:39:38,580 [35   ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 138.8729ms 200 application/json; charset=utf-8

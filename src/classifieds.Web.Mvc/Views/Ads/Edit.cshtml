@@ -79,7 +79,7 @@
 					    </p>
 					</div>
 					</div>
-					<div class="field is-horizontal"  v-if="category?.name.includes('فروش')">
+					<div class="field is-horizontal"  >
 						<div class="field-body column is-6 p-0">
 							<div class="field ">
 								 <label for="Price" class="label">قیمت</label>
@@ -92,28 +92,7 @@
 							</div>
 							</div>
 					</div>
-					 <div class="field is-horizontal"  v-if="category?.name.includes('گروی') || category?.name.includes('کرای')|| category?.name.includes('اجاره')">
-						   <div class="field-body">
-							<div class="field column is-6 p-0">
-								<label for="Deposit" class="label">کرای</label>
-								<div class="control has-icons-left">
-									<input class="input " dir="ltr" placeholder="اجاره"  name="Rent" v-model="rent"/>
-									<span class="icon is-small is-left">
-										<i class="fas fa-dollar-sign"></i>
-									</span>
-								</div>
-							</div>
-							<div class="field column is-6 p-0" >
-								<label for="Deposit" class="label">پیش پرداخت</label>
-								<div class="control has-icons-left">
-									<input class="input currency" dir="ltr" placeholder="پیش پرداخت"  v-model="deposit" />
-									<span class="icon is-small is-left">
-										<i class="fas fa-dollar-sign"></i>
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
+			
 
 					<div class="field is-horizontal">
 						<div class="field-body">

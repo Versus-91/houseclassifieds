@@ -33,8 +33,6 @@ namespace classifieds.Posts.Dto
         public ushort Age { get; set; }
         public byte Bedroom { get; set; }
         public DistrictDto District { get; set; }
-        public double Deposit { get; set; }
-        public double Rent { get; set; }
         public double Price { get; set; }
         public TypeViewModel Type { get; set; }
         public double Latitude { get; set; }

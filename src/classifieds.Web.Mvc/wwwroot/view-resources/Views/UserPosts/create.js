@@ -26,8 +26,6 @@ var app = new Vue({
         marker: null,
         age: 0,
         price: null,
-        rent: null,
-        deposit: null,
         room: null,
         district: 0,
         description: '',
@@ -74,8 +72,6 @@ var app = new Vue({
                 description: this.description,
                 area: this.area,
                 price: this.price,
-                rent: this.rent,
-                deposit: this.deposit,
                 age: this.age,
                 bedroom:this.room,
                 amenities: this.amenities,
@@ -100,8 +96,6 @@ var app = new Vue({
     watch: {
         category: function () {
             this.price = null;
-            this.deposit = null;
-            this.rent = null;
         }
     },
     created() {

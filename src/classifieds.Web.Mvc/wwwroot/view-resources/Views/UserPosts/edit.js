@@ -28,8 +28,6 @@ var app = new Vue({
         marker: null,
         age: 0,
         price: null,
-        rent: null,
-        deposit: null,
         room: null,
         district: 0,
         description: '',
@@ -72,13 +70,6 @@ var app = new Vue({
         },
         postSubmit: function (e) {
             e.preventDefault();
-            if (this.category.name.includes("خرید") || this.category.name.includes("فروش")) {
-                this.deposit = 0;
-                this.rent = 0;
-            }
-            if (this.category.name.includes("گروی") || this.category.name.includes("اجاره") || this.category.name.includes("کرای")) {
-                this.price = 0;
-            }
             axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
             var request = {
                 Id:this.post.id,
@@ -87,8 +78,6 @@ var app = new Vue({
                 description: this.description,
                 area: this.area,
                 price: this.price,
-                rent: this.rent,
-                deposit: this.deposit,
                 age: this.age,
                 amenities: this.amenities,
                 districtId: this.district
@@ -123,9 +112,7 @@ var app = new Vue({
             this.room = this.post.bedroom;
             this.price = this.post.price;
             this.tradeType = this.post?.typeId;
-            this.rent = this.post.rent;
             this.images = this.post.images;
-            this.deposit = this.post.deposit;
             this.district = this.post.districtId;
             this.amenities = this.post.amenities.map((item)=>item.id);
             this.description = this.post.description;
