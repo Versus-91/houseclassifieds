@@ -22,6 +22,9 @@ namespace classifieds.Authorization
             context.CreatePermission(PermissionNames.Pages_Reports, L("Reports"));
             context.CreatePermission(PermissionNames.Pages_Areas, L("Areas"));
             context.CreatePermission(PermissionNames.Pages_Settings, L("Settings"));
+            context.CreatePermission(PermissionNames.Pages_Sales, L("SalesReports"));
+            context.CreatePermission(PermissionNames.Pages_RealEstates, L("RealEstates"));
+
             context.CreatePermission(PermissionNames.Pages_Tenants, L("Tenants"), multiTenancySides: MultiTenancySides.Host);
         }
 

@@ -18,5 +18,8 @@
         public const string Pages_ReportOptions = "Pages.ReportOptions";
         public const string Posts_Create = "Posts.Create";
         public const string Pages_Settings= "Pages.Settings";
+        public const string Pages_Sales = "Pages.SaleReports";
+        public const string Pages_RealEstates = "Pages.RealStates";
+
     }
 }

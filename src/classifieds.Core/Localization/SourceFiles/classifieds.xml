@@ -143,7 +143,9 @@
     <text name="AdminPosts">User Posts Management</text>
     <text name="Areas">Districts</text>
     <text name="Area">Area</text>
-    <text name="Id" value="Id" />
+	<text name="SaleReports">Sale Reports</text>
+	<text name="RealEstates">Real Estates</text>
+	<text name="Id" value="Id" />
     <text name="Authorization" value="Authorization" >
       User Management
     </text>
