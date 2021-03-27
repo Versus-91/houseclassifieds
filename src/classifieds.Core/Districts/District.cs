@@ -13,6 +13,8 @@ namespace classifieds.Districts
     public class District : AuditedEntity, IHasCreationTime
     {
         public string Name { get; set; }
+        public string Image { get; set; }
+
         public int AreaId { get; set; }
         public Area Area { get; set; }
         public District()

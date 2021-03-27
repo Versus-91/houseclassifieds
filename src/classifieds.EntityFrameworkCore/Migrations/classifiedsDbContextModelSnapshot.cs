@@ -1314,6 +1314,9 @@ namespace classifieds.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -1561,6 +1564,9 @@ namespace classifieds.Migrations
                     b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime(6)");
 
@@ -1592,6 +1598,9 @@ namespace classifieds.Migrations
 
                     b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime(6)");
@@ -1783,6 +1792,9 @@ namespace classifieds.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double");
 
+                    b.Property<int?>("RealEstateId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -1799,6 +1811,8 @@ namespace classifieds.Migrations
                     b.HasIndex("CreatorUserId");
 
                     b.HasIndex("DistrictId");
+
+                    b.HasIndex("RealEstateId");
 
                     b.HasIndex("TypeId");
 
@@ -1852,6 +1866,49 @@ namespace classifieds.Migrations
                     b.ToTable("PropertyTypes");
                 });
 
+            modelBuilder.Entity("classifieds.RealEstates.RealEstate", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Address")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<DateTime>("CreationTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<long?>("CreatorUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("DistrictId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("LastModificationTime")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<long?>("LastModifierUserId")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Logo")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Owner")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("PhoneNumbers")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DistrictId");
+
+                    b.ToTable("RealEstates");
+                });
+
             modelBuilder.Entity("classifieds.ReportOptions.ReportOption", b =>
                 {
                     b.Property<int>("Id")
@@ -1894,6 +1951,36 @@ namespace classifieds.Migrations
                     b.HasIndex("ReportOptionId");
 
                     b.ToTable("Reports");
+                });
+
+            modelBuilder.Entity("classifieds.SaleReports.SaleReport", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Benefits")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("double");
+
+                    b.Property<DateTime>("SaleDate")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("SaleReports");
                 });
 
             modelBuilder.Entity("classifieds.UserNotificationIds.UserNotificationId", b =>
@@ -2191,6 +2278,10 @@ namespace classifieds.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("classifieds.RealEstates.RealEstate", "RealEstate")
+                        .WithMany()
+                        .HasForeignKey("RealEstateId");
+
                     b.HasOne("classifieds.PropertyTypes.PropertyType", "Type")
                         .WithMany()
                         .HasForeignKey("TypeId")
@@ -2213,6 +2304,15 @@ namespace classifieds.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("classifieds.RealEstates.RealEstate", b =>
+                {
+                    b.HasOne("classifieds.Districts.District", "District")
+                        .WithMany()
+                        .HasForeignKey("DistrictId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("classifieds.Reports.Report", b =>
                 {
                     b.HasOne("classifieds.Posts.Post", "Post")
@@ -2224,6 +2324,21 @@ namespace classifieds.Migrations
                     b.HasOne("classifieds.ReportOptions.ReportOption", "ReportOption")
                         .WithMany()
                         .HasForeignKey("ReportOptionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("classifieds.SaleReports.SaleReport", b =>
+                {
+                    b.HasOne("classifieds.Categories.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("classifieds.Posts.Post", "Post")
+                        .WithMany()
+                        .HasForeignKey("PostId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

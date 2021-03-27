@@ -12,6 +12,7 @@ namespace classifieds.Cities
     public class City: AuditedEntity, IHasCreationTime
     {
         public string Name { get; set; }
+        public string Image { get; set; }
         public City()
         {
             CreationTime = DateTime.Now;

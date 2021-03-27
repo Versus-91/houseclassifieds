@@ -145,7 +145,8 @@
     <text name="Area">Area</text>
 	<text name="SaleReports">Sale Reports</text>
 	<text name="RealEstates">Real Estates</text>
-	<text name="Id" value="Id" />
+	 <text name="Sales">Sales</text>
+	 <text name="Id" value="Id" />
     <text name="Authorization" value="Authorization" >
       User Management
     </text>

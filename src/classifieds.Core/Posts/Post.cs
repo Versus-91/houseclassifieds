@@ -6,6 +6,7 @@ using classifieds.Districts;
 using classifieds.Images;
 using classifieds.PostsAmenities;
 using classifieds.PropertyTypes;
+using classifieds.RealEstates;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -34,6 +35,10 @@ namespace classifieds.Posts
         public double Price { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public int? RealEstateId { get; set; }
+        public RealEstate RealEstate{ get; set; }
+
+
         [ForeignKey("CreatorUserId")]
         public User User { get; set; }
         public Post()

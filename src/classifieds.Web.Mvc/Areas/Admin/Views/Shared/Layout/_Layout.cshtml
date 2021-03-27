@@ -26,7 +26,7 @@
     @RenderSection("styles", required: false)
 </head>
 <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
+    <div class="wrapper" id="app">
         @await Html.PartialAsync("_Header.cshtml")
         @await Html.PartialAsync("_SideBar.cshtml")
         <div class="content-wrapper">

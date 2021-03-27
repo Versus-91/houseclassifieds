@@ -18,6 +18,7 @@ namespace classifieds.Posts
         Task<Post> GetPost(int id);
         Task AddPostMedia(Post post, bool state);
         Task<PagedResultDto<PostDto>> GetPostsByUser(GetAllPostsInput input);
+        Task<int> PostsCount();
 
     }
 }

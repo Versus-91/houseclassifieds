@@ -18,6 +18,8 @@
         public const string Reports = "Reports";
         public const string ReportOptions = "Report Options";
         public const string Areas = "Areas";
+        public const string Sales = "Sales";
+        public const string RealEstates = "RealEstates";
         public const string Favorites = "Favorites";
 
     }

@@ -16,6 +16,8 @@ using classifieds.ReportOptions;
 using classifieds.UserNotificationIds;
 using classifieds.Areas;
 using classifieds.Favorites;
+using classifieds.SaleReports;
+using classifieds.RealEstates;
 
 namespace classifieds.EntityFrameworkCore
 {
@@ -36,6 +38,9 @@ namespace classifieds.EntityFrameworkCore
         public DbSet<Amenity> Amenities { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<ReportOption> ReportOptions { get; set; }
+        public DbSet<SaleReport> SaleReports { get; set; }
+        public DbSet<RealEstate> RealEstates { get; set; }
+
 
 
         public DbSet<PostAmenity> PostsAmenities{ get; set; }

@@ -8,6 +8,8 @@ namespace classifieds.Areas
 {
     public class Area:Entity
     {
+        public string Image { get; set; }
+
         public int CityId { get; set; }
         public City City { get; set; }
         public string Name { get; set; }

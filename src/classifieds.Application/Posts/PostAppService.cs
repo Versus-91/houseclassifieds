@@ -242,6 +242,11 @@ namespace classifieds.Posts
             post.HasMedia = state;
             await _postRepository.UpdateAsync(post);
         }
+        [RemoteService(false)]
+        public async Task<int> PostsCount()
+        {
+            return await _postRepository.CountAsync();
+        }
         public override async Task<PostDto> CreateAsync(CreatePostInput input)
         {
             List<PostAmenity> amenities=new List<PostAmenity>();
