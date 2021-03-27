@@ -9,6 +9,7 @@ using classifieds.Districts.Dto;
 using classifieds.Images;
 using classifieds.PostsAmenities;
 using classifieds.PostsAmenities.Dto;
+using classifieds.RealEstates.Dto;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace classifieds.Posts.Dto
         public byte Bedroom { get; set; }
         public DistrictDto District { get; set; }
         public double Price { get; set; }
+        public int? RealEstateId { get; set; }
         public TypeViewModel Type { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }

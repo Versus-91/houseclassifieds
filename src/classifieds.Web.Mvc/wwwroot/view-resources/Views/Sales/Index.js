@@ -1,5 +1,5 @@
 ﻿(function ($) {
-    var _postService = abp.services.app.realestate,
+    var _postService = abp.services.app.sale,
         l = abp.localization.getSource('classifieds'),
         _$modal = $('#PostCreateModal'),
         _$form = _$modal.find('form'),
@@ -43,44 +43,33 @@
             },
             {
                 targets: 1,
-                data: 'name',
+                data: 'post.title',
                 sortable: false,
             },
             {
                 targets: 2,
-                data: 'owner',
+                data: 'category.name',
                 sortable: false,
             },
             {
                 targets: 3,
-                data: 'phoneNumbers',
+                data: 'price',
                 sortable: false,
             },
             {
                 targets: 4,
-                data: 'address',
+                data: 'saleDate',
                 sortable: false,
             },
             {
                 targets: 5,
-                data: 'logo',
-                sortable: false,
-                render: (data, type, row, meta) => {
-                    return !!row.logo ? `<img class="img-thumbnail" style="height:64px;width:64px;" src="/${row.logo}" />`:null;
-                }
-            },
-            {
-                targets: 6,
                 data: null,
                 sortable: false,
                 autoWidth: false,
                 defaultContent: '',
                 render: (data, type, row, meta) => {
                     return [
-                        `   <a type="button" class="btn btn-sm bg-secondary " href="/admin/posts/${row.id}">`,
-                        `       <i class="fas fa-pencil-alt"></i> ${l('Edit')}`,
-                        '   </a>',
-                        `   <button type="button" class="btn btn-sm bg-danger delete-post" data-post-id="${row.id}" data-post-name="${row.name}">`,
+                        `   <button type="button" class="btn btn-sm bg-danger delete-post" data-post-id="${row.id}" data-post-name="${row.post.title}">`,
                         `       <i class="fas fa-trash"></i> ${l('Delete')}`,
                         '   </button>',
                     ].join('');

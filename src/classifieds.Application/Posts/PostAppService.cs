@@ -6,6 +6,7 @@ using Abp.Configuration;
 using Abp.Domain.Repositories;
 using Abp.Linq.Extensions;
 using classifieds.Amenities.Dto;
+using classifieds.Areas;
 using classifieds.Authorization;
 using classifieds.Authorization.Users;
 using classifieds.Categories;
@@ -32,11 +33,13 @@ namespace classifieds.Posts
         private readonly IRepository<Post> _postRepository;
         private readonly IRepository<Category> _categoryRepository;
         private readonly IRepository<PropertyType> _typeRepository;
-        private readonly IRepository<District> _districtRepository;
+        private readonly IDistrictAppService _districtRepository;
         private readonly IRepository<City> _cityRepository;
         private readonly IRepository<Post>  _repository;
         private readonly IRepository<User, long> _userRepository;
-        public PostAppService(ISettingManager settingsManager, IRepository<PropertyType> typeRepository,IRepository<City> cityRepository,IRepository<Post> repository, IRepository<Category> categoryRepository, IRepository<User, long> userRepository, IRepository<District> districtRepository) : base(repository)
+        public PostAppService(ISettingManager settingsManager, IRepository<PropertyType> typeRepository,IRepository<City> cityRepository
+            ,IRepository<Post> repository, IRepository<Category> categoryRepository, IRepository<User, long> userRepository,
+            IDistrictAppService districtRepository) : base(repository)
         {
             _settingsManager = settingsManager;
             _typeRepository = typeRepository;
@@ -125,6 +128,10 @@ namespace classifieds.Posts
                         Name = m.Name
                     }).ToList(),
                 }).FirstOrDefaultAsync();
+            if (item == null)
+            {
+                throw new ArgumentNullException();
+            }
             return item;
         }
         [AbpAuthorize]
@@ -261,8 +268,9 @@ namespace classifieds.Posts
             var post = ObjectMapper.Map<Post>(input);
             var category = await _categoryRepository.GetAsync(input.CategoryId);
             var type = await _typeRepository.GetAsync(input.TypeId);
-            var district = await _districtRepository.GetAsync(input.DistrictId);
-            var title = category?.Name + " " + type?.Name+" "+ input?.Area + " متری " + " " + district?.Name;
+            var district = await _districtRepository.LocationLabel(input.DistrictId);
+
+            var title = category?.Name + " " + type?.Name+" "+ input?.Area + " متری " + " " + district;
             if (!String.IsNullOrEmpty(title))
             {
                 post.Title = title;

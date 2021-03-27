@@ -19,6 +19,7 @@ var app = new Vue({
     data: {
         category: null,
         tradeType: null,
+        realEstateId: null,
         zoom: 13,
         url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         dropZone: {},
@@ -73,9 +74,10 @@ var app = new Vue({
                 area: this.area,
                 price: this.price,
                 age: this.age,
-                bedroom:this.room,
+                bedroom: this.room,
                 amenities: this.amenities,
-                districtId: this.district
+                districtId: this.district,
+                realEstateId: this.realEstateId,
             };
             if (!!this.marker) {
                 request.longitude = this.marker.lng;

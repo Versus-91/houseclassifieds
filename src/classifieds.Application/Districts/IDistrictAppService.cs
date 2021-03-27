@@ -12,5 +12,6 @@ namespace classifieds.Districts
         Task<List<LocationSearchDto>> Find(string query);
         Task<List<DistrictDto>> GetByCityId(int id);
         Task<DistrictDto> GetById(int id);
+        Task<string> LocationLabel(int id);
     }
 }

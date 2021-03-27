@@ -42,6 +42,13 @@ namespace classifieds.Districts
             var districts = await _districtService.GetAllListAsync(m => m.Area.CityId == id);
             return _objectMapper.Map<List<DistrictDto>>(districts);
         }
+        [RemoteService(false)]
+        public async Task<string> LocationLabel(int id)
+        {
+            var district = await _districtService.GetAllIncluding(m => m.Area,m => m.Area.City).Where(m => m.Id == id).FirstOrDefaultAsync();
+            return district.Area.City.Name + " " + district.Area.Name + " " + district.Name;
+
+        }
         public async Task<DistrictDto> GetById(int id)
         {
             var districts = await _districtService.GetAllIncluding(m => m.Area).Where(m=>m.Id == id).FirstOrDefaultAsync();
