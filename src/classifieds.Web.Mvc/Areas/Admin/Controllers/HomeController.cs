@@ -25,7 +25,7 @@ namespace classifieds.Web.Areas.Admin.Controllers
         {
             var model = new DashboardViewModel();
             model.ProcessorUsage = await CpuUsage();
-            model.PostsTotalNumber =await _postService.PostsCount();
+            model.PostsTotalNumber =10;
             model.SalesTotal = 125;
             model.UsersTotalNumber = 589;
 
