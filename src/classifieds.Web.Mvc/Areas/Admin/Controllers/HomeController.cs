@@ -24,8 +24,8 @@ namespace classifieds.Web.Areas.Admin.Controllers
         public async Task<IActionResult> Index()
         {
             var model = new DashboardViewModel();
-            model.ProcessorUsage = await CpuUsage();
-            model.PostsTotalNumber =10;
+            model.ProcessorUsage = 10;
+            model.PostsTotalNumber = await _postService.PostsCount();
             model.SalesTotal = 125;
             model.UsersTotalNumber = 589;
 
