@@ -1,109 +1,110 @@
 ﻿@using classifieds.Web.Startup
 @{
-	ViewBag.Title = "create new real estate";
-	ViewBag.CurrentPageName = "create new real estate";
+    ViewBag.Title = "create new real estate";
+    ViewBag.CurrentPageName = "create new real estate";
 }
 
 @section scripts
 {
-	<environment names="Development">
-		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"  crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>   
-       <script src="~/view-resources/Views/Realestates/create.js" asp-append-version="true"></script>
-	</environment>
-	<environment names="Staging,Production">
-		<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js"  crossorigin="anonymous"></script>
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js" ></script>   
-       <script src="~/view-resources/Views/Realestates/create.js" asp-append-version="true"></script>   
-   </environment>
+<environment names="Development">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="~/view-resources/Views/Realestates/create.js" asp-append-version="true"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="~/view-resources/Views/Realestates/create.js" asp-append-version="true"></script>
+</environment>
 }
 <div class="container">
-<div class="row">
-	<!-- Left col -->
-	<div class="col-md-12 mt-4">
-		<!-- TABLE: LATEST ORDERS -->
-		<div class="card">
-			<div class="card-header border-transparent">
-				<h3 class="card-title">Add  a new real estate</h3>
-				<div class="card-tools">
-					<button type="button" class="btn btn-tool" data-card-widget="collapse">
-						<i class="fas fa-minus"></i>
-					</button>
-				</div>
-			</div>
-			<!-- /.card-header -->
-			<div class="card-body ">
-			<form>
-								  @Html.AntiForgeryToken()
-			  <div class="form-row">
-				<div class="form-group col-md-6">
-				  <label for="inputEmail4">Name</label>
-				  <input type="text" class="form-control" v-model="name"  placeholder="Name">
-				</div>
-				<div class="form-group col-md-6">
-				  <label for="inputPassword4">Owner</label>
-				  <input type="text" class="form-control" v-model="owner" placeholder="Owner">
-				</div>
-			  </div>
-			  <div class="form-group">
-				<label for="inputAddress">Address</label>
-				<input type="text" class="form-control" v-model="address" placeholder="1234 Main St">
-			  </div>
-		   <div class="form-row">
-	  <div class="form-group col-md-4 ">
-	   <label for="City" class="label">City</label>
-	   <div class="control has-icons-right">
-		<div class="select ">
-		 <select class="select2 form-control" id="selectCity" asp-items="@(ViewData["Cities"] as SelectList)">
-		 </select>
-		</div>
-	   </div>
-	  </div>
-	  <div class="form-group col-md-4">
-	   <label  class="label">District </label>
-	   <div class="control has-icons-right">
-		<div class="select ">
-		 <select class="select2 form-control" v-select2 id="selectArea" required>
-		  <option value="0">انتخاب ناحیه</option>
-		 </select>
-		</div>
-	   </div>
-	  </div>
-	  <div class="form-group col-md-4">
-	   <label  class="label">Area </label>
-	   <div class="control has-icons-right">
-		<div class="select ">
-		 <select class="select2 form-control" v-select2 v-model="district" name="DistrictId" id="selectDistrict" required>
-		  <option value="0">انتخاب محله</option>
-		 </select>
-		</div>
-	   </div>
-	  </div>
-			  </div>
-	 <div class="form-row ">
-	  <div class="form-group col-md-6">
-	  <input class="form-control" type="text" placeholder="phone number" v-model.number="newNumber"/>
-	  </div>
-	  <div class="form-group col-md-6">
-	  <button type="button" class="btn btn-success" v-on:click="addNumber()" :disabled="newNumber.length < 10">
-	  <i class="fas fa-plus"></i></button>
-	  </div>
-	   <div class="form-group col-md-12">
-	  <p v-for="number in numbers" v-on:click="removeNumber(number)"> {{number}} <i class="fas fa-trash"></i></p>
-	  </div>
-	  <div class="form-group col-md-12">
-	  <img :src="previewImage" class="img-thumbnail" style="height:128px;width:128px;"/>
-				  <input type="file" accept="image/jpeg"  v-on:change=uploadImage>
-	  </div>
-			  </div>
-			  <button type="submit" class="btn btn-primary" v-on:click="submit" :disabled="!isFormValid">submit</button>
-			  <a href="/admin/realestates" class="btn btn-info">cancel</a>
-			</form>
-			</div>
-			<!-- /.card-body -->
+    <div class="row">
+        <!-- Left col -->
+        <div class="col-md-12 mt-4">
+            <!-- TABLE: LATEST ORDERS -->
+            <div class="card">
+                <div class="card-header border-transparent">
+                    <h3 class="card-title">Add  a new real estate</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                    </div>
+                </div>
+                <!-- /.card-header -->
+                <div class="card-body ">
+                    <form>
+                        @Html.AntiForgeryToken()
+                        <div class="form-row">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Name</label>
+                                <input type="text" class="form-control" v-model="name" placeholder="Name">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Owner</label>
+                                <input type="text" class="form-control" v-model="owner" placeholder="Owner">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputAddress">Address</label>
+                            <input type="text" class="form-control" v-model="address" placeholder="1234 Main St">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4 ">
+                                <label for="City" class="label">City</label>
+                                <div class="control has-icons-right">
+                                    <div class="select ">
+                                        <select class="select2 form-control" id="selectCity" asp-items="@(ViewData["Cities"] as SelectList)">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="label">District </label>
+                                <div class="control has-icons-right">
+                                    <div class="select ">
+                                        <select class="select2 form-control" v-select2 id="selectArea" required>
+                                            <option value="0">انتخاب ناحیه</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label class="label">Area </label>
+                                <div class="control has-icons-right">
+                                    <div class="select ">
+                                        <select class="select2 form-control" v-select2 v-model="district" name="DistrictId" id="selectDistrict" required>
+                                            <option value="0">انتخاب محله</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row ">
+                            <div class="form-group col-md-6">
+                                <input class="form-control" type="text" placeholder="phone number" v-model.number="newNumber" />
+                            </div>
+                            <div class="form-group col-md-6">
+                                <button type="button" class="btn btn-success" v-on:click="addNumber()" :disabled="newNumber.length < 10">
+                                    <i class="fas fa-plus"></i>
+                                </button>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <p v-for="number in numbers" v-on:click="removeNumber(number)"> {{number}} <i class="fas fa-trash"></i></p>
+                            </div>
+                            <div class="form-group col-md-12">
+                                <img :src="previewImage" class="img-thumbnail" style="height:128px;width:128px;" />
+                                <input type="file" accept="image/jpeg" v-on:change=uploadImage>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary" v-on:click="submit" :disabled="!isFormValid">submit</button>
+                        <a href="/admin/realestates" class="btn btn-info">cancel</a>
+                    </form>
+                </div>
+                <!-- /.card-body -->
 
-		</div>
-		<!-- /.card -->
-	</div>
-</div>
+            </div>
+            <!-- /.card -->
+        </div>
+    </div>
 </div>
