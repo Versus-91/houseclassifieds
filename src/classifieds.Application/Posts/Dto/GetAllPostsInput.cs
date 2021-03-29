@@ -11,6 +11,7 @@ namespace classifieds.Posts.Dto
         public int? Zone { get; set; }
         public int? MinPrice { get; set; }
         public int? MaxPrice { get; set; }
+        public int? RealEstateId { get; set; }
 
         public int? MinArea { get; set; }
         public int? MaxArea { get; set; }

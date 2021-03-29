@@ -19,6 +19,7 @@ namespace classifieds.Posts
         Task AddPostMedia(Post post, bool state);
         Task<PagedResultDto<PostDto>> GetPostsByUser(GetAllPostsInput input);
         Task<int> PostsCount();
+        Task<PagedResultDto<PostDto>> GetPostsByAgency(GetAllPostsInput input);
 
     }
 }

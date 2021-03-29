@@ -166,6 +166,20 @@ namespace classifieds.Posts
             var pagedPosts = ApplyPaging(posts, input);
             return new PagedResultDto<PostDto>(posts.Count(), ObjectMapper.Map<List<PostDto>>(await pagedPosts.ToListAsync()));
         }
+        [RemoteService(false)]
+        public async Task<PagedResultDto<PostDto>> GetPostsByAgency(GetAllPostsInput input)
+        {
+
+            var posts = base.CreateFilteredQuery(input)
+                .Include(m => m.District)
+                .Include(m => m.District.Area.City)
+                .Include(m => m.Images)
+                .Include(m => m.Type)
+                .Include(m => m.Category)
+                .Include(m => m.PostAmenities).ThenInclude(m => m.Amenity).Where(m => m.RealEstateId == input.RealEstateId && m.IsVerified == true).OrderByDescending(m => m.CreationTime);
+            var pagedPosts = ApplyPaging(posts, input);
+            return new PagedResultDto<PostDto>(posts.Count(), ObjectMapper.Map<List<PostDto>>(await pagedPosts.ToListAsync()));
+        }
         public async Task<PagedResultDto<PostDto>> Recommendations(PostDto post)
         {
             var items = await _postRepository.GetAllIncluding(m => m.District.Area.City, m => m.Category)

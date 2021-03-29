@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace classifieds.RealEstates
 {
-    public interface IRealestateAppService : IAsyncCrudAppService<RealEstateDto>
+    public interface IRealestateAppService : IAsyncCrudAppService<RealEstateDto,int, GetRealEstatesInput>
     {
         Task<List<RealEstateDto>> Find(string term);
     }

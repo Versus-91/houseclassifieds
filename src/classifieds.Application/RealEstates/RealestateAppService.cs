@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 namespace classifieds.RealEstates
 {
     [AbpAuthorize(PermissionNames.Pages_RealEstates)]
-    public class RealestateAppService : AsyncCrudAppService<RealEstate, RealEstateDto, int, GetRealEstatesInput>
+    public class RealestateAppService : AsyncCrudAppService<RealEstate, RealEstateDto, int, GetRealEstatesInput>, IRealestateAppService
     {
         private readonly IWebHostEnvironment _env;
         private readonly string _path;

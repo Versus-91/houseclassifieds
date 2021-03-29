@@ -97,6 +97,7 @@ namespace classifieds.Posts
                 .WhereIf(input.District.HasValue, t => t.DistrictId == input.District.Value)
                 .WhereIf(input.Age.HasValue, t => t.Age == input.Age.Value)
                 .WhereIf(input.Beds.HasValue, t => t.Bedroom == input.Beds.Value)
+                .WhereIf(input.Id != null, t => t.Id == input.Id)
                 .WhereIf(input.MinArea.HasValue && input.MaxArea.HasValue, t => t.Area > input.MinArea.Value && t.Area < input.MaxArea.Value)
                 .WhereIf(input.Types != null && input.Types.Count > 0, t => input.Types.Contains(t.TypeId)).OrderByDescending(m=>m.CreationTime);
         }
