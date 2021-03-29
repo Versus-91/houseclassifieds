@@ -18,7 +18,6 @@ using System.Threading.Tasks;
 
 namespace classifieds.RealEstates
 {
-    [AbpAuthorize(PermissionNames.Pages_RealEstates)]
     public class RealestateAppService : AsyncCrudAppService<RealEstate, RealEstateDto, int, GetRealEstatesInput>, IRealestateAppService
     {
         private readonly IWebHostEnvironment _env;
@@ -26,6 +25,9 @@ namespace classifieds.RealEstates
         private IRepository<RealEstate> _repository;
         public RealestateAppService(IRepository<RealEstate> repository, IWebHostEnvironment env, IConfiguration config) : base(repository)
         {
+            CreatePermissionName = PermissionNames.Pages_RealEstates;
+            UpdatePermissionName = PermissionNames.Pages_RealEstates;
+            DeletePermissionName = PermissionNames.Pages_RealEstates;
             _repository = repository;
             _path = config.GetValue<string>("IconsFilesPath");
             _env = env;
