@@ -3137,3 +3137,6 @@ INFO  2021-03-29 11:37:09,856 [4    ] .Mvc.Infrastructure.ObjectResultExecutor -
 INFO  2021-03-29 11:37:09,861 [4    ] c.Infrastructure.ControllerActionInvoker - Executed action classifieds.Posts.AdminPostAppService.GetAllAsync (classifieds.Application) in 49.8822ms
 INFO  2021-03-29 11:37:09,864 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint 'classifieds.Posts.AdminPostAppService.GetAllAsync (classifieds.Application)'
 INFO  2021-03-29 11:37:09,867 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 70.5651ms 200 application/json; charset=utf-8
+DEBUG 2021-03-29 12:14:44,866 [4    ] Abp.AspNetCore.SignalR.Hubs.AbpCommonHub - A client is disconnected: u2VkuztMIzXbwgAzf65Kiw
+INFO  2021-03-29 12:14:44,870 [4    ] ft.AspNetCore.Routing.EndpointMiddleware - Executed endpoint '/signalr'
+INFO  2021-03-29 12:14:44,875 [4    ] Microsoft.AspNetCore.Hosting.Diagnostics - Request finished in 2255136.2868ms 101 
