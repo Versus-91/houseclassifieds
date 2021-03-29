@@ -9,6 +9,7 @@ using classifieds.Districts.Dto;
 using classifieds.Images;
 using classifieds.PostsAmenities;
 using classifieds.PostsAmenities.Dto;
+using classifieds.RealEstates;
 using classifieds.RealEstates.Dto;
 using Newtonsoft.Json;
 using System;

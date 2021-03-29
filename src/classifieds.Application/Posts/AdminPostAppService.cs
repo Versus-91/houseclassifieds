@@ -89,7 +89,7 @@ namespace classifieds.Posts
                     .ThenInclude(m=>m.Area)
                     .ThenInclude(m=>m.City)
                 .Include(m=>m.Category)
-                .Include(m => m.Category)
+                .Include(m => m.RealEstate)
                 .Include(m=>m.Type)
                 .WhereIf(input.Featured.HasValue, t => t.IsFeatured == input.Featured.Value)
                 //.WhereIf(input.MinPrice.HasValue && input.MaxPrice.HasValue, t => t. == input.Featured.Value)

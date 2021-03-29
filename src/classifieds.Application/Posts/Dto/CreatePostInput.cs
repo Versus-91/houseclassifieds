@@ -31,6 +31,7 @@ namespace classifieds.Posts.Dto
         public double? Price { get; set; }
         public double? Latitude { get; set; }
         public ushort? Age { get; set; }
+        public int? RealEstateId { get; set; }
 
         public double? Longitude { get; set; }
         public IList<int> Amenities { get; set; } = new List<int>();

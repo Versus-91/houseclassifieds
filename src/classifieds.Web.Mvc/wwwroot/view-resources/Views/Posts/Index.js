@@ -104,6 +104,14 @@
             },
             {
                 targets: 5,
+                sortable: false,
+                render: (data, type, row, meta) => {
+                    console.log(row);
+                    return !!row.realEstate?.name ? `<span class="badge badge-success">${row.realEstate?.name}</span>` : `<span class="badge badge-danger">ندارد</span>`
+                }
+            },
+            {
+                targets: 6,
                 data: 'creationTime',
                 sortable: false,
                 render: (data, type, row, meta) => {
@@ -115,7 +123,7 @@
                 }
             },
             {
-                targets: 6,
+                targets: 7,
                 data: null,
                 sortable: false,
                 autoWidth: false,

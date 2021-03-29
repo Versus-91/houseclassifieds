@@ -74,6 +74,7 @@ namespace classifieds.Posts
                 .Include(m => m.Type)
                 .Include(m => m.Category)
                 .Include(m => m.PostAmenities).ThenInclude(m => m.Amenity)
+                .Include(m=>m.RealEstate)
                 .Where(m => m.IsVerified == true)
                 .WhereIf(input.Zone.HasValue, t => t.District.AreaId == input.Zone.Value)
                 .WhereIf(input.HasMedia.HasValue, t => t.HasMedia == input.HasMedia.Value)
