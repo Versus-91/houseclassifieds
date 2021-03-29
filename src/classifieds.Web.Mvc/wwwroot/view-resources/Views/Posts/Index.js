@@ -107,7 +107,7 @@
                 sortable: false,
                 render: (data, type, row, meta) => {
                     console.log(row);
-                    return !!row.realEstate?.name ? `<span class="badge badge-success">${row.realEstate?.name}</span>` : `<span class="badge badge-danger">ندارد</span>`
+                    return !!row.realEstate ? `<span class="badge badge-success">${row.realEstate.name}</span>` : `<span class="badge badge-danger">ندارد</span>`
                 }
             },
             {
