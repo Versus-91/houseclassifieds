@@ -14,6 +14,12 @@
                             <input  type="text" name="Name" class="form-control" required maxlength="32" minlength="2">
                         </div>
                     </div>
+                    <div class="form-group row required">
+                        <label class="col-md-3 col-form-label" for="rolename">@L("Image")</label>
+                        <div class="col-md-9">
+                            <input  type="file" name="Image" class="form-control" required maxlength="32" minlength="2">
+                        </div>
+                    </div>
                 </div>
                 @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
             </form>

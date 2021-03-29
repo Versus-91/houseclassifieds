@@ -1,4 +1,5 @@
 ﻿using Abp.AspNetCore.Mvc.Controllers;
+using classifieds.Posts;
 using classifieds.SaleReports.Dto;
 using classifieds.Slaes;
 using Microsoft.AspNetCore.Mvc;
@@ -10,15 +11,18 @@ namespace classifieds.Web.Areas.Admin.Controllers
     public class SalesController : AbpController
     {
         private readonly ISaleAppService _saleService;
-        public SalesController(ISaleAppService saleService)
+        private readonly IPostAppService _postService;
+
+        public SalesController(ISaleAppService saleService, IPostAppService postService)
         {
             _saleService = saleService;
+            _postService = postService;
         }
         public IActionResult Index()
         {
             return View();
         }
-        public IActionResult Create()
+        public  IActionResult Create(int id)
         {
             return View();
         }

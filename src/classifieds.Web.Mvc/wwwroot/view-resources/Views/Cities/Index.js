@@ -49,6 +49,14 @@
             },
             {
                 targets: 2,
+                data: 'image',
+                sortable: false,
+                ender: (data, type, row, meta) => {
+                    return !!row.image ? `<img src="'/'+${row.image}" />` : null;
+                }
+            },
+            {
+                targets: 3,
                 data: null,
                 sortable: false,
                 autoWidth: false,

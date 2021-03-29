@@ -18,12 +18,12 @@
             <div class="columns">
                 <div class="column">
                     <div class="column is-4">
-                       <p class="title is-5">مشاور املاک</p>
-                       <div class="select is-fullwidth hide-arrow">
-                       <select  v-select2 v-model="realEstateId" id="realestates">
-                       </select>
-                       </div>
-                     </div>
+                        <p class="title is-5">مشاور املاک</p>
+                        <div class="select is-fullwidth hide-arrow">
+                            <select v-select2 v-model="realEstateId" id="realestates">
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="tabs is-toggle is-centered">
@@ -49,7 +49,7 @@
                                 @prop.Text
                             </button>
                         }
-                        </div>
+                    </div>
                 </div>
             </div>
             <form asp-action="create" enctype="multipart/form-data" id="CreateAd">
@@ -253,7 +253,7 @@
 
 <script>
       $(function () {
-  
+
           function matchCustom(params, data) {
              // If there are no search terms, return all of the data
              if ($.trim(params.term) === '') {

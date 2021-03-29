@@ -21,6 +21,7 @@
         public const string Sales = "Sales";
         public const string RealEstates = "RealEstates";
         public const string Favorites = "Favorites";
+        public const string Agencies = "Agencies";
 
     }
 }

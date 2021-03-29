@@ -3,57 +3,57 @@
 @{
     ViewBag.Title = Model.Post.Category.Name + " " + Model.Post.Type.Name + " در " + Model.Post.District.Name;
     ViewBag.CurrentPageName = PageNames.Home;
-    Layout = "layout/_front"; 
+    Layout = "layout/_front";
 }
 @section styles{
-    <environment names="Development">
-      <link rel="stylesheet" href="~/libs/swiper/swiper-bundle.min.css" asp-append-version="true" type="text/css">
-      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-      crossorigin="" />
-  </environment>
-     <environment names="Staging,Production">
-      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-      integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-      crossorigin="" />
-         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.css" integrity="sha256-YxtPTDAJPRVo6svcrCBjCbRzz7lsn8LuDunnxChwuns=" crossorigin="anonymous">
-    </environment>
+<environment names="Development">
+    <link rel="stylesheet" href="~/libs/swiper/swiper-bundle.min.css" asp-append-version="true" type="text/css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin="" />
+</environment>
+<environment names="Staging,Production">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+          integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+          crossorigin="" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.css" integrity="sha256-YxtPTDAJPRVo6svcrCBjCbRzz7lsn8LuDunnxChwuns=" crossorigin="anonymous">
+</environment>
 }
 @section tags{
 <meta property="og:type" content="website">
 <meta property="og:title" content="@ViewBag.Title">
-<meta property="og:type"  content="article" />
-<meta property="og:description"  content="مشاور املاک" />
-<meta property="fb:app_id"  content="815507745845174" />
+<meta property="og:type" content="article" />
+<meta property="og:description" content="مشاور املاک" />
+<meta property="fb:app_id" content="815507745845174" />
 <meta property="og:url" content="http://kamyabhouse.com/ads/@Model.Post.Id">
 @if(Model.Post.Images.Count > 0){
- <meta property="og:image" content="http://kamyabhouse.com/@Model.Post.Images[0].Path.Replace("\\","/")?height=640&width=480">
+<meta property="og:image" content="http://kamyabhouse.com/@Model.Post.Images[0].Path.Replace("\\","/")?height=640&width=480">
 }else{
- <meta property="og:image" content="http://www.kamyabhouse.com/img/placeholder.png">
+<meta property="og:image" content="http://www.kamyabhouse.com/img/placeholder.png">
 }
 
 <meta property="og:site_name" content="kamyab house">
 }
 <nav class="navbar is-fixed-bottom mobile is-hidden-desktop	is-info" style="z-index:1001;">
     <div class="navbar-start">
-     <div class="navbar-item">
-        <div class="buttons">
-           <button  class="button " v-on:click="getNumber" :disabled="loadingNumber">
-              <span class="icon">
-                  <i class="fas has-text-warning" :class="{'fa fa-phone':loadingNumber == false,'fa-spinner fa-spin':loadingNumber == true}"></i>
-              </span>
-              <span v-if="phoneNumber == null" >تماس</span>
-              <span v-else>{{phoneNumber}}</span>
-          </button>
-          <button class="button " v-on:click="addFavorite">
-                     <span class="icon" v-bind:class="{'has-text-danger':liked}">
-                         <i class="fas fa-bookmark"></i>
-                     </span>
-                     <span>ذخیره</span>
-          </button>
+        <div class="navbar-item">
+            <div class="buttons">
+                <button class="button " v-on:click="getNumber" :disabled="loadingNumber">
+                    <span class="icon">
+                        <i class="fas has-text-warning" :class="{'fa fa-phone':loadingNumber == false,'fa-spinner fa-spin':loadingNumber == true}"></i>
+                    </span>
+                    <span v-if="phoneNumber == null">تماس</span>
+                    <span v-else>{{phoneNumber}}</span>
+                </button>
+                <button class="button " v-on:click="addFavorite">
+                    <span class="icon" v-bind:class="{'has-text-danger':liked}">
+                        <i class="fas fa-bookmark"></i>
+                    </span>
+                    <span>ذخیره</span>
+                </button>
+            </div>
         </div>
-      </div>
-    </div>  
+    </div>
 </nav>
 <div class="py-2 has-background-white-ter Site-content">
     @Html.AntiForgeryToken()
@@ -61,7 +61,7 @@
         <input hidden name="id" id="id" value="@Model.Post.Id" />
         <input hidden name="Latitude" id="postLatitude" value="@Model.Post.Latitude" />
         <input hidden name="Longitude" id="postLongitude" value="@Model.Post.Longitude" />
-        <input type="hidden" value="@Model.Post.CreatorUserId" id="userId"/>
+        <input type="hidden" value="@Model.Post.CreatorUserId" id="userId" />
         <br />
         <nav class="breadcrumb mx-1" aria-label="breadcrumbs">
             <ul>
@@ -74,18 +74,18 @@
         <div class="box">
             <div class="columns reverse-columns">
                 <div class="column is-6 has-text-centered">
-                    <h3 class="title is-4 my-3">@Model.Post.Category.Name @Model.Post.Type.Name ,شهر @Model.Post.District.Area.City.Name , @Model.Post.District.Name </h3>  
+                    <h3 class="title is-4 my-3">@Model.Post.Category.Name @Model.Post.Type.Name ,شهر @Model.Post.District.Area.City.Name , @Model.Post.District.Name </h3>
                     <h3 class="subtitle is-5 my-2"> قیمت : @Model.Post.Price $ </h3>
                     <section class="level is-mobile mt-2">
-                         @if (Model.Post.Bedroom > 0)
-                          {
-                        <div class="level-item has-text-centered">
-                            <div>
-                                <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
-                                <p class="title is-6 has-text-grey">تعداد اتاق</p>
-                                <p class="title is-6 my-2">@Model.Post.Bedroom</p>
+                        @if (Model.Post.Bedroom > 0)
+                        {
+                            <div class="level-item has-text-centered">
+                                <div>
+                                    <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
+                                    <p class="title is-6 has-text-grey">تعداد اتاق</p>
+                                    <p class="title is-6 my-2">@Model.Post.Bedroom</p>
+                                </div>
                             </div>
-                        </div>
                         }
                         <div class="level-item has-text-centered my-5">
                             <div>
@@ -113,51 +113,51 @@
                     </section>
 
                     <h1 class="subtitle is-5">@Model.Post.Description</h1>
-                        <div class="buttons are-small">
-                            <button  class="button" v-on:click="getNumber" :disabled="loadingNumber">
-                                <span class="icon">
-                                    <i class="fas has-text-warning" :class="{'fa fa-phone':loadingNumber == false,'fa-spinner fa-spin':loadingNumber == true}"></i>
-                                </span>
-                                <span v-if="phoneNumber == null" >تماس</span>
-                                <span v-else>{{phoneNumber}}</span>
-                            </button>
-                            <button class="button" v-on:click="showShareModal = true">
-                                <span class="icon ">
-                                    <i class="fas fa-share-alt"></i>
-                                </span>
-                                <span>اشتراک</span>
-                            </button>
-                            <button class="button" v-on:click="addFavorite">
-                                <span class="icon" v-bind:class="{'has-text-danger':liked}">
-                                    <i class="fas fa-bookmark"></i>
-                                </span>
-                                <span>ذخیره</span>
-                            </button>
-                            <button class="button is-danger" v-on:click="showModal = true">
-                                <span class="icon ">
-                                    <i class="fas fa-flag"></i>
-                                </span>
-                            </button>
-                        </div>
-                        @*<span class="text-muted">کد :@Model.Post.Id</span>*@
+                    <div class="buttons are-small">
+                        <button class="button" v-on:click="getNumber" :disabled="loadingNumber">
+                            <span class="icon">
+                                <i class="fas has-text-warning" :class="{'fa fa-phone':loadingNumber == false,'fa-spinner fa-spin':loadingNumber == true}"></i>
+                            </span>
+                            <span v-if="phoneNumber == null">تماس</span>
+                            <span v-else>{{phoneNumber}}</span>
+                        </button>
+                        <button class="button" v-on:click="showShareModal = true">
+                            <span class="icon ">
+                                <i class="fas fa-share-alt"></i>
+                            </span>
+                            <span>اشتراک</span>
+                        </button>
+                        <button class="button" v-on:click="addFavorite">
+                            <span class="icon" v-bind:class="{'has-text-danger':liked}">
+                                <i class="fas fa-bookmark"></i>
+                            </span>
+                            <span>ذخیره</span>
+                        </button>
+                        <button class="button is-danger" v-on:click="showModal = true">
+                            <span class="icon ">
+                                <i class="fas fa-flag"></i>
+                            </span>
+                        </button>
+                    </div>
+                    @*<span class="text-muted">کد :@Model.Post.Id</span>*@
                 </div>
 
-                 <div class="column is-6 p-0 m-0">
-                   <div class="swiper-container" id="imageSlider">
-                     <div class="swiper-wrapper">
-                             @foreach (var image in Model.Post.Images)
-                             {  
-                               <div class="swiper-slide">
-                                   <!-- Required swiper-lazy class and image source specified in data-src attribute -->
-                                   <img v-on:click="openGallery"  src="/@image.Path?height=320&width=240" class="swiper-lazy image-box">
-                                   <!-- Preloader image -->
-                                   <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
-                               </div>
+                <div class="column is-6 p-0 m-0">
+                    <div class="swiper-container" id="imageSlider">
+                        <div class="swiper-wrapper">
+                            @foreach (var image in Model.Post.Images)
+                            {
+                                <div class="swiper-slide">
+                                    <!-- Required swiper-lazy class and image source specified in data-src attribute -->
+                                <img v-on:click="openGallery" src="/@image.Path?height=320&width=240" class="swiper-lazy image-box">
+                                    <!-- Preloader image -->
+                                <div class="swiper-lazy-preloader swiper-lazy-preloader-white"></div>
+                                </div>
                             }
-                     </div>
-                     <!-- Add Pagination -->
-                     <div class="swiper-pagination swiper-pagination-white"></div>
-                   </div>
+                        </div>
+                        <!-- Add Pagination -->
+                        <div class="swiper-pagination swiper-pagination-white"></div>
+                    </div>
                 </div>
             </div>
             <div class="columns my-4 ">
@@ -165,24 +165,25 @@
                     @if (Model.Post.Amenities.Count > 0)
                     {
                         <div class="columns is-multiline is-mobile">
-                         <div class="column is-12">
-                        <h2 class="title is-4">
-                            امکانات
-                        </h2>
-                        <hr class="my-0"/>
-                        </div>
+                            <div class="column is-12">
+                                <h2 class="title is-4">
+                                    امکانات
+                                </h2>
+                                <hr class="my-0" />
+                            </div>
                             @foreach (var item in Model.Post.Amenities)
                             {
                                 <div class="column is-6">
 
                                     <span class="tag is-info is-light is-medium">
-                                        @if(!String.IsNullOrWhiteSpace(item.Icon)){
-                                          <figure class="image is-24x24">
-                                            <img src="/@item.Icon" alt="amenity"/>
-                                          </figure>
+                                        @if (!String.IsNullOrWhiteSpace(item.Icon))
+                                        {
+                                            <figure class="image is-24x24">
+                                                <img src="/@item.Icon" alt="amenity" />
+                                            </figure>
                                         }
-                                    @item.Name
-                                </span>
+                                        @item.Name
+                                    </span>
                                 </div>
                             }
                         </div>
@@ -297,13 +298,13 @@
     </div>
 </div>
 <div class="modal" :class="{'is-active':showImageModal}">
-  <div class="modal-background"></div>
-  <div class="modal-content">
-    <p class="image ">
-      <img :src="image" alt="@ViewBag.Title">
-    </p>
-  </div>
-  <button class="modal-close is-large" aria-label="close" v-on:click="showImageModal = false"></button>
+    <div class="modal-background"></div>
+    <div class="modal-content">
+        <p class="image ">
+            <img :src="image" alt="@ViewBag.Title">
+        </p>
+    </div>
+    <button class="modal-close is-large" aria-label="close" v-on:click="showImageModal = false"></button>
 </div>
 <div class="modal" :class="{'is-active':showShareModal}">
     <div class="modal-background"></div>
@@ -337,9 +338,6 @@
     </div>
 </div>
 
-
-</div>
-
 @section scripts{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
@@ -352,9 +350,9 @@
 
 </environment>
 <environment names="Staging,Production">
-  <script src="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.js" integrity="sha256-73RhwAUbMlgFyIetxjV6Rk2uPvrTcgIUuReZpQGvtiw=" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js" integrity="sha256-KSlsysqp7TXtFo/FHjb1T9b425x3hrvzjMWaJyKbpcI=" crossorigin="anonymous"></script>
-  <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.js" integrity="sha256-73RhwAUbMlgFyIetxjV6Rk2uPvrTcgIUuReZpQGvtiw=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js" integrity="sha256-KSlsysqp7TXtFo/FHjb1T9b425x3hrvzjMWaJyKbpcI=" crossorigin="anonymous"></script>
+    <script src="~/view-resources/Views/UserPosts/show.js" asp-append-version="true"></script>
 </environment>
 
 }

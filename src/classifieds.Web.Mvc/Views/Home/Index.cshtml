@@ -1,70 +1,72 @@
 ﻿@using classifieds.Web.Startup
 @model classifieds.Web.Models.Ads.AdsIndexViewModel
 
-@{ ViewBag.Title = "خانه";
+@{
+    ViewBag.Title = "خانه";
     ViewBag.CurrentPageName = PageNames.Home;
-    Layout = "layout/_front"; }
+    Layout = "layout/_front"; 
+}
 @section styles{
-    <environment names="Development">
-        <link href="~/libs/swiper/swiper-bundle.min.css" rel="stylesheet" />
-    </environment>
-     <environment names="Staging,Production">
-         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.css" integrity="sha256-YxtPTDAJPRVo6svcrCBjCbRzz7lsn8LuDunnxChwuns=" crossorigin="anonymous">
-    </environment>
+<environment names="Development">
+    <link href="~/libs/swiper/swiper-bundle.min.css" rel="stylesheet" />
+</environment>
+<environment names="Staging,Production">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.css" integrity="sha256-YxtPTDAJPRVo6svcrCBjCbRzz7lsn8LuDunnxChwuns=" crossorigin="anonymous">
+</environment>
 }
 @section tags{
 
-<meta property="og:description"  content="مشاور املاک" />
+<meta property="og:description" content="مشاور املاک" />
 <meta name="Description" content="Put your description here.">
 }
 @section hero{
-    <section class="hero " >
-        <div class="hero-body">
-            <div class="container">
-                <div class="tabs is-toggle is-success">
-                     <ul>
-                       @foreach (var item in Model.Categories)
-                           {
-                               <li data-id="@item.Id" class="cat-tab"><a href="#">@item.Name</a></li>
-                           }
-                     </ul>
-                </div>
-                <div class="box has-text-link">
-                    <div class="columns is-centered is-vcentered has-text-centered py-2">
-                        <div class="column">
-                            <div class="select is-fullwidth py-1 hide-arrow">
-                                <select class="select2" id="selectCity">
-                                    @foreach (var item in Model.Cities)
-                                    {
-                                        <option value="@item.Id">@item.Name</option>
-                                    }
-                                </select>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="select is-fullwidth py-1 hide-arrow">
-                                <select class="select2" disabled id="selectDistrict">
-                                    <option value="0">انتخاب محله </option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <div class="select is-fullwidth py-1 hide-arrow">
-                                <select class="select2" asp-items="@(new SelectList(Model.Types,"Id","Name"))" id="type">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="column">
-                            <button class="button is-info is-rounded is-fullwidth-mobile" aria-label="search" id="send">
-                                <i class="fas fa-search"></i>
-                            </button>
+<section class="hero ">
+    <div class="hero-body">
+        <div class="container">
+            <div class="tabs is-toggle is-success">
+                <ul>
+                    @foreach (var item in Model.Categories)
+                    {
+                    <li data-id="@item.Id" class="cat-tab"><a href="#">@item.Name</a></li>
+                    }
+                </ul>
+            </div>
+            <div class="box has-text-link">
+                <div class="columns is-centered is-vcentered has-text-centered py-2">
+                    <div class="column">
+                        <div class="select is-fullwidth py-1 hide-arrow">
+                            <select class="select2" id="selectCity">
+                                @foreach (var item in Model.Cities)
+                                {
+                                <option value="@item.Id">@item.Name</option>
+                                }
+                            </select>
                         </div>
                     </div>
-
+                    <div class="column">
+                        <div class="select is-fullwidth py-1 hide-arrow">
+                            <select class="select2" disabled id="selectDistrict">
+                                <option value="0">انتخاب محله </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="select is-fullwidth py-1 hide-arrow">
+                            <select class="select2" asp-items="@(new SelectList(Model.Types,"Id","Name"))" id="type">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <button class="button is-info is-rounded is-fullwidth-mobile" aria-label="search" id="send">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
                 </div>
+
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
 }
 <div class="section Site-content">
@@ -74,293 +76,298 @@
             دسترسی سریع به محبوب‌ترین محله‌ها از طریق لینک‌های زیر
 
         </p>
-         <div class="swiper-container" id="popularList">
-    <div class="swiper-wrapper">
-        @foreach(var cityCount in Model.PostsCount){
-      <div class="swiper-slide">
-          <div class="column has-background-light p-0 my-3" style="border-radius:15px;">
-           <a class="fill-div" href="/ads?city=@cityCount.CityId">
-             <figure class="image ">
-                <img src="/img/placeholder.png" alt="Placeholder image" style="border-radius:15px;">
-             </figure>
-              <div class="content has-text-right p-3">
-                    <p class="title is-size-6 mt-1">شهر @cityCount.CityName </p>
-               </div>
-             </a>
-         </div>
-      </div>
-        }
+        <div class="swiper-container" id="popularList">
+            <div class="swiper-wrapper">
+                @foreach (var cityCount in Model.PostsCount)
+                {
+                    <div class="swiper-slide">
+                        <div class="column has-background-light p-0 my-3" style="border-radius:15px;">
+                            <a class="fill-div" href="/ads?city=@cityCount.CityId">
+                                <figure class="image ">
+                                    <img src="/img/placeholder.png" alt="Placeholder image" style="border-radius:15px;">
+                                </figure>
+                                <div class="content has-text-right p-3">
+                                    <p class="title is-size-6 mt-1">شهر @cityCount.CityName </p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                }
 
-    </div>
+            </div>
 
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-  </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        </div>
         <h5 class="has-text-centered title is-5">
             آژانس های املاک برتر
         </h5>
-        @if(Model.UserPostsCount.Count()> 0){
-        <p class="has-text-centered subtitle is-6">
-            کاربران برتر
-        </p>
-        <div class="columns is-multiline my-5 is-mobile ">
-            <div class="swiper-container " id="popularUsers">
-                <div class="swiper-wrapper">
-                    @foreach (var user in Model.UserPostsCount)
-                    {
-                        <div class="swiper-slide mt-1 mb-3">
+        @if (Model.UserPostsCount.Count() > 0)
+        {
+            <p class="has-text-centered subtitle is-6">
+                کاربران برتر
+            </p>
+            <div class="columns is-multiline my-5 is-mobile ">
+                <div class="swiper-container " id="popularUsers">
+                    <div class="swiper-wrapper">
+                        @foreach (var user in Model.UserPostsCount)
+                        {
+                            <div class="swiper-slide mt-1 mb-3">
                                 <a class="has-text-black" href="/users/@user.UserName">
                                     <div class="box ">
-                                      <div class="level">
-                                              <div class="level-item">
-                                        @if(user.Avatar != null){
-                                        <figure class="image is-64x64">
-                                            <img class="is-rounded" src="/@user.Avatar">
-                                        </figure>
-                                        }else{
-                                         <figure class="image is-64x64">
-                                            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
-                                        </figure>
-                                        }
-                                         </div>
-                                          <div class="level-item has-text-centered" >
-                                           <p>@user.Name</p>
-                                          </div>
+                                        <div class="level">
+                                            <div class="level-item">
+                                                @if (user.Avatar != null)
+                                                {
+                                                    <figure class="image is-64x64">
+                                                        <img class="is-rounded" src="/@user.Avatar">
+                                                    </figure>
+                                                }
+                                                else
+                                                {
+                                                    <figure class="image is-64x64">
+                                                        <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+                                                    </figure>
+                                                }
+                                            </div>
+                                            <div class="level-item has-text-centered">
+                                                <p>@user.Name</p>
+                                            </div>
                                         </div>
                                     </div>
                                 </a>
                             </div>
-                    }
-                </div>
+                        }
                     </div>
-         </div>
-         }
-                    <h5 class="has-text-centered title is-5">
-                        تازه ترین مطالب بلاگ
-                    </h5>
-                    <p class="has-text-centered subtitle is-6">
-                        همه ی چیزهایی که باید درباره املاک بدانیم
-                    </p>
-                    <div class="columns">
-                        <div class="column is-3">
-                            <div class="card card-hover-shadow">
-                                <div class="card-image">
-                                    <figure class="image ">
-                                        <img src="/img/placeholder.png" alt="Placeholder image">
-                                    </figure>
-                                </div>
-                                <div class="card-content">
+                </div>
+            </div>
+        }
+        <h5 class="has-text-centered title is-5">
+            تازه ترین مطالب بلاگ
+        </h5>
+        <p class="has-text-centered subtitle is-6">
+            همه ی چیزهایی که باید درباره املاک بدانیم
+        </p>
+        <div class="columns">
+            <div class="column is-3">
+                <div class="card card-hover-shadow">
+                    <div class="card-image">
+                        <figure class="image ">
+                            <img src="/img/placeholder.png" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="card-content">
 
-                                    <div class="content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Phasellus nec iaculis mauris. 
-                                        <a href="#">#css</a> <a href="#">#responsive</a>
-                                        <br>
-                                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus nec iaculis mauris.
+                            <a href="#">#css</a> <a href="#">#responsive</a>
+                            <br>
+                            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
                         </div>
-                        <div class="column is-3">
-                            <div class="card card-hover-shadow">
-                                <div class="card-image">
-                                    <figure class="image ">
-                                        <img src="/img/placeholder.png" alt="Placeholder image">
-                                    </figure>
-                                </div>
-                                <div class="card-content">
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3">
+                <div class="card card-hover-shadow">
+                    <div class="card-image">
+                        <figure class="image ">
+                            <img src="/img/placeholder.png" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="card-content">
 
-                                    <div class="content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Phasellus nec iaculis mauris. 
-                                        <a href="#">#css</a> <a href="#">#responsive</a>
-                                        <br>
-                                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus nec iaculis mauris.
+                            <a href="#">#css</a> <a href="#">#responsive</a>
+                            <br>
+                            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
                         </div>
-                        <div class="column is-3">
-                            <div class="card card-hover-shadow">
-                                <div class="card-image">
-                                    <figure class="image ">
-                                        <img src="/img/placeholder.png" alt="Placeholder image">
-                                    </figure>
-                                </div>
-                                <div class="card-content">
+                    </div>
+                </div>
+            </div>
+            <div class="column is-3">
+                <div class="card card-hover-shadow">
+                    <div class="card-image">
+                        <figure class="image ">
+                            <img src="/img/placeholder.png" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="card-content">
 
-                                    <div class="content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Phasellus nec iaculis mauris. 
-                                        <a href="#">#css</a> <a href="#">#responsive</a>
-                                        <br>
-                                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="column is-3">
-                            <div class="card card-hover-shadow">
-                                <div class="card-image">
-                                    <figure class="image ">
-                                        <img src="/img/placeholder.png" alt="Placeholder image">
-                                    </figure>
-                                </div>
-                                <div class="card-content">
-
-                                    <div class="content">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                                        Phasellus nec iaculis mauris.
-                                        <a href="#">#css</a> <a href="#">#responsive</a>
-                                        <br>
-                                        <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus nec iaculis mauris.
+                            <a href="#">#css</a> <a href="#">#responsive</a>
+                            <br>
+                            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
                         </div>
                     </div>
                 </div>
             </div>
 
-            @section Scripts{
-                <environment names="Development">
-                     <script src="~/libs/swiper/swiper-bundle.min.js"></script>
-                </environment>
-                <environment names="Staging,Production">
-                    <script src="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.js" integrity="sha256-73RhwAUbMlgFyIetxjV6Rk2uPvrTcgIUuReZpQGvtiw=" crossorigin="anonymous"></script>
-                </environment>
-                <script>
-                    "use strict";
-                    $(function () {
-                        var swiper = new Swiper('#popularUsers', {
-                            slidesPerView: 2,
-                            spaceBetween: 10,
-                            // init: false,
-                            pagination: {
-                                el: '.swiper-pagination',
-                                clickable: true,
-                            },
-                            breakpoints: {
-                                640: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 5,
-                                },
-                                768: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 10,
-                                },
-                                1024: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 30,
-                                },
-                            }
-                        });
-                        var popList = new Swiper('#popularList', {
-                            slidesPerView: 2,
-                            spaceBetween: 5,
-                             pagination: {
-                              el: '.swiper-pagination',
-                              type: 'fraction',
-                            },
-                            navigation: {
-                              nextEl: '.swiper-button-next',
-                              prevEl: '.swiper-button-prev',
-                            },
-                            breakpoints: {
-                                640: {
-                                    slidesPerView: 2,
-                                    spaceBetween: 5,
-                                },
-                                768: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 10,
-                                },
-                                1024: {
-                                    slidesPerView: 4,
-                                    spaceBetween: 30,
-                                },
-                            }
-                        });
-                        $('.select2').select2({
-                            matcher: matchCustom,
-                            language: {
-                                "noResults": function () { return 'موردی پیدا نشد.'; }
-                            }
-                        });
+            <div class="column is-3">
+                <div class="card card-hover-shadow">
+                    <div class="card-image">
+                        <figure class="image ">
+                            <img src="/img/placeholder.png" alt="Placeholder image">
+                        </figure>
+                    </div>
+                    <div class="card-content">
 
-                        function matchCustom(params, data) {
-                            // If there are no search terms, return all of the data
-                            if ($.trim(params.term) === '') {
-                                return data;
-                            }
+                        <div class="content">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                            Phasellus nec iaculis mauris.
+                            <a href="#">#css</a> <a href="#">#responsive</a>
+                            <br>
+                            <time datetime="2016-1-1">11:09 PM - 1 Jan 2016</time>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-                            // Do not display the item if there is no 'text' property
-                            if (typeof data.text === 'undefined') {
-                                return null;
-                            }
+@section Scripts{
+<environment names="Development">
+    <script src="~/libs/swiper/swiper-bundle.min.js"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="https://cdn.jsdelivr.net/npm/swiper@6.5.0/swiper-bundle.min.js" integrity="sha256-73RhwAUbMlgFyIetxjV6Rk2uPvrTcgIUuReZpQGvtiw=" crossorigin="anonymous"></script>
+</environment>
+<script>
+    "use strict";
+    $(function () {
+        var swiper = new Swiper('#popularUsers', {
+            slidesPerView: 2,
+            spaceBetween: 10,
+            // init: false,
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 5,
+                },
+                768: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 30,
+                },
+            }
+        });
+        var popList = new Swiper('#popularList', {
+            slidesPerView: 2,
+            spaceBetween: 5,
+             pagination: {
+              el: '.swiper-pagination',
+              type: 'fraction',
+            },
+            navigation: {
+              nextEl: '.swiper-button-next',
+              prevEl: '.swiper-button-prev',
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 2,
+                    spaceBetween: 5,
+                },
+                768: {
+                    slidesPerView: 4,
+                    spaceBetween: 10,
+                },
+                1024: {
+                    slidesPerView: 4,
+                    spaceBetween: 30,
+                },
+            }
+        });
+        $('.select2').select2({
+            matcher: matchCustom,
+            language: {
+                "noResults": function () { return 'موردی پیدا نشد.'; }
+            }
+        });
 
-                            // `params.term` should be the term that is used for searching
-                            // `data.text` is the text that is displayed for the data object
-                            if (data.text.indexOf(params.term) > -1) {
-                                var modifiedData = $.extend({}, data, true);
-                                // You can return modified objects from here
-                                // This includes matching the `children` how you want in nested data sets
-                                return modifiedData;
-                            }
+        function matchCustom(params, data) {
+            // If there are no search terms, return all of the data
+            if ($.trim(params.term) === '') {
+                return data;
+            }
 
-                            // Return `null` if the term should not be displayed
-                            return null;
+            // Do not display the item if there is no 'text' property
+            if (typeof data.text === 'undefined') {
+                return null;
+            }
+
+            // `params.term` should be the term that is used for searching
+            // `data.text` is the text that is displayed for the data object
+            if (data.text.indexOf(params.term) > -1) {
+                var modifiedData = $.extend({}, data, true);
+                // You can return modified objects from here
+                // This includes matching the `children` how you want in nested data sets
+                return modifiedData;
+            }
+
+            // Return `null` if the term should not be displayed
+            return null;
+        }
+        var categoryId = 0;
+        $(".cat-tab").first().addClass("is-active");
+        categoryId = $(".cat-tab").attr("data-id");
+        $('#selectCity').on('select2:select', function (e) {
+            if (e.target.value != 0) {
+                $("#selectDistrict").prop("disabled", false);
+                var sampleArray = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }
+                    , { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }
+                    , { id: 4, text: 'wontfix' }];
+                $.get('/admin/districts/GetByCityId?id=' + e.target.value, function (res) {
+                    var items = res.result.map(m => {
+                        return {
+                            id: m.id,
+                            text: m.name
                         }
-                        var categoryId = 0;
-                        $(".cat-tab").first().addClass("is-active");
-                        categoryId = $(".cat-tab").attr("data-id");
-                        $('#selectCity').on('select2:select', function (e) {
-                            if (e.target.value != 0) {
-                                $("#selectDistrict").prop("disabled", false);
-                                var sampleArray = [{ id: 0, text: 'enhancement' }, { id: 1, text: 'bug' }
-                                    , { id: 2, text: 'duplicate' }, { id: 3, text: 'invalid' }
-                                    , { id: 4, text: 'wontfix' }];
-                                $.get('/admin/districts/GetByCityId?id=' + e.target.value, function (res) {
-                                    var items = res.result.map(m => {
-                                        return {
-                                            id: m.id,
-                                            text: m.name
-                                        }
-                                    }
-                                    );
-                                    items.splice(0, 0, { id: 0, text: "انتخاب محله" })
-                                    $("#selectDistrict").empty();
-                                    $("#selectDistrict").select2({ data: items });
-                                })
-                            } else {
-                                $("#selectDistrict").prop("disabled", true);
-                            }
-                        });
-                        $(".cat-tab").click(function () {
-                            $(".cat-tab").removeClass("is-active");
-                            $(this).addClass("is-active");
-                            categoryId = $(this).attr("data-id")
-                        });
-                        $("#send").click(function () {
-                            var query = {};
-                            var city = $('#selectCity').select2("data");
-                            var district = $('#selectDistrict').select2("data");
-                            var type = $('#type').select2("data");
-                            if (categoryId && categoryId != 0) {
-                                query.category = categoryId;
-                            }
-                            if (city[0] && city[0].id != 0) {
-                                query.city = city[0].id;
-                            }
-                            if (district[0] && district[0].id != 0) {
-                                query.district = district[0].id;
-                            }
-                            if (type[0] && type[0].id != 0) {
-                                query.types = type[0].id;
-                            }
-                            location.href = "/ads?" + $.param(query);
-                        });
-                    })
-                </script>
+                    }
+                    );
+                    items.splice(0, 0, { id: 0, text: "انتخاب محله" })
+                    $("#selectDistrict").empty();
+                    $("#selectDistrict").select2({ data: items });
+                })
+            } else {
+                $("#selectDistrict").prop("disabled", true);
+            }
+        });
+        $(".cat-tab").click(function () {
+            $(".cat-tab").removeClass("is-active");
+            $(this).addClass("is-active");
+            categoryId = $(this).attr("data-id")
+        });
+        $("#send").click(function () {
+            var query = {};
+            var city = $('#selectCity').select2("data");
+            var district = $('#selectDistrict').select2("data");
+            var type = $('#type').select2("data");
+            if (categoryId && categoryId != 0) {
+                query.category = categoryId;
+            }
+            if (city[0] && city[0].id != 0) {
+                query.city = city[0].id;
+            }
+            if (district[0] && district[0].id != 0) {
+                query.district = district[0].id;
+            }
+            if (type[0] && type[0].id != 0) {
+                query.types = type[0].id;
+            }
+            location.href = "/ads?" + $.param(query);
+        });
+    })
+</script>
             }

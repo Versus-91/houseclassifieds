@@ -5,11 +5,14 @@ using System.Text;
 
 namespace classifieds.RealEstates.Dto
 {
-    public class GetRealEstatesInput
+    public class GetRealEstatesInput:PagedAndSortedResultRequestDto
     {
         public int? Id { get; set; }
-        public int Name { get; set; }
-        public int Owner { get; set; }
+        public string Name { get; set; }
+        public string? Owner { get; set; }
+        public int? District { get; set; }
+        public int? City { get; set; }
+
 
     }
 }

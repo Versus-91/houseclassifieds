@@ -3,6 +3,7 @@ using Abp.AspNetCore.Mvc.Authorization;
 using Abp.AspNetCore.Mvc.Controllers;
 using classifieds.Authorization;
 using classifieds.Cities;
+using classifieds.Cities.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -24,7 +25,18 @@ namespace classifieds.Web.Areas.Admin.Controllers
         {
             return View();
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(CityDto inputs)
+        {
 
+            if (ModelState.IsValid)
+            {
+                await _cityService.CreateAsync(inputs);
+                return Ok();
+            }
+            return View();
+        }
         public async Task<ActionResult> Edit(int id)
         {
             var model = await _cityService.GetAsync(new EntityDto(id));

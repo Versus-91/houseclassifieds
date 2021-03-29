@@ -82,7 +82,7 @@
                         </div>
                         <div class="form-row ">
                             <div class="form-group col-md-6">
-                                <input class="form-control" type="text" placeholder="phone number" v-model.number="newNumber" />
+                                <input class="form-control" type="number" placeholder="phone number" v-model.number="newNumber" />
                             </div>
                             <div class="form-group col-md-6">
                                 <button type="button" class="btn btn-success" v-on:click="addNumber()" :disabled="newNumber.length < 10">

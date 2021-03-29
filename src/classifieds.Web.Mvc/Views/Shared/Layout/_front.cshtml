@@ -15,7 +15,7 @@
     pageTitle += "خرید ملک در افغانستان - گروی ملک در افغانستان";
 }
 <!DOCTYPE html>
-<html dir="rtl" lang="fa" >
+<html dir="rtl" lang="fa">
 
 <head>
     <meta charset="utf-8">
@@ -26,7 +26,7 @@
     <link rel="icon" type="image/png" href="/img/icon.png" />
 
     <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v26.0.0/dist/font-face.css" rel="stylesheet"
-        type="text/css" />
+          type="text/css" />
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bulma/css/bulma-rtl.min.css" asp-append-version="true" />
@@ -35,22 +35,22 @@
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@fortawesome/fontawesome-free@5.15.2/css/all.min.css" integrity="sha256-0fuNgzfNIlaClbDtmYyFxY8LTNCDrwsNshywr4AALy0=" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma-rtl.min.css" integrity="sha256-OhJCKE0+noWSdE9YUEx+d+3/hdatRbf8nfFQGFCBVhU=" crossorigin="anonymous">       
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma-rtl.min.css" integrity="sha256-OhJCKE0+noWSdE9YUEx+d+3/hdatRbf8nfFQGFCBVhU=" crossorigin="anonymous">
         <link href="~/css/web.min.css" rel="stylesheet" asp-append-version="true" />
     </environment>
     @RenderSection("styles", required: false)
 
 </head>
 
-<body class="site" >
+<body class="site">
     @await Html.PartialAsync("Layout/_UserNavbar", returnUrl)
     <div id="app">
-            @RenderSection("hero", required: false)
-    @RenderBody()
+        @RenderSection("hero", required: false)
+        @RenderBody()
     </div>
-  @await Component.InvokeAsync("Footer")
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>  
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    @await Component.InvokeAsync("Footer")
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         $(document).ready(function () {
 

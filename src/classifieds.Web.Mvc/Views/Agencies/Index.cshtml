@@ -1,0 +1,73 @@
+﻿@using classifieds.Web.Startup
+@using classifieds.Cities.Dto
+@model classifieds.Posts.Dto.GetAllPostsInput
+@{
+    ViewBag.Title = "مشاورین املاک";
+    ViewBag.CurrentPageName = PageNames.Agencies;
+    Layout = "layout/_front";
+}
+<div class="section">
+    <div class="container">
+        <h2>جستجوی مشاور املاک :</h2>
+        <div class="box has-text-link">
+            <div class="columns is-centered is-vcentered has-text-centered py-2">
+                <div class="column">
+                    <div class="select is-fullwidth py-1 hide-arrow">
+                        <select name="cities" v-select2 v-model="city" class="select2"  id="selectCity">
+                            @foreach (var item in ((List<CityDto>)ViewData["Cities"]))
+                            {
+                                    <option value="@item.Id">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="column">
+                    <div class="select is-fullwidth py-1 hide-arrow">
+                        <select name="districts" v-select2 v-model="district"class="select2" disabled id="selectDistrict">
+                            <option value="0">انتخاب محله </option>
+                        </select>
+                    </div>
+                </div>
+                <div class="column">
+                    <button class="button is-success  is-fullwidth-mobile" aria-label="search" id="send" v-on:click="search" :disabled=" city ==0">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4" style="min-height:50vh;">
+        <div class="columns is-multiline">
+            <div class="column is-3" v-for="item in items" :key="item.id">
+                <div class="card">
+                 <div class="card-image">
+                    <figure class="image is-4by3">
+                      <img :src="'/'+item.logo" alt="Real Estate Agency Logo">
+                    </figure>
+                  </div>
+                  <div class="card-content">           
+                    <div class="content">
+					نام : {{item.name}}
+                    <br />
+					مسئول :  {{item.name}}
+                    <br />
+					آدرس : {{item.address}}
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+<environment names="Development">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="~/lib/vue/vue.js" asp-append-version="true"></script>
+    <script src="~/view-resources/Views/Agencies/Index.js" asp-append-version="true"></script>
+</environment>
+<environment names="Staging,Production">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js" integrity="sha256-KSlsysqp7TXtFo/FHjb1T9b425x3hrvzjMWaJyKbpcI=" crossorigin="anonymous"></script>
+    <script src="~/view-resources/Views/Agencies/Index.js" asp-append-version="true"></script>
+</environment>
+}

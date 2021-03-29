@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 namespace classifieds.RealEstates
 {
     [AbpAuthorize(PermissionNames.Pages_RealEstates)]
-    public class RealestateAppService : AsyncCrudAppService<RealEstate, RealEstateDto, int>
+    public class RealestateAppService : AsyncCrudAppService<RealEstate, RealEstateDto, int, GetRealEstatesInput>
     {
         private readonly IWebHostEnvironment _env;
         private readonly string _path;
@@ -29,6 +29,18 @@ namespace classifieds.RealEstates
             _repository = repository;
             _path = config.GetValue<string>("IconsFilesPath");
             _env = env;
+        }
+        protected override IQueryable<RealEstate> CreateFilteredQuery(GetRealEstatesInput input)
+        {
+
+            return base.CreateFilteredQuery(input)
+                .Include(m => m.District)
+                   .ThenInclude(m => m.Area)
+                   .ThenInclude(m => m.City)
+                .WhereIf(input.Id != null, t => t.Id == input.Id)
+                .WhereIf(input.City.HasValue, t => t.District.Area.City.Id == input.City)
+                .WhereIf(input.District.HasValue, t => t.District.Id == input.District)
+                .OrderByDescending(m => m.CreationTime);
         }
         public override async Task DeleteAsync(EntityDto<int> input)
         {
