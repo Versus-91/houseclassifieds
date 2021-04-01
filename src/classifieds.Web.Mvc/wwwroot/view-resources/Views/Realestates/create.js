@@ -122,9 +122,9 @@
 					form.append('districtId', this.district);
 					form.append('file', this.file);
 					form.append('PhoneNumbers', this.numbers.join(','));
-					  axios.post('/admin/realestates/create', form).then((res) => {
-		window.location.href = "/admin/realestates";
-					   }).catch((err) => console.log(err));
+					axios.post('/admin/realestates/create', form).then(function (res) {
+		                window.location.href = "/admin/realestates";
+					}).catch(function (err) {  });
 				},
 			   uploadImage(e){
 				const image = e.target.files[0];

@@ -45,10 +45,10 @@
                 form.append('internalCommissionRate', this.internalCommissionRate);
                 form.append('categoryId', this.post.categoryId);
                 form.append('SaleDate', this.saleDate);
-                axios.post('/admin/sales/create', form).then((res) => {
+                axios.post('/admin/sales/create', form).then(function(res) {
                        this.loading = false;
                        window.location.href = "/admin/sales";
-                   }).catch((err)=>{ console.log(err);this.loading = false;});
+                   }).catch(function(err){ console.log(err);this.loading = false;});
             },
         },
         created:function(){
@@ -95,7 +95,7 @@
                                                 <input type="range" min="0" max="100" class="form-control" v-model.number="governmentCommissionRate" name="InternalCommissionRate"
                                                        placeholder="InternalCommissionRate" aria-describedby="inputGroupPrepend2" required>
                                             </div>
-                                            <small id="emailHelp" class="form-text text-muted">Gov Commission Amount</small>
+                                            <p  class="form-text ">Gov Commission Amount</p>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="price">Internal commission rate : {{internalCommissionRate}}%</label>
@@ -103,7 +103,7 @@
                                                 <input  class="form-control" v-model.number="internalCommissionRate" name="InternalCommissionRate"
                                                        placeholder="InternalCommissionRate" type="range" id="points" name="points" min="0" max="100" aria-describedby="inputGroupPrepend2" required>
                                             </div>
-                                            <small id="emailHelp" class="form-text text-muted">Internal Commission Amount = {{InternalCommissionAmount}}</small>
+                                            <p  class="form-text ">Internal Commission Amount : {{InternalCommissionAmount}}</p>
                                         </div>
                                     </div>
                                     <div class="form-group">
