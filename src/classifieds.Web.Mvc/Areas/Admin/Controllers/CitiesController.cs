@@ -42,6 +42,17 @@ namespace classifieds.Web.Areas.Admin.Controllers
             var model = await _cityService.GetAsync(new EntityDto(id));
             return PartialView("_EditModal", model);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Update(CityDto inputs)
+        {
 
+            if (ModelState.IsValid)
+            {
+                await _cityService.UpdateAsync(inputs);
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
     }
 }

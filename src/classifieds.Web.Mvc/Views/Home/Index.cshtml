@@ -78,16 +78,21 @@
         </p>
         <div class="swiper-container" id="popularList">
             <div class="swiper-wrapper">
-                @foreach (var cityCount in Model.PostsCount)
+                @foreach (var city in Model.PostsCount)
                 {
                     <div class="swiper-slide">
-                        <div class="column has-background-light p-0 my-3" style="border-radius:15px;">
-                            <a class="fill-div" href="/ads?city=@cityCount.CityId">
+                        <div class="column p-0 my-3">
+                            <a class="fill-div" href="/ads?city=@city.CityId">
                                 <figure class="image ">
-                                    <img src="/img/placeholder.png" alt="Placeholder image" style="border-radius:15px;">
+                                    @if(string.IsNullOrEmpty(city.CityImage)){
+                                    <img src="/img/placeholder.png" alt="City Placeholder image" style="border-radius:5px;">
+
+                                    }else{
+                                     <img src="/@city.CityImage" alt="@city.CityName City image" style="border-radius:5px;">
+                                    }
                                 </figure>
-                                <div class="content has-text-right p-3">
-                                    <p class="title is-size-6 mt-1">شهر @cityCount.CityName </p>
+                                <div class="content has-text-right p-3 ">
+                                    <p class="title is-size-5 mt-2 mx-2">شهر @city.CityName </p>
                                 </div>
                             </a>
                         </div>
@@ -130,7 +135,7 @@
                                                     </figure>
                                                 }
                                             </div>
-                                            <div class="level-item has-text-centered">
+                                            <div class="level-item has-text-centered mx-2">
                                                 <p>@user.Name</p>
                                             </div>
                                         </div>

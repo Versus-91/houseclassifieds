@@ -64,5 +64,31 @@ namespace classifieds.Cities
             await _repository.InsertAndGetIdAsync(city);
             return ObjectMapper.Map<CityDto>(city);
         }
+        public override async Task<CityDto> UpdateAsync(CityDto input)
+        {
+            var city = await _repository.GetAsync(input.Id);
+            if (city == null)
+            {
+                throw new Exception();
+            }
+            city.Name = input.Name;
+            if (input.File != null)
+            {
+                if (!string.IsNullOrEmpty(input.Image))
+                {
+                    File.Delete(Path.Combine(_env.WebRootPath, input.Image));
+                }
+                var trustedFileNameForDisplay = WebUtility.HtmlEncode(input.File.FileName);
+                var trustedFileNameForFileStorage = Path.Combine($"{Guid.NewGuid().ToString("N")}{Path.GetExtension(trustedFileNameForDisplay).ToLower()}");
+                Directory.CreateDirectory(Path.Combine(_env.WebRootPath, _path));
+                using (var stream = System.IO.File.Create(Path.Combine(_env.WebRootPath, _path, trustedFileNameForFileStorage)))
+                {
+                    await input.File.CopyToAsync(stream);
+                }
+                city.Image = Path.Combine(_path, trustedFileNameForFileStorage);
+            }
+            await _repository.UpdateAsync(city);
+            return ObjectMapper.Map<CityDto>(city);
+        }
     }
 }

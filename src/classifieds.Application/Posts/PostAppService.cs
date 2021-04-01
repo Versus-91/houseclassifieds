@@ -221,6 +221,7 @@ namespace classifieds.Posts
                 {
                     CityId = n.Key,
                     CityName = _cityRepository.GetAll().Where(m => m.Id == n.Key).FirstOrDefault().Name,
+                    CityImage = _cityRepository.GetAll().Where(m => m.Id == n.Key).FirstOrDefault().Image,
                     Count = n.Count(),
                 }
              ).OrderByDescending(m => m.Count).Take(20).ToListAsync();

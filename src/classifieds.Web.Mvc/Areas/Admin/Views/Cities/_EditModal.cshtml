@@ -4,7 +4,7 @@
     Layout = null;
 }
 @await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("EditCity")))
-<form name="CityEditForm" role="form" class="form-horizontal">
+<form name="CityEditForm" role="form" class="form-horizontal" asp-action="update" enctype="multipart/form-data">
     <input type="hidden" name="Id" value="@Model.Id" />
     <div class="modal-body">
         <div class="form-group row required">
@@ -13,7 +13,15 @@
                 <input id="rolename" class="form-control" type="text" name="Name" value="@Model.Name"  required maxlength="32" minlength="2">
             </div>
         </div>
-
+        @if(Model.Image != null){
+            <img src="/@Model.Image" style="height:50px;width:50px;" />
+        }
+        <div class="form-group row">
+            <label class="col-md-3 col-form-label" for="rolename">@L("Image")</label>
+            <div class="col-md-9">
+                <input  type="file" name="File" class="form-control-file" >
+            </div>
+        </div>
     </div>
     @await Html.PartialAsync("~/Views/Shared/Modals/_ModalFooterWithSaveAndCancel.cshtml")
 </form>
