@@ -1,4 +1,5 @@
 ﻿(function () {
+    $("#LoginButton").prop('disabled', false);
     $('#ReturnUrlHash').val(location.hash);
 
     var _$form = $('#LoginForm');
