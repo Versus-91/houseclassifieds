@@ -29,7 +29,7 @@ namespace classifieds.Slaes
         }
         public  override async Task<SaleReportDto> CreateAsync(SaleReportDto input)
         {
-            var sale = _repository.GetAll().Where(m => m.PostId == input.PostId).FirstOrDefaultAsync();
+            var sale =await _repository.GetAll().Where(m => m.PostId == input.PostId).FirstOrDefaultAsync();
             if (sale != null)
             {
                 throw new AbpValidationException("there is a sale report for this post");

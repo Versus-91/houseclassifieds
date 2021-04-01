@@ -11,7 +11,9 @@ namespace classifieds.Cities.Dto
     public class CityDto:AuditedEntityDto
     {
         public string Name { get; set; }
-        public IFormFile Image { get; set; }
+        public string Image { get; set; }
+
+        public IFormFile File { get; set; }
 
     }
 }

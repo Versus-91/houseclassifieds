@@ -9,8 +9,8 @@ using classifieds.EntityFrameworkCore;
 namespace classifieds.Migrations
 {
     [DbContext(typeof(classifiedsDbContext))]
-    [Migration("20210326075345_realestate")]
-    partial class realestate
+    [Migration("20210331190213_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -1316,6 +1316,9 @@ namespace classifieds.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<string>("Name")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -1563,6 +1566,9 @@ namespace classifieds.Migrations
                     b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
 
+                    b.Property<string>("Image")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime(6)");
 
@@ -1594,6 +1600,9 @@ namespace classifieds.Migrations
 
                     b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
+
+                    b.Property<string>("Image")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime(6)");
@@ -1785,6 +1794,9 @@ namespace classifieds.Migrations
                     b.Property<double>("Price")
                         .HasColumnType("double");
 
+                    b.Property<int?>("RealEstateId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Title")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
@@ -1801,6 +1813,8 @@ namespace classifieds.Migrations
                     b.HasIndex("CreatorUserId");
 
                     b.HasIndex("DistrictId");
+
+                    b.HasIndex("RealEstateId");
 
                     b.HasIndex("TypeId");
 
@@ -1947,10 +1961,13 @@ namespace classifieds.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Benefits")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GovernmentCommissionRate")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InternalCommissionRate")
                         .HasColumnType("int");
 
                     b.Property<int>("PostId")
@@ -1958,6 +1975,9 @@ namespace classifieds.Migrations
 
                     b.Property<double>("Price")
                         .HasColumnType("double");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("SaleDate")
                         .HasColumnType("datetime(6)");
@@ -2265,6 +2285,10 @@ namespace classifieds.Migrations
                         .HasForeignKey("DistrictId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("classifieds.RealEstates.RealEstate", "RealEstate")
+                        .WithMany()
+                        .HasForeignKey("RealEstateId");
 
                     b.HasOne("classifieds.PropertyTypes.PropertyType", "Type")
                         .WithMany()

@@ -485,7 +485,8 @@ namespace classifieds.Migrations
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
                     LastModifierUserId = table.Column<long>(nullable: true),
-                    Name = table.Column<string>(nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -877,6 +878,7 @@ namespace classifieds.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Image = table.Column<string>(nullable: true),
                     CityId = table.Column<int>(nullable: false),
                     Name = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true)
@@ -1005,6 +1007,7 @@ namespace classifieds.Migrations
                     LastModificationTime = table.Column<DateTime>(nullable: true),
                     LastModifierUserId = table.Column<long>(nullable: true),
                     Name = table.Column<string>(nullable: true),
+                    Image = table.Column<string>(nullable: true),
                     AreaId = table.Column<int>(nullable: false),
                     CityId = table.Column<int>(nullable: true)
                 },
@@ -1026,6 +1029,34 @@ namespace classifieds.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "RealEstates",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    CreationTime = table.Column<DateTime>(nullable: false),
+                    CreatorUserId = table.Column<long>(nullable: true),
+                    LastModificationTime = table.Column<DateTime>(nullable: true),
+                    LastModifierUserId = table.Column<long>(nullable: true),
+                    Name = table.Column<string>(nullable: true),
+                    Owner = table.Column<string>(nullable: true),
+                    Logo = table.Column<string>(nullable: true),
+                    Address = table.Column<string>(nullable: true),
+                    PhoneNumbers = table.Column<string>(nullable: true),
+                    DistrictId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RealEstates", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_RealEstates_Districts_DistrictId",
+                        column: x => x.DistrictId,
+                        principalTable: "Districts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Posts",
                 columns: table => new
                 {
@@ -1035,7 +1066,6 @@ namespace classifieds.Migrations
                     CreatorUserId = table.Column<long>(nullable: true),
                     LastModificationTime = table.Column<DateTime>(nullable: true),
                     LastModifierUserId = table.Column<long>(nullable: true),
-                    Code = table.Column<string>(nullable: true),
                     Title = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     IsFeatured = table.Column<bool>(nullable: false),
@@ -1048,11 +1078,10 @@ namespace classifieds.Migrations
                     HasMedia = table.Column<bool>(nullable: false),
                     Bedroom = table.Column<byte>(nullable: false),
                     View = table.Column<uint>(nullable: false),
-                    Deposit = table.Column<double>(nullable: false),
-                    Rent = table.Column<double>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     Latitude = table.Column<double>(nullable: false),
-                    Longitude = table.Column<double>(nullable: false)
+                    Longitude = table.Column<double>(nullable: false),
+                    RealEstateId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -1075,6 +1104,12 @@ namespace classifieds.Migrations
                         principalTable: "Districts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Posts_RealEstates_RealEstateId",
+                        column: x => x.RealEstateId,
+                        principalTable: "RealEstates",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Posts_PropertyTypes_TypeId",
                         column: x => x.TypeId,
@@ -1179,6 +1214,37 @@ namespace classifieds.Migrations
                         name: "FK_Reports_ReportOptions_ReportOptionId",
                         column: x => x.ReportOptionId,
                         principalTable: "ReportOptions",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SaleReports",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Price = table.Column<double>(nullable: false),
+                    PostId = table.Column<int>(nullable: false),
+                    Remarks = table.Column<string>(nullable: true),
+                    GovernmentCommissionRate = table.Column<int>(nullable: false),
+                    InternalCommissionRate = table.Column<int>(nullable: false),
+                    SaleDate = table.Column<DateTime>(nullable: false),
+                    CategoryId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SaleReports", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SaleReports_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_SaleReports_Posts_PostId",
+                        column: x => x.PostId,
+                        principalTable: "Posts",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -1567,6 +1633,11 @@ namespace classifieds.Migrations
                 column: "DistrictId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Posts_RealEstateId",
+                table: "Posts",
+                column: "RealEstateId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Posts_TypeId",
                 table: "Posts",
                 column: "TypeId");
@@ -1582,6 +1653,11 @@ namespace classifieds.Migrations
                 column: "PostId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_RealEstates_DistrictId",
+                table: "RealEstates",
+                column: "DistrictId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Reports_PostId",
                 table: "Reports",
                 column: "PostId");
@@ -1590,6 +1666,16 @@ namespace classifieds.Migrations
                 name: "IX_Reports_ReportOptionId",
                 table: "Reports",
                 column: "ReportOptionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SaleReports_CategoryId",
+                table: "SaleReports",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SaleReports_PostId",
+                table: "SaleReports",
+                column: "PostId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserNotificationIds_UserId1",
@@ -1693,6 +1779,9 @@ namespace classifieds.Migrations
                 name: "Reports");
 
             migrationBuilder.DropTable(
+                name: "SaleReports");
+
+            migrationBuilder.DropTable(
                 name: "UserNotificationIds");
 
             migrationBuilder.DropTable(
@@ -1714,10 +1803,10 @@ namespace classifieds.Migrations
                 name: "Amenities");
 
             migrationBuilder.DropTable(
-                name: "Posts");
+                name: "ReportOptions");
 
             migrationBuilder.DropTable(
-                name: "ReportOptions");
+                name: "Posts");
 
             migrationBuilder.DropTable(
                 name: "AbpDynamicParameters");
@@ -1732,10 +1821,13 @@ namespace classifieds.Migrations
                 name: "AbpUsers");
 
             migrationBuilder.DropTable(
-                name: "Districts");
+                name: "RealEstates");
 
             migrationBuilder.DropTable(
                 name: "PropertyTypes");
+
+            migrationBuilder.DropTable(
+                name: "Districts");
 
             migrationBuilder.DropTable(
                 name: "Areas");

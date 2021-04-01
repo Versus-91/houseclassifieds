@@ -33,7 +33,7 @@ namespace classifieds.Web.Areas.Admin.Controllers
             if (ModelState.IsValid)
             {
                 await _cityService.CreateAsync(inputs);
-                return Ok();
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -42,5 +42,6 @@ namespace classifieds.Web.Areas.Admin.Controllers
             var model = await _cityService.GetAsync(new EntityDto(id));
             return PartialView("_EditModal", model);
         }
+
     }
 }

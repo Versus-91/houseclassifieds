@@ -10,8 +10,8 @@
       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
       crossorigin="" />
 }
-<div class="section Site-content">
-    <div class="container persian">
+<div class="section Site-content" style="min-height:70vh;">
+    <div class="container persian" v-cloak>
         <div class="box">
             <h1 class="title is-4">ارسال آگهی جدید</h1>
             <hr />
@@ -94,7 +94,7 @@
                         <div class="field ">
                             <label for="Price" class="label">قیمت</label>
                             <div class="control has-icons-left">
-                                <input class="input currency" dir="ltr" id="price" placeholder="قیمت" name="Price" v-model="price" />
+                                <input class="input currency" dir="ltr" type="number" id="price" placeholder="قیمت" name="Price" v-model.number="price" />
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-dollar-sign"></i>
                                 </span>
@@ -107,7 +107,7 @@
                         <div class="field column is-6 p-0">
                             <label asp-for="Area" class="label">متراژ <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
                             <div class="control has-icons-left ">
-                                <input v-model="area" class="input " asp-for="Area" placeholder="مساحت" />
+                                <input v-model.number="area" class="input " asp-for="Area" placeholder="مساحت" />
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-globe"></i>
                                 </span>

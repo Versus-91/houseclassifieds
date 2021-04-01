@@ -51,8 +51,8 @@
                 targets: 2,
                 data: 'image',
                 sortable: false,
-                ender: (data, type, row, meta) => {
-                    return !!row.image ? `<img src="'/'+${row.image}" />` : null;
+                render: (data, type, row, meta) => {
+                    return !!row.image ? `<img style="height:64px;width:64px;" src="${'/'+row.image}" />` : null;
                 }
             },
             {
@@ -75,28 +75,28 @@
         ]
     });
 
-    _$form.find('.save-button').on('click', (e) => {
-        e.preventDefault();
+    //_$form.find('.save-button').on('click', (e) => {
+    //    e.preventDefault();
 
-        if (!_$form.valid()) {
-            return;
-        }
+    //    if (!_$form.valid()) {
+    //        return;
+    //    }
 
-        var city = _$form.serializeFormToObject();
+    //    var city = _$form.serializeFormToObject();
 
-        abp.ui.setBusy(_$modal);
-        _cityService
-            .create(city)
-            .done(function () {
-                _$modal.modal('hide');
-                _$form[0].reset();
-                abp.notify.info(l('SavedSuccessfully'));
-                _$rolesTable.ajax.reload();
-            })
-            .always(function () {
-                abp.ui.clearBusy(_$modal);
-            });
-    });
+    //    abp.ui.setBusy(_$modal);
+    //    _cityService
+    //        .create(city)
+    //        .done(function () {
+    //            _$modal.modal('hide');
+    //            _$form[0].reset();
+    //            abp.notify.info(l('SavedSuccessfully'));
+    //            _$rolesTable.ajax.reload();
+    //        })
+    //        .always(function () {
+    //            abp.ui.clearBusy(_$modal);
+    //        });
+    //});
 
     $(document).on('click', '.delete-city', function () {
         var cityId = $(this).attr("data-city-id");

@@ -920,7 +920,7 @@ namespace classifieds.Migrations
 
             modelBuilder.Entity("Abp.Notifications.NotificationInfo", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
@@ -977,7 +977,7 @@ namespace classifieds.Migrations
 
             modelBuilder.Entity("Abp.Notifications.NotificationSubscriptionInfo", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
@@ -1020,7 +1020,7 @@ namespace classifieds.Migrations
 
             modelBuilder.Entity("Abp.Notifications.TenantNotificationInfo", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
@@ -1070,7 +1070,7 @@ namespace classifieds.Migrations
 
             modelBuilder.Entity("Abp.Notifications.UserNotificationInfo", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
@@ -1083,8 +1083,7 @@ namespace classifieds.Migrations
                     b.Property<int?>("TenantId")
                         .HasColumnType("int");
 
-                    b.Property<string>("TenantNotificationId")
-                        .IsRequired()
+                    b.Property<Guid>("TenantNotificationId")
                         .HasColumnType("char(36)");
 
                     b.Property<long>("UserId")
@@ -1184,7 +1183,7 @@ namespace classifieds.Migrations
 
             modelBuilder.Entity("Abp.Webhooks.WebhookEvent", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
@@ -1214,7 +1213,7 @@ namespace classifieds.Migrations
 
             modelBuilder.Entity("Abp.Webhooks.WebhookSendAttempt", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
@@ -1233,12 +1232,10 @@ namespace classifieds.Migrations
                     b.Property<int?>("TenantId")
                         .HasColumnType("int");
 
-                    b.Property<string>("WebhookEventId")
-                        .IsRequired()
+                    b.Property<Guid>("WebhookEventId")
                         .HasColumnType("char(36)");
 
-                    b.Property<string>("WebhookSubscriptionId")
-                        .IsRequired()
+                    b.Property<Guid>("WebhookSubscriptionId")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
@@ -1250,7 +1247,7 @@ namespace classifieds.Migrations
 
             modelBuilder.Entity("Abp.Webhooks.WebhookSubscriptionInfo", b =>
                 {
-                    b.Property<string>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("char(36)");
 
@@ -1962,10 +1959,13 @@ namespace classifieds.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Benefits")
-                        .HasColumnType("longtext CHARACTER SET utf8mb4");
-
                     b.Property<int>("CategoryId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GovernmentCommissionRate")
+                        .HasColumnType("int");
+
+                    b.Property<int>("InternalCommissionRate")
                         .HasColumnType("int");
 
                     b.Property<int>("PostId")
@@ -1973,6 +1973,9 @@ namespace classifieds.Migrations
 
                     b.Property<double>("Price")
                         .HasColumnType("double");
+
+                    b.Property<string>("Remarks")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<DateTime>("SaleDate")
                         .HasColumnType("datetime(6)");

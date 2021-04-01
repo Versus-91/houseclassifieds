@@ -29,16 +29,17 @@
                     </div>
                 </div>
                 <div class="column">
-                    <button class="button is-success  is-fullwidth-mobile" aria-label="search" id="send" v-on:click="search" :disabled=" city ==0">
+                    <button class="button is-success  is-fullwidth-mobile" :class="{'is-loading':loading}" aria-label="search" id="send" v-on:click="search" :disabled=" city ==0">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container mt-4" style="min-height:50vh;">
+    <div class="container mt-4" style="min-height:50vh;" v-if="total != 0 " v-cloak>
+        <p class="subtitle is-5" v-if="total!= null">تعداد نتایج :  {{total}}</p>
         <div class="columns is-multiline">
-            <div class="column is-3" v-for="item in items" :key="item.id">
+            <div class="column is-3" v-for="item in items" :key="item.id" v-cloak>
                 <div class="card">
                  <div class="card-image">
                     <figure class="image is-4by3">
@@ -65,6 +66,10 @@
             </div>
         </div>
     </div>
+    <div class="container" style="min-height:50vh;">
+        <p class="title my-5 is-4">نتیجه ای پیدا نشد.</p>
+    </div>
+
 </div>
 @section Scripts{
 <environment names="Development">

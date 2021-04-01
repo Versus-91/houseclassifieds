@@ -15,8 +15,18 @@
             postId:null,
             price:null,
             saleDate:null,
+            governmentCommissionRate:0,
+            internalCommissionRate:0,
+            loading:false,
             post:null,
+            remarks:'',
             categories:[],
+        },
+        computed:{
+            InternalCommissionAmount:function(){
+                let result = (this.internalCommissionRate * 100 )/this.governmentCommissionRate;
+                return !!result ? result :0;
+            }
         },
         methods:{
             search:function(){
@@ -25,15 +35,20 @@
                 });
             },
             submit:function(number){
+                this.loading = true;
                 axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
                 var form = new FormData();
                 form.append('price', this.price);
                 form.append('postId', this.post.id);
+                form.append('remarks', this.remarks);
+                form.append('governmentCommissionRate', this.governmentCommissionRate);
+                form.append('internalCommissionRate', this.internalCommissionRate);
                 form.append('categoryId', this.post.categoryId);
                 form.append('SaleDate', this.saleDate);
                 axios.post('/admin/sales/create', form).then((res) => {
+                       this.loading = false;
                        window.location.href = "/admin/sales";
-                   }).catch((err) => console.log(err));
+                   }).catch((err)=>{ console.log(err);this.loading = false;});
             },
         },
         created:function(){
@@ -51,19 +66,19 @@
                 <div class="card my-5">
                     <div class="card-body" style="min-height:50vh;">
                         <div class="alert alert-primary text-center" role="alert">
-                            {{post.title}}
+                            {{post?.title}}
                         </div>
                         <div class="row">
                             <div class=col-md-12>
                                 <form>
                                     @Html.AntiForgeryToken()
                                     <div class="form-row">
-                                        <div class="col-md-4 mb-3">
-                                            <label for="validationDefault01">Date of sale</label>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationDefault01">Date of sale :</label>
                                             <input type="date" class="form-control" id="validationDefault01" v-model="saleDate" placeholder="date of sale" required>
                                         </div>
-                                        <div class="col-md-4 mb-3">
-                                            <label for="price">Price</label>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="price">Price : </label>
                                             <div class="input-group">
                                                 <div class="input-group-prepend">
                                                     <span class="input-group-text">$</span>
@@ -73,13 +88,30 @@
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="exampleFormControlTextarea1">Benefits </label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                    <div class="form-row">
+                                       <div class="col-md-6 mb-3">
+                                            <label for="price">Gov Commission rate : {{governmentCommissionRate}}%</label>
+                                            <div class="input-group">
+                                                <input type="range" min="0" max="100" class="form-control" v-model.number="governmentCommissionRate" name="InternalCommissionRate"
+                                                       placeholder="InternalCommissionRate" aria-describedby="inputGroupPrepend2" required>
+                                            </div>
+                                            <small id="emailHelp" class="form-text text-muted">Gov Commission Amount</small>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="price">Internal commission rate : {{internalCommissionRate}}%</label>
+                                            <div class="input-group">
+                                                <input  class="form-control" v-model.number="internalCommissionRate" name="InternalCommissionRate"
+                                                       placeholder="InternalCommissionRate" type="range" id="points" name="points" min="0" max="100" aria-describedby="inputGroupPrepend2" required>
+                                            </div>
+                                            <small id="emailHelp" class="form-text text-muted">Internal Commission Amount = {{InternalCommissionAmount}}</small>
+                                        </div>
                                     </div>
-
-                                    <button class="btn btn-primary" type="button" v-on:click="submit">Submit form</button>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Remarks : </label>
+                                        <textarea v-model="remarks" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                    </div>
+                                    <button class="btn btn-success" type="button" v-on:click="submit" :disabled="saleDate == null || price == null"><i class="fas fa-paper-plane"></i> Submit form</button>
+                                    <a href="/admin/posts" class="btn btn-danger" type="button" v-on:click="submit"><i class="fas fa-times"></i> Cancel</a>
                                 </form>
                             </div>
                         </div>

@@ -6,7 +6,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             @await Html.PartialAsync("~/Views/Shared/Modals/_ModalHeader.cshtml", new ModalHeaderViewModel(L("CreateNewCity")))
-            <form name="roleCreateForm" role="form" class="form-horizontal">
+            <form name="roleCreateForm" role="form" class="form-horizontal"  asp-action="create" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="form-group row required">
                         <label class="col-md-3 col-form-label" for="rolename">@L("Name")</label>
@@ -17,7 +17,7 @@
                     <div class="form-group row required">
                         <label class="col-md-3 col-form-label" for="rolename">@L("Image")</label>
                         <div class="col-md-9">
-                            <input  type="file" name="Image" class="form-control" required maxlength="32" minlength="2">
+                            <input  type="file" name="File" class="form-control" required maxlength="32" minlength="2">
                         </div>
                     </div>
                 </div>

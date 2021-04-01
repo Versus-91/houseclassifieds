@@ -2,7 +2,9 @@
 * :not(i) {
     font-family: Vazir, sans-serif;
 }
-
+[v-cloak] {
+    display: none;
+}
 
 .image-box {
     padding: 5px;

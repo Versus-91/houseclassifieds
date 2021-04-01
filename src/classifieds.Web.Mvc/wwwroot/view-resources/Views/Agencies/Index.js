@@ -69,11 +69,14 @@ new Vue({
     el: "#app",
     data: {
         district: 0,
+        loading: false,
+        total:null,
         city: 0,
         items: []
     },
     methods: {
         search: function () {
+            this.loading = true;
             var query = [];
             let url = "/api/services/app/realestate/getall";
             if (!!this.city && this.city !=0) {
@@ -86,6 +89,8 @@ new Vue({
                 url += '?'+ query.join('&');
             }
             axios.get(url).then((res) => {
+                this.loading = false;
+                this.total = res.data.result.totalCount;
                 this.items = res.data.result.items;
             });
         }

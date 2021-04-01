@@ -50,14 +50,14 @@ namespace classifieds.Cities
         {
             var city = new City();
             city.Name = input.Name;
-            if (input.Image != null)
+            if (input.File != null)
             {
-                var trustedFileNameForDisplay = WebUtility.HtmlEncode(input.Image.FileName);
+                var trustedFileNameForDisplay = WebUtility.HtmlEncode(input.File.FileName);
                 var trustedFileNameForFileStorage = Path.Combine($"{Guid.NewGuid().ToString("N")}{Path.GetExtension(trustedFileNameForDisplay).ToLower()}");
                 Directory.CreateDirectory(Path.Combine(_env.WebRootPath, _path));
                 using (var stream = System.IO.File.Create(Path.Combine(_env.WebRootPath, _path, trustedFileNameForFileStorage)))
                 {
-                    await input.Image.CopyToAsync(stream);
+                    await input.File.CopyToAsync(stream);
                 }
                 city.Image = Path.Combine(_path, trustedFileNameForFileStorage);
             }
