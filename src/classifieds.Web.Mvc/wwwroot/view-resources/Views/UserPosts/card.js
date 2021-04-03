@@ -65,7 +65,7 @@
             return title.join(" , ");
         },
         price: function () {
-                return this.post.price + "دالر";
+            return this.post.price + "؋";
         },
         subtitle: function () {
             var subtitle = [];
@@ -112,7 +112,7 @@
                                         </div>
                                         <div class="card-content">
                                                 <h1 class="title is-6">{{title | persianDigit}}</h1>
-                                                <h2 class="subtitle is-6">{{subtitle | persianDigit}} <br/>{{price | persianDigit}}</h2>
+                                                <h2 class="subtitle is-6">{{subtitle | persianDigit}} <br/><b>{{price | persianDigit}}</b></h2>
                                         </div>
 										<footer class="card-footer">										  <a v-if="phoneNumber == null"  class="card-footer-item" v-on:click="getNumber">											  <p ><i class="fas has-text-success" :class="{'fa fa-phone':loading == false,'fa-spinner fa-spin':loading == true}"></i>  اطلاعات تماس</p>										  </a>										 <p class="card-footer-item" v-else><i class="fas fa-phone has-text-success"></i>{{phoneNumber}}</p>										</footer>
                                     </div>

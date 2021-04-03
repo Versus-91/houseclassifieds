@@ -75,15 +75,15 @@
             <div class="columns reverse-columns">
                 <div class="column is-6 has-text-centered">
                     <h3 class="title is-4 my-3">@Model.Post.Category.Name @Model.Post.Type.Name ,شهر @Model.Post.District.Area.City.Name , @Model.Post.District.Name </h3>
-                    <h3 class="subtitle is-5 my-2"> قیمت : @Model.Post.Price $ </h3>
+                    <h3 class="subtitle is-5 my-2 persian"> قیمت :<b> @Model.Post.Price ؋</b></h3>
                     <section class="level is-mobile mt-2">
                         @if (Model.Post.Bedroom > 0)
                         {
-                            <div class="level-item has-text-centered">
+                            <div class="level-item has-text-centered ">
                                 <div>
-                                    <p class="heading"><i class="fas fa-2x fa-bed has-text-grey"></i></p>
-                                    <p class="title is-6 has-text-grey">تعداد اتاق</p>
-                                    <p class="title is-6 my-2">@Model.Post.Bedroom</p>
+                                    <p class="heading "><i class="fas fa-2x fa-bed has-text-grey"></i></p>
+                                    <p class="title  is-6 has-text-grey">تعداد اتاق</p>
+                                    <p class="title persian is-6 my-2">@Model.Post.Bedroom</p>
                                 </div>
                             </div>
                         }
@@ -91,7 +91,7 @@
                             <div>
                                 <p class="heading"><i class="fas fa-2x fa-clock has-text-grey"></i></p>
                                 <p class="title is-6 has-text-grey">عمر بنا</p>
-                                <p class="title is-6 my-2">
+                                <p class="title is-6 persian my-2">
                                     @if (Model.Post.Age > 0)
                                     {
                                         @Model.Post.Age
@@ -107,7 +107,7 @@
                             <div>
                                 <p class="heading"><i class="fas fa-2x fa-chart-area has-text-grey"></i></p>
                                 <p class="title is-6 has-text-grey">مساحت</p>
-                                <p class="title is-6">@Model.Post.Area متر</p>
+                                <p class="title is-6 persian">@Model.Post.Area متر</p>
                             </div>
                         </div>
                     </section>
