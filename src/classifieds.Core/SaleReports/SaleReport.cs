@@ -18,6 +18,7 @@ namespace classifieds.SaleReports
         public DateTime SaleDate { get; set; }
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        public bool IsCommissionPaid { get; set; }
         public Post Post { get; set; }
 
     }

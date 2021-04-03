@@ -11,6 +11,7 @@ namespace classifieds.SaleReports.Dto
     public class SaleReportDto:EntityDto
     {
         public double Price { get; set; }
+        public bool IsCommissionPaid { get; set; }
         public int PostId { get; set; }
         public string Remarks { get; set; }
         [Range(0, 100)]

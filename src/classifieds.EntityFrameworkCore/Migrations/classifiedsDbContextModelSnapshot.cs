@@ -1968,6 +1968,9 @@ namespace classifieds.Migrations
                     b.Property<int>("InternalCommissionRate")
                         .HasColumnType("int");
 
+                    b.Property<bool>("IsCommissionPaid")
+                        .HasColumnType("tinyint(1)");
+
                     b.Property<int>("PostId")
                         .HasColumnType("int");
 

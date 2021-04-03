@@ -26,6 +26,10 @@ namespace classifieds.Web.Areas.Admin.Controllers
         {
             return View();
         }
+        public IActionResult Edit(int id)
+        {
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(SaleReportDto inputs)

@@ -1,0 +1,146 @@
+﻿@using classifieds.Web.Startup
+@{
+    ViewBag.Title = "update sale report";
+    ViewBag.CurrentPageName = "create new sale report";
+}
+
+@section scripts
+{
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+<script>
+    new Vue({
+        el:"#app",
+        data:{
+            saleId:null,
+            price:null,
+            saleDate:null,
+            isCommissionPaid:false,
+            governmentCommissionRate:0,
+            internalCommissionRate:0,
+            loading:false,
+            post:null,
+            remarks:'',
+            categories:[],
+        },
+        computed:{
+            InternalCommissionAmount:function(){
+                let result = (this.internalCommissionRate * 100 )/this.governmentCommissionRate;
+                return !!result ? result :0;
+            },
+            GovernmentCommissionAmount:function(){
+                let result = (this.governmentCommissionRate /100) * this.price;
+                return !!result ? result :0;
+            }
+        },
+        methods:{
+            search:function(){
+                axios.get("/api/services/app/sale/get?id="+this.saleId).then((res)=>{
+                    this.price = res.data.result.price;
+                    this.isCommissionPaid = res.data.result.isCommissionPaid;
+                    this.governmentCommissionRate = res.data.result.governmentCommissionRate;
+                    this.internalCommissionRate = res.data.result.internalCommissionRate;
+                    this.remarks = res.data.result.remarks;
+                    this.saleDate = res.data.result.saleDate.split('T')[0];
+                axios.get("/api/services/app/post/getdetails?id="+ res.data.result.postId).then((res)=>{
+                    this.post = res.data.result;
+                  });
+                });
+              
+            },
+            submit:function(number){
+                this.loading = true;
+                axios.defaults.headers.common['X-XSRF-TOKEN'] = document.getElementsByName("__RequestVerificationToken")[0].value;
+                var request = {
+                'id':this.saleId,
+                'price': this.price,
+                'postId': this.post.id,
+                'remarks': this.remarks,
+                'isCommissionPaid':this.isCommissionPaid,
+                'governmentCommissionRate': this.governmentCommissionRate,
+                'internalCommissionRate': this.internalCommissionRate,
+                'categoryId': this.post.categoryId,
+                'SaleDate': this.saleDate
+                };
+                axios.put('/api/services/app/Sale/Update', request).then(function(res) {
+                       this.loading = false;
+                       window.location.href = "/admin/sales";
+                   }).catch(function(err){ this.loading = false;});
+            },
+        },
+        created:function(){
+            var url = window.location.pathname;
+            this.saleId = url.substring(url.lastIndexOf('/') + 1);
+            this.search();
+        },
+    });
+</script>
+}
+<div class="section">
+    <div class="container">
+        <div class="row ">
+            <div class="col-md-12">
+                <div class="card my-5">
+                    <div class="card-body" style="min-height:50vh;">
+                        <div class="alert alert-primary text-center" role="alert">
+                            {{post?.title}}
+                        </div>
+                        <div class="row">
+                            <div class=col-md-12>
+                                <form>
+                                    @Html.AntiForgeryToken()
+                                    <div class="form-row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationDefault01">Date of sale :</label>
+                                            <input type="date" class="form-control" id="validationDefault01" v-model="saleDate" placeholder="date of sale" required>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="price">Price : </label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text">؋</span>
+                                                </div>
+                                                <input type="number" class="form-control" v-model.number="price" name="price"
+                                                       placeholder="Price" aria-describedby="inputGroupPrepend2" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                       <div class="col-md-6 mb-3">
+                                            <label for="price">Gov Commission rate : {{governmentCommissionRate}}%</label>
+                                            <div class="input-group">
+                                                <input type="range" min="0" max="100" class="form-control" v-model.number="governmentCommissionRate" name="InternalCommissionRate"
+                                                       placeholder="InternalCommissionRate" aria-describedby="inputGroupPrepend2" required>
+                                            </div>
+                                            <p  class="form-text ">Gov Commission Amount : {{GovernmentCommissionAmount}}</p>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="price">Internal commission rate : {{internalCommissionRate}}%</label>
+                                            <div class="input-group">
+                                                <input  class="form-control" v-model.number="internalCommissionRate" name="InternalCommissionRate"
+                                                       placeholder="InternalCommissionRate" type="range" id="points" name="points" min="0" max="100" aria-describedby="inputGroupPrepend2" required>
+                                            </div>
+                                            <p  class="form-text ">Internal Commission Amount : {{InternalCommissionAmount}}</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="custom-control custom-checkbox">
+                                          <input type="checkbox" class="custom-control-input" v-model="isCommissionPaid" id="customCheck1">
+                                          <label class="custom-control-label" for="customCheck1">Paid Commission </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleFormControlTextarea1">Remarks : </label>
+                                        <textarea v-model="remarks" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
+                                    </div>
+                                    <button class="btn btn-success" type="button" v-on:click="submit" :disabled="saleDate == null || price == null"><i class="fas fa-paper-plane"></i>update report</button>
+                                    <a href="/admin/posts" class="btn btn-danger" type="button" v-on:click="submit"><i class="fas fa-times"></i> Cancel</a>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

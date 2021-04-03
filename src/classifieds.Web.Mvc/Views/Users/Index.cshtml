@@ -89,7 +89,7 @@
                                         <div class="content has-text-right">
                                             <p class="title is-size-6 mt-1 persian"> @post.Category.Name @post.Type.Name @post.Area متری</p>
                                             <p class="subtitle is-size-6 mt-1 persian">  @post.District.Area.City.Name -  @post.District.Name</p>
-                                            <p class="subtitle is-size-6 mt-1 persian"><b> قیمت  :  @post.Price ؋ </b></p>
+                                            <p class="subtitle is-size-6 mt-1 "><b class="persian"> قیمت  :  @post.Price ؋ </b></p>
                                             @if (User.Identity.IsAuthenticated && AbpSession.UserId == post.CreatorUserId && post.IsVerified == false)
                                             {
                                                 <a class="button is-primary is-size-6 mt-1" href="/ads/edit/@post.Id">ویرایش</a>

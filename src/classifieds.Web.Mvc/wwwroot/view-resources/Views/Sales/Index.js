@@ -72,6 +72,9 @@
                         `   <button type="button" class="btn btn-sm bg-danger delete-post" data-post-id="${row.id}" data-post-name="${row.post.title}">`,
                         `       <i class="fas fa-trash"></i> ${l('Delete')}`,
                         '   </button>',
+                        `   <a href="/admin/sales/edit/${row.id}" class="btn btn-sm bg-info"  data-post-name="${row.post.title}">`,
+                        `       <i class="fas fa-pen"></i> ${l('Edit')}`,
+                        '   </a>',
                     ].join('');
                 }
             }
