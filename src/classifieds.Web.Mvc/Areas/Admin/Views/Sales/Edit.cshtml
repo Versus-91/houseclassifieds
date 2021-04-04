@@ -25,7 +25,7 @@
         },
         computed:{
             InternalCommissionAmount:function(){
-                let result = (this.internalCommissionRate * 100 )/this.governmentCommissionRate;
+                let result = (this.internalCommissionRate / 100 )*((this.governmentCommissionRate /100) * this.price);
                 return !!result ? result :0;
             },
             GovernmentCommissionAmount:function(){
