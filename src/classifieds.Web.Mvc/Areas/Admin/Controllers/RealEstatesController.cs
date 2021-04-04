@@ -43,6 +43,13 @@ namespace classifieds.Web.Areas.Admin.Controllers
 
             return View();
         }
+        public async Task<IActionResult> Edit(int id)
+        {
+            var cities = (await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = int.MaxValue })).Items.ToList();
+            cities.Insert(0, new CityDto { Id = 0, Name = "شهر را انتخاب کنید" });
+            ViewData["Cities"] = new SelectList(cities, nameof(CityDto.Id), nameof(CityDto.Name));
+            return View();
+        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(RealEstateDto inputs)
@@ -65,6 +72,36 @@ namespace classifieds.Web.Areas.Admin.Controllers
                 }
                 await _realestateService.CreateAsync(inputs);
                 return Ok();
+            }
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(RealEstateDto inputs)
+        {
+            var item = await _realestateService.GetAsync(new EntityDto<int> { Id = inputs.Id});
+
+            if (ModelState.IsValid)
+            {
+                if (inputs.File != null)
+                {
+                    if(!string.IsNullOrEmpty(item.Logo))
+                    {
+                        System.IO.File.Delete(Path.Combine(_env.WebRootPath, item.Logo));
+                    }
+                    var trustedFileNameForDisplay = WebUtility.HtmlEncode(
+                        inputs.File.FileName);
+                    var trustedFileNameForFileStorage = Path.Combine($"{Guid.NewGuid().ToString("N")}{Path.GetExtension(trustedFileNameForDisplay).ToLower()}");
+                    Directory.CreateDirectory(Path.Combine(_env.WebRootPath, _path));
+                    using (var stream = System.IO.File.Create(Path.Combine(_env.WebRootPath, _path, trustedFileNameForFileStorage)))
+                    {
+                        await inputs.File.CopyToAsync(stream);
+                    }
+
+                    inputs.Logo = Path.Combine(_path, trustedFileNameForFileStorage);
+                }
+                var res = await _realestateService.UpdateAsync(inputs);
+                return Ok(res);
             }
             return View();
         }

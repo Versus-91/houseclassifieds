@@ -67,5 +67,10 @@ namespace classifieds.RealEstates
             var items = await _repository.GetAll().Where(m => m.Name.Contains(term) || m.Owner.Contains(term)).ToListAsync();
             return ObjectMapper.Map<List<RealEstateDto>>(items) ;
         }
+        public override async Task<RealEstateDto> GetAsync(EntityDto<int> input)
+        {
+            var item = await _repository.GetAll().Where(m=>m.Id == input.Id).Include(m=>m.District).ThenInclude(m=>m.Area).AsNoTracking().FirstOrDefaultAsync();
+            return ObjectMapper.Map<RealEstateDto>(item);
+        }
     }
 }

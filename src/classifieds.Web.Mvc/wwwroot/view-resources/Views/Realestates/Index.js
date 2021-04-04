@@ -77,7 +77,7 @@
                 defaultContent: '',
                 render: (data, type, row, meta) => {
                     return [
-                        `   <a type="button" class="btn btn-sm bg-secondary " href="/admin/posts/${row.id}">`,
+                        `   <a type="button" class="btn btn-sm bg-secondary " href="/admin/realestates/edit/${row.id}">`,
                         `       <i class="fas fa-pencil-alt"></i> ${l('Edit')}`,
                         '   </a>',
                         `   <button type="button" class="btn btn-sm bg-danger delete-post" data-post-id="${row.id}" data-post-name="${row.name}">`,
