@@ -1,0 +1,8 @@
+{
+  "asset": "asset:boilerplate/lib/ui/authorization/login/blaziercontainer.dart",
+  "summary": {
+    "injector": [],
+    "module": [],
+    "injectable": []
+  }
+}
