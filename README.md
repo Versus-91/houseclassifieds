@@ -9,7 +9,7 @@ The Realtor App is designed for real estate agents and property buyers/sellers t
 ### 🧱 Tech Stack
 
 - **Frontend (Web):** Vue.js 2
-- **Backend:** .NET 3 with DDD architecture 
+- **Backend:** .NET 6 with DDD architecture 
 - **Mobile App:** Flutter (Android)
 - **Database:** Microsoft SQL Server
 - **API Communication:** RESTful APIs
@@ -31,8 +31,7 @@ The Realtor App is designed for real estate agents and property buyers/sellers t
 - Property listings with images and details
 - Search and filter properties
 - Agent and user accounts with roles
-- Schedule property viewings
-- Real-time messaging between agents and buyers
+- messaging between agents and buyers
 - Admin dashboard (Web only)
 - Push notifications (Mobile)
 <p align="center">
