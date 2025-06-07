@@ -15,6 +15,7 @@ using classifieds.EntityFrameworkCore.Seed.Host;
 using classifieds.EntityFrameworkCore.Seed.Tenants;
 using classifieds.MultiTenancy;
 
+
 namespace classifieds.Tests
 {
     public abstract class classifiedsTestBase : AbpIntegratedTestBase<classifiedsTestModule>
