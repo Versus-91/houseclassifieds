@@ -6,6 +6,7 @@ using classifieds.Authorization.Roles;
 using classifieds.Authorization.Users;
 using classifieds.MultiTenancy;
 using Microsoft.Extensions.Logging;
+using Abp.Domain.Uow;
 
 namespace classifieds.Identity
 {
@@ -15,8 +16,10 @@ namespace classifieds.Identity
             IOptions<SecurityStampValidatorOptions> options,
             SignInManager signInManager,
             ISystemClock systemClock,
-            ILoggerFactory loggerFactory) 
-            : base(options, signInManager, systemClock, loggerFactory)
+            ILoggerFactory loggerFactory,
+            IUnitOfWorkManager unitOfWorkManager
+                ) 
+            : base(options, signInManager, systemClock, loggerFactory, unitOfWorkManager)
         {
         }
     }

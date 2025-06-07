@@ -114,7 +114,7 @@ namespace classifieds.Web.Host.Startup
 				options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
 					f => f.UseAbpLog4Net().WithConfig("log4net.config")
 				)
-			);
+			,removeConventionalInterceptors: false);
 		}
 
 		public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)

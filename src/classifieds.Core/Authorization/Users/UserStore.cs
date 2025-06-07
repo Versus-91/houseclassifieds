@@ -24,7 +24,6 @@ namespace classifieds.Authorization.Users
                 unitOfWorkManager,
                 userRepository,
                 roleRepository,
-                asyncQueryableExecuter,
                 userRoleRepository,
                 userLoginRepository,
                 userClaimRepository,

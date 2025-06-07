@@ -4,6 +4,7 @@ using Abp.Authorization;
 using Abp.Collections.Extensions;
 using Abp.Configuration;
 using Abp.Domain.Repositories;
+using Abp.Domain.Uow;
 using Abp.Linq.Extensions;
 using classifieds.Amenities.Dto;
 using classifieds.Areas;
@@ -228,6 +229,7 @@ namespace classifieds.Posts
 
             return counts;
         }
+
         [RemoteService(false)]
         public async Task<List<PostsCountDto>> PopularPosts()
         {

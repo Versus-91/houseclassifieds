@@ -1,7 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Options;
-using Abp.Authorization;
+﻿using Abp.Authorization;
+using Abp.Domain.Uow;
 using classifieds.Authorization.Roles;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 
 namespace classifieds.Authorization.Users
 {
@@ -10,11 +11,13 @@ namespace classifieds.Authorization.Users
         public UserClaimsPrincipalFactory(
             UserManager userManager,
             RoleManager roleManager,
-            IOptions<IdentityOptions> optionsAccessor)
+            IOptions<IdentityOptions> optionsAccessor,
+            IUnitOfWorkManager unitOfWorkManager)
             : base(
                   userManager,
                   roleManager,
-                  optionsAccessor)
+                  optionsAccessor,
+                  unitOfWorkManager)
         {
         }
     }

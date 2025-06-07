@@ -3,6 +3,7 @@ using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
+using Abp.Domain.Uow;
 using Abp.Linq.Extensions;
 using classifieds.Amenities.Dto;
 using classifieds.Authorization;
@@ -23,6 +24,7 @@ using System.Threading.Tasks;
 namespace classifieds.Posts
 {
     [AbpAuthorize(PermissionNames.Pages_AdminPosts)]
+
     public class AdminPostAppService : AsyncCrudAppService<Post, PostDto, int, GetAllPostsInput, CreatePostInput, AdminUpdatePostInput>, IAdminPostAppService
     {
         private readonly IRepository<Post> _postRepository;

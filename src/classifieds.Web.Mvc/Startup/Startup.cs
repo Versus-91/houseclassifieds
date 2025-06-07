@@ -93,7 +93,7 @@ namespace classifieds.Web.Startup
                 options => options.IocManager.IocContainer.AddFacility<LoggingFacility>(
                     f => f.UseAbpLog4Net().WithConfig("log4net.config")
                 )
-            );
+            ,removeConventionalInterceptors:false);
 
         }
 

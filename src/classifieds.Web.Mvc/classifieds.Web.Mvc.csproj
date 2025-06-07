@@ -36,22 +36,23 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.6" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.6">
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.36" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.20">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.20" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="PaulMiami.AspNetCore.Mvc.Recaptcha" Version="1.2.2" />
-    <PackageReference Include="Abp.HangFire" Version="5.10.1" />
-    <PackageReference Include="Abp.RedisCache" Version="5.10.1" />
-    <PackageReference Include="Abp.Castle.Log4Net" Version="5.10.1" />
-    <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
+    <PackageReference Include="Abp.HangFire" Version="7.4.0" />
+    <PackageReference Include="Abp.RedisCache" Version="7.4.0" />
+    <PackageReference Include="Abp.Castle.Log4Net" Version="7.4.0" />
     <PackageReference Include="ReflectionIT.Mvc.Paging" Version="4.0.0" />
     <PackageReference Include="shortid" Version="3.0.0" />
     <PackageReference Include="SixLabors.ImageSharp" Version="1.0.1" />
     <PackageReference Include="SixLabors.ImageSharp.Web" Version="1.0.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.7.1" />
     <PackageReference Include="Twilio" Version="5.46.0" />
     <PackageReference Include="UploadStream" Version="3.1.1" />
   </ItemGroup>
