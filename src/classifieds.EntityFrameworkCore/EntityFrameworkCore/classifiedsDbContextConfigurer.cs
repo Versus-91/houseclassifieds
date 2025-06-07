@@ -7,12 +7,12 @@ namespace classifieds.EntityFrameworkCore
     {
         public static void Configure(DbContextOptionsBuilder<classifiedsDbContext> builder, string connectionString)
         {
-            builder.UseMySql(connectionString);
+            builder.UseSqlServer(connectionString);
         }
 
         public static void Configure(DbContextOptionsBuilder<classifiedsDbContext> builder, DbConnection connection)
         {
-            builder.UseMySql(connection);
+            builder.UseSqlServer(connection);
         }
     }
 }
