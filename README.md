@@ -8,9 +8,9 @@ The Realtor App is designed for real estate agents and property buyers/sellers t
 
 ### 🧱 Tech Stack
 
-- **Frontend (Web):** Vue.js 3 (Composition API, Vue Router, Pinia)
-- **Backend:** .NET 7 with DDD architecture (CQRS, MediatR, FluentValidation)
-- **Mobile App:** Flutter (iOS & Android)
+- **Frontend (Web):** Vue.js 2
+- **Backend:** .NET 7 with DDD architecture 
+- **Mobile App:** Flutter (Android)
 - **Database:** Microsoft SQL Server
 - **API Communication:** RESTful APIs
 
@@ -36,12 +36,3 @@ The Realtor App is designed for real estate agents and property buyers/sellers t
 - Admin dashboard (Web only)
 - Push notifications (Mobile)
 
----
-
-## 🛠️ Installation
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/realtor-app.git
-cd realtor-app
