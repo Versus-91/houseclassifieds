@@ -35,5 +35,5 @@ The Realtor App is designed for real estate agents and property buyers/sellers t
 - Admin dashboard (Web only)
 - Push notifications (Mobile)
 <p align="center">
-  <img src="assets/app.gif" width="50%" height="450" />
+  <img src="assets/app.gif" width="50%" height="550" />
 </p>
