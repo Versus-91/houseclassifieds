@@ -1,8 +1,0 @@
-{
-  "asset": "asset:boilerplate/lib/models/report/report.dart",
-  "summary": {
-    "injector": [],
-    "module": [],
-    "injectable": []
-  }
-}

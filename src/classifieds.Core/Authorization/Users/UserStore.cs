@@ -17,10 +17,11 @@ namespace classifieds.Authorization.Users
             IRepository<UserRole, long> userRoleRepository,
             IRepository<UserLogin, long> userLoginRepository,
             IRepository<UserClaim, long> userClaimRepository,
+            IRepository<UserToken, long> userTokenRepository,
             IRepository<UserPermissionSetting, long> userPermissionSettingRepository,
             IRepository<UserOrganizationUnit, long> userOrganizationUnitRepository,
-            IRepository<OrganizationUnitRole, long> organizationUnitRoleRepository,
-            IRepository<UserToken, long> userTokenRepository)
+            IRepository<OrganizationUnitRole, long> organizationUnitRoleRepository
+            )
             : base(
                 unitOfWorkManager,
                 userRepository,

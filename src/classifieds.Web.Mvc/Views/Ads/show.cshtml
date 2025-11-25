@@ -74,15 +74,16 @@
         <div class="box">
             <div class="columns reverse-columns">
                 <div class="column is-6 has-text-centered">
-                    <h3 class="title is-4 my-3">@Model.Post.Category.Name @Model.Post.Type.Name ,شهر @Model.Post.District.Area.City.Name , @Model.Post.District.Name </h3>
-                    <h3 class="subtitle is-5 my-2 "> قیمت :<b class="persian"> @Model.Post.Price ؋</b></h3>
+                    <h3 class="title is-3 my-3"> @Model.Post.District.Area.City.Name , @Model.Post.District.Name </h3>
+                    <h4 class="title is-3">@Model.Post.Type.Name @Model.Post.Category.Name</h4>
+                    <h3 class="subtitle is-5 my-2 "> Price :<b> @Model.Post.Price $</b></h3>
                     <section class="level is-mobile mt-2">
                         @if (Model.Post.Bedroom > 0)
                         {
                             <div class="level-item has-text-centered ">
                                 <div>
                                     <p class="heading "><i class="fas fa-2x fa-bed has-text-grey"></i></p>
-                                    <p class="title  is-6 has-text-grey">تعداد اتاق</p>
+                                    <p class="title  is-6 has-text-grey"># Rooms</p>
                                     <p class="title persian is-6 my-2">@Model.Post.Bedroom</p>
                                 </div>
                             </div>
@@ -90,7 +91,7 @@
                         <div class="level-item has-text-centered my-5">
                             <div>
                                 <p class="heading"><i class="fas fa-2x fa-clock has-text-grey"></i></p>
-                                <p class="title is-6 has-text-grey">عمر بنا</p>
+                                <p class="title is-6 has-text-grey">Age</p>
                                 <p class="title is-6 persian my-2">
                                     @if (Model.Post.Age > 0)
                                     {
@@ -106,32 +107,32 @@
                         <div class="level-item has-text-centered">
                             <div>
                                 <p class="heading"><i class="fas fa-2x fa-chart-area has-text-grey"></i></p>
-                                <p class="title is-6 has-text-grey">مساحت</p>
-                                <p class="title is-6 persian">@Model.Post.Area متر</p>
+                                <p class="title is-6 has-text-grey">Area</p>
+                                <p class="title is-6">@Model.Post.Area meters</p>
                             </div>
                         </div>
                     </section>
 
                     <h1 class="subtitle is-5">@Model.Post.Description</h1>
-                    <div class="buttons are-small">
+                    <div class="buttons">
                         <button class="button" v-on:click="getNumber" :disabled="loadingNumber">
                             <span class="icon">
                                 <i class="fas has-text-warning" :class="{'fa fa-phone':loadingNumber == false,'fa-spinner fa-spin':loadingNumber == true}"></i>
                             </span>
-                            <span v-if="phoneNumber == null">تماس</span>
+                            <span v-if="phoneNumber == null">Call</span>
                             <span v-else>{{phoneNumber}}</span>
                         </button>
                         <button class="button" v-on:click="showShareModal = true">
                             <span class="icon ">
                                 <i class="fas fa-share-alt"></i>
                             </span>
-                            <span>اشتراک</span>
+                            <span>Share</span>
                         </button>
                         <button class="button" v-on:click="addFavorite">
                             <span class="icon" v-bind:class="{'has-text-danger':liked}">
                                 <i class="fas fa-bookmark"></i>
                             </span>
-                            <span>ذخیره</span>
+                            <span>Save</span>
                         </button>
                         <button class="button is-danger" v-on:click="showModal = true">
                             <span class="icon ">
@@ -167,7 +168,7 @@
                         <div class="columns is-multiline is-mobile">
                             <div class="column is-12">
                                 <h2 class="title is-4">
-                                    امکانات
+                                    Amenities
                                 </h2>
                                 <hr class="my-0" />
                             </div>
@@ -254,7 +255,7 @@
                                         </div>
                                         <footer class="card-footer">
                                             <a href="#" class="card-footer-item">
-                                                <p><i class="fas fa-phone has-text-success"></i>  اطلاعات تماس</p>
+                                                <p><i class="fas fa-phone has-text-success"></i> Call</p>
                                             </a>
                                         </footer>
                                     </div>
@@ -270,16 +271,16 @@
         </div>
     }
 </div>
-<div class="modal " :class="{'is-active':showModal}">
+<div class="modal" :class="{'is-active':showModal}">
     <div class="modal-background"></div>
     <div class="modal-card">
         <header class="modal-card-head">
-            <p class="modal-card-title">گزارش اشکال</p>
+            <p class="modal-card-title">Report Problem</p>
             <button class="delete" aria-label="close" data-bulma-modal="close" v-on:click="showModal = false"></button>
         </header>
         <section class="modal-card-body">
             <div class="column is-12">
-                <p class="title is-5">دلیل</p>
+                <p class="title is-5">Reason</p>
                 <div class="select">
                     <select v-model="option">
                         <option v-for="opt in options" :value="opt.id">{{opt.name}}</option>
@@ -287,13 +288,13 @@
                 </div>
             </div>
             <div class="column is-12">
-                <p class="title is-5">توضیحات</p>
+                <p class="title is-5">Description</p>
                 <textarea class="textarea" v-model="description"></textarea>
             </div>
         </section>
         <footer class="modal-card-foot">
-            <button class="button is-success" v-on:click="submitForm">ثبت </button>
-            <button class="button" v-on:click="showModal = false">انصراف</button>
+            <button class="button is-success mr-1" v-on:click="submitForm">Send</button>
+            <button class="button" v-on:click="showModal = false">Cancel</button>
         </footer>
     </div>
 </div>
@@ -310,7 +311,7 @@
     <div class="modal-background"></div>
     <div class="modal-card">
         <header class="modal-card-head">
-            <p class="modal-card-title">اشتراک اعلان</p>
+            <p class="modal-card-title">Share</p>
             <button class="delete" aria-label="close" data-bulma-modal="close" v-on:click="showShareModal = false"></button>
         </header>
         <section class="modal-card-body">

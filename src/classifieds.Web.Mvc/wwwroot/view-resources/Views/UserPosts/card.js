@@ -45,9 +45,9 @@
             var t1 = new Date(this.post.creationTime).getTime();
             var days = parseInt((t2 - t1) / (24 * 3600 * 1000));
 			if (days > 1 ) {
-                return days + " روز پیش"
+                return days + "Days ago"
 			}
-			return "امروز";
+			return "Today";
 		},
 	
 		imageSrc: function () {
@@ -65,18 +65,18 @@
             return title.join(" , ");
         },
         price: function () {
-            return this.post.price + "؋";
+            return this.post.price + " $";
         },
         subtitle: function () {
             var subtitle = [];
             if (!!this.post.area && this.post.area > 0) {
-                subtitle.push(this.post.area + " متر ");
+                subtitle.push(this.post.area + " meters");
             }
             if (!!this.post.age && this.post.age > 0) {
-                subtitle.push(this.post.age + " سال ساخت  ")
+                subtitle.push(this.post.age + " years old")
             }
             if (!!this.post.bedroom && this.post.bedroom > 0) {
-                subtitle.push(this.post.bedroom + " اتاق")
+                subtitle.push(this.post.bedroom + " rooms")
             }
             return subtitle.join(" , ");
         }
@@ -111,10 +111,10 @@
                                             </figure>
                                         </div>
                                         <div class="card-content">
-                                                <h1 class="title is-6">{{title | persianDigit}}</h1>
-                                                <h2 class="subtitle is-6">{{subtitle | persianDigit}} <br/><b>{{price | persianDigit}}</b></h2>
+                                                <h1 class="title is-6">{{title }}</h1>
+                                                <h2 class="subtitle mt-3 is-6">{{subtitle }} <br/><b>{{price }}</b></h2>
                                         </div>
-										<footer class="card-footer">										  <a v-if="phoneNumber == null"  class="card-footer-item" v-on:click="getNumber">											  <p ><i class="fas has-text-success" :class="{'fa fa-phone':loading == false,'fa-spinner fa-spin':loading == true}"></i>  اطلاعات تماس</p>										  </a>										 <p class="card-footer-item" v-else><i class="fas fa-phone has-text-success"></i>{{phoneNumber}}</p>										</footer>
+										<footer class="card-footer m">										  <a v-if="phoneNumber == null"  class="card-footer-item" v-on:click="getNumber">											  <p ><i class="fas has-text-success" :class="{'fa fa-phone':loading == false,'fa-spinner fa-spin':loading == true}"></i> Phone number</p>										  </a>										 <p class="card-footer-item" v-else><i class="fas fa-phone has-text-success"></i>{{phoneNumber}}</p>										</footer>
                                     </div>
                                 </a>
                             </div>`

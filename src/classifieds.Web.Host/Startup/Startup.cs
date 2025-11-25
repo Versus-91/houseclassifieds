@@ -42,13 +42,7 @@ namespace classifieds.Web.Host.Startup
 				{
 					options.Filters.Add(new AbpAutoValidateAntiforgeryTokenAttribute());
 				}
-			).AddNewtonsoftJson(options =>
-			{
-				options.SerializerSettings.ContractResolver = new AbpMvcContractResolver(IocManager.Instance)
-				{
-					NamingStrategy = new CamelCaseNamingStrategy()
-				};
-			});
+			);
 
 
 

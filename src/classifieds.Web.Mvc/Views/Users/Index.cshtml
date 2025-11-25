@@ -23,32 +23,31 @@
             <div class=" column is-12  has-text-centered is-12-mobile">
                 @if (User.Identity.IsAuthenticated && User.Identity.Name == Model.User.UserName)
                 {
-                    <div class="notification is-primary">
+                    <div class="notification">
                         <div class="columns is-multiline is-mobile is-centered">
-                            <div class="column is-3 ">رمزعبور</div>
-                            <div class="column is-3 ">
+                            <div class="column is-6">
                                 @if (Model.HasPassword)
                                 {
-                                    <a asp-controller="Users" asp-action="ChangePassword" class="btn-bracketed">تغییر</a>
+                                    <a asp-controller="Users" asp-action="ChangePassword" class="btn-bracketed">Change Password</a>
                                 }
                                 else
                                 {
-                                    <a asp-controller="Users" asp-action="SetPassword" class="btn-bracketed">ایجاد</a>
+                                    <a asp-controller="Users" asp-action="SetPassword" class="btn-bracketed">Create Password</a>
                                 }
                             </div>
-                            <div class="column is-3 ">شماره موبایل</div>
-                            <div class="column is-3 ">
+                            <div class="column is-3">Phone number</div>
+                            <div class="column is-3">
                                 <div class="buttons">
                                     @if (Model.PhoneNumber != null)
                                     {
-                                        <a asp-controller="Users" asp-action="AddPhoneNumber" class="button is-info is-small">تغییر</a>
+                                        <a asp-controller="Users" asp-action="AddPhoneNumber" class="button is-info is-small">Change</a>
                                         <form asp-controller="Users" asp-action="RemovePhoneNumber" method="post">
-                                            <button type="submit" class="button is-danger is-small">حذف</button>
+                                            <button type="submit" class="button is-danger is-small">Delete</button>
                                         </form>
                                     }
                                     else
                                     {
-                                        <a asp-controller="Users" asp-action="AddPhoneNumber" class="button is-info is-small">افزودن</a>
+                                        <a asp-controller="Users" asp-action="AddPhoneNumber" class="button is-info is-small">Add</a>
                                     }
                                 </div>
                             </div>
@@ -87,12 +86,12 @@
                                         </figure>
 
                                         <div class="content has-text-right">
-                                            <p class="title is-size-6 mt-1 persian"> @post.Category.Name @post.Type.Name @post.Area متری</p>
-                                            <p class="subtitle is-size-6 mt-1 persian">  @post.District.Area.City.Name -  @post.District.Name</p>
-                                            <p class="subtitle is-size-6 mt-1 "><b class="persian"> قیمت  :  @post.Price ؋ </b></p>
+                                            <p class="title is-size-6 mt-1"> @post.Category.Name @post.Type.Name @post.Area meter</p>
+                                            <p class="subtitle is-size-6 mt-1">  @post.District.Area.City.Name -  @post.District.Name</p>
+                                            <p class="subtitle is-size-6 mt-1"><b> Price:  @post.Price $ </b></p>
                                             @if (User.Identity.IsAuthenticated && AbpSession.UserId == post.CreatorUserId && post.IsVerified == false)
                                             {
-                                                <a class="button is-primary is-size-6 mt-1" href="/ads/edit/@post.Id">ویرایش</a>
+                                                <a class="button is-primary is-size-6 mt-1" href="/ads/edit/@post.Id">Edit</a>
                                             }
                                         </div>
                                     </a>
@@ -105,25 +104,25 @@
                     <nav class="pagination is-centered" role="navigation" aria-label="pagination">
                         @if (Model.Page > 1)
                         {
-                            <a class="pagination-previous" href="?page=@(Model.Page - 1)">صفحه قبل</a>
+                            <a class="pagination-previous" href="?page=@(Model.Page - 1)">Prev</a>
                         }
                         else
                         {
-                            <a class="pagination-previous" disabled>صفحه قبل</a>
+                            <a class="pagination-previous" disabled>Prev</a>
                         }
                         @if (Model.HasNextPage)
                         {
-                            <a class="pagination-next" href="?page=@(Model.Page + 1)">صفحه بعد</a>
+                            <a class="pagination-next" href="?page=@(Model.Page + 1)">Next</a>
                         }
                         else
                         {
-                            <a class="pagination-next" disabled>صفحه بعد</a>
+                            <a class="pagination-next" disabled>Next</a>
                         }
                     </nav>
                 }
                 else
                 {
-                    <p>پستی برای نمایش وجود ندارد</p>
+                    <p>Nothing found.</p>
                 }
             </div>
         </div>

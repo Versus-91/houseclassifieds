@@ -12,10 +12,10 @@
 
     var pageTitle = !string.IsNullOrWhiteSpace(ViewBag.Title) ? ViewBag.Title + " - " : "";
     var returnUrl = Context.Request.Path;
-    pageTitle += "خرید ملک در افغانستان - گروی ملک در افغانستان";
+    pageTitle += "Realto App";
 }
 <!DOCTYPE html>
-<html dir="rtl" lang="fa">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
@@ -25,18 +25,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/img/icon.png" />
 
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazir-font@v26.0.0/dist/font-face.css" rel="stylesheet"
-          type="text/css" />
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bulma/css/bulma-rtl.min.css" asp-append-version="true" />
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
         <link rel="stylesheet" href="~/libs/font-awesome/css/all.min.css" asp-append-version="true" />
         <link href="~/css/web.css" rel="stylesheet" asp-append-version="true" />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@@fortawesome/fontawesome-free@5.15.2/css/all.min.css" integrity="sha256-0fuNgzfNIlaClbDtmYyFxY8LTNCDrwsNshywr4AALy0=" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.2/css/bulma-rtl.min.css" integrity="sha256-OhJCKE0+noWSdE9YUEx+d+3/hdatRbf8nfFQGFCBVhU=" crossorigin="anonymous">
-        <link href="~/css/web.min.css" rel="stylesheet" asp-append-version="true" />
+        <link rel="stylesheet"
+              href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+              <link href="~/css/web.min.css" rel="stylesheet" asp-append-version="true" />
     </environment>
     @RenderSection("styles", required: false)
 

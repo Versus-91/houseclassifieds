@@ -31,6 +31,7 @@ var app = new Vue({
         room: null,
         district: 0,
         description: '',
+        realEstateId:0,
         amenities: [],
         images:[],
         categories: [],

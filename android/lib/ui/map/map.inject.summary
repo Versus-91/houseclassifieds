@@ -1,8 +1,0 @@
-{
-  "asset": "asset:boilerplate/lib/ui/map/map.dart",
-  "summary": {
-    "injector": [],
-    "module": [],
-    "injectable": []
-  }
-}

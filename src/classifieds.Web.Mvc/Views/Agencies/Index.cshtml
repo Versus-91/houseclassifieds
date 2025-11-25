@@ -6,9 +6,13 @@
     ViewBag.CurrentPageName = PageNames.Agencies;
     Layout = "layout/_front";
 }
+@section Styles{
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
+}
 <div class="section">
     <div class="container">
-        <h2>جستجوی مشاور املاک :</h2>
+        <h2 class="title is-4">Search for a real estate agent:</h2>
         <div class="box has-text-link">
             <div class="columns is-centered is-vcentered has-text-centered py-2">
                 <div class="column">
@@ -24,7 +28,7 @@
                 <div class="column">
                     <div class="select is-fullwidth py-1 hide-arrow">
                         <select name="districts" v-select2 v-model="district"class="select2" disabled id="selectDistrict">
-                            <option value="0">انتخاب محله </option>
+                            <option value="0">District </option>
                         </select>
                     </div>
                 </div>
@@ -37,7 +41,7 @@
         </div>
     </div>
     <div class="container mt-4" style="min-height:50vh;" v-if="total != 0 " v-cloak>
-        <p class="subtitle is-5" v-if="total!= null">تعداد نتایج :  {{total}}</p>
+        <p class="subtitle is-5" v-if="total!= null">Results :  {{total}}</p>
         <div class="columns is-multiline">
             <div class="column is-3" v-for="item in items" :key="item.id" v-cloak>
                 <div class="card">
@@ -48,17 +52,17 @@
                   </div>
                   <div class="card-content">           
                     <div class="content">
-					نام : {{item.name}}
+					Name: {{item.name}}
                     <br />
 					مسئول :  {{item.name}}
                     <br />
-					آدرس : {{item.address}}
+					Address : {{item.address}}
                     </div>
                   </div>
                     <footer class="card-footer">
                       <p class="card-footer-item">
                         <span>
-                         <a :href="'agencies/' + item.id">مشاهده اعلانات</a>
+                         <a :href="'agencies/' + item.id">View</a>
                         </span>
                       </p>
                     </footer>
@@ -67,7 +71,7 @@
         </div>
     </div>
     <div class="container" style="min-height:50vh;" v-else>
-        <p class="title my-5 is-4">نتیجه ای پیدا نشد.</p>
+        <p class="title my-5 is-4">Nothing found</p>
     </div>
 
 </div>

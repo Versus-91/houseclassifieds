@@ -1,7 +1,7 @@
 ﻿@using classifieds.Web.Startup
 @model classifieds.Posts.Dto.GetAllPostsInput
 @{
-    ViewBag.Title = "جستجو";
+    ViewBag.Title = "Search";
     ViewBag.CurrentPageName = PageNames.Home;
     Layout = "layout/_front";
 }
@@ -9,32 +9,36 @@
 <div class="section Site-content">
     <div class="container is-hidden-mobile">
         <div class="columns  is-multiline is-centered is-vcentered py-2">
-            <div class="column">
-                <p class="title is-6">شهر : </p>
+            <div class="column is-3">
+                <p class="title is-6">City: </p>
                 <div class="select is-fullwidth ">
                     <select class="select2 districts" v-model="city" v-on:change="onCityChange">
                         <option v-for="cty in cities" :key="cty.id" :value="cty.id">{{cty.name}}</option>
                     </select>
                 </div>
             </div>
-            <div class="column">
-                <p class="title is-6">محله :  {{selectedAreaName}}</p>
+            <div class="column is-3">
+                <p class="title is-6">District:  {{selectedAreaName}}</p>
                 <div class="select is-fullwidth " :class="{'is-loading':loadingDistricts}">
                     <select class=" districts" v-model="district">
                         <option v-for="dst in districts" :key="dst.id" :value="dst.id">{{dst.name}}</option>
                     </select>
                 </div>
             </div>
-            <div class="column">
-                <p class="title is-6">نوع ملک : </p>
+            <div class="column is-3">
+                <p class="title is-6">Type: </p>
                 <div class="select is-fullwidth ">
                     <select class="select2 types" v-model="type" asp-items="@(ViewData["PropertyTypes"] as SelectList)" id="propertyTypes">
                     </select>
                 </div>
             </div>
-            <button aria-label="search" style="margin-top: 2.6rem !important;" class="button" v-on:click="search()"><i class="fas fa-search"></i></button>
+            <div class="column is-3">
+                <p class="control pt-4 mt-5">
+                    <button aria-label="search" type="button" class="button" v-on:click="search()"><i class="fas fa-search"></i></button>
+                </p>
+            </div>
             <div class="column is-12">
-                <a href="#" v-for="area of areas" class="tag is-link  p-1 m-2" :class="{'is-success':selectedArea == area.id}" v-on:click="onAreaSelect(area)">{{area.name}}</a>
+                <a href="#" v-for="area of areas" class="tag is-primay is-medium" :class="{'is-success':selectedArea == area.id}" v-on:click="onAreaSelect(area)">{{area.name}}</a>
             </div>
         </div>
     </div>
@@ -44,7 +48,7 @@
                 <div class="box">
                     <aside class="menu mt-2">
                         <p class="menu-label">
-                            وضعیت آگهی
+                            Status
                         </p>
                         <ul class="menu-list">
                             <li>
@@ -54,7 +58,7 @@
                                             <input type="checkbox" v-model="featured">
                                             <span class="slider"></span>
                                         </label>
-                                        فوری
+                                        Urgent
                                     </div>
                                 </div>
                                 <div class="field">
@@ -63,13 +67,13 @@
                                             <input type="checkbox" v-model="hasMedia">
                                             <span class="slider"></span>
                                         </label>
-                                        اعلان عکس دار
+                                        Has Photo
                                     </div>
                                 </div>
                             </li>
                         </ul>
                         <p class="menu-label">
-                            دسته بندی
+                            Category
                         </p>
                         <ul class="menu-list">
                             <li>
@@ -82,7 +86,7 @@
                             </li>
                         </ul>
                         <p class="menu-label">
-                            متراژ
+                            Area 
                         </p>
                         <ul class="menu-list">
                             <li>
@@ -90,12 +94,12 @@
                                     <div class="field-body">
                                         <div class="field">
                                             <p class="control is-expanded">
-                                                <input class="input is-danger" v-model="minArea" type="number" placeholder="حداقل">
+                                                <input class="input is-danger" v-model="minArea" type="number" placeholder="Min">
                                             </p>
                                         </div>
                                         <div class="field">
                                             <p class="control is-expanded ">
-                                                <input class="input is-success" v-model="maxArea" type="number" placeholder="حداکثر">
+                                                <input class="input is-success" v-model="maxArea" type="number" placeholder="Max">
                                             </p>
                                         </div>
                                     </div>
@@ -103,7 +107,7 @@
                             </li>
                         </ul>
                         <p class="menu-label mt-1">
-                            قیمت
+                            Price
                         </p>
                         <ul class="menu-list">
                             <li>
@@ -111,12 +115,12 @@
                                     <div class="field-body">
                                         <div class="field">
                                             <p class="control is-expanded">
-                                                <input class="input is-danger" v-model="minPrice" type="number" placeholder="حداقل">
+                                                <input class="input is-danger" v-model="minPrice" type="number" placeholder="Min">
                                             </p>
                                         </div>
                                         <div class="field">
                                             <p class="control is-expanded ">
-                                                <input class="input is-success" v-model="maxPrice" type="number" placeholder="حداکثر">
+                                                <input class="input is-success" v-model="maxPrice" type="number" placeholder="Max">
                                             </p>
                                         </div>
                                     </div>
@@ -124,19 +128,19 @@
                             </li>
                         </ul>
                         <p class="menu-label">
-                            تعداد اتاق
+                            # Rooms
                         </p>
                         <ul class="menu-list">
                             <li>
                                 <div class="control">
                                     <div class="select">
                                         <select v-model="roomsCount">
-                                            <option value="0">مهم نیست</option>
+                                            <option value="0">Any</option>
                                             <option value="1">1</option>
                                             <option value="4">4</option>
                                             <option value="8">8</option>
                                             <option value="12">12</option>
-                                            <option value="20">بیشتر از20</option>
+                                            <option value="20">+20</option>
                                         </select>
                                     </div>
                                 </div>
@@ -146,11 +150,11 @@
                         <br />
                         <ul class="menu-list mt-2">
                             <li>
-                                <button class="button is-success is-light" v-on:click="search()" aria-label="search">
+                                <button class="button is-success is-light py-2" v-on:click="search()" aria-label="search">
                                     <span class="icon">
                                         <i class="fas fa-search"></i>
                                     </span>
-                                    <span>جستجو</span>
+                                    <span>Search</span>
                                 </button>
                             </li>
                         </ul>
@@ -160,13 +164,13 @@
             <div class="column is-9 is-12-touch">
                 <div class="tabs is-toggle" v-if="category != 0">
                     <ul>
-                        <li :class="{'is-active':sort == 1}" v-on:click="search(1)"><a href="#">جدیدترین</a></li>
-                        <li :class="{'is-active':sort == 2}" v-on:click="search(2)"><a href="#">ارزانترین</a></li>
-                        <li :class="{'is-active':sort == 3}" v-on:click="search(3)"><a href="#">گرانترین</a></li>
+                        <li :class="{'is-active':sort == 1}" v-on:click="search(1)"><a href="#">Newest</a></li>
+                        <li :class="{'is-active':sort == 2}" v-on:click="search(2)"><a href="#">Cheapest</a></li>
+                        <li :class="{'is-active':sort == 3}" v-on:click="search(3)"><a href="#">Most Expensive</a></li>
                         <li v-on:click="showFilters = true" class="is-hidden-desktop">
                             <a href="#">
                                 <span class="icon is-small"><i aria-hidden="true" class="fas fa-filter has-text-success"></i></span>
-                                <span>فیلتر</span>
+                                <span>Filter</span>
                             </a>
                         </li>
                     </ul>
@@ -176,7 +180,7 @@
                         <li v-on:click="showFilters = true" class="is-hidden-desktop">
                             <a href="#">
                                 <span class="icon is-small"><i aria-hidden="true" class="fas fa-filter has-text-success"></i></span>
-                                <span>فیلتر</span>
+                                <span>Filter</span>
                             </a>
                         </li>
                     </ul>
@@ -190,7 +194,7 @@
                     <button aria-label="previous" class="pagination-previous" v-on:click="paginate(page - 1 )" :disabled="page <= 1">قبلی</button>
                     <button aria-label="next" class="pagination-next" v-on:click="paginate(page + 1 )" :disabled="((page *30) / totalItems)>1">بعدی </button>
                 </nav>
-                <app-block-ui v-if="loading" url="/img/icon.png" message="در حال دریافت اطلاعات ...." />
+                <app-block-ui v-if="loading" url="/img/icon.png" message="Loading...." />
             </div>
 
         </div>

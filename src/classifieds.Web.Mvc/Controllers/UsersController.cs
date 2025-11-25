@@ -53,7 +53,6 @@ namespace classifieds.Web.Controllers
         //
         // GET: /Manage/Index
         [AbpAllowAnonymous]
-        [HttpGet("[controller]/{name}")]
         public async Task<IActionResult> Index(string name,[FromQuery]int page = 1,ManageMessageId? message = null)
         {
             ViewData["StatusMessage"] =

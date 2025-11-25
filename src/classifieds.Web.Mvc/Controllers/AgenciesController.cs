@@ -30,7 +30,7 @@ namespace classifieds.Web.Controllers
         public async Task<IActionResult> Index()
         {
             var cities = (await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = int.MaxValue })).Items.ToList();
-            cities.Insert(0, new CityDto { Id = 0, Name = "شهر را انتخاب کنید" });
+            cities.Insert(0, new CityDto { Id = 0, Name = "Select City" });
             ViewData["cities"] = cities;
             return View();
         }

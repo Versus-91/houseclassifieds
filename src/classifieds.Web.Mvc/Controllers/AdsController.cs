@@ -55,9 +55,9 @@ namespace classifieds.Web.Controllers
         public async Task<IActionResult> Index(GetAllPostsInput inputs)
         {
             var types = (await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items.ToList();
-            types.Insert(0, new PropertyTypeDto { Id = 0, Name = "مهم نیست" });
+            types.Insert(0, new PropertyTypeDto { Id = 0, Name = "Any" });
             var categories = (await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items.ToList();
-            categories.Insert(0, new CategoryDto { Id = 0, Name = "مهم نیست" });
+            categories.Insert(0, new CategoryDto { Id = 0, Name = "Any" });
             ViewData["Categories"] = new SelectList(categories, nameof(CategoryDto.Id), nameof(CategoryDto.Name),inputs.Category);
         
             if (inputs.Types == null)
@@ -87,7 +87,7 @@ namespace classifieds.Web.Controllers
         public async Task<IActionResult> Create()
         {
             var cities = (await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = int.MaxValue })).Items.ToList();
-            cities.Insert(0, new CityDto { Id = 0, Name = "شهر را انتخاب کنید" });
+            cities.Insert(0, new CityDto { Id = 0, Name = "Select City" });
             ViewData["Cities"] = new SelectList(cities, nameof(CityDto.Id), nameof(CityDto.Name));
             ViewData["Amenities"] = (await _amenityService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
             ViewData["Categories"] = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");
@@ -100,7 +100,7 @@ namespace classifieds.Web.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             var cities = (await _cityService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = int.MaxValue })).Items.ToList();
-            cities.Insert(0, new CityDto { Id = 0, Name = "شهر را انتخاب کنید" });
+            cities.Insert(0, new CityDto { Id = 0, Name = "Select City" });
             ViewData["Cities"] = new SelectList(cities, nameof(CityDto.Id), nameof(CityDto.Name));
             ViewData["Amenities"] = (await _amenityService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items;
             ViewData["Categories"] = new SelectList((await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto())).Items, "Id", "Name");

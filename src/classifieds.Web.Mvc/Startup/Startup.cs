@@ -29,8 +29,8 @@ using SixLabors.ImageSharp.Web.Processors;
 using SixLabors.ImageSharp.Web.Providers;
 using System;
 
-namespace classifieds.Web.Startup
-{
+namespace classifieds.Web.Startup;
+
     public class Startup
     {
         private readonly IConfigurationRoot _appConfiguration;
@@ -50,14 +50,7 @@ namespace classifieds.Web.Startup
                            options.Filters.Add(new AbpAutoValidateAntiforgeryTokenAttribute());
                        }
                    )
-                   .AddRazorRuntimeCompilation()
-                   .AddNewtonsoftJson(options =>
-                   {
-                       options.SerializerSettings.ContractResolver = new AbpMvcContractResolver(IocManager.Instance)
-                       {
-                           NamingStrategy = new CamelCaseNamingStrategy()
-                       };
-                   });
+                   .AddRazorRuntimeCompilation();
 
             IdentityRegistrar.Register(services);
             AuthConfigurer.Configure(services, _appConfiguration);
@@ -78,13 +71,9 @@ namespace classifieds.Web.Startup
                     return new PhysicalFileSystemCache(
                                 provider.GetRequiredService<IOptions<PhysicalFileSystemCacheOptions>>(),
                                 provider.GetRequiredService<IWebHostEnvironment>(),
-                                provider.GetRequiredService<IOptions<ImageSharpMiddlewareOptions>>(),
                                 provider.GetRequiredService<FormatUtilities>());
                 })
-                .SetCacheHash<CacheHash>()
                 .AddProvider<PhysicalFileSystemProvider>()
-                .AddProcessor<helpers.ResizeWebProcessor>()
-                .RemoveProcessor<SixLabors.ImageSharp.Web.Processors.ResizeWebProcessor>()
                 .RemoveProcessor<FormatWebProcessor>()
                 .RemoveProcessor<BackgroundColorWebProcessor>();
             // Configure Abp and Dependency Injection
@@ -134,4 +123,4 @@ namespace classifieds.Web.Startup
             });
         }
     }
-}
+

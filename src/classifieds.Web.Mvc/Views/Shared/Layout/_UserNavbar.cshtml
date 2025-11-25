@@ -17,16 +17,16 @@
         <div id="navbarBasicExample" class="navbar-menu">
             <div class="navbar-start">
                 <a class="navbar-item" href="/">
-                    خانه
+                    Home
                 </a>
                 <a class="navbar-item" href="/">
-                    وبلاگ
+                    Blog
                 </a>
                 <a class="navbar-item" href="/agencies">
-                    مشاورین املاک
+                    Agencies
                 </a>
                 <a href="/about" class="navbar-item">
-                    درباره ما
+                    About us
                 </a>
             </div>
 
@@ -36,12 +36,14 @@
                         @if (User.Identity.IsAuthenticated)
                         {
                             <a class="button is-success" href="/ads/create">
-                                <i class="fas fa-plus px-1"></i>
-                                <strong> اعلان جدید</strong>
+                                <span class="icon">
+                                    <i class="fas fa-plus px-1"></i>
+                                </span>
+                                <span> New Ad</span>
                             </a>
                             <div class="navbar-item has-dropdown is-hoverable">
                                 <a class="navbar-link" href="#">
-                                    مدیریت کاربر
+                                    User management
                                 </a>
 
                                 <div class="navbar-dropdown">
@@ -49,20 +51,20 @@
                                     {
                                         <a class="navbar-item" href="/admin">
                                             <i class="fas fa-cog px-1 has-text-info"></i>
-                                            مدیریت
+                                            Management
                                         </a>
                                     }
                                     <a class="navbar-item" href="/users/@User.Identity.Name">
                                         <i class="fas fa-user px-1 has-text-info"></i>
-                                        پروفایل
+                                        Profile
                                     </a>
                                     <a class="navbar-item" href="/favorites">
                                         <i class="fas fa-heart px-1 has-text-danger"></i>
-                                        علاقه مندی ها
+                                        Likes
                                     </a>
                                     <a class="navbar-item" href="/account/logout">
                                         <i class="fas fa-sign-out-alt px-1 has-text-danger"></i>
-                                        خروج
+                                        Logout
                                     </a>
 
                                 </div>
@@ -72,11 +74,11 @@
                         {
                             <a class="button is-success" href="/account/register">
                                 <i class="fas fa-user px-1"></i>
-                                <strong>ثبت نام</strong>
+                                <strong>Register</strong>
                             </a>
                             <a class="button " href="/account/login?returnUrl=@Model">
                                 <i class="fas fa-sign-in-alt px-1 has-text-success"></i>
-                                ورود
+                                Login
                             </a>
                         }
                     </div>

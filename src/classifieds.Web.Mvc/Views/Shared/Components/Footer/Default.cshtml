@@ -5,23 +5,23 @@
   <div class="columns">
     <div class="column is-4">
       <p class="bd-footer-link-title">
-        <a href="/">خانه</a>
+        <a href="/">Home</a>
       </p>
 
       <p class="bd-footer-link-title">
-        <a href="https://bulma.io/blog">وبلاگ</a>
+        <a href="https://bulma.io/blog">Blog</a>
       </p>
 
     </div>
 
     <div class="column is-4">
       <p class="bd-footer-link-title">
-        <a href="/">شهرهای پربازدید</a>
+        <a href="/">Top Cities</a>
       </p>
       @foreach(var item in Model){
         <p class="bd-footer-link">
           <a href="/ads?city=@item.CityId">
-            شهر @item.CityName 
+             @item.CityName 
           </a>
         </p>
       }
@@ -29,12 +29,9 @@
     </div>
 
     <div class="column is-4">
-      <p class="bd-footer-link-title">
-        <a href="/">سایر موارد</a>
-      </p>
          <p class="bd-footer-link">
           <a href="/">
-            دریافت اپ
+            Downlaod the App
           </a>
         </p>
     </div>

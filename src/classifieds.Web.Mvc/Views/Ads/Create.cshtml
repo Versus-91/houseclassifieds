@@ -9,11 +9,13 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
       integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
       crossorigin="" />
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 }
 <div class="section Site-content" style="min-height:70vh;">
     <div class="container persian" v-cloak>
         <div class="box">
-            <h1 class="title is-4">ارسال آگهی جدید</h1>
+            <h1 class="title is-4">New Ad</h1>
             <hr />
             <div class="columns">
                 <div class="column">
@@ -40,7 +42,7 @@
             </div>
             <div class="columns">
                 <div class="column">
-                    <p class="title is-5">نوع ملک <span class="is-danger is-size-7 has-text-danger">اجباری</span></p>
+                    <p class="title is-5"> Property Type <span class="is-danger is-size-7 has-text-danger">required</span></p>
                     <div class="buttons">
                         @foreach (var prop in (IEnumerable<SelectListItem>)@ViewData["PropertyTypes"])
                         {
@@ -56,7 +58,7 @@
                 <div class="field is-horizontal">
                     <div class="field-body">
                         <div class="field column is-4 p-0">
-                            <label for="City" class="label">شهر  <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
+                            <label for="City" class="label">City  <span class="is-danger is-size-7 has-text-danger	">required</span></label>
                             <div class="control has-icons-right">
                                 <div class="select is-fullwidth hide-arrow">
                                     <select class="select2   " id="selectCity" asp-items="@(ViewData["Cities"] as SelectList)">
@@ -66,22 +68,22 @@
                             </div>
                         </div>
                         <div class="field column is-4 p-0">
-                            <label asp-for="DistrictId" class="label">ناحیه <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
+                            <label asp-for="DistrictId" class="label"> District <span class="is-danger is-size-7 has-text-danger	">required</span></label>
                             <div class="control has-icons-right">
                                 <div class="select is-fullwidth hide-arrow">
                                     <select class="select2 " v-select2 v-model="district" id="selectArea" required>
-                                        <option value="0">انتخاب ناحیه</option>
+                                        <option value="0"> Select District</option>
                                     </select>
                                 </div>
                             </div>
                             <span class="help is-danger" asp-validation-for="DistrictId"></span>
                         </div>
-                        <div class="field column is-4 ">
-                            <label asp-for="DistrictId" class="label">محله <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
+                        <div class="field column is-4 p-0 pr-2">
+                            <label asp-for="DistrictId" class="label">Neighborhood <span class="is-danger is-size-7 has-text-danger	">required</span></label>
                             <div class="control has-icons-right">
                                 <div class="select is-fullwidth hide-arrow">
                                     <select class="select2 " v-select2 v-model="district" name="DistrictId" id="selectDistrict" required>
-                                        <option value="0">انتخاب محله</option>
+                                        <option value="0">Select Neighborhood</option>
                                     </select>
                                 </div>
                             </div>
@@ -92,11 +94,11 @@
                 <div class="field is-horizontal">
                     <div class="field-body column is-6 p-0">
                         <div class="field ">
-                            <label for="Price" class="label">قیمت</label>
+                            <label for="Price" class="label">Price</label>
                             <div class="control has-icons-left">
                                 <input class="input currency" dir="ltr" type="number" id="price" placeholder="قیمت" name="Price" v-model.number="price" />
                                 <span class="icon is-small is-left">
-                                    ؋
+                                    $
                                 </span>
                             </div>
                         </div>
@@ -105,7 +107,7 @@
                 <div class="field is-horizontal">
                     <div class="field-body">
                         <div class="field column is-6 p-0">
-                            <label asp-for="Area" class="label">متراژ <span class="is-danger is-size-7 has-text-danger	">اجباری</span></label>
+                            <label asp-for="Area" class="label">متراژ <span class="is-danger is-size-7 has-text-danger	">required</span></label>
                             <div class="control has-icons-left ">
                                 <input v-model.number="area" class="input " asp-for="Area" placeholder="مساحت" />
                                 <span class="icon is-small is-left">
@@ -116,7 +118,7 @@
 
                         </div>
                         <div class="field column is-6 p-0" id="bedroom">
-                            <label asp-for="Bedroom" class="label">تعداد اتاق</label>
+                            <label asp-for="Bedroom" class="label"> # Rooms</label>
                             <div class="control  has-icons-left has-icons-right">
                                 <div class="select is-fullwidth">
                                     <select asp-for="Bedroom" v-model="room">
@@ -152,7 +154,7 @@
                     </div>
                 </div>
                 <div class="field">
-                    <label asp-for="Description" class="label">توضیحات</label>
+                    <label asp-for="Description" class="label">Description</label>
                     <div class="control">
                         <textarea v-model="description" class="textarea"></textarea>
                     </div>
@@ -163,16 +165,16 @@
                             <i class="fas fa-2x fa-upload has-text-success"></i><br />
                             <br />
                             <span class="title is-5">
-                                برای اپلود فایل کلیک کنید
+                                Click to Upload
                             </span>
                             <br />
-                            <span class="subtitle is-6">حداکثر حجم هر عکس 4 مگابایت است .</span>
+                            <span class="subtitle is-6">Max image size is 4 MB.</span>
                         </div>
                     </div>
                 </div>
                 <div class="columns">
                     <div class="column is-4">
-                        <p class="title is-4">تجهیزات و امکانات</p>
+                        <p class="title is-4">Amenities</p>
                         <div class="columns is-multiline">
                             @foreach (var amenity in ViewData["amenities"] as IList<classifieds.Amenities.Dto.AmenityDto>)
                             {
@@ -192,7 +194,7 @@
                         </div>
                     </div>
                     <div class="column is-8">
-                        <p class="title is-4">مکان روی نقشه </p>
+                        <p class="title is-4">Location on Map</p>
                         <div id="map" style="height:250px">
                             <l-map :center="center" :zoom="zoom" @@click="addMarker" ref="map" />
                             <l-tile-layer :url="url" />
@@ -204,14 +206,23 @@
                 <div class="field is-grouped">
                     <div class="control">
                         <button :disabled='!validateForm' class="button is-link is-success" v-on:click="postSubmit($event)">
-                            <i class="fas fa-paper-plane pl-1"> </i>
-                            ارسال
+                            <span class="icon">
+                                <i class="fas fa-paper-plane pl-1"> </i>
+                            </span>
+                            <span>
+                                send
+                            </span>
                         </button>
                     </div>
                     <div class="control">
                         <a href="/" class="button is-link is-light">
+                            <span class="icon">
                             <i class="fas fa-trash pl-1 has-text-danger"> </i>
-                            انصراف
+                            </span>
+                            <span>
+                                    Cancel
+                            </span>
+                            
                         </a>
                     </div>
                 </div>

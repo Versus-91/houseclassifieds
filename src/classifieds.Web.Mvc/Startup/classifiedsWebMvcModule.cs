@@ -27,6 +27,7 @@ namespace classifieds.Web.Startup
             var keyVaultService = IocManager.Resolve<IKeyVaultService>();
             var connectionString = keyVaultService.GetSecretAsync("sqlconnection").GetAwaiter().GetResult();
             Configuration.DefaultNameOrConnectionString = connectionString.Value;
+
             Configuration.Navigation.Providers.Add<classifiedsNavigationProvider>();
         }
 

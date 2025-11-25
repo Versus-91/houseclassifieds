@@ -7,17 +7,17 @@
         <div class="columns is-centered">
             <div class="column is-8">
                 <form asp-controller="Users" asp-action="AddPhoneNumber" method="post">
-                    <h4>افزودن شماره تلفن</h4>
+                    <h4>Update Phone Number</h4>
                     <hr />
                     <div asp-validation-summary="All" class="help is-danger"></div>
                     <div class="field">
-                        <input dir="ltr" asp-for="PhoneNumber" class="input" type="text" placeholder="شماره موبایل">
+                        <input dir="ltr" asp-for="PhoneNumber" class="input" type="text" placeholder="Phone Number">
                         <span asp-validation-for="PhoneNumber" class="help is-danger"></span>
                     </div>
                     <div class="field">
                         <p class="control">
-                            <button type="submit" class="button is-primary">ارسال کد تایید</button>
-                            <a href="/users/@User.Identity.Name" class="button is-link">بازگشت</a>
+                            <button type="submit" class="button is-primary">Send SMS Code</button>
+                            <a href="/users?name=@User.Identity.Name" class="button is-link">back</a>
                         </p>
                     </div>
                 </form>
