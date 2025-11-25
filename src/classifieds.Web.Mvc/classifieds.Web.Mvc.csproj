@@ -37,6 +37,8 @@
   <ItemGroup>
     <PackageReference Include="Abp" Version="8.4.0" />
     <PackageReference Include="Abp.ZeroCore.EntityFrameworkCore" Version="8.4.0" />
+    <PackageReference Include="Azure.Identity" Version="1.17.1" />
+    <PackageReference Include="Azure.Security.KeyVault.Secrets" Version="4.8.0" />
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.36" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
