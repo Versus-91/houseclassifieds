@@ -20,6 +20,7 @@ namespace classifieds.Web.Startup
 
         public override void PreInitialize()
         {
+
             Configuration.Navigation.Providers.Add<classifiedsNavigationProvider>();
         }
 
