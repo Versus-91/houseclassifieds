@@ -35,7 +35,7 @@ namespace classifieds.Web.Controllers
             var categories = (await _categoryService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = int.MaxValue })).Items;
             var types = (await _typeService.GetAllAsync(new PagedAndSortedResultRequestDto { MaxResultCount = int.MaxValue })).Items.ToList();
             cities.Insert(0, new CityDto { Id = 0, Name = "Select City" });
-            types.Insert(0, new PropertyTypeDto { Id = 0, Name = "Selct Type" });
+            types.Insert(0, new PropertyTypeDto { Id = 0, Name = "Select Type" });
 
             var model = new AdsIndexViewModel
             {
