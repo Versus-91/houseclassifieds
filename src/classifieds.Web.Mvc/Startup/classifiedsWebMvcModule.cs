@@ -23,11 +23,12 @@ namespace classifieds.Web.Startup
 
         public override void PreInitialize()
         {
+            if (_env.EnvironmentName != "Development") {
             IocManager.Register<IKeyVaultService, KeyVaultService>(DependencyLifeStyle.Transient);
             var keyVaultService = IocManager.Resolve<IKeyVaultService>();
             var connectionString = keyVaultService.GetSecretAsync("sqlconnection").GetAwaiter().GetResult();
             Configuration.DefaultNameOrConnectionString = connectionString.Value;
-
+            }
             Configuration.Navigation.Providers.Add<classifiedsNavigationProvider>();
         }
 
