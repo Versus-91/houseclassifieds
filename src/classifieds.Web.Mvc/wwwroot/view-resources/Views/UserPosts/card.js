@@ -114,7 +114,12 @@
                                                 <h1 class="title is-6">{{title }}</h1>
                                                 <h2 class="subtitle mt-3 is-6">{{subtitle }} <br/><b>{{price }}</b></h2>
                                         </div>
-										<footer class="card-footer m">										  <a v-if="phoneNumber == null"  class="card-footer-item" v-on:click="getNumber">											  <p ><i class="fas has-text-success" :class="{'fa fa-phone':loading == false,'fa-spinner fa-spin':loading == true}"></i> Phone number</p>										  </a>										 <p class="card-footer-item" v-else><i class="fas fa-phone has-text-success"></i>{{phoneNumber}}</p>										</footer>
+										<footer class="card-footer m">
+										  <a v-if="phoneNumber == null"  class="card-footer-item" v-on:click="getNumber">
+											  <p ><i class="fas has-text-success" :class="{'fa fa-phone':loading == false,'fa-spinner fa-spin':loading == true}"></i> Phone number</p>
+										  </a>
+										 <p class="card-footer-item" v-else><i class="fas fa-phone has-text-success"></i>{{phoneNumber}}</p>
+										</footer>
                                     </div>
                                 </a>
                             </div>`

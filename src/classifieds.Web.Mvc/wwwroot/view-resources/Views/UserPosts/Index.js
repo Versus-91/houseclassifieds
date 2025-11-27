@@ -94,7 +94,7 @@ $(document).ready(function () {
 			this.on('error', function (file, errorMessage) {
 				if (errorMessage.indexOf('big') !== -1) {
 					var errorDisplay = document.querySelectorAll('[data-dz-errormessage]');
-					errorDisplay[errorDisplay.length - 2].innerHTML = 'حجم فایل زیاد است.' + '<br/>حداکثر حجم فایل مجاز :' + this.options.maxFilesize + 'مگابایت ';
+					errorDisplay[errorDisplay.length - 2].innerHTML = 'The file is too big.' + '<br/>Max file size is :' + this.options.maxFilesize + 'MB ';
 				}
 			});
 		},

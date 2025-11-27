@@ -191,8 +191,8 @@
                 </div>
 
                 <nav class="pagination mt-3 pt-3" role="navigation" aria-label="pagination">
-                    <button aria-label="previous" class="pagination-previous" v-on:click="paginate(page - 1 )" :disabled="page <= 1">قبلی</button>
-                    <button aria-label="next" class="pagination-next" v-on:click="paginate(page + 1 )" :disabled="((page *30) / totalItems)>1">بعدی </button>
+                    <button aria-label="previous" class="pagination-previous" v-on:click="paginate(page - 1 )" :disabled="page <= 1">Prev</button>
+                    <button aria-label="next" class="pagination-next" v-on:click="paginate(page + 1 )" :disabled="((page *30) / totalItems)>1">Next </button>
                 </nav>
                 <app-block-ui v-if="loading" url="/img/icon.png" message="Loading...." />
             </div>
@@ -224,13 +224,13 @@
                                 <input type="checkbox" v-model="hasMedia">
                                 <span class="slider"></span>
                             </label>
-                            آگهی عکس دار
+                            Has photo
                         </div>
                     </div>
                 </div>
 
                 <div class="column is-6">
-                    <p class="title is-6">شهر</p>
+                    <p class="title is-6">City</p>
                     <div class="select is-fullwidth py-1">
                         <select v-model="city" v-on:change="onCityChange" class="select2 cities">
                             {{city}}
@@ -239,7 +239,7 @@
                     </div>
                 </div>
                 <div class="column is-6">
-                    <p class="title is-6">محله :{{selectedAreaName}}</p>
+                    <p class="title is-6">District :{{selectedAreaName}}</p>
                     <div class="select is-fullwidth py-1">
                         <select class="select2 districts" v-model="district">
                             <option v-for="dst in districts" :key="dst.id" :value="dst.id">{{dst.name}}</option>
@@ -250,69 +250,69 @@
                     <button aria-label="area" v-for="area of areas" class="tag is-link  p-1 m-2" :class="{'is-success':selectedArea == area.id}" v-on:click="onAreaSelect(area)">{{area.name}}</button>
                 </div>
                 <div class="column is-6">
-                    <p class="title is-6">نوع ملک</p>
+                    <p class="title is-6">Type</p>
                     <div class="select is-fullwidth py-1">
                         <select class="select2 types" v-model="type" asp-items="@(ViewData["PropertyTypes"] as SelectList)" id="propertyTypes">
                         </select>
                     </div>
                 </div>
                 <div class="column is-6">
-                    <p class="title is-6">نوع معامله</p>
+                    <p class="title is-6">Category</p>
                     <div class="select is-fullwidth">
                         <select class="categories" v-on:change="onCategoryChange" v-model="category" asp-items="@(ViewData["Categories"] as SelectList)" asp-for="Category">
                         </select>
                     </div>
                 </div>
                 <div class="column is-12">
-                    <p class="title is-6">مساحت</p>
+                    <p class="title is-6">Area</p>
                 </div>
                 <div class="column is-6">
                     <div class="field">
                         <div class="control is-expanded">
-                            <input type="number" v-model="minArea" placeholder="حداقل" class="input is-danger">
+                            <input type="number" v-model="minArea" placeholder="min" class="input is-danger">
                         </div>
                     </div>
                 </div>
                 <div class="column is-6">
                     <div class="field">
                         <p class="control is-expanded ">
-                            <input type="number" v-model="maxArea" placeholder="حداکثر" class="input is-success">
+                            <input type="number" v-model="maxArea" placeholder="max" class="input is-success">
                         </p>
                     </div>
                 </div>
                 <div class="column is-12">
                     <div class="column is-12">
-                        <p class="title is-6">قیمت</p>
+                        <p class="title is-6">Price</p>
                     </div>
                     <div class="columns is-mobile">
                         <div class="column is-6">
                             <div class="field">
                                 <p class="control is-expanded">
-                                    <input type="number" v-model="minPrice" placeholder="حداقل" class="input is-danger" autocomplete="off">
+                                    <input type="number" v-model="minPrice" placeholder="min" class="input is-danger" autocomplete="off">
                                 </p>
                             </div>
                         </div>
                         <div class="column is-6">
                             <div class="field">
                                 <p class="control is-expanded ">
-                                    <input type="number" placeholder="حداکثر" v-model="maxPrice" class="input is-success">
+                                    <input type="number" placeholder="max" v-model="maxPrice" class="input is-success">
                                 </p>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="column is-12"><p class="title is-6">تعداد اتاق</p></div>
+                <div class="column is-12"><p class="title is-6"># Rooms </p></div>
                 <div class="column is-6">
                     <div class="control">
                         <div class="select is-fullwidth is-primary">
                             <select v-model="roomsCount">
-                                <option value="0">مهم نیست</option>
+                                <option value="0">any</option>
                                 <option value="1">1</option>
                                 <option value="2">4</option>
                                 <option value="3">8</option>
                                 <option value="4">12</option>
-                                <option value="5">بیشتر از 12</option>
+                                <option value="5">12+</option>
                             </select>
                         </div>
                     </div>
@@ -324,7 +324,7 @@
                                 <span class="icon">
                                     <i class="fas fa-search"></i>
                                 </span>
-                                <span>جستجو</span>
+                                <span>Seach</span>
                             </button>
                         </div>
                         <div class="column is-6">
@@ -332,7 +332,7 @@
                                 <span class="icon">
                                     <i class="fab fa-times"></i>
                                 </span>
-                                <span>انصراف</span>
+                                <span>Close</span>
                             </button>
                         </div>
                     </div>

@@ -6,7 +6,7 @@
 		loading: true,
 		loadingDistricts: false,
 		loadingAreas: false,
-		msg: 'در حال دریافت اطلاعات....',
+		msg: 'loading....',
 		url: '/img/icon.png',
 		categoryText: ' ',
 		city: null,
@@ -47,7 +47,7 @@
 			axios.get("/api/services/app/district/GetByAreaId?id=" + this.selectedArea )
 				.then((res) => {
 					var items = res.data.result;
-					items.unshift({ name: 'انتخاب محله', id: 0 });
+					items.unshift({ name: 'Select District', id: 0 });
 					this.districts = items;
 					this.district = this.districts[0]?.id;
 				}).catch((err) => {
@@ -67,7 +67,7 @@
 			axios.get("/admin/districts/GetByCityId?id="+this.city)
 				.then((res) => {
 					var items = res.data.result;
-					items.unshift({ name: 'مهم نیست', id: 0 });
+					items.unshift({ name: 'any', id: 0 });
 					this.districts = items;
 					this.district = this.districts[0].id;
 					this.loadingDistricts = false;
@@ -189,7 +189,7 @@
 			axios.get("/admin/districts/GetByCityId?id=" + city)
 				.then((res) => {
 					var items = res.data.result;
-					items.unshift({ name: 'مهم نیست', id: 0 });
+					items.unshift({ name: 'any', id: 0 });
 					this.districts = items;
 					if (!!district) {
 						this.district = district;
@@ -220,7 +220,7 @@
 		axios.get("/api/services/app/city/getall")
 			.then((res) => {
 				var items = res.data.result.items;
-				items.unshift({ name: 'مهم نیست', id: 0 });
+				items.unshift({ name: 'any', id: 0 });
 				this.cities = items;
 				if (!!city) {
 					this.city = city;

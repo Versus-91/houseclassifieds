@@ -116,9 +116,9 @@
                 render: (data, type, row, meta) => {
                     var days = DateDiff.inDays(new Date(row.creationTime), new Date());
 					if (days <=1 ) {
-                        return "امروز";
+                        return "today";
 					}
-                    return days + " روز قبل"  ;
+                    return days + " days ago"  ;
                 }
             },
             {

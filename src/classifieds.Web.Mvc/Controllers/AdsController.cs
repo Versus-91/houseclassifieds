@@ -63,13 +63,11 @@ namespace classifieds.Web.Controllers
             if (inputs.Types == null)
             {
                 ViewData["PropertyTypes"] = new SelectList(types, nameof(PropertyTypeDto.Id), nameof(PropertyTypeDto.Name));
-
             }
             else
             {
                 ViewData["PropertyTypes"] = new SelectList(types, nameof(PropertyTypeDto.Id), nameof(PropertyTypeDto.Name), inputs.Types[0]);
             }
-
             return View(inputs);
         }
         [Route("[controller]/{id:int:required}")]
