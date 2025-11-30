@@ -1,6 +1,6 @@
 ﻿@model classifieds.Web.Models.Ads.AdsViewModel
 @{
-    ViewBag.Title = "ایجاد پست جدید";
+    ViewBag.Title = "Create new Ad";
     Layout = "layout/_front";
 }
 @section styles{
@@ -20,7 +20,7 @@
             <div class="columns">
                 <div class="column">
                     <div class="column is-4">
-                        <p class="title is-5">مشاور املاک</p>
+                        <p class="title is-5">real estate agent</p>
                         <div class="select is-fullwidth hide-arrow">
                             <select v-select2 v-model="realEstateId" id="realestates">
                             </select>
@@ -96,7 +96,7 @@
                         <div class="field ">
                             <label for="Price" class="label">Price</label>
                             <div class="control has-icons-left">
-                                <input class="input currency" dir="ltr" type="number" id="price" placeholder="قیمت" name="Price" v-model.number="price" />
+                                <input class="input currency" dir="ltr" type="number" id="price" placeholder="Price" name="Price" v-model.number="price" />
                                 <span class="icon is-small is-left">
                                     $
                                 </span>
@@ -107,9 +107,9 @@
                 <div class="field is-horizontal">
                     <div class="field-body">
                         <div class="field column is-6 p-0">
-                            <label asp-for="Area" class="label">متراژ <span class="is-danger is-size-7 has-text-danger	">required</span></label>
+                            <label asp-for="Area" class="label">Area <span class="is-danger is-size-7 has-text-danger	">required</span></label>
                             <div class="control has-icons-left ">
-                                <input v-model.number="area" class="input " asp-for="Area" placeholder="مساحت" />
+                                <input v-model.number="area" class="input " asp-for="Area" placeholder="Area" />
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-globe"></i>
                                 </span>
@@ -139,16 +139,16 @@
                     </div>
                 </div>
                 <div class="field column is-6 p-0">
-                    <label asp-for="Bedroom" class="label">عمر بنا</label>
+                    <label asp-for="Bedroom" class="label">Age</label>
                     <div class="control ">
                         <div class="buttons">
-                            <div v-on:click="age = 1" class="button" :class="{'is-success': age == 1}">نوساز</div>
-                            <div v-on:click="age = 2" class="button" :class="{'is-success': age == 2}">2 سال </div>
-                            <div v-on:click="age = 3" class="button" :class="{'is-success': age == 3}">3 سال</div>
-                            <div v-on:click="age = 4" class="button" :class="{'is-success': age == 4}">4 سال</div>
-                            <div v-on:click="age = 5" class="button" :class="{'is-success': age == 5}">5 سال</div>
-                            <div v-on:click="age = 6" class="button" :class="{'is-success': age == 6}">6 سال</div>
-                            <div v-on:click="age = 7" class="button" :class="{'is-success': age == 7}">7 سال</div>
+                            <div v-on:click="age = 1" class="button" :class="{'is-success': age == 1}">1 year</div>
+                            <div v-on:click="age = 2" class="button" :class="{'is-success': age == 2}">2 year </div>
+                            <div v-on:click="age = 3" class="button" :class="{'is-success': age == 3}">3 year</div>
+                            <div v-on:click="age = 4" class="button" :class="{'is-success': age == 4}">4 year</div>
+                            <div v-on:click="age = 5" class="button" :class="{'is-success': age == 5}">5 year</div>
+                            <div v-on:click="age = 6" class="button" :class="{'is-success': age == 6}">6 year</div>
+                            <div v-on:click="age = 7" class="button" :class="{'is-success': age == 7}">7 year</div>
 
                         </div>
                     </div>
@@ -305,13 +305,13 @@
                   }
               }
               );
-              items.splice(0, 0, { id: 0, text: "انتخاب ناحیه" })
+              items.splice(0, 0, { id: 0, text: "Select District" })
               $("#selectArea").empty();
               $("#selectArea").select2({ data: items });
           })
       } else {
           $("#selectArea").empty();
-          $("#selectArea").select2({ data: [{  id: 0,text: "انتخاب ناحیه" }] });
+              $("#selectArea").select2({ data: [{  id: 0,text: "Select District" }] });
           $("#selectArea").prop("disabled", true);
       }
     });
@@ -326,18 +326,18 @@
                   }
               }
               );
-              items.splice(0, 0, { id: 0, text: "انتخاب محله" })
+                  items.splice(0, 0, { id: 0, text: "Select Neighborhood " })
               $("#selectDistrict").empty();
               $("#selectDistrict").select2({ data: items });
           })
       } else {
           $("#selectDistrict").empty();
-          $("#selectDistrict").select2({ data: [{  id: 0,text: "انتخاب محله" }] });
+          $("#selectDistrict").select2({ data: [{  id: 0,text: "Select District" }] });
           $("#selectDistrict").prop("disabled", true);
       }
     });
               $('#realestates').select2({
-               placeholder: 'جستجوی مشاور املاک',
+               placeholder: 'Find Real estate agent',
                minimumInputLength: 2,
                ajax: {
                    url: '/api/services/app/realestate/find',
