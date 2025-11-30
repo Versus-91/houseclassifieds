@@ -115,7 +115,7 @@
                         <div class="field column is-6 p-0">
                             <label asp-for="Area" class="label">Area <span class="is-danger is-size-7 has-text-danger">required</span></label>
                             <div class="control has-icons-left ">
-                                <input v-model="area" class="input " asp-for="Area" placeholder="مساحت" />
+                                <input v-model="area" class="input " asp-for="Area" placeholder="area" />
                                 <span class="icon is-small is-left">
                                     <i class="fas fa-globe"></i>
                                 </span>
@@ -292,7 +292,7 @@
                  $('.select2').select2({
                     matcher: matchCustom,
                     language: {
-                        "noResults": function () { return 'موردی پیدا نشد.'; }
+                        "noResults": function () { return 'No result to show.'; }
                     }
                 });
                $('#selectCity').on('select2:select', function (e) {
@@ -306,13 +306,13 @@
                           }
                       }
                       );
-                      items.splice(0, 0, { id: 0, text: "انتخاب ناحیه" })
+                      items.splice(0, 0, { id: 0, text: "Select Neighborhood" })
                       $("#selectArea").empty();
                       $("#selectArea").select2({ data: items });
                   })
               } else {
                   $("#selectArea").empty();
-                  $("#selectArea").select2({ data: [{  id: 0,text: "انتخاب ناحیه" }] });
+                  $("#selectArea").select2({ data: [{  id: 0,text: "Select Neighborhood" }] });
                   $("#selectArea").prop("disabled", true);
               }
             });
@@ -327,18 +327,18 @@
                           }
                       }
                       );
-                      items.splice(0, 0, { id: 0, text: "انتخاب محله" })
+                      items.splice(0, 0, { id: 0, text: "Select District" })
                       $("#selectDistrict").empty();
                       $("#selectDistrict").select2({ data: items });
                   })
               } else {
                   $("#selectDistrict").empty();
-                  $("#selectDistrict").select2({ data: [{  id: 0,text: "انتخاب محله" }] });
+                  $("#selectDistrict").select2({ data: [{  id: 0,text: "Select District" }] });
                   $("#selectDistrict").prop("disabled", true);
               }
             });
             $('#realestates').select2({
-               placeholder: 'جستجوی مشاور املاک',
+               placeholder: 'Find real estate agent',
                minimumInputLength: 2,
                ajax: {
                    url: '/api/services/app/realestate/find',

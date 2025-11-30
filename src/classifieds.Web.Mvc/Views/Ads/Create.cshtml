@@ -291,7 +291,7 @@
          $('.select2').select2({
             matcher: matchCustom,
             language: {
-                "noResults": function () { return 'موردی پیدا نشد.'; }
+                "noResults": function () { return 'no result found.'; }
             }
         });
        $('#selectCity').on('select2:select', function (e) {
@@ -305,13 +305,13 @@
                   }
               }
               );
-              items.splice(0, 0, { id: 0, text: "Select District" })
+              items.splice(0, 0, { id: 0, text: "Select Neighborhood" })
               $("#selectArea").empty();
               $("#selectArea").select2({ data: items });
           })
       } else {
           $("#selectArea").empty();
-              $("#selectArea").select2({ data: [{  id: 0,text: "Select District" }] });
+          $("#selectArea").select2({ data: [{  id: 0,text: "Select Neighborhood" }] });
           $("#selectArea").prop("disabled", true);
       }
     });
@@ -326,7 +326,7 @@
                   }
               }
               );
-                  items.splice(0, 0, { id: 0, text: "Select Neighborhood " })
+                      items.splice(0, 0, { id: 0, text: "Select District " })
               $("#selectDistrict").empty();
               $("#selectDistrict").select2({ data: items });
           })
