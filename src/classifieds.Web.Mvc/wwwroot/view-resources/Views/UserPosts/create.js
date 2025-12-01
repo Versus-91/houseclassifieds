@@ -23,7 +23,7 @@ var app = new Vue({
         zoom: 13,
         url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         dropZone: {},
-        center: L.latLng(34.543896, 69.160652),
+        center: L.latLng(35.7219, 51.3347),
         marker: null,
         age: 0,
         price: null,
