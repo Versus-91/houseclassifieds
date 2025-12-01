@@ -1,7 +1,7 @@
 ﻿@using classifieds.Web.Startup
 @model classifieds.Web.Models.Ads.ShowAdViewModel
 @{
-    ViewBag.Title = Model.Post.Category.Name + " " + Model.Post.Type.Name + " در " + Model.Post.District.Name;
+    ViewBag.Title = Model.Post.Category.Name + " " + Model.Post.Type.Name + " in " + Model.Post.District.Name;
     ViewBag.CurrentPageName = PageNames.Home;
     Layout = "layout/_front";
 }

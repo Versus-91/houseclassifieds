@@ -306,13 +306,13 @@
                           }
                       }
                       );
-                      items.splice(0, 0, { id: 0, text: "Select Neighborhood" })
+                          items.splice(0, 0, { id: 0, text: "Select District" })
                       $("#selectArea").empty();
                       $("#selectArea").select2({ data: items });
                   })
               } else {
                   $("#selectArea").empty();
-                  $("#selectArea").select2({ data: [{  id: 0,text: "Select Neighborhood" }] });
+                      $("#selectArea").select2({ data: [{  id: 0,text: "Select District" }] });
                   $("#selectArea").prop("disabled", true);
               }
             });
@@ -327,13 +327,13 @@
                           }
                       }
                       );
-                      items.splice(0, 0, { id: 0, text: "Select District" })
+                          items.splice(0, 0, { id: 0, text: "Select Neighborhood" })
                       $("#selectDistrict").empty();
                       $("#selectDistrict").select2({ data: items });
                   })
               } else {
                   $("#selectDistrict").empty();
-                  $("#selectDistrict").select2({ data: [{  id: 0,text: "Select District" }] });
+                      $("#selectDistrict").select2({ data: [{  id: 0,text: "Select Neighborhood " }] });
                   $("#selectDistrict").prop("disabled", true);
               }
             });
