@@ -1,6 +1,6 @@
 #  Realtor App
 
-A full-stack real estate management platform with a web frontend built in Vue.js, a robust .NET backend using Domain-Driven Design (DDD) principles, a SQL Server database, and a cross-platform mobile app developed with Flutter.
+A full-stack real estate management platform with a web frontend built in Vue.js, a robust .NET backend using Domain-Driven Design (DDD) principles, and a SQL Server database.
 
 ##  Overview
 
