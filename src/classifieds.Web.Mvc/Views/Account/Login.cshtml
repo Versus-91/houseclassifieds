@@ -1,6 +1,6 @@
 ﻿@using Abp.Authorization.Users
 @model classifieds.Web.Models.Account.LoginFormViewModel
-@{ ViewBag.Title = "ورود به حساب"; }
+@{ ViewBag.Title = "Login"; }
 @section scripts
 {
     <environment names="Development">
@@ -8,7 +8,7 @@
     </environment>
 
     <environment names="Staging,Production">
-        <script src="~/view-resources/Views/Account/Login.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/Account/Login.js" asp-append-version="true"></script>
     </environment>
 }
 <div class="area">
