@@ -1,6 +1,6 @@
 ﻿@using Abp.Authorization.Users
 @model classifieds.Web.Models.Account.RegisterViewModel
-@{ ViewBag.Title = "ثبت نام"; }
+@{ ViewBag.Title = "Sign Up"; }
 @section scripts
 {
     <environment names="Development">
@@ -8,7 +8,7 @@
     </environment>
 
     <environment names="Staging,Production">
-        <script src="~/view-resources/Views/Account/Register.min.js" asp-append-version="true"></script>
+        <script src="~/view-resources/Views/Account/Register.js" asp-append-version="true"></script>
     </environment>
 }
 <section class="hero is-info is-fullheight is-bold">
