@@ -9,7 +9,7 @@
 @{ Layout = null;
     AbpAntiForgeryManager.SetCookie(Context);
 
-    var pageTitle = !string.IsNullOrWhiteSpace(ViewBag.Title) ? ViewBag.Title + " / " : "";
+    var pageTitle = !string.IsNullOrWhiteSpace(ViewBag.Title) ? ViewBag.Title + " - " : "";
     pageTitle += "classifieds"; }
 <!DOCTYPE html>
 <html lang="@LanguageManager.CurrentLanguage.Name">
